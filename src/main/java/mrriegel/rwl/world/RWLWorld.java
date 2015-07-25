@@ -6,7 +6,9 @@ import java.util.Random;
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.MyUtils;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import cpw.mods.fml.common.IWorldGenerator;
@@ -33,14 +35,29 @@ public class RWLWorld implements IWorldGenerator {
 				ArrayList<BlockLocation> lis = MyUtils.getAroundBlocks(world,
 						x, i, z);
 				for (BlockLocation l : lis) {
-					world.setBlock(l.x, l.y, l.z, ModBlocks.mazer);
+					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
 
 				}
-				world.setBlock(x, i, z, ModBlocks.mazer);
+				setB(x, i, z, ModBlocks.mazer, world);
+				setB(x + 2, i + 1, z + 2, ModBlocks.mazer, world);
+				setB(x + -2, i + 1, z + 2, ModBlocks.mazer, world);
+				setB(x + 2, i + 1, z - 2, ModBlocks.mazer, world);
+				setB(x - 2, i + 1, z - 2, ModBlocks.mazer, world);
+				setB(x + 2, i + 2, z + 2, ModBlocks.mazer, world);
+				setB(x + -2, i + 2, z + 2, ModBlocks.mazer, world);
+				setB(x + 2, i + 2, z - 2, ModBlocks.mazer, world);
+				setB(x - 2, i + 2, z - 2, ModBlocks.mazer, world);
 				break;
 			}
 		}
 
+	}
+
+	private void setB(int x, int y, int z, Block b, World world) {
+		int ran = (int) (Math.random() * Integer.MAX_VALUE);
+		if (ran % 4 != 0) {
+			world.setBlock(x, y, z, b);
+		}
 	}
 
 	private boolean isSolid(int x, int i, int z, World world) {
@@ -50,16 +67,55 @@ public class RWLWorld implements IWorldGenerator {
 			if (world.getBlock(l.x, l.y, l.z).getMaterial()
 					.equals(Material.air)
 					|| world.getBlock(l.x, l.y, l.z).getMaterial().isLiquid()
-					|| !world.getBlock(l.x, l.y, l.z).getMaterial().isSolid()) {
+					|| !world.getBlock(l.x, l.y, l.z).getMaterial().isSolid()
+					|| world.getBlock(l.x, l.y, l.z).getMaterial()
+							.equals(Material.leaves)) {
 				res = false;
 				break;
 			}
-			if (world.getBlock(l.x, l.y + 1, l.z).getMaterial().isSolid()) {
+			if (world.getBlock(l.x, l.y + 1, l.z).getMaterial().isSolid()
+					|| world.getBlock(l.x, l.y + 1, l.z).getMaterial()
+							.isLiquid()) {
+				res = false;
+				break;
+			}
+			if (world.getBlock(l.x, l.y + 2, l.z).getMaterial().isSolid()
+					|| world.getBlock(l.x, l.y + 1, l.z).getMaterial()
+							.isLiquid()) {
+				res = false;
+				break;
+			}
+			if (world.getBlock(l.x, l.y + 3, l.z).getMaterial().isSolid()
+					|| world.getBlock(l.x, l.y + 1, l.z).getMaterial()
+							.isLiquid()) {
 				res = false;
 				break;
 			}
 		}
+		// if (world.getBlock(x, i, z).getMaterial().equals(Material.air)
+		// || world.getBlock(x, i, z).getMaterial().isLiquid()
+		// || !world.getBlock(x, i, z).getMaterial().isSolid()) {
+		// res = false;
+		// return res;
+		//
+		// }
+		// if (world.getBlock(x, i + 1, z).getMaterial().isSolid()) {
+		// res = false;
+		// return res;
+		//
+		// }
+		// if (world.getBlock(x, i + 2, z).getMaterial().isSolid()) {
+		// res = false;
+		// return res;
+		//
+		// }
+		// if (world.getBlock(x, i + 3, z).getMaterial().isSolid()) {
+		// res = false;
+		// return res;
+		//
+		// }
 		return res;
+
 	}
 
 }
