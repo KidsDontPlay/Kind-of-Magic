@@ -1,6 +1,7 @@
 package mrriegel.rwl.init;
 
 import mrriegel.rwl.block.Mazer;
+import mrriegel.rwl.block.MazerB;
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -10,9 +11,11 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class ModBlocks {
 
 	public static Block mazer = new Mazer();
+	public static Block mazerB = new MazerB();
 
 	public static void init() {
 		GameRegistry.registerBlock(mazer, "mazer");
+		GameRegistry.registerBlock(mazerB, "mazerB");
 
 	}
 

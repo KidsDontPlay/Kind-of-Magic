@@ -3,6 +3,7 @@ package mrriegel.rwl;
 import mrriegel.rwl.handler.ConfigurationHandler;
 import mrriegel.rwl.init.CraftingRecipes;
 import mrriegel.rwl.init.ModBlocks;
+import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.proxy.IProxy;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.world.RWLWorld;
@@ -29,6 +30,7 @@ public class RWL {
 		ConfigurationHandler.init(event.getSuggestedConfigurationFile());
 		GameRegistry.registerWorldGenerator(new RWLWorld(), 1);
 		ModBlocks.init();
+		ModItems.init();
 	}
 
 	@Mod.EventHandler
