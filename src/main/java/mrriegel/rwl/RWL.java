@@ -7,6 +7,7 @@ import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.proxy.IProxy;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.world.RWLWorld;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;

@@ -8,12 +8,16 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class MazerB extends BlockContainer {
@@ -28,10 +32,14 @@ public class MazerB extends BlockContainer {
 	@Override
 	public void registerBlockIcons(IIconRegister reg) {
 		for (int i = 0; i < 6; i++) {
-			this.icons[i] = reg.registerIcon(Reference.MOD_ID + ":" + "mazerB");
-
+			if (i == 0 || i == 1) {
+				this.icons[i] = reg.registerIcon(Reference.MOD_ID + ":"
+						+ "mazer");
+			} else {
+				this.icons[i] = reg.registerIcon(Reference.MOD_ID + ":"
+						+ "mazerB");
+			}
 		}
-
 	}
 
 	@Override
@@ -42,6 +50,24 @@ public class MazerB extends BlockContainer {
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
 		return new MazerTile();
+	}
+
+	@Override
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x,
+			int y, int z) {
+		float f = 0.0625F;
+		return AxisAlignedBB.getBoundingBox((float) x + f, y, (float) z + f,
+				(float) (x + 1) - f, (float) (y + 1) - f, (float) (z + 1) - f);
+	}
+
+	@Override
+	public void onEntityCollidedWithBlock(World world, int x, int y, int z,
+			Entity entity) {
+		if (entity instanceof EntityItem && entity.posY >= y + 1 + 0.0624F
+				&& !world.isRemote) {
+			System.out.println("block: " + y);
+			System.out.println("item: " + entity.posY);
+		}
 	}
 
 	@Override
@@ -56,18 +82,24 @@ public class MazerB extends BlockContainer {
 				&& player.getCurrentEquippedItem() != null
 				&& player.getCurrentEquippedItem().getItem()
 						.equals(ModItems.bloodie) && !te.isActive()) {
-			// player.inventory.setInventorySlotContents(
-			// player.inventory.currentItem, new ItemStack(Blocks.air));
+			player.inventory.setInventorySlotContents(
+					player.inventory.currentItem, new ItemStack(
+							ModItems.bloodie,
+							player.getCurrentEquippedItem().stackSize - 1));
 			te.setActive(true);
+			System.out.println("inserted");
 
 		} else if (player.isSneaking() && te.isActive()) {
-			System.out.println("hier");
+			System.out.println("gib");
 			te.setActive(false);
-			player.inventory.addItemStackToInventory(new ItemStack(
+			EntityItem i = new EntityItem(world, x, y + 1, z, new ItemStack(
 					ModItems.bloodie));
+			world.spawnEntityInWorld(i);
+			i.setPosition(player.posX, player.posY, player.posZ);
+			System.out.println("extracted");
 		}
 		System.out.println("hop: " + te.isActive());
-		return this.blockConstructorCalled;
+		return false;
 
 	}
 
