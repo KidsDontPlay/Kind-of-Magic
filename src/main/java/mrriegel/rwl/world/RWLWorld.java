@@ -30,7 +30,7 @@ public class RWLWorld implements IWorldGenerator {
 		int x = chunkX * 16 + random.nextInt(16);
 		int z = chunkZ * 16 + random.nextInt(16);
 		for (int i = 110; i > 50; i--) {
-			int ran = (int) (Math.random() * 80) + 1;
+			int ran = (int) (Math.random() * 10) + 1;
 			if (isSolid(x, i, z, world) && ran == 1) {
 				ArrayList<BlockLocation> lis = MyUtils.getAroundBlocks(world,
 						x, i, z);
@@ -55,7 +55,7 @@ public class RWLWorld implements IWorldGenerator {
 
 	private void setB(int x, int y, int z, Block b, World world) {
 		int ran = (int) (Math.random() * Integer.MAX_VALUE);
-		if (ran % 4 != 0) {
+		if (ran % 4 != 0 && ran % 3 != 1) {
 			world.setBlock(x, y, z, b);
 		}
 	}

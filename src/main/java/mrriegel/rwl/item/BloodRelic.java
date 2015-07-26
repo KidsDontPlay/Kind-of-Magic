@@ -4,12 +4,12 @@ import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.item.Item;
 
-public class KCatalyst extends Catalyst {
-	public KCatalyst() {
+public class BloodRelic extends Item {
+
+	public BloodRelic() {
 		super();
 		this.setCreativeTab(CreativeTab.tab1);
-		this.setUnlocalizedName(Reference.MOD_ID + ":" + "kcatalyst");
-		this.setTextureName(Reference.MOD_ID + ":" + "kcatalyst");
-
+		this.setUnlocalizedName(Reference.MOD_ID + ":" + "relic");
+		this.setTextureName(Reference.MOD_ID + ":" + "relic");
 	}
 }
