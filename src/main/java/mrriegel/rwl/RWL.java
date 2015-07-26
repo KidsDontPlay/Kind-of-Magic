@@ -4,7 +4,7 @@ import mrriegel.rwl.handler.ConfigurationHandler;
 import mrriegel.rwl.init.CraftingRecipes;
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.init.ModItems;
-import mrriegel.rwl.proxy.IProxy;
+import mrriegel.rwl.proxy.CommonProxy;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.world.RWLWorld;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -23,8 +23,11 @@ public class RWL {
 	@Mod.Instance(Reference.MOD_ID)
 	public static RWL instance;
 
-	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
-	public static IProxy proxy;
+	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.COMMON_PROXY_CLASS)
+	public static CommonProxy proxy;
+
+	private static int modGuiIndex = 0;
+	public static final int ItemInventoryGuiIndex = modGuiIndex++;
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -36,6 +39,8 @@ public class RWL {
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
+
 		CraftingRecipes.init();
 	}
 
