@@ -5,7 +5,9 @@ import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.gui.GuiIDs;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.NBTHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -21,42 +23,22 @@ public class NevPick extends ItemPickaxe {
 
 	public NevPick() {
 		super(MATERIAL);
+		this.setMaxStackSize(1);
 		this.setCreativeTab(CreativeTab.tab1);
 		this.setUnlocalizedName(Reference.MOD_ID + ":" + "nevpick");
 		this.setTextureName(Reference.MOD_ID + ":" + "nevpick");
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world,
-			EntityPlayer player) {
-		player.openGui(RWL.instance, GuiIDs.NEVPICK, world, 0, 0, 0);
-		return stack;
+	public int getMaxItemUseDuration(ItemStack itemstack) {
+		return 1;
 	}
 
-	public static ItemStack[] loadStacks(ItemStack stack) {
-		NBTTagList var2 = NBTHelper.getList(stack, TAG_ITEMS, 10, false);
-		ItemStack[] inventorySlots = new ItemStack[16];
-		for (int var3 = 0; var3 < var2.tagCount(); ++var3) {
-			NBTTagCompound var4 = var2.getCompoundTagAt(var3);
-			byte var5 = var4.getByte(TAG_SLOT);
-			if (var5 >= 0 && var5 < inventorySlots.length)
-				inventorySlots[var5] = ItemStack.loadItemStackFromNBT(var4);
-		}
-
-		return inventorySlots;
-	}
-
-	public static void setStacks(ItemStack stack, ItemStack[] inventorySlots) {
-		NBTTagList var2 = new NBTTagList();
-		for (int var3 = 0; var3 < inventorySlots.length; ++var3)
-			if (inventorySlots[var3] != null) {
-				NBTTagCompound var4 = new NBTTagCompound();
-				var4.setByte(TAG_SLOT, (byte) var3);
-				inventorySlots[var3].writeToNBT(var4);
-				var2.appendTag(var4);
-			}
-
-		NBTHelper.setList(stack, TAG_ITEMS, var2);
+	@Override
+	public ItemStack onItemRightClick(ItemStack p_77659_1_, World p_77659_2_,
+			EntityPlayer p_77659_3_) {
+		p_77659_3_.openGui(RWL.instance, GuiIDs.NEVPICK, p_77659_2_, 0, 0, 0);
+		return p_77659_1_;
 	}
 
 }

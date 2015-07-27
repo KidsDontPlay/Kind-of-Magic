@@ -10,11 +10,13 @@ import net.minecraft.util.StatCollector;
 
 public class GuiNevPick extends GuiContainer {
 
+	private final InventoryNevPick inventory;
 	private static final ResourceLocation texture = new ResourceLocation(
 			Reference.MOD_ID + ":" + "textures/gui/nevpick.png");
 
-	public GuiNevPick(EntityPlayer player) {
-		super(new ContainerNevPick(player));
+	public GuiNevPick(ContainerNevPick con) {
+		super(con);
+		this.inventory = con.inv;
 	}
 
 	@Override

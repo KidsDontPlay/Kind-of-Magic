@@ -6,15 +6,19 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 public class ContainerNevPick extends Container {
 
 	InventoryNevPick inv;
 
-	public ContainerNevPick(EntityPlayer player) {
+	private final ItemStack containerstack;
+	public boolean needsUpdate;
 
-		inv = new InventoryNevPick(player, player.inventory.currentItem);
-		InventoryPlayer inventoryPlayer = player.inventory;
+	public ContainerNevPick(EntityPlayer player, InventoryPlayer invPlayer,
+			InventoryNevPick inv) {
+		this.inv = inv;
+		this.containerstack = player.getHeldItem();
 
 		for (int i = 0; i < 1; i++) {
 			for (int j = 0; j < 1; j++) {
@@ -25,14 +29,24 @@ public class ContainerNevPick extends Container {
 
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {
-				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9,
+				addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9,
 						8 + j * 18, 84 + i * 18));
 			}
 		}
 
 		for (int i = 0; i < 9; i++) {
-			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
+			addSlotToContainer(new Slot(invPlayer, i, 8 + i * 18, 142));
 		}
+	}
+
+	public void writeToNBT() {
+		// Use this.containerstack for getting compound
+		if (!this.containerstack.hasTagCompound()) {
+			this.containerstack.setTagCompound(new NBTTagCompound());
+		}
+		// Cast to InventoryItem so we can call the method from that class:
+		inv.writeToNBT(this.containerstack.getTagCompound());
+
 	}
 
 	@Override
@@ -78,7 +92,16 @@ public class ContainerNevPick extends Container {
 			}
 			slotObject.onPickupFromSlot(player, stackInSlot);
 		}
+		this.needsUpdate = true;
 		return stack;
+
+	}
+
+	@Override
+	public ItemStack slotClick(int slotID, int buttonPressed, int flag,
+			EntityPlayer player) {
+		this.needsUpdate = true;
+		return super.slotClick(slotID, buttonPressed, flag, player);
 
 	}
 
