@@ -8,12 +8,12 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class ContainerNevPick extends Container {
+public class ContainerNevTool extends Container {
 
-	InventoryNevPick inv;
+	InventoryNevTool inv;
 
-	public ContainerNevPick(EntityPlayer player, InventoryPlayer invPlayer,
-			InventoryNevPick inv) {
+	public ContainerNevTool(EntityPlayer player, InventoryPlayer invPlayer,
+			InventoryNevTool inv) {
 		this.inv = inv;
 
 		for (int i = 0; i < 1; i++) {

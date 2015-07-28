@@ -8,13 +8,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
-public class GuiNevPick extends GuiContainer {
+public class GuiNevTool extends GuiContainer {
 
-	private final InventoryNevPick inventory;
+	private final InventoryNevTool inventory;
 	private static final ResourceLocation texture = new ResourceLocation(
-			Reference.MOD_ID + ":" + "textures/gui/nevpick.png");
+			Reference.MOD_ID + ":" + "textures/gui/nevtool.png");
 
-	public GuiNevPick(ContainerNevPick con) {
+	public GuiNevTool(ContainerNevTool con) {
 		super(con);
 		this.inventory = con.inv;
 	}

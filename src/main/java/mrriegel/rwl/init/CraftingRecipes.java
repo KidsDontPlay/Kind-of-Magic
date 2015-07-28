@@ -22,9 +22,11 @@ public class CraftingRecipes {
 						ModItems.bloodie)));
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.mdust, 2),
 				ModBlocks.mazer);
-		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst,1,0), "mmm",
-				"mgm", "mmm", 'm', new ItemStack(ModItems.mdust), 'g',
+		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst, 1, 0),
+				"mmm", "mgm", "mmm", 'm', new ItemStack(ModItems.mdust), 'g',
 				new ItemStack(Items.gold_ingot));
+		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.nevpick),
+				Blocks.dirt);
 
 	}
 }

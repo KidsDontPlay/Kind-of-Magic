@@ -5,10 +5,10 @@ import java.util.Map;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import mrriegel.rwl.RWL;
-import mrriegel.rwl.gui.ContainerNevPick;
+import mrriegel.rwl.gui.ContainerNevTool;
 import mrriegel.rwl.gui.GuiIDs;
-import mrriegel.rwl.gui.GuiNevPick;
-import mrriegel.rwl.gui.InventoryNevPick;
+import mrriegel.rwl.gui.GuiNevTool;
+import mrriegel.rwl.gui.InventoryNevTool;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -31,9 +31,9 @@ public class CommonProxy implements IGuiHandler {
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world,
 			int x, int y, int z) {
 		switch (ID) {
-		case GuiIDs.NEVPICK:
-			return new ContainerNevPick(player, player.inventory,
-					new InventoryNevPick(player.getHeldItem()));
+		case GuiIDs.NEVTOOL:
+			return new ContainerNevTool(player, player.inventory,
+					new InventoryNevTool(player.getHeldItem()));
 		}
 		return null;
 	}
@@ -42,10 +42,10 @@ public class CommonProxy implements IGuiHandler {
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world,
 			int x, int y, int z) {
 		switch (ID) {
-		case GuiIDs.NEVPICK:
-			return new GuiNevPick(new ContainerNevPick(player,
+		case GuiIDs.NEVTOOL:
+			return new GuiNevTool(new ContainerNevTool(player,
 					player.inventory,
-					new InventoryNevPick(player.getHeldItem())));
+					new InventoryNevTool(player.getHeldItem())));
 		}
 		return null;
 	}

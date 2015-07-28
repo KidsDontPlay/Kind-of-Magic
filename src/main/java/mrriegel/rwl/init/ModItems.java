@@ -8,6 +8,7 @@ import mrriegel.rwl.item.Crysthal;
 import mrriegel.rwl.item.Catalyst;
 import mrriegel.rwl.item.MazeDust;
 import mrriegel.rwl.item.NevPick;
+import mrriegel.rwl.item.NevShovel;
 import mrriegel.rwl.item.NevSword;
 import mrriegel.rwl.reference.Reference;
 
@@ -19,6 +20,7 @@ public class ModItems {
 	public static Item mdust = new MazeDust();
 	public static Item nevsword = new NevSword();
 	public static Item nevpick = new NevPick();
+	public static Item nevshovel = new NevShovel();
 	public static Item cry = new Crysthal();
 
 	public static void init() {
@@ -29,6 +31,7 @@ public class ModItems {
 		GameRegistry.registerItem(mdust, "msdust");
 		GameRegistry.registerItem(nevsword, "nevsword");
 		GameRegistry.registerItem(nevpick, "nevpick");
+		GameRegistry.registerItem(nevshovel, "nevshovel");
 		GameRegistry.registerItem(cry, "cry");
 
 	}

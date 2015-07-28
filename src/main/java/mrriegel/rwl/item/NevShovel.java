@@ -11,37 +11,26 @@ import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.MyUtils;
 import mrriegel.rwl.utility.NBTHelper;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemPickaxe;
+import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.oredict.OreDictionary;
 
-public class NevPick extends ItemPickaxe {
+public class NevShovel extends ItemSpade {
 	public static ToolMaterial MATERIAL = EnumHelper.addToolMaterial(
 			"MATERIAL", 2, 1999, 10.0F, 2.0F, 14);
 
-	public NevPick() {
+	public NevShovel() {
 		super(MATERIAL);
 		this.setMaxStackSize(1);
 		this.setCreativeTab(CreativeTab.tab1);
-		this.setUnlocalizedName(Reference.MOD_ID + ":" + "nevpick");
-		this.setTextureName(Reference.MOD_ID + ":" + "nevpick");
+		this.setUnlocalizedName(Reference.MOD_ID + ":" + "nevshovel");
+		this.setTextureName(Reference.MOD_ID + ":" + "nevshovel");
 
 	}
 
@@ -65,7 +54,7 @@ public class NevPick extends ItemPickaxe {
 				.getTagList(InventoryNevTool.tagName,
 						stack.getTagCompound().getId()).getCompoundTagAt(0)
 				.getShort("Damage") == 5) {
-			return super.getDigSpeed(stack, block, meta) * 3.0f;
+			return super.getDigSpeed(stack, block, meta) * 2.5f;
 
 		} else if (stack
 				.getTagCompound()
@@ -84,6 +73,7 @@ public class NevPick extends ItemPickaxe {
 		if (player.worldObj.isRemote) {
 			return false;
 		}
+
 		switch (stack
 				.getTagCompound()
 				.getTagList(InventoryNevTool.tagName,

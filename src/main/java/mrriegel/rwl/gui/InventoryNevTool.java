@@ -9,16 +9,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
-public class InventoryNevPick implements IInventory {
+public class InventoryNevTool implements IInventory {
 
 	private ItemStack[] inv;
 
 	public static final int INV_SIZE = 1;
-	public static String tagName = "NevPick";
+	public static String tagName = "NevTool";
 
 	ItemStack storedInv = null;
 
-	public InventoryNevPick(ItemStack stack) {
+	public InventoryNevTool(ItemStack stack) {
 		inv = new ItemStack[INV_SIZE];
 		this.storedInv = stack;
 		if (!storedInv.hasTagCompound()) {
@@ -136,8 +136,9 @@ public class InventoryNevPick implements IInventory {
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
-		ItemStack stack = player.getCurrentEquippedItem();
-		return stack != null && stack.getItem() == ModItems.nevpick;
+		// ItemStack stack = player.getCurrentEquippedItem();
+		// return stack != null && stack.getItem() == ModItems.nevpick;
+		return true;
 	}
 
 	@Override
