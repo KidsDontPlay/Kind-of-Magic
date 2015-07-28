@@ -136,9 +136,10 @@ public class InventoryNevTool implements IInventory {
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
-		// ItemStack stack = player.getCurrentEquippedItem();
-		// return stack != null && stack.getItem() == ModItems.nevpick;
-		return true;
+		ItemStack stack = player.getCurrentEquippedItem();
+		return stack != null
+				&& (stack.getItem() == ModItems.nevpick || stack.getItem() == ModItems.nevshovel);
+		// return true;
 	}
 
 	@Override
