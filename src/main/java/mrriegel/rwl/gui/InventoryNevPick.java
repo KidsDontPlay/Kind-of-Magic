@@ -13,13 +13,9 @@ public class InventoryNevPick implements IInventory {
 
 	private ItemStack[] inv;
 
-	// EntityPlayer player;
-	// int slot;
 	public static final int INV_SIZE = 1;
+	public static String tagName = "NevPick";
 
-	ItemStack[] stacks = null;
-
-	boolean invPushed = false;
 	ItemStack storedInv = null;
 
 	public InventoryNevPick(ItemStack stack) {
@@ -32,7 +28,7 @@ public class InventoryNevPick implements IInventory {
 	}
 
 	public void readFromNBT(NBTTagCompound compound) {
-		String key = "NevPick";
+		String key = tagName;
 		if (key == null || key.equals("")) {
 			return;
 		}
@@ -48,7 +44,7 @@ public class InventoryNevPick implements IInventory {
 	}
 
 	public void writeToNBT(NBTTagCompound compound) {
-		String key = "NevPick";
+		String key = tagName;
 		if (key == null || key.equals("")) {
 			return;
 		}
@@ -67,42 +63,6 @@ public class InventoryNevPick implements IInventory {
 	public static boolean isNevPick(ItemStack stack) {
 		return stack != null && stack.getItem() == ModItems.nevpick;
 	}
-
-	// ItemStack getStack() {
-	// ItemStack stack = player.inventory.getStackInSlot(slot);
-	// if (stack != null)
-	// storedInv = stack;
-	// return stack;
-	// }
-	//
-	// ItemStack[] getInventory() {
-	// if (stacks != null)
-	// return stacks;
-	//
-	// ItemStack stack = getStack();
-	// if (isNevPick(getStack())) {
-	// stacks = NevPick.loadStacks(stack);
-	// return stacks;
-	// }
-	//
-	// return inv;
-	// }
-	//
-	// public void pushInventory() {
-	// if (invPushed)
-	// return;
-	//
-	// ItemStack stack = getStack();
-	// if (stack == null)
-	// stack = storedInv;
-	//
-	// if (stack != null) {
-	// ItemStack[] inv = getInventory();
-	// NevPick.setStacks(stack, inv);
-	// }
-	//
-	// invPushed = true;
-	// }
 
 	@Override
 	public int getSizeInventory() {
@@ -152,7 +112,7 @@ public class InventoryNevPick implements IInventory {
 
 	@Override
 	public String getInventoryName() {
-		return "Nev Pick";
+		return storedInv.getDisplayName();
 	}
 
 	@Override
@@ -167,13 +127,6 @@ public class InventoryNevPick implements IInventory {
 
 	@Override
 	public void markDirty() {
-		// for (int i = 0; i < this.getSizeInventory(); ++i) {
-		// if (this.getStackInSlot(i) != null
-		// && this.getStackInSlot(i).stackSize == 0)
-		//
-		// this.setInventorySlotContents(i, null);
-		// }
-
 		for (int i = 0; i < getSizeInventory(); ++i) {
 			if (getStackInSlot(i) != null && getStackInSlot(i).stackSize == 0)
 				inv[i] = null;

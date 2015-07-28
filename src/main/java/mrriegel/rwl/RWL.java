@@ -1,5 +1,7 @@
 package mrriegel.rwl;
 
+import net.minecraftforge.common.MinecraftForge;
+import mrriegel.rwl.handler.BreakEventHandler;
 import mrriegel.rwl.handler.ConfigurationHandler;
 import mrriegel.rwl.init.CraftingRecipes;
 import mrriegel.rwl.init.ModBlocks;
@@ -42,6 +44,7 @@ public class RWL {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
 
 		CraftingRecipes.init();
+		MinecraftForge.EVENT_BUS.register(new BreakEventHandler());
 	}
 
 	@Mod.EventHandler

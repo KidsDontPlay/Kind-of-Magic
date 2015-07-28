@@ -12,13 +12,9 @@ public class ContainerNevPick extends Container {
 
 	InventoryNevPick inv;
 
-	private final ItemStack containerstack;
-	public boolean needsUpdate;
-
 	public ContainerNevPick(EntityPlayer player, InventoryPlayer invPlayer,
 			InventoryNevPick inv) {
 		this.inv = inv;
-		this.containerstack = player.getHeldItem();
 
 		for (int i = 0; i < 1; i++) {
 			for (int j = 0; j < 1; j++) {
@@ -39,15 +35,12 @@ public class ContainerNevPick extends Container {
 		}
 	}
 
-	public void writeToNBT() {
-		// Use this.containerstack for getting compound
-		if (!this.containerstack.hasTagCompound()) {
-			this.containerstack.setTagCompound(new NBTTagCompound());
-		}
-		// Cast to InventoryItem so we can call the method from that class:
-		inv.writeToNBT(this.containerstack.getTagCompound());
-
-	}
+	// public void writeToNBT() {
+	// if (!this.containerstack.hasTagCompound()) {
+	// this.containerstack.setTagCompound(new NBTTagCompound());
+	// }
+	// inv.writeToNBT(this.containerstack.getTagCompound());
+	// }
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
@@ -56,7 +49,6 @@ public class ContainerNevPick extends Container {
 
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
-		System.out.println("slot: " + slot);
 		ItemStack stack = null;
 		Slot slotObject = (Slot) inventorySlots.get(slot);
 
@@ -92,17 +84,7 @@ public class ContainerNevPick extends Container {
 			}
 			slotObject.onPickupFromSlot(player, stackInSlot);
 		}
-		this.needsUpdate = true;
 		return stack;
-
-	}
-
-	@Override
-	public ItemStack slotClick(int slotID, int buttonPressed, int flag,
-			EntityPlayer player) {
-		this.needsUpdate = true;
-		return super.slotClick(slotID, buttonPressed, flag, player);
-
 	}
 
 }
