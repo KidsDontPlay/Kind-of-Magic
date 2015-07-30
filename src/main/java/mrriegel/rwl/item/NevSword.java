@@ -1,6 +1,8 @@
 package mrriegel.rwl.item;
 
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
@@ -11,6 +13,9 @@ import mrriegel.rwl.gui.GuiIDs;
 import mrriegel.rwl.gui.InventoryNevTool;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.NBTHelper;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -18,8 +23,11 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.util.EnumHelper;
@@ -29,13 +37,34 @@ public class NevSword extends ItemSword {
 			"MATERIAL", 0, 2222, 10.0F, 6.0F, 30);
 
 	ItemStack sword = null;
+	IIcon icon_f = null;
+	int damage = -1;
 
 	public NevSword() {
 		super(MATERIAL);
 		this.setMaxStackSize(1);
 		this.setCreativeTab(CreativeTab.tab1);
 		this.setUnlocalizedName(Reference.MOD_ID + ":" + "nevsword");
-		this.setTextureName(Reference.MOD_ID + ":" + "nevsword");
+	}
+
+	@Override
+	public void registerIcons(IIconRegister p_94581_1_) {
+
+		this.icon_f = p_94581_1_.registerIcon(Reference.MOD_ID + ":"
+				+ "nevsword_fire");
+
+		this.itemIcon = p_94581_1_.registerIcon(Reference.MOD_ID + ":"
+				+ "nevsword");
+
+	}
+
+	@Override
+	public IIcon getIconFromDamage(int p_77617_1_) {
+		if (damage == 6) {
+			return icon_f;
+		} else {
+			return itemIcon;
+		}
 	}
 
 	@Override
@@ -54,11 +83,20 @@ public class NevSword extends ItemSword {
 	}
 
 	@Override
-	public void onUpdate(ItemStack p_77663_1_, World p_77663_2_,
-			Entity p_77663_3_, int p_77663_4_, boolean p_77663_5_) {
-		sword = p_77663_1_;
-		super.onUpdate(p_77663_1_, p_77663_2_, p_77663_3_, p_77663_4_,
-				p_77663_5_);
+	public void onUpdate(ItemStack stack, World world, Entity p_77663_3_,
+			int p_77663_4_, boolean p_77663_5_) {
+		sword = stack;
+		if(stack.getTagCompound()==null){
+			return;
+		}
+		int tar = stack
+				.getTagCompound()
+				.getTagList(InventoryNevTool.tagName,
+						stack.getTagCompound().getId()).getCompoundTagAt(0)
+				.getShort("Damage");
+		if(tar!=damage)
+			damage=tar;
+		super.onUpdate(stack, world, p_77663_3_, p_77663_4_, p_77663_5_);
 	}
 
 	@Override
@@ -97,7 +135,6 @@ public class NevSword extends ItemSword {
 			break;
 
 		}
-
 		return super.hitEntity(stack, player, victim);
 	}
 

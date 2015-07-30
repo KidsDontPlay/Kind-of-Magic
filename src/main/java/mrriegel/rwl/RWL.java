@@ -2,6 +2,7 @@ package mrriegel.rwl;
 
 import net.minecraftforge.common.MinecraftForge;
 import mrriegel.rwl.handler.ConfigurationHandler;
+import mrriegel.rwl.handler.DeathHandler;
 import mrriegel.rwl.init.CraftingRecipes;
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.init.ModItems;
@@ -41,7 +42,7 @@ public class RWL {
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
-
+MinecraftForge.EVENT_BUS.register(new DeathHandler());
 		CraftingRecipes.init();
 	}
 

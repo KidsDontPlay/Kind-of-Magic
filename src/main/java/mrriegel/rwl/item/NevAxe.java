@@ -94,12 +94,6 @@ public class NevAxe extends ItemAxe {
 		case 2:
 			radius(stack, x, y, z, player, 3);
 			return false;
-		case 3:
-			silk(stack, x, y, z, player);
-			return true;
-		case 4:
-			fortune(stack, x, y, z, player, 3);
-			return true;
 		case 8:
 			if (ForgeHooks.isToolEffective(stack,
 					player.worldObj.getBlock(x, y, z),
@@ -117,10 +111,9 @@ public class NevAxe extends ItemAxe {
 		return super.onBlockStartBreak(stack, x, y, z, player);
 	}
 
-
 	private void chop2(int x, int y, int z, World world, Block block, int l) {
 		for (BlockLocation bl : MyUtils.getNeighbors(world, x, y, z)) {
-			
+
 			if (world.getBlock(bl.x, bl.y, bl.z).getUnlocalizedName()
 					.equals(block.getUnlocalizedName())
 					&& world.getBlockMetadata(bl.x, bl.y, bl.z) == l) {

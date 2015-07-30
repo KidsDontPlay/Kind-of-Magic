@@ -57,6 +57,7 @@ public class NevPick extends ItemPickaxe {
 
 	@Override
 	public float getDigSpeed(ItemStack stack, Block block, int meta) {
+		System.out.println("getspeed"); 
 		if (stack
 				.getTagCompound()
 				.getTagList(InventoryNevTool.tagName,
@@ -81,12 +82,7 @@ public class NevPick extends ItemPickaxe {
 		if (player.worldObj.isRemote) {
 			return false;
 		}
-		System.out.println("tag: "
-				+ stack.getTagCompound()
-						.getTagList(InventoryNevTool.tagName,
-								stack.getTagCompound().getId())
-						.getCompoundTagAt(0).getShort("Damage"));
-		System.out.println("block: "+player.worldObj.getBlockMetadata(x, y, z)); 
+		
 		switch (stack
 				.getTagCompound()
 				.getTagList(InventoryNevTool.tagName,
