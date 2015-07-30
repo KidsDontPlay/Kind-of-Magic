@@ -12,24 +12,23 @@ import mrriegel.rwl.utility.MyUtils;
 import mrriegel.rwl.utility.NBTHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemPickaxe;
+import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.util.EnumHelper;
 
-public class NevPick extends ItemPickaxe {
+public class NevAxe extends ItemAxe {
 	public static ToolMaterial MATERIAL = EnumHelper.addToolMaterial(
 			"MATERIAL", 2, 1999, 10.0F, 2.0F, 14);
 
-	public NevPick() {
+	public NevAxe() {
 		super(MATERIAL);
 		this.setMaxStackSize(1);
 		this.setCreativeTab(CreativeTab.tab1);
-		this.setUnlocalizedName(Reference.MOD_ID + ":" + "nevpick");
-		this.setTextureName(Reference.MOD_ID + ":" + "nevpick");
-
+		this.setUnlocalizedName(Reference.MOD_ID + ":" + "nevaxe");
+		this.setTextureName(Reference.MOD_ID + ":" + "nevaxe");
 	}
 
 	@Override
@@ -81,12 +80,6 @@ public class NevPick extends ItemPickaxe {
 		if (player.worldObj.isRemote) {
 			return false;
 		}
-		System.out.println("tag: "
-				+ stack.getTagCompound()
-						.getTagList(InventoryNevTool.tagName,
-								stack.getTagCompound().getId())
-						.getCompoundTagAt(0).getShort("Damage"));
-		System.out.println("block: "+player.worldObj.getBlockMetadata(x, y, z)); 
 		switch (stack
 				.getTagCompound()
 				.getTagList(InventoryNevTool.tagName,
@@ -107,12 +100,35 @@ public class NevPick extends ItemPickaxe {
 		case 4:
 			fortune(stack, x, y, z, player, 3);
 			return true;
+		case 8:
+			if (ForgeHooks.isToolEffective(stack,
+					player.worldObj.getBlock(x, y, z),
+					player.worldObj.getBlockMetadata(x, y, z))) {
+				chop2(x, y, z, player.worldObj,
+						player.worldObj.getBlock(x, y, z),
+						player.worldObj.getBlockMetadata(x, y, z));
+			}
+			return false;
 		default:
 			break;
 
 		}
 
 		return super.onBlockStartBreak(stack, x, y, z, player);
+	}
+
+
+	private void chop2(int x, int y, int z, World world, Block block, int l) {
+		for (BlockLocation bl : MyUtils.getNeighbors(world, x, y, z)) {
+			
+			if (world.getBlock(bl.x, bl.y, bl.z).getUnlocalizedName()
+					.equals(block.getUnlocalizedName())
+					&& world.getBlockMetadata(bl.x, bl.y, bl.z) == l) {
+				MyUtils.breakWithFortune(world, bl.x, bl.y, bl.z, 0);
+				chop2(bl.x, bl.y, bl.z, world, block, l);
+			}
+
+		}
 	}
 
 	private void fortune(ItemStack stack, int x, int y, int z,

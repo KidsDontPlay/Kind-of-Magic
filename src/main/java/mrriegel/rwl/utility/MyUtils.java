@@ -1,6 +1,7 @@
 package mrriegel.rwl.utility;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -100,5 +101,49 @@ public class MyUtils {
 		Vec3 vec31 = vec3.addVector((double) f7 * d3, (double) f6 * d3,
 				(double) f8 * d3);
 		return world.func_147447_a(vec3, vec31, par3, !par3, par3);
+	}
+
+	public static BlockLocation getNeighbor(World world, int x, int y, int z,
+			int side) {
+		Block b = world.getBlock(x, y, z);
+		switch (side) {
+		case 1:
+			return new BlockLocation(x, y + 1, z);
+		case 2:
+			return new BlockLocation(x, y, z + 1);
+		case 3:
+			return new BlockLocation(x, y, z - 1);
+		case 4:
+			return new BlockLocation(x + 1, y, z);
+		case 5:
+			return new BlockLocation(x - 1, y, z);
+		default:
+			return null;
+		}
+
+	}
+
+	public static Vector<BlockLocation> getNeighbors(World world, int x, int y,
+			int z) {
+		Vector<BlockLocation> v = new Vector<BlockLocation>();
+		v.add(new BlockLocation(x + 1, y, z + 1));
+		v.add(new BlockLocation(x + 1, y, z));
+		v.add(new BlockLocation(x + 1, y, z - 1));
+		v.add(new BlockLocation(x, y, z + 1));
+		v.add(new BlockLocation(x, y, z - 1));
+		v.add(new BlockLocation(x - 1, y, z + 1));
+		v.add(new BlockLocation(x - 1, y, z));
+		v.add(new BlockLocation(x - 1, y, z - 1));
+
+		v.add(new BlockLocation(x + 1, y + 1, z + 1));
+		v.add(new BlockLocation(x + 1, y + 1, z));
+		v.add(new BlockLocation(x + 1, y + 1, z - 1));
+		v.add(new BlockLocation(x, y + 1, z + 1));
+		v.add(new BlockLocation(x, y + 1, z));
+		v.add(new BlockLocation(x, y + 1, z - 1));
+		v.add(new BlockLocation(x - 1, y + 1, z + 1));
+		v.add(new BlockLocation(x - 1, y + 1, z));
+		v.add(new BlockLocation(x - 1, y + 1, z - 1));
+		return v;
 	}
 }

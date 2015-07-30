@@ -11,11 +11,9 @@ import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.MyUtils;
 import mrriegel.rwl.utility.NBTHelper;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
@@ -37,6 +35,16 @@ public class NevShovel extends ItemSpade {
 	@Override
 	public int getMaxItemUseDuration(ItemStack itemstack) {
 		return 1;
+	}
+
+	@Override
+	public int getItemEnchantability() {
+		return 0;
+	}
+
+	@Override
+	public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
+		return false;
 	}
 
 	@Override
