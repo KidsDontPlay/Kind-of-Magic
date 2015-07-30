@@ -50,6 +50,12 @@ public class ContainerNevTool extends Container {
 	}
 
 	@Override
+	public void onContainerClosed(EntityPlayer p_75134_1_) {
+		inv.updateNBT();
+		super.onContainerClosed(p_75134_1_);
+	}
+
+	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
 		ItemStack stack = null;
 		Slot slotObject = (Slot) inventorySlots.get(slot);

@@ -7,8 +7,11 @@ import java.util.Map;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import mrriegel.rwl.RWL;
 import mrriegel.rwl.creative.CreativeTab;
+import mrriegel.rwl.gui.ContainerNevTool;
 import mrriegel.rwl.gui.GuiIDs;
 import mrriegel.rwl.gui.InventoryNevTool;
 import mrriegel.rwl.reference.Reference;
@@ -38,6 +41,7 @@ public class NevSword extends ItemSword {
 
 	ItemStack sword = null;
 	IIcon icon_f = null;
+	EntityPlayer player1 = null;
 	int damage = -1;
 
 	public NevSword() {
@@ -58,11 +62,20 @@ public class NevSword extends ItemSword {
 
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public IIcon getIconFromDamage(int p_77617_1_) {
-		if (damage == 6) {
-			return icon_f;
-		} else {
+		try {
+			if (sword
+					.getTagCompound()
+					.getTagList(InventoryNevTool.tagName,
+							sword.getTagCompound().getId()).getCompoundTagAt(0)
+					.getShort("Damage") == 6) {
+				return icon_f;
+			} else {
+				return itemIcon;
+			}
+		} catch (NullPointerException e) {
 			return itemIcon;
 		}
 	}
@@ -86,7 +99,11 @@ public class NevSword extends ItemSword {
 	public void onUpdate(ItemStack stack, World world, Entity p_77663_3_,
 			int p_77663_4_, boolean p_77663_5_) {
 		sword = stack;
-		if(stack.getTagCompound()==null){
+		if (!(p_77663_3_ instanceof EntityPlayer)) {
+			return;
+		}
+		player1 = (EntityPlayer) p_77663_3_;
+		if (stack.getTagCompound() == null) {
 			return;
 		}
 		int tar = stack
@@ -94,8 +111,8 @@ public class NevSword extends ItemSword {
 				.getTagList(InventoryNevTool.tagName,
 						stack.getTagCompound().getId()).getCompoundTagAt(0)
 				.getShort("Damage");
-		if(tar!=damage)
-			damage=tar;
+		if (tar != damage)
+			damage = tar;
 		super.onUpdate(stack, world, p_77663_3_, p_77663_4_, p_77663_5_);
 	}
 

@@ -43,6 +43,10 @@ public class InventoryNevTool implements IInventory {
 
 	}
 
+	public void updateNBT() {
+		writeToNBT(storedInv.getTagCompound());
+	}
+
 	public void writeToNBT(NBTTagCompound compound) {
 		String key = tagName;
 		if (key == null || key.equals("")) {
@@ -58,10 +62,6 @@ public class InventoryNevTool implements IInventory {
 			}
 		}
 		compound.setTag(key, items);
-	}
-
-	public static boolean isNevPick(ItemStack stack) {
-		return stack != null && stack.getItem() == ModItems.nevpick;
 	}
 
 	@Override
@@ -96,7 +96,6 @@ public class InventoryNevTool implements IInventory {
 		if (stack != null) {
 			setInventorySlotContents(slot, null);
 		}
-		this.markDirty();
 		return stack;
 	}
 
@@ -106,8 +105,6 @@ public class InventoryNevTool implements IInventory {
 		if (stack != null && stack.stackSize > getInventoryStackLimit()) {
 			stack.stackSize = getInventoryStackLimit();
 		}
-		this.markDirty();
-
 	}
 
 	@Override
@@ -131,7 +128,6 @@ public class InventoryNevTool implements IInventory {
 			if (getStackInSlot(i) != null && getStackInSlot(i).stackSize == 0)
 				inv[i] = null;
 		}
-		writeToNBT(storedInv.getTagCompound());
 	}
 
 	@Override
@@ -140,8 +136,8 @@ public class InventoryNevTool implements IInventory {
 		return stack != null
 				&& (stack.getItem() == ModItems.nevpick
 						|| stack.getItem() == ModItems.nevshovel
-						|| stack.getItem() == ModItems.nevaxe || stack
-						.getItem() == ModItems.nevsword);
+						|| stack.getItem() == ModItems.nevsword || stack
+						.getItem() == ModItems.nevaxe);
 	}
 
 	@Override
