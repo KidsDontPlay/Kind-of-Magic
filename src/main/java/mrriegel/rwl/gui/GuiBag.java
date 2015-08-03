@@ -4,17 +4,15 @@ import org.lwjgl.opengl.GL11;
 
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
-public class GuiNevTool extends GuiContainer {
-
-	private final InventoryNevTool inventory;
+public class GuiBag extends GuiContainer {
+	private final InventoryBag inventory;
 	private static final ResourceLocation texture = new ResourceLocation(
-			Reference.MOD_ID + ":" + "textures/gui/nevtool.png");
+			Reference.MOD_ID + ":" + "textures/gui/bag.png");
 
-	public GuiNevTool(ContainerNevTool con) {
+	public GuiBag(ContainerBag con) {
 		super(con);
 		this.inventory = con.inv;
 	}

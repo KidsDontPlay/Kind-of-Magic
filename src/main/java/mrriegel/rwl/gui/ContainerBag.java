@@ -6,20 +6,19 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
-public class ContainerNevTool extends Container {
+public class ContainerBag extends Container {
 
-	InventoryNevTool inv;
+	InventoryBag inv;
 
-	public ContainerNevTool(EntityPlayer player, InventoryPlayer invPlayer,
-			InventoryNevTool inv) {
+	public ContainerBag(EntityPlayer player, InventoryPlayer invPlayer,
+			InventoryBag inv) {
 		this.inv = inv;
 
-		for (int i = 0; i < 1; i++) {
-			for (int j = 0; j < 1; j++) {
-				addSlotToContainer(new MySlot(inv, j + i * 1, 80 + j * 18,
-						48 + i * 18));
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 5; j++) {
+				addSlotToContainer(new MySlot(inv, j + i * 5, 44 + j * 18,
+						19 + i * 18));
 			}
 		}
 
@@ -36,13 +35,6 @@ public class ContainerNevTool extends Container {
 			addSlotToContainer(new Slot(invPlayer, i, 8 + i * 18, 142));
 		}
 	}
-
-	// public void writeToNBT() {
-	// if (!this.containerstack.hasTagCompound()) {
-	// this.containerstack.setTagCompound(new NBTTagCompound());
-	// }
-	// inv.writeToNBT(this.containerstack.getTagCompound());
-	// }
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {

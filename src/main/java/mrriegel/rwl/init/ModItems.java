@@ -4,6 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import mrriegel.rwl.item.BloodRelic;
 import mrriegel.rwl.item.Bloodie;
+import mrriegel.rwl.item.CrystalBag;
 import mrriegel.rwl.item.Crysthal;
 import mrriegel.rwl.item.Catalyst;
 import mrriegel.rwl.item.MazeDust;
@@ -24,6 +25,7 @@ public class ModItems {
 	public static Item nevshovel = new NevShovel();
 	public static Item nevaxe = new NevAxe();
 	public static Item cry = new Crysthal();
+	public static Item bag = new CrystalBag();
 
 	public static void init() {
 		GameRegistry.registerItem(bloodie, "bloodie");
@@ -36,6 +38,7 @@ public class ModItems {
 		GameRegistry.registerItem(nevshovel, "nevshovel");
 		GameRegistry.registerItem(nevaxe, "nevaxe");
 		GameRegistry.registerItem(cry, "cry");
+		GameRegistry.registerItem(bag, "bag");
 
 	}
 }

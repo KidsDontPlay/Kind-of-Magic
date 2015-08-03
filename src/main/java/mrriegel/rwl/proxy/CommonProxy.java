@@ -5,9 +5,12 @@ import java.util.Map;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import mrriegel.rwl.RWL;
+import mrriegel.rwl.gui.ContainerBag;
 import mrriegel.rwl.gui.ContainerNevTool;
+import mrriegel.rwl.gui.GuiBag;
 import mrriegel.rwl.gui.GuiIDs;
 import mrriegel.rwl.gui.GuiNevTool;
+import mrriegel.rwl.gui.InventoryBag;
 import mrriegel.rwl.gui.InventoryNevTool;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -34,6 +37,9 @@ public class CommonProxy implements IGuiHandler {
 		case GuiIDs.NEVTOOL:
 			return new ContainerNevTool(player, player.inventory,
 					new InventoryNevTool(player.getHeldItem()));
+		case GuiIDs.BAG:
+			return new ContainerBag(player, player.inventory, new InventoryBag(
+					player.getHeldItem()));
 		}
 		return null;
 	}
@@ -46,6 +52,9 @@ public class CommonProxy implements IGuiHandler {
 			return new GuiNevTool(new ContainerNevTool(player,
 					player.inventory,
 					new InventoryNevTool(player.getHeldItem())));
+		case GuiIDs.BAG:
+			return new GuiBag(new ContainerBag(player, player.inventory,
+					new InventoryBag(player.getHeldItem())));
 		}
 		return null;
 	}
