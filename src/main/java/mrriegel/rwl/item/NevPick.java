@@ -145,6 +145,8 @@ public class NevPick extends ItemPickaxe {
 			return false;
 		case 2:
 			radius(stack, x, y, z, player, 3);
+			player.getFoodStats().setFoodLevel(
+					player.getFoodStats().getFoodLevel() - 1);
 			return false;
 		case 3:
 			silk(stack, x, y, z, player);
@@ -184,20 +186,13 @@ public class NevPick extends ItemPickaxe {
 		if (mop == null) {
 			return;
 		}
-		System.out.println("1: "
-				+ !ForgeHooks.isToolEffective(stack, block, meta));
-		System.out.println("2: "
-				+ !ForgeHooks.canToolHarvestBlock(block, meta, stack));
-		System.out.println("3: "
-				+ !(block.getHarvestTool(meta) != null && block.getHarvestTool(
-						meta).equals("pickaxe")));
+
 		if (!ForgeHooks.isToolEffective(stack, block, meta)
 				&& !ForgeHooks.canToolHarvestBlock(block, meta, stack)
 				&& !block.equals(Blocks.brick_block)
 				&& !(block.getHarvestTool(meta) != null && block
 						.getHarvestTool(meta).equals("pickaxe"))
-				&& !block.equals(Blocks.quartz_block)
-				&& !block.equals(Blocks.brick_block)) {
+				&& !block.equals(Blocks.quartz_block)) {
 			return;
 		}
 		if (stack

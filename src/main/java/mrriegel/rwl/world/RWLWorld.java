@@ -55,7 +55,7 @@ public class RWLWorld implements IWorldGenerator {
 			}
 		}
 		if (te)
-			(new WorldGenMinable(ModBlocks.airorus, 20, Blocks.air)).generate(
+			(new WorldGenMinable(ModBlocks.airorus, 14, Blocks.air)).generate(
 					world, random, posX, posY + 130 + random.nextInt(50), posZ);
 
 	}
@@ -65,13 +65,13 @@ public class RWLWorld implements IWorldGenerator {
 		int x = chunkX * 16 + random.nextInt(16);
 		int z = chunkZ * 16 + random.nextInt(16);
 		for (int i = 110; i > 50; i--) {
-			int ran = (int) (Math.random() * 70) + 1;
+			int ran = (int) (Math.random() * 90) + 1;
+
 			if (isSolid(x, i, z, world) && ran == 1) {
 				ArrayList<BlockLocation> lis = MyUtils.getAroundBlocks(world,
 						x, i, z);
 				for (BlockLocation l : lis) {
 					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
-
 				}
 				setB(x, i, z, ModBlocks.mazer, world);
 				setB(x + 2, i + 1, z + 2, ModBlocks.mazer, world);

@@ -1,17 +1,22 @@
 package mrriegel.rwl.init;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import mrriegel.rwl.item.AirOreDust;
 import mrriegel.rwl.item.BloodRelic;
 import mrriegel.rwl.item.Bloodie;
 import mrriegel.rwl.item.CrystalBag;
 import mrriegel.rwl.item.Crysthal;
 import mrriegel.rwl.item.Catalyst;
 import mrriegel.rwl.item.MazeDust;
+import mrriegel.rwl.item.Nev;
 import mrriegel.rwl.item.NevAxe;
 import mrriegel.rwl.item.NevPick;
 import mrriegel.rwl.item.NevShovel;
 import mrriegel.rwl.item.NevSword;
+import mrriegel.rwl.item.OreDust;
+import mrriegel.rwl.item.OreStick;
 import mrriegel.rwl.reference.Reference;
 
 @GameRegistry.ObjectHolder(Reference.MOD_ID)
@@ -26,9 +31,14 @@ public class ModItems {
 	public static Item nevaxe = new NevAxe();
 	public static Item cry = new Crysthal();
 	public static Item bag = new CrystalBag();
+	public static Item odust = new OreDust();
+	public static Item aodust = new AirOreDust();
+	public static Item nev = new Nev();
+	public static Item ostick = new OreStick();
 
 	public static void init() {
 		GameRegistry.registerItem(bloodie, "bloodie");
+		bloodie.setContainerItem(Items.glass_bottle);
 		GameRegistry.registerItem(relic, "relic");
 		GameRegistry.registerItem(catalyst, "catalyst");
 		catalyst.setContainerItem(catalyst);
@@ -39,6 +49,10 @@ public class ModItems {
 		GameRegistry.registerItem(nevaxe, "nevaxe");
 		GameRegistry.registerItem(cry, "cry");
 		GameRegistry.registerItem(bag, "bag");
+		GameRegistry.registerItem(aodust, "airoredust");
+		GameRegistry.registerItem(odust, "oredust");
+		GameRegistry.registerItem(nev, "nev");
+		GameRegistry.registerItem(ostick, "ostick");
 
 	}
 }

@@ -23,10 +23,21 @@ public class CraftingRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.mdust, 2),
 				ModBlocks.mazer);
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst, 1, 0),
-				"mmm", "mgm", "mmm", 'm', new ItemStack(ModItems.mdust), 'g',
-				new ItemStack(Items.gold_ingot));
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.nevpick),
-				Blocks.dirt);
+				"mbm", "odo", "mom", 'm', new ItemStack(ModItems.mdust), 'd',
+				new ItemStack(Items.diamond), 'o',
+				new ItemStack(ModItems.odust), 'b', ModItems.bloodie);
+		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst, 1, 1),
+				"ono", "mcm", "ana", 'm', new ItemStack(ModItems.mdust), 'n',
+				new ItemStack(ModItems.nev), 'o',
+				new ItemStack(ModItems.odust), 'c', new ItemStack(
+						ModItems.catalyst, 1, OreDictionary.WILDCARD_VALUE),
+				'a', new ItemStack(ModItems.aodust));
+		GameRegistry.addShapedRecipe(new ItemStack(ModItems.ostick), "aqa",
+				"aqa", 'a', new ItemStack(ModItems.aodust), 'q', new ItemStack(
+						Items.quartz));
+		GameRegistry.addShapedRecipe(new ItemStack(ModItems.nevpick), "nnn",
+				" s ", " s ", 'n', new ItemStack(ModItems.nev), 's',
+				new ItemStack(ModItems.ostick));
 
 	}
 }

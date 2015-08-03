@@ -136,6 +136,7 @@ public class NevAxe extends ItemAxe {
 			return false;
 		case 2:
 			radius(stack, x, y, z, player, 3);
+			player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel()-1);
 			return false;
 		case 8:
 			if (ForgeHooks.isToolEffective(stack,

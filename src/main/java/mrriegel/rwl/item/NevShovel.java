@@ -86,9 +86,6 @@ public class NevShovel extends ItemSpade {
 		case 3:
 			list.add("silk");
 			break;
-		case 4:
-			list.add("fortune");
-			break;
 		}
 
 	}
@@ -137,6 +134,7 @@ public class NevShovel extends ItemSpade {
 			return false;
 		case 2:
 			radius(stack, x, y, z, player, 3);
+			player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel()-1);
 			return false;
 		case 3:
 			silk(stack, x, y, z, player);
