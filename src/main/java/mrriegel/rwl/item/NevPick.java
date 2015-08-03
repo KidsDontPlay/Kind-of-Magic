@@ -13,6 +13,7 @@ import mrriegel.rwl.utility.MyUtils;
 import mrriegel.rwl.utility.NBTHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
@@ -183,7 +184,20 @@ public class NevPick extends ItemPickaxe {
 		if (mop == null) {
 			return;
 		}
-		if (!ForgeHooks.isToolEffective(stack, block, meta)) {
+		System.out.println("1: "
+				+ !ForgeHooks.isToolEffective(stack, block, meta));
+		System.out.println("2: "
+				+ !ForgeHooks.canToolHarvestBlock(block, meta, stack));
+		System.out.println("3: "
+				+ !(block.getHarvestTool(meta) != null && block.getHarvestTool(
+						meta).equals("pickaxe")));
+		if (!ForgeHooks.isToolEffective(stack, block, meta)
+				&& !ForgeHooks.canToolHarvestBlock(block, meta, stack)
+				&& !block.equals(Blocks.brick_block)
+				&& !(block.getHarvestTool(meta) != null && block
+						.getHarvestTool(meta).equals("pickaxe"))
+				&& !block.equals(Blocks.quartz_block)
+				&& !block.equals(Blocks.brick_block)) {
 			return;
 		}
 		if (stack
@@ -210,7 +224,13 @@ public class NevPick extends ItemPickaxe {
 		}
 		for (BlockLocation b : v) {
 			Block bl = world.getBlock(b.x, b.y, b.z);
-			if (ForgeHooks.isToolEffective(stack, bl, meta)) {
+			int meta2 = world.getBlockMetadata(b.x, b.y, b.z);
+			if (ForgeHooks.isToolEffective(stack, bl, meta2)
+					|| ForgeHooks.canToolHarvestBlock(bl, meta2, stack)
+					|| (bl.getHarvestTool(meta2) != null && bl.getHarvestTool(
+							meta2).equals("pickaxe"))
+					|| bl.equals(Blocks.brick_block)
+					|| block.equals(Blocks.quartz_block)) {
 				MyUtils.breakWithFortune(world, b.x, b.y, b.z, 0);
 				stack.setItemDamage(stack.getItemDamage() + 1);
 			}

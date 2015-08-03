@@ -66,17 +66,16 @@ public class NevSword extends ItemSword {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public IIcon getIconFromDamage(int p_77617_1_) {
-		try {
-			if (sword
-					.getTagCompound()
-					.getTagList(InventoryNevTool.tagName,
-							sword.getTagCompound().getId()).getCompoundTagAt(0)
-					.getShort("Damage") == 6) {
-				return icon_f;
-			} else {
-				return itemIcon;
-			}
-		} catch (NullPointerException e) {
+		if (sword == null || sword.getTagCompound() == null) {
+			return itemIcon;
+		}
+		if (sword
+				.getTagCompound()
+				.getTagList(InventoryNevTool.tagName,
+						sword.getTagCompound().getId()).getCompoundTagAt(0)
+				.getShort("Damage") == 6) {
+			return icon_f;
+		} else {
 			return itemIcon;
 		}
 	}
@@ -199,29 +198,28 @@ public class NevSword extends ItemSword {
 	@Override
 	public Multimap getItemAttributeModifiers() {
 		Multimap multimap = HashMultimap.create();
-		try {
-			switch (sword
-					.getTagCompound()
-					.getTagList(InventoryNevTool.tagName,
-							sword.getTagCompound().getId()).getCompoundTagAt(0)
-					.getShort("Damage")) {
-			case 9:
-				multimap.put(SharedMonsterAttributes.attackDamage
-						.getAttributeUnlocalizedName(), new AttributeModifier(
-						field_111210_e, "Weapon modifier", (double) 8.0F
-								+ MATERIAL.getDamageVsEntity(), 0));
-				return multimap;
-			case 10:
-				multimap.put(SharedMonsterAttributes.attackDamage
-						.getAttributeUnlocalizedName(), new AttributeModifier(
-						field_111210_e, "Weapon modifier", (double) 12.0F
-								+ MATERIAL.getDamageVsEntity(), 0));
-				return multimap;
-			default:
-				return super.getItemAttributeModifiers();
-			}
-		} catch (NullPointerException e) {
+		if (sword == null || sword.getTagCompound() == null) {
+			return super.getItemAttributeModifiers();
 		}
-		return super.getItemAttributeModifiers();
+		switch (sword
+				.getTagCompound()
+				.getTagList(InventoryNevTool.tagName,
+						sword.getTagCompound().getId()).getCompoundTagAt(0)
+				.getShort("Damage")) {
+		case 9:
+			multimap.put(SharedMonsterAttributes.attackDamage
+					.getAttributeUnlocalizedName(),
+					new AttributeModifier(field_111210_e, "Weapon modifier",
+							(double) 8.0F + MATERIAL.getDamageVsEntity(), 0));
+			return multimap;
+		case 10:
+			multimap.put(SharedMonsterAttributes.attackDamage
+					.getAttributeUnlocalizedName(), new AttributeModifier(
+					field_111210_e, "Weapon modifier", (double) 12.0F
+							+ MATERIAL.getDamageVsEntity(), 0));
+			return multimap;
+		default:
+			return super.getItemAttributeModifiers();
+		}
 	}
 }

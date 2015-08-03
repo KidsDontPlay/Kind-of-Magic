@@ -1,12 +1,16 @@
 package mrriegel.rwl.block;
 
+import java.util.Random;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mrriegel.rwl.creative.CreativeTab;
+import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 
 public class Orus extends BlockOre {
@@ -37,5 +41,17 @@ public class Orus extends BlockOre {
 		return this.icons[side];
 
 	}
+	
+	@Override
+    public Item getItemDropped(int par1, Random random, int par2)
+    {
+        return ModItems.mdust;
+    }
+
+    @Override
+    public int quantityDropped(Random random)
+    {
+        return (random.nextInt(3) + 1);
+    }
 
 }

@@ -23,7 +23,7 @@ public class RWLWorld implements IWorldGenerator {
 		if (world.provider.dimensionId == 0) {
 			generateShrine(random, chunkX, chunkZ, world);
 			addOreSpawn(ModBlocks.orus, world, random, chunkX * 16,
-					chunkZ * 16, 16, 16, 8 + random.nextInt(3), 75, 16, 32);
+					chunkZ * 16, 16, 16, 5 + random.nextInt(3), 30, 16, 32);
 		}
 
 	}
@@ -48,7 +48,8 @@ public class RWLWorld implements IWorldGenerator {
 		int posZ = blockZPos + random.nextInt(maxZ);
 		boolean te = false;
 		for (int i = 50; i < 100; i++) {
-			if (world.getBlock(posX, i, posZ).equals(Blocks.water)) {
+			if (world.getBlock(posX, i, posZ).equals(Blocks.water)
+					|| world.getBlock(posX, i, posZ).equals(Blocks.ice)) {
 				te = true;
 				break;
 			}
