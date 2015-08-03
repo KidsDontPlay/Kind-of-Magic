@@ -15,8 +15,8 @@ public class Orus extends BlockOre {
 
 	public Orus() {
 		super();
-		this.setHarvestLevel("pickaxe", 3);
-		this.setHardness(4.0f);
+		this.setHarvestLevel("pickaxe", 2);
+		this.setHardness(3.0f);
 		this.setCreativeTab(CreativeTab.tab1);
 		this.setBlockName(Reference.MOD_ID + ":" + "orus");
 	}
