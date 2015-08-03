@@ -1,5 +1,6 @@
 package mrriegel.rwl.item;
 
+import java.util.List;
 import java.util.Vector;
 
 import mrriegel.rwl.RWL;
@@ -50,12 +51,52 @@ public class NevAxe extends ItemAxe {
 	public ItemStack onItemRightClick(ItemStack stack, World world,
 			EntityPlayer player) {
 		player.openGui(RWL.instance, GuiIDs.NEVTOOL, world, 0, 0, 0);
-		NBTHelper.setBoolean(stack, "opened", true);
 		return stack;
 	}
 
 	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list,
+			boolean boo) {
+		if (stack.getTagCompound() == null)
+			return;
+		if (stack
+				.getTagCompound()
+				.getTagList(InventoryNevTool.tagName,
+						stack.getTagCompound().getId()).getStringTagAt(0)
+				.equals("")) {
+			return;
+		}
+		switch (stack
+				.getTagCompound()
+				.getTagList(InventoryNevTool.tagName,
+						stack.getTagCompound().getId()).getCompoundTagAt(0)
+				.getShort("Damage")) {
+		case 0:
+			list.add("radius 1");
+			break;
+		case 1:
+			list.add("radius 2");
+			break;
+		case 2:
+			list.add("radius 3");
+			break;
+		case 3:
+			list.add("silk");
+			break;
+		case 4:
+			list.add("fortune");
+			break;
+		case 8:
+			list.add("whole tree");
+			break;
+		}
+
+	}
+
+	@Override
 	public float getDigSpeed(ItemStack stack, Block block, int meta) {
+		if (stack.getTagCompound() == null)
+			return super.getDigSpeed(stack, block, meta);
 		if (stack
 				.getTagCompound()
 				.getTagList(InventoryNevTool.tagName,
@@ -77,6 +118,8 @@ public class NevAxe extends ItemAxe {
 	@Override
 	public boolean onBlockStartBreak(ItemStack stack, int x, int y, int z,
 			EntityPlayer player) {
+		if (stack.getTagCompound() == null)
+			return false;
 		if (player.worldObj.isRemote) {
 			return false;
 		}
@@ -122,17 +165,6 @@ public class NevAxe extends ItemAxe {
 			}
 
 		}
-	}
-
-	private void fortune(ItemStack stack, int x, int y, int z,
-			EntityPlayer player, int i) {
-		MyUtils.breakWithFortune(player.worldObj, x, y, z, 3);
-
-	}
-
-	private void silk(ItemStack stack, int x, int y, int z, EntityPlayer player) {
-		MyUtils.breakWithSilk(player.worldObj, x, y, z);
-
 	}
 
 	protected void radius(ItemStack stack, int x, int y, int z,

@@ -42,7 +42,7 @@ public class RWL {
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
-MinecraftForge.EVENT_BUS.register(new DeathHandler());
+		MinecraftForge.EVENT_BUS.register(new DeathHandler());
 		CraftingRecipes.init();
 	}
 

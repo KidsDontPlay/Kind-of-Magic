@@ -2,6 +2,7 @@ package mrriegel.rwl.item;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import com.google.common.collect.HashMultimap;
@@ -120,13 +121,53 @@ public class NevSword extends ItemSword {
 	public ItemStack onItemRightClick(ItemStack stack, World world,
 			EntityPlayer player) {
 		player.openGui(RWL.instance, GuiIDs.NEVTOOL, world, 0, 0, 0);
-		NBTHelper.setBoolean(stack, "opened", true);
 		return stack;
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list,
+			boolean boo) {
+		if (stack.getTagCompound() == null)
+			return;
+		if (stack
+				.getTagCompound()
+				.getTagList(InventoryNevTool.tagName,
+						stack.getTagCompound().getId()).getStringTagAt(0)
+				.equals("")) {
+			return;
+		}
+		switch (stack
+				.getTagCompound()
+				.getTagList(InventoryNevTool.tagName,
+						stack.getTagCompound().getId()).getCompoundTagAt(0)
+				.getShort("Damage")) {
+		case 4:
+			list.add("loot");
+			break;
+		case 6:
+			list.add("fire");
+			break;
+		case 7:
+			list.add("poison");
+			break;
+		case 11:
+			list.add("slow");
+			break;
+		case 12:
+			list.add("wither");
+			break;
+		case 13:
+			list.add("xp");
+			break;
+		}
+
 	}
 
 	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase victim,
 			EntityLivingBase player) {
+		if (stack.getTagCompound() == null)
+			return false;
 		if (player.worldObj.isRemote) {
 			return false;
 		}

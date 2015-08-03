@@ -1,5 +1,8 @@
 package mrriegel.rwl.item;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.util.List;
 import java.util.Vector;
 
 import mrriegel.rwl.RWL;
@@ -51,12 +54,49 @@ public class NevShovel extends ItemSpade {
 	public ItemStack onItemRightClick(ItemStack stack, World world,
 			EntityPlayer player) {
 		player.openGui(RWL.instance, GuiIDs.NEVTOOL, world, 0, 0, 0);
-		NBTHelper.setBoolean(stack, "opened", true);
 		return stack;
 	}
 
 	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list,
+			boolean boo) {
+		if (stack.getTagCompound() == null)
+			return;
+		if (stack
+				.getTagCompound()
+				.getTagList(InventoryNevTool.tagName,
+						stack.getTagCompound().getId()).getStringTagAt(0)
+				.equals("")) {
+			return;
+		}
+		switch (stack
+				.getTagCompound()
+				.getTagList(InventoryNevTool.tagName,
+						stack.getTagCompound().getId()).getCompoundTagAt(0)
+				.getShort("Damage")) {
+		case 0:
+			list.add("radius 1");
+			break;
+		case 1:
+			list.add("radius 2");
+			break;
+		case 2:
+			list.add("radius 3");
+			break;
+		case 3:
+			list.add("silk");
+			break;
+		case 4:
+			list.add("fortune");
+			break;
+		}
+
+	}
+
+	@Override
 	public float getDigSpeed(ItemStack stack, Block block, int meta) {
+		if (stack.getTagCompound() == null)
+			return super.getDigSpeed(stack, block, meta);
 		if (stack
 				.getTagCompound()
 				.getTagList(InventoryNevTool.tagName,
@@ -78,6 +118,8 @@ public class NevShovel extends ItemSpade {
 	@Override
 	public boolean onBlockStartBreak(ItemStack stack, int x, int y, int z,
 			EntityPlayer player) {
+		if (stack.getTagCompound() == null)
+			return false;
 		if (player.worldObj.isRemote) {
 			return false;
 		}

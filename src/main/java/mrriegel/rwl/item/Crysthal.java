@@ -12,7 +12,7 @@ import net.minecraft.util.IIcon;
 
 public class Crysthal extends Item {
 
-	public IIcon[] icons = new IIcon[13];
+	public IIcon[] icons = new IIcon[14];
 
 	public Crysthal() {
 		super();
@@ -24,14 +24,14 @@ public class Crysthal extends Item {
 
 	@Override
 	public void registerIcons(IIconRegister reg) {
-		for (int i = 0; i < 13; i++) {
+		for (int i = 0; i < 14; i++) {
 			this.icons[i] = reg.registerIcon(Reference.MOD_ID + ":cry_" + i);
 		}
 	}
 
 	@Override
 	public IIcon getIconFromDamage(int meta) {
-		if (meta > 12)
+		if (meta > 13)
 			meta = 0;
 
 		return this.icons[meta];
@@ -39,7 +39,7 @@ public class Crysthal extends Item {
 
 	@Override
 	public void getSubItems(Item item, CreativeTabs tab, List list) {
-		for (int i = 0; i < 13; i++) {
+		for (int i = 0; i < 14; i++) {
 			list.add(new ItemStack(item, 1, i));
 		}
 	}

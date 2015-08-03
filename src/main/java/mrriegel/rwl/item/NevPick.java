@@ -1,5 +1,6 @@
 package mrriegel.rwl.item;
 
+import java.util.List;
 import java.util.Vector;
 
 import mrriegel.rwl.RWL;
@@ -21,7 +22,7 @@ import net.minecraftforge.common.util.EnumHelper;
 
 public class NevPick extends ItemPickaxe {
 	public static ToolMaterial MATERIAL = EnumHelper.addToolMaterial(
-			"MATERIAL", 2, 1999, 10.0F, 2.0F, 14);
+			"MATERIAL", 3, 1999, 10.0F, 2.0F, 14);
 
 	public NevPick() {
 		super(MATERIAL);
@@ -51,13 +52,52 @@ public class NevPick extends ItemPickaxe {
 	public ItemStack onItemRightClick(ItemStack stack, World world,
 			EntityPlayer player) {
 		player.openGui(RWL.instance, GuiIDs.NEVTOOL, world, 0, 0, 0);
-		NBTHelper.setBoolean(stack, "opened", true);
 		return stack;
 	}
 
 	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list,
+			boolean boo) {
+		if (stack.getTagCompound() == null)
+			return;
+		if (stack
+				.getTagCompound()
+				.getTagList(InventoryNevTool.tagName,
+						stack.getTagCompound().getId()).getStringTagAt(0)
+				.equals("")) {
+			return;
+		}
+		switch (stack
+				.getTagCompound()
+				.getTagList(InventoryNevTool.tagName,
+						stack.getTagCompound().getId()).getCompoundTagAt(0)
+				.getShort("Damage")) {
+		case 0:
+			list.add("radius 1");
+			break;
+		case 1:
+			list.add("radius 2");
+			break;
+		case 2:
+			list.add("radius 3");
+			break;
+		case 3:
+			list.add("silk");
+			break;
+		case 4:
+			list.add("fortune");
+			break;
+		case 13:
+			list.add("xp");
+			break;
+		}
+
+	}
+
+	@Override
 	public float getDigSpeed(ItemStack stack, Block block, int meta) {
-		System.out.println("getspeed"); 
+		if (stack.getTagCompound() == null)
+			return super.getDigSpeed(stack, block, meta);
 		if (stack
 				.getTagCompound()
 				.getTagList(InventoryNevTool.tagName,
@@ -69,9 +109,15 @@ public class NevPick extends ItemPickaxe {
 				.getTagCompound()
 				.getTagList(InventoryNevTool.tagName,
 						stack.getTagCompound().getId()).getCompoundTagAt(0)
-				.getShort("Damage") == 2) {
+				.getShort("Damage") == 1) {
 			return super.getDigSpeed(stack, block, meta) / 6.5f;
 
+		} else if (stack
+				.getTagCompound()
+				.getTagList(InventoryNevTool.tagName,
+						stack.getTagCompound().getId()).getCompoundTagAt(0)
+				.getShort("Damage") == 2) {
+			return super.getDigSpeed(stack, block, meta) / 10.5f;
 		}
 		return super.getDigSpeed(stack, block, meta);
 	}
@@ -79,10 +125,12 @@ public class NevPick extends ItemPickaxe {
 	@Override
 	public boolean onBlockStartBreak(ItemStack stack, int x, int y, int z,
 			EntityPlayer player) {
+		if (stack.getTagCompound() == null)
+			return false;
 		if (player.worldObj.isRemote) {
 			return false;
 		}
-		
+
 		switch (stack
 				.getTagCompound()
 				.getTagList(InventoryNevTool.tagName,

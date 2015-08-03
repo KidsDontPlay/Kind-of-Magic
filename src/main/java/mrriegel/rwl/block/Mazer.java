@@ -16,6 +16,7 @@ public class Mazer extends Block {
 
 	public Mazer() {
 		super(Material.rock);
+		
 		this.setCreativeTab(CreativeTab.tab1);
 		this.setBlockName(Reference.MOD_ID + ":" + "mazer");
 	}

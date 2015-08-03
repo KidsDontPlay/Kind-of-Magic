@@ -2,7 +2,6 @@ package mrriegel.rwl.gui;
 
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.item.NevPick;
-import mrriegel.rwl.utility.NBTHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -25,6 +24,10 @@ public class InventoryNevTool implements IInventory {
 			storedInv.setTagCompound(new NBTTagCompound());
 		}
 		readFromNBT(storedInv.getTagCompound());
+	}
+
+	public ItemStack[] getInv() {
+		return inv;
 	}
 
 	public void readFromNBT(NBTTagCompound compound) {

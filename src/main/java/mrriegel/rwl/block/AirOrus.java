@@ -14,6 +14,8 @@ public class AirOrus extends BlockOre {
 
 	public AirOrus() {
 		super();
+		this.setHarvestLevel("pickaxe", 3);
+		this.setHardness(3.5f);
 		this.setCreativeTab(CreativeTab.tab1);
 		this.setBlockName(Reference.MOD_ID + ":" + "airorus");
 	}
@@ -38,6 +40,10 @@ public class AirOrus extends BlockOre {
 	public boolean isOpaqueCube() {
 		return !super.isOpaqueCube();
 	}
-	
+
+	@Override
+	public int getRenderBlockPass() {
+		return 1;
+	}
 	
 }
