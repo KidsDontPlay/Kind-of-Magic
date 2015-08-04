@@ -82,7 +82,7 @@ public class MazerB extends BlockContainer {
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z,
 			Entity entity) {
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y, z);
-		if (!isConstruct(world, x, y, z)) {
+		if (!isConstruct(world, x, y, z) && tile.isActive()) {
 
 			release(world, x, y, z);
 			tile.setActive(false);
@@ -123,10 +123,11 @@ public class MazerB extends BlockContainer {
 		System.out.println("size: " + tile.getInv().length);
 		for (ItemStack s : tile.getInv()) {
 			if (s != null)
-				world.spawnEntityInWorld(new EntityItem(world, x, y + 1, z, s));
+				world.spawnEntityInWorld(new EntityItem(world, x + 0.5d, y + 1,
+						z + 0.5d, s));
 		}
-		world.spawnEntityInWorld(new EntityItem(world, x, y + 1, z,
-				new ItemStack(ModItems.relic)));
+		world.spawnEntityInWorld(new EntityItem(world, x + 0.5d, y + 1,
+				z + 0.5d, new ItemStack(ModItems.relic)));
 	}
 
 	@Override
@@ -138,7 +139,7 @@ public class MazerB extends BlockContainer {
 		}
 
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y, z);
-		if (!isConstruct(world, x, y, z)) {
+		if (!isConstruct(world, x, y, z) && tile.isActive()) {
 
 			release(world, x, y, z);
 			tile.setActive(false);
@@ -158,13 +159,14 @@ public class MazerB extends BlockContainer {
 			System.out.println("activated");
 
 		} else if (player.isSneaking() && tile.isActive()
-				&& isConstruct(world, x, y, z)) {
+				&& isConstruct(world, x, y, z) && tile.getInv().length == 0) {
 			System.out.println("gib");
 			tile.setActive(false);
 			EntityItem i = new EntityItem(world, x, y + 1, z, new ItemStack(
 					ModItems.relic));
 			world.spawnEntityInWorld(i);
-			i.setPosition(player.posX, player.posY, player.posZ);
+			i.setPosition(player.posX + 0.5d, player.posY + 1.1d,
+					player.posZ + 0.5d);
 			System.out.println("extracted");
 		} else if (!player.isSneaking()
 				&& player.getCurrentEquippedItem() != null

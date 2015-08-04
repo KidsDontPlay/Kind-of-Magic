@@ -63,7 +63,8 @@ public class MyUtils {
 
 			Item i = block.getItem(world, x, y, z);
 			ItemStack stack = new ItemStack(i);
-			EntityItem ei = new EntityItem(world, x, y + 0.4, z, stack);
+			EntityItem ei = new EntityItem(world, x + 0.5d, y + 0.4, z + 0.5d,
+					stack);
 			world.spawnEntityInWorld(ei);
 
 			return world.setBlock(x, y, z, Blocks.air, 0, 3);

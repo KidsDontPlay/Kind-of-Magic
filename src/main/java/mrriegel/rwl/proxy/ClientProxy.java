@@ -6,6 +6,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
+import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
+import mrriegel.rwl.init.ModItems;
+import mrriegel.rwl.render.ItemRend;
 import mrriegel.rwl.render.MazerBRenderer;
 import mrriegel.rwl.render.MyParticle;
 import mrriegel.rwl.tile.MazerTile;
@@ -14,9 +18,12 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 
 public class ClientProxy extends CommonProxy {
 	public static void init() {
-		ClientRegistry.bindTileEntitySpecialRenderer(MazerTile.class,
-				new MazerBRenderer());
+//		ClientRegistry.bindTileEntitySpecialRenderer(MazerTile.class,
+//				new MazerBRenderer());
+//		MinecraftForgeClient.registerItemRenderer(ModItems.ostick,new ItemRend());
 	}
+	
+	
 
 	@Override
 	public void generateParticles(World world, BlockLocation loc) {

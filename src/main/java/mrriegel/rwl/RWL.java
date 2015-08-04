@@ -45,7 +45,7 @@ public class RWL {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
 		MinecraftForge.EVENT_BUS.register(new DeathHandler());
 		CraftingRecipes.init();
-		//ClientProxy.init();
+		ClientProxy.init();
 	}
 
 	@Mod.EventHandler

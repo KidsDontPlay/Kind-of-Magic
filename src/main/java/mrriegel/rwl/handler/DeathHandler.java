@@ -63,8 +63,8 @@ public class DeathHandler {
 							.getCompoundTagAt(0).getShort("Damage") == 13) {
 				for (int i = 0; i < 3; i++) {
 					player.worldObj.spawnEntityInWorld(new EntityXPOrb(
-							player.worldObj, e.posX, e.posY, e.posZ,
-							EntityXPOrb.getXPSplit(0)));
+							player.worldObj, e.posX + 0.5d, e.posY,
+							e.posZ + 0.5d, EntityXPOrb.getXPSplit(0)));
 				}
 			}
 
@@ -92,8 +92,8 @@ public class DeathHandler {
 				if (xp > 0) {
 					for (int i = 0; i < 2; i++) {
 						player.worldObj.spawnEntityInWorld(new EntityXPOrb(
-								player.worldObj, event.x, event.y, event.z,
-								EntityXPOrb.getXPSplit(0)));
+								player.worldObj, event.x + 0.5d, event.y,
+								event.z + 0.5d, EntityXPOrb.getXPSplit(0)));
 					}
 				}
 
