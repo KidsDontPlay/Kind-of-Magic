@@ -94,8 +94,8 @@ public class MazerB extends BlockContainer {
 			EntityItem e = (EntityItem) entity;
 			boolean in = false;
 			for (int i = 0; i < tile.getInv().length; i++) {
-				if (tile.getInv()[i] == null) {
-					tile.getInv()[i] = e.getEntityItem();
+				if (tile.getStackInSlot(i) == null) {
+					tile.setInventorySlotContents(i, e.getEntityItem());
 					in = true;
 					break;
 				}
@@ -126,6 +126,7 @@ public class MazerB extends BlockContainer {
 				world.spawnEntityInWorld(new EntityItem(world, x + 0.5d, y + 1,
 						z + 0.5d, s));
 		}
+		tile.clear();
 		world.spawnEntityInWorld(new EntityItem(world, x + 0.5d, y + 1,
 				z + 0.5d, new ItemStack(ModItems.relic)));
 	}
@@ -159,7 +160,8 @@ public class MazerB extends BlockContainer {
 			System.out.println("activated");
 
 		} else if (player.isSneaking() && tile.isActive()
-				&& isConstruct(world, x, y, z) && tile.getInv().length == 0) {
+				&& isConstruct(world, x, y, z)) {
+			release(world, x, y, z);
 			System.out.println("gib");
 			tile.setActive(false);
 			EntityItem i = new EntityItem(world, x, y + 1, z, new ItemStack(
