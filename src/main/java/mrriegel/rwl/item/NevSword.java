@@ -15,6 +15,7 @@ import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.gui.ContainerNevTool;
 import mrriegel.rwl.gui.GuiIDs;
 import mrriegel.rwl.gui.InventoryNevTool;
+import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.NBTHelper;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -50,6 +51,14 @@ public class NevSword extends ItemSword {
 		this.setMaxStackSize(1);
 		this.setCreativeTab(CreativeTab.tab1);
 		this.setUnlocalizedName(Reference.MOD_ID + ":" + "nevsword");
+	}
+
+	@Override
+	public boolean getIsRepairable(ItemStack p_82789_1_, ItemStack p_82789_2_) {
+		if (p_82789_2_.getItem().equals(ModItems.nev)) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override

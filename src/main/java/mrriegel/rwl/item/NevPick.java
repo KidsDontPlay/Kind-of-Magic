@@ -7,6 +7,7 @@ import mrriegel.rwl.RWL;
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.gui.GuiIDs;
 import mrriegel.rwl.gui.InventoryNevTool;
+import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.MyUtils;
@@ -32,6 +33,14 @@ public class NevPick extends ItemPickaxe {
 		this.setUnlocalizedName(Reference.MOD_ID + ":" + "nevpick");
 		this.setTextureName(Reference.MOD_ID + ":" + "nevpick");
 
+	}
+
+	@Override
+	public boolean getIsRepairable(ItemStack p_82789_1_, ItemStack p_82789_2_) {
+		if (p_82789_2_.getItem().equals(ModItems.nev)) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override

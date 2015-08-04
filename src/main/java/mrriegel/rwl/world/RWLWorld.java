@@ -75,11 +75,11 @@ public class RWLWorld implements IWorldGenerator {
 				}
 				setB(x, i, z, ModBlocks.mazer, world);
 				setB(x + 2, i + 1, z + 2, ModBlocks.mazer, world);
-				setB(x + -2, i + 1, z + 2, ModBlocks.mazer, world);
+				setB(x - 2, i + 1, z + 2, ModBlocks.mazer, world);
 				setB(x + 2, i + 1, z - 2, ModBlocks.mazer, world);
 				setB(x - 2, i + 1, z - 2, ModBlocks.mazer, world);
 				setB(x + 2, i + 2, z + 2, ModBlocks.mazer, world);
-				setB(x + -2, i + 2, z + 2, ModBlocks.mazer, world);
+				setB(x - 2, i + 2, z + 2, ModBlocks.mazer, world);
 				setB(x + 2, i + 2, z - 2, ModBlocks.mazer, world);
 				setB(x - 2, i + 2, z - 2, ModBlocks.mazer, world);
 				break;

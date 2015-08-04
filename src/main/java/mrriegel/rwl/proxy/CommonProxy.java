@@ -12,6 +12,8 @@ import mrriegel.rwl.gui.GuiIDs;
 import mrriegel.rwl.gui.GuiNevTool;
 import mrriegel.rwl.gui.InventoryBag;
 import mrriegel.rwl.gui.InventoryNevTool;
+import mrriegel.rwl.utility.BlockLocation;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -57,6 +59,9 @@ public class CommonProxy implements IGuiHandler {
 					new InventoryBag(player.getHeldItem())));
 		}
 		return null;
+	}
+
+	public void generateParticles(World world, BlockLocation loc) {
 	}
 
 }

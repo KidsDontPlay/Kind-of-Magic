@@ -9,6 +9,7 @@ import mrriegel.rwl.RWL;
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.gui.GuiIDs;
 import mrriegel.rwl.gui.InventoryNevTool;
+import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.MyUtils;
@@ -33,6 +34,14 @@ public class NevShovel extends ItemSpade {
 		this.setUnlocalizedName(Reference.MOD_ID + ":" + "nevshovel");
 		this.setTextureName(Reference.MOD_ID + ":" + "nevshovel");
 
+	}
+
+	@Override
+	public boolean getIsRepairable(ItemStack p_82789_1_, ItemStack p_82789_2_) {
+		if (p_82789_2_.getItem().equals(ModItems.nev)) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -134,7 +143,8 @@ public class NevShovel extends ItemSpade {
 			return false;
 		case 2:
 			radius(stack, x, y, z, player, 3);
-			player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel()-1);
+			player.getFoodStats().setFoodLevel(
+					player.getFoodStats().getFoodLevel() - 1);
 			return false;
 		case 3:
 			silk(stack, x, y, z, player);

@@ -6,6 +6,7 @@ import mrriegel.rwl.handler.DeathHandler;
 import mrriegel.rwl.init.CraftingRecipes;
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.init.ModItems;
+import mrriegel.rwl.proxy.ClientProxy;
 import mrriegel.rwl.proxy.CommonProxy;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.world.RWLWorld;
@@ -44,6 +45,7 @@ public class RWL {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
 		MinecraftForge.EVENT_BUS.register(new DeathHandler());
 		CraftingRecipes.init();
+		//ClientProxy.init();
 	}
 
 	@Mod.EventHandler
