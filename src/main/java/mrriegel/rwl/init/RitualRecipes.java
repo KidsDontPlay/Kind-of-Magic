@@ -19,5 +19,4 @@ public class RitualRecipes {
 				new ItemStack(Items.diamond), new ItemStack(ModItems.catalyst,
 						1, 0)));
 	}
-
 }

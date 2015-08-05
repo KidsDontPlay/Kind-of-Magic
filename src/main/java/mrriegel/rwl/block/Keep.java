@@ -20,8 +20,7 @@ public class Keep extends Block {
 		this.setCreativeTab(CreativeTab.tab1);
 		this.setBlockName(Reference.MOD_ID + ":" + "keep");
 		setBlockBounds(0.25F, 0.25F, 0.25F, 0.75F, 0.75F, 0.75F);
-		setLightOpacity(255);
-		useNeighborBrightness = true;
+		setLightLevel(1.0F);
 	}
 
 	@Override
