@@ -59,7 +59,7 @@ public class CommonProxy implements IGuiHandler {
 		return null;
 	}
 
-	public void generateParticles(World world, BlockLocation loc) {
+	public void generateParticles(World world, double x,double y,double z) {
 	}
 
 }

@@ -23,7 +23,7 @@ public class RWLWorld implements IWorldGenerator {
 		if (world.provider.dimensionId == 0) {
 			generateShrine(random, chunkX, chunkZ, world);
 			addOreSpawn(ModBlocks.orus, world, random, chunkX * 16,
-					chunkZ * 16, 16, 16, 5 + random.nextInt(3), 30, 16, 32);
+					chunkZ * 16, 16, 16, 5 + random.nextInt(3), 7, 16, 32);
 		}
 
 	}

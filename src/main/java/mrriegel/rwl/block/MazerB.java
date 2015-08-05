@@ -1,5 +1,6 @@
 package mrriegel.rwl.block;
 
+import mrriegel.rwl.RWL;
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.init.ModItems;
@@ -37,6 +38,9 @@ public class MazerB extends BlockContainer {
 		this.setHardness(3.5f);
 		this.setCreativeTab(CreativeTab.tab1);
 		this.setBlockName(Reference.MOD_ID + ":" + "mazerB");
+		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.7F, 1.0F);
+		setLightOpacity(255);
+		useNeighborBrightness = true;
 	}
 
 	@Override
@@ -54,6 +58,11 @@ public class MazerB extends BlockContainer {
 	}
 
 	@Override
+	public boolean isOpaqueCube() {
+		return !super.isOpaqueCube();
+	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
 		return this.icons[side];
@@ -64,12 +73,17 @@ public class MazerB extends BlockContainer {
 		return new MazerTile();
 	}
 
+	// @Override
+	// public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x,
+	// int y, int z) {
+	// float f = (float) (1.0F-getBlockBoundsMaxY());
+	// return AxisAlignedBB.getBoundingBox((float) x + f, y, (float) z + f,
+	// (float) (x + 1) - f, (float) (y + 1) - f, (float) (z + 1) - f);
+	// }
+
 	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x,
-			int y, int z) {
-		float f = 0.0625F;
-		return AxisAlignedBB.getBoundingBox((float) x + f, y, (float) z + f,
-				(float) (x + 1) - f, (float) (y + 1) - f, (float) (z + 1) - f);
+	public boolean renderAsNormalBlock() {
+		return !super.renderAsNormalBlock();
 	}
 
 	@Override
@@ -82,8 +96,10 @@ public class MazerB extends BlockContainer {
 			System.out.println("disabeld");
 			return;
 		}
-		if (tile.isActive() && entity instanceof EntityItem
-				&& entity.posY >= y + 1 + 0.0624F && !world.isRemote) {
+		if (tile.isActive()
+				&& entity instanceof EntityItem
+				&& entity.posY >= y + 1 + +0.001F
+						- (1.0F - getBlockBoundsMaxY()) && !world.isRemote) {
 			EntityItem e = (EntityItem) entity;
 			boolean in = false;
 			for (int i = 0; i < tile.getInv().length; i++) {
@@ -178,10 +194,12 @@ public class MazerB extends BlockContainer {
 				if (ItemStack.areItemStacksEqual(stack, r.getCat())) {
 					if (r.matches(tile.getInv())) {
 						tile.clear();
-						player.inventory.setInventorySlotContents(
-								player.inventory.currentItem,
-								new ItemStack(player.getHeldItem().getItem(), player
-										.getCurrentEquippedItem().stackSize - 1));
+						player.inventory
+								.setInventorySlotContents(
+										player.inventory.currentItem,
+										new ItemStack(
+												player.getHeldItem().getItem(),
+												player.getCurrentEquippedItem().stackSize - 1));
 						world.spawnEntityInWorld(new EntityItem(world,
 								player.posX, player.posY, player.posZ, r
 										.getOutput()));
@@ -190,6 +208,31 @@ public class MazerB extends BlockContainer {
 					}
 				}
 			}
+
+			// back
+		} else if (player.isSneaking() && player.getHeldItem() == null
+				&& tile.isActive() && isConstruct(world, x, y, z)) {
+			boolean item = true;
+			for (int i = tile.getInv().length - 1; i >= 0; i--) {
+				if (tile.getStackInSlot(i) != null) {
+					EntityItem ei = new EntityItem(world, x + 0.5d, y + 0.5d,
+							z + 0.5d, tile.getStackInSlot(i));
+					world.spawnEntityInWorld(ei);
+					ei.setPosition(player.posX, player.posY, player.posZ);
+
+					tile.setInventorySlotContents(i, null);
+					item = false;
+					return false;
+				}
+			}
+			if (item) {
+				EntityItem ei = new EntityItem(world, x + 0.5d, y + 0.5d,
+						z + 0.5d, new ItemStack(ModItems.relic));
+				world.spawnEntityInWorld(ei);
+				ei.setPosition(player.posX, player.posY, player.posZ);
+				tile.setActive(false);
+			}
+
 		}
 		System.out.println("hop: " + tile.isActive());
 		for (ItemStack s : tile.getInv()) {
@@ -231,6 +274,9 @@ public class MazerB extends BlockContainer {
 			return false;
 		}
 		if (!world.getBlock(x - 2, y + 1, z - 2).equals(ModBlocks.mazer)) {
+			return false;
+		}
+		if (!world.getBlock(x, y + 2, z).equals(ModBlocks.keep)) {
 			return false;
 		}
 		return true;

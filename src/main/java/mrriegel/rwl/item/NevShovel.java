@@ -211,6 +211,8 @@ public class NevShovel extends ItemSpade {
 			if (ForgeHooks.isToolEffective(stack, bl, meta)) {
 				MyUtils.breakWithFortune(world, b.x, b.y, b.z, 0);
 				stack.setItemDamage(stack.getItemDamage() + 1);
+				if(stack.getItemDamage()>MATERIAL.getMaxUses())
+					return;
 			}
 		}
 

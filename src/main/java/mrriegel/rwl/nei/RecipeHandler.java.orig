@@ -1,0 +1,47 @@
+package mrriegel.rwl.nei;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import mrriegel.rwl.init.RitualRecipe;
+import mrriegel.rwl.reference.Reference;
+import codechicken.nei.*;
+import codechicken.nei.recipe.TemplateRecipeHandler;
+
+public class RecipeHandler extends TemplateRecipeHandler {
+
+	public class CachedRitualRecipe extends CachedRecipe {
+		PositionedStack output;
+		public List<PositionedStack> input = new ArrayList<PositionedStack>();
+		PositionedStack cat;
+
+		public CachedRitualRecipe(RitualRecipe r) {
+			output = new PositionedStack(r.getOutput(), 20, 20, false);
+			input.add(new PositionedStack(r.getInput1(), 20, 40, false));
+			input.add(new PositionedStack(r.getInput2(), 20, 60, false));
+			input.add(new PositionedStack(r.getInput3(), 20, 80, false));
+			input.add(new PositionedStack(r.getInput4(), 20, 100, false));
+			cat = new PositionedStack(r.getCat(), 40, 20, false);
+		}
+
+		@Override
+		public PositionedStack getResult() {
+			return output;
+		}
+
+	}
+
+	@Override
+	public String getRecipeName() {
+		return "hep";
+	}
+
+	@Override
+	public String getGuiTexture() {
+		return new ResourceLocation(Reference.MOD_ID + ":"
+				+ "textures/gui/bag.png").toString();
+	}
+
+}

@@ -67,4 +67,19 @@ public class RitualRecipe {
 		this.cat = cat;
 	}
 
+	public ItemStack getInput1() {
+		return input1;
+	}
+
+	public ItemStack getInput2() {
+		return input2;
+	}
+
+	public ItemStack getInput3() {
+		return input3;
+	}
+
+	public ItemStack getInput4() {
+		return input4;
+	}
 }

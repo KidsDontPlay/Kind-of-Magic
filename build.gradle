@@ -39,7 +39,9 @@ dependencies {
     // for more info...
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
-
+    compile "codechicken:CodeChickenLib:${config.minecraft_version}-${config.codechickenlib_version}:dev"
+    compile "codechicken:CodeChickenCore:${config.minecraft_version}-${config.codechickencore_version}:dev"
+    compile "codechicken:NotEnoughItems:${config.minecraft_version}-${config.notenoughitems_version}:dev"
 }
 
 processResources

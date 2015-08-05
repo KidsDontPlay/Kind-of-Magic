@@ -23,7 +23,7 @@ import net.minecraftforge.common.util.EnumHelper;
 
 public class NevAxe extends ItemAxe {
 	public static ToolMaterial MATERIAL = EnumHelper.addToolMaterial(
-			"MATERIAL", 2, 20, 10.0F, 2.0F, 14);
+			"MATERIAL", 2, 2000, 10.0F, 2.0F, 14);
 
 	public NevAxe() {
 		super(MATERIAL);
@@ -168,8 +168,6 @@ public class NevAxe extends ItemAxe {
 					&& world.getBlockMetadata(bl.x, bl.y, bl.z) == l) {
 				MyUtils.breakWithFortune(world, bl.x, bl.y, bl.z, 0);
 				stack.setItemDamage(stack.getItemDamage() + 1);
-				System.out.println("damage: "+stack.getItemDamage());
-				System.out.println("max: "+MATERIAL.getMaxUses());
 				if(stack.getItemDamage()>MATERIAL.getMaxUses())
 					return;
 				chop2(stack,bl.x, bl.y, bl.z, world, block, l);
@@ -221,6 +219,8 @@ public class NevAxe extends ItemAxe {
 			if (ForgeHooks.isToolEffective(stack, bl, meta)) {
 				MyUtils.breakWithFortune(world, b.x, b.y, b.z, 0);
 				stack.setItemDamage(stack.getItemDamage() + 1);
+				if(stack.getItemDamage()>MATERIAL.getMaxUses())
+					return;
 			}
 		}
 
