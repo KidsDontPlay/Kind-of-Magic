@@ -1,6 +1,5 @@
 package mrriegel.rwl;
 
-import net.minecraftforge.common.MinecraftForge;
 import mrriegel.rwl.handler.ConfigurationHandler;
 import mrriegel.rwl.handler.DeathHandler;
 import mrriegel.rwl.init.CraftingRecipes;
@@ -11,13 +10,12 @@ import mrriegel.rwl.proxy.ClientProxy;
 import mrriegel.rwl.proxy.CommonProxy;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.world.RWLWorld;
-import cpw.mods.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 

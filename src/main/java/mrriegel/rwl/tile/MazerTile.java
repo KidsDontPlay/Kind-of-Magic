@@ -1,7 +1,5 @@
 package mrriegel.rwl.tile;
 
-import java.util.ArrayList;
-
 import mrriegel.rwl.block.MazerB;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
