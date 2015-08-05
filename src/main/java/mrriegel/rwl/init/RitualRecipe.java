@@ -45,13 +45,6 @@ public class RitualRecipe {
 		List<ItemStack> soll = Arrays.asList(new ItemStack[] { input1, input2,
 				input3, input4 });
 
-		for (ItemStack s : ist) {
-			for (ItemStack ss : soll) {
-				if (ItemStack.areItemStacksEqual(s, ss)) {
-					break;
-				}
-			}
-		}
 		if (eq(ist, soll)) {
 			return true;
 		}

@@ -1,11 +1,11 @@
 package mrriegel.rwl.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+
+import org.lwjgl.opengl.GL11;
 
 public class GuiBag extends GuiContainer {
 	private final InventoryBag inventory;

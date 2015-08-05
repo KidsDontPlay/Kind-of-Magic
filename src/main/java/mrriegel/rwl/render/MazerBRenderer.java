@@ -1,21 +1,16 @@
 package mrriegel.rwl.render;
 
-import java.awt.image.TileObserver;
-
-import org.lwjgl.opengl.GL11;
-
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.tile.MazerTile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.client.IItemRenderer;
+
+import org.lwjgl.opengl.GL11;
 
 public class MazerBRenderer extends TileEntitySpecialRenderer {
 

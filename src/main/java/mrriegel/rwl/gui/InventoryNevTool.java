@@ -1,7 +1,6 @@
 package mrriegel.rwl.gui;
 
 import mrriegel.rwl.init.ModItems;
-import mrriegel.rwl.item.NevPick;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;

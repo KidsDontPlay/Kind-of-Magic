@@ -11,8 +11,8 @@ import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.MyUtils;
-import mrriegel.rwl.utility.NBTHelper;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLog;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
@@ -89,12 +89,6 @@ public class NevAxe extends ItemAxe {
 		case 2:
 			list.add("radius 3");
 			break;
-		case 3:
-			list.add("silk");
-			break;
-		case 4:
-			list.add("fortune");
-			break;
 		case 8:
 			list.add("whole tree");
 			break;
@@ -151,8 +145,9 @@ public class NevAxe extends ItemAxe {
 		case 8:
 			if (ForgeHooks.isToolEffective(stack,
 					player.worldObj.getBlock(x, y, z),
-					player.worldObj.getBlockMetadata(x, y, z))) {
-				chop2(x, y, z, player.worldObj,
+					player.worldObj.getBlockMetadata(x, y, z))
+					&& player.worldObj.getBlock(x, y, z) instanceof BlockLog) {
+				chop2(stack,x, y, z, player.worldObj,
 						player.worldObj.getBlock(x, y, z),
 						player.worldObj.getBlockMetadata(x, y, z));
 			}
@@ -165,14 +160,15 @@ public class NevAxe extends ItemAxe {
 		return super.onBlockStartBreak(stack, x, y, z, player);
 	}
 
-	private void chop2(int x, int y, int z, World world, Block block, int l) {
+	private void chop2(ItemStack stack,int x, int y, int z, World world, Block block, int l) {
 		for (BlockLocation bl : MyUtils.getNeighbors(world, x, y, z)) {
 
 			if (world.getBlock(bl.x, bl.y, bl.z).getUnlocalizedName()
 					.equals(block.getUnlocalizedName())
 					&& world.getBlockMetadata(bl.x, bl.y, bl.z) == l) {
 				MyUtils.breakWithFortune(world, bl.x, bl.y, bl.z, 0);
-				chop2(bl.x, bl.y, bl.z, world, block, l);
+				stack.setItemDamage(stack.getItemDamage() + 1);
+				chop2(stack,bl.x, bl.y, bl.z, world, block, l);
 			}
 
 		}

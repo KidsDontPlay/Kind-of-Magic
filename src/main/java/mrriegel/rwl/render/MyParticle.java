@@ -1,7 +1,6 @@
 package mrriegel.rwl.render;
 
 import net.minecraft.client.particle.EntityAuraFX;
-import net.minecraft.client.particle.EntityFX;
 import net.minecraft.world.World;
 
 public class MyParticle extends EntityAuraFX {

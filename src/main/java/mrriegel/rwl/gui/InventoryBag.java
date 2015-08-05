@@ -1,6 +1,5 @@
 package mrriegel.rwl.gui;
 
-import mrriegel.rwl.init.ModItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;

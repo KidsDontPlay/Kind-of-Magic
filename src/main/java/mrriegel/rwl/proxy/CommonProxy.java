@@ -3,8 +3,6 @@ package mrriegel.rwl.proxy;
 import java.util.HashMap;
 import java.util.Map;
 
-import cpw.mods.fml.common.network.IGuiHandler;
-import mrriegel.rwl.RWL;
 import mrriegel.rwl.gui.ContainerBag;
 import mrriegel.rwl.gui.ContainerNevTool;
 import mrriegel.rwl.gui.GuiBag;
@@ -13,10 +11,10 @@ import mrriegel.rwl.gui.GuiNevTool;
 import mrriegel.rwl.gui.InventoryBag;
 import mrriegel.rwl.gui.InventoryNevTool;
 import mrriegel.rwl.utility.BlockLocation;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import cpw.mods.fml.common.network.IGuiHandler;
 
 public class CommonProxy implements IGuiHandler {
 	private static final Map<String, NBTTagCompound> extendedEntityData = new HashMap<String, NBTTagCompound>();

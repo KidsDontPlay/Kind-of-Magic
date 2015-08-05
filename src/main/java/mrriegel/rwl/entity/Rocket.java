@@ -2,7 +2,6 @@ package mrriegel.rwl.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IProjectile;
-import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 

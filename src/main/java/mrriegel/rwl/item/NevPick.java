@@ -11,7 +11,6 @@ import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.MyUtils;
-import mrriegel.rwl.utility.NBTHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;

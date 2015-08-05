@@ -1,26 +1,14 @@
 package mrriegel.rwl.item;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mrriegel.rwl.RWL;
 import mrriegel.rwl.creative.CreativeTab;
-import mrriegel.rwl.gui.ContainerNevTool;
 import mrriegel.rwl.gui.GuiIDs;
 import mrriegel.rwl.gui.InventoryNevTool;
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.reference.Reference;
-import mrriegel.rwl.utility.NBTHelper;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -28,14 +16,17 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.util.EnumHelper;
+
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class NevSword extends ItemSword {
 	public static ToolMaterial MATERIAL = EnumHelper.addToolMaterial(
