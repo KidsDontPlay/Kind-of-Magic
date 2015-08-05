@@ -2,13 +2,10 @@ package mrriegel.rwl.block;
 
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.reference.Reference;
-import mrriegel.rwl.tile.MazerTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

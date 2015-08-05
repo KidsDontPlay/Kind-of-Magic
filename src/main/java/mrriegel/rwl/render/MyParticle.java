@@ -1,6 +1,5 @@
 package mrriegel.rwl.render;
 
-import net.minecraft.client.particle.EntityAuraFX;
 import net.minecraft.client.particle.EntityPortalFX;
 import net.minecraft.world.World;
 

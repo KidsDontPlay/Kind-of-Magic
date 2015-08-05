@@ -1,6 +1,5 @@
 package mrriegel.rwl;
 
-import mcp.mobius.waila.api.IWailaRegistrar;
 import mrriegel.rwl.handler.ConfigurationHandler;
 import mrriegel.rwl.handler.DeathHandler;
 import mrriegel.rwl.init.CraftingRecipes;
@@ -10,8 +9,6 @@ import mrriegel.rwl.init.RitualRecipes;
 import mrriegel.rwl.proxy.ClientProxy;
 import mrriegel.rwl.proxy.CommonProxy;
 import mrriegel.rwl.reference.Reference;
-import mrriegel.rwl.tile.MazerTile;
-import mrriegel.rwl.waila.StoneHandler;
 import mrriegel.rwl.world.RWLWorld;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;

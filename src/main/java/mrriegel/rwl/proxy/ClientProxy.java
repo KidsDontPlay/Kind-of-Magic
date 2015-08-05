@@ -3,7 +3,6 @@ package mrriegel.rwl.proxy;
 import java.util.Random;
 
 import mrriegel.rwl.render.MyParticle;
-import mrriegel.rwl.utility.BlockLocation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.world.World;
