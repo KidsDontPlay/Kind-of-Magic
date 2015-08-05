@@ -1,13 +1,10 @@
 package mrriegel.rwl.block;
 
-import java.util.Random;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import mrriegel.rwl.RWL;
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.init.ModItems;
+import mrriegel.rwl.init.RitualRecipe;
+import mrriegel.rwl.init.RitualRecipes;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.tile.MazerTile;
 import mrriegel.rwl.utility.BlockLocation;
@@ -15,24 +12,22 @@ import mrriegel.rwl.utility.MyUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
-import net.minecraft.client.particle.EntityFlameFX;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class MazerB extends BlockContainer {
 	@SideOnly(Side.CLIENT)
@@ -83,14 +78,13 @@ public class MazerB extends BlockContainer {
 			Entity entity) {
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y, z);
 		if (!isConstruct(world, x, y, z) && tile.isActive()) {
-
 			release(world, x, y, z);
 			tile.setActive(false);
 			System.out.println("disabeld");
 			return;
 		}
-		if (entity instanceof EntityItem && entity.posY >= y + 1 + 0.0624F
-				&& !world.isRemote) {
+		if (tile.isActive() && entity instanceof EntityItem
+				&& entity.posY >= y + 1 + 0.0624F && !world.isRemote) {
 			EntityItem e = (EntityItem) entity;
 			boolean in = false;
 			for (int i = 0; i < tile.getInv().length; i++) {
@@ -101,7 +95,7 @@ public class MazerB extends BlockContainer {
 				}
 			}
 			if (in) {
-				entity.isDead = true;
+				entity.setDead();
 			}
 		}
 	}
@@ -148,6 +142,7 @@ public class MazerB extends BlockContainer {
 			return false;
 		}
 
+		// activate
 		if (!player.isSneaking()
 				&& player.getCurrentEquippedItem() != null
 				&& player.getCurrentEquippedItem().getItem()
@@ -159,25 +154,48 @@ public class MazerB extends BlockContainer {
 			tile.setActive(true);
 			System.out.println("activated");
 
-		} else if (player.isSneaking() && tile.isActive()
-				&& isConstruct(world, x, y, z)) {
-			release(world, x, y, z);
-			System.out.println("gib");
-			tile.setActive(false);
-			EntityItem i = new EntityItem(world, x, y + 1, z, new ItemStack(
-					ModItems.relic));
-			world.spawnEntityInWorld(i);
-			i.setPosition(player.posX + 0.5d, player.posY + 1.1d,
-					player.posZ + 0.5d);
-			System.out.println("extracted");
-		} else if (!player.isSneaking()
-				&& player.getCurrentEquippedItem() != null
+			// fill bottle
+		} else if (player.getCurrentEquippedItem() != null
 				&& player.getCurrentEquippedItem().getItem()
-						.equals(Items.glass_bottle)) {
-			player.addPotionEffect(new PotionEffect(9, 200, 40));
+						.equals(Items.glass_bottle)
+				&& player.getActivePotionEffect(Potion.confusion) == null) {
+			player.addPotionEffect(new PotionEffect(9, 100, 40));
+			player.inventory.setInventorySlotContents(
+					player.inventory.currentItem,
+					new ItemStack(player.getHeldItem().getItem(), player
+							.getCurrentEquippedItem().stackSize - 1));
+			world.spawnEntityInWorld(new EntityItem(world, player.posX,
+					player.posY, player.posZ, new ItemStack(ModItems.bloodie)));
+			player.getFoodStats().setFoodLevel(
+					player.getFoodStats().getFoodLevel() - 2);
 			System.out.println("wuerg");
+
+			// start
+		} else if (!player.isSneaking() && player.getHeldItem() != null
+				&& player.getHeldItem().getItem().equals(ModItems.catalyst)
+				&& tile.isActive() && isConstruct(world, x, y, z)) {
+			ItemStack stack = player.getHeldItem();
+			for (RitualRecipe r : RitualRecipes.lis) {
+				if (ItemStack.areItemStacksEqual(stack, r.getCat())) {
+					if (r.matches(tile.getInv())) {
+						tile.clear();
+						player.inventory.setInventorySlotContents(
+								player.inventory.currentItem,
+								new ItemStack(player.getHeldItem().getItem(), player
+										.getCurrentEquippedItem().stackSize - 1));
+						world.spawnEntityInWorld(new EntityItem(world,
+								player.posX, player.posY, player.posZ, r
+										.getOutput()));
+						player.addChatMessage(new ChatComponentText("Done!"));
+						return false;
+					}
+				}
+			}
 		}
 		System.out.println("hop: " + tile.isActive());
+		for (ItemStack s : tile.getInv()) {
+			System.out.println("inhatl: " + s);
+		}
 		return false;
 
 	}

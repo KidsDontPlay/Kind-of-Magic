@@ -1,14 +1,11 @@
 package mrriegel.rwl.init;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import mrriegel.rwl.item.AirOreDust;
 import mrriegel.rwl.item.BloodRelic;
 import mrriegel.rwl.item.Bloodie;
+import mrriegel.rwl.item.Catalyst;
 import mrriegel.rwl.item.CrystalBag;
 import mrriegel.rwl.item.Crysthal;
-import mrriegel.rwl.item.Catalyst;
 import mrriegel.rwl.item.MazeDust;
 import mrriegel.rwl.item.Nev;
 import mrriegel.rwl.item.NevAxe;
@@ -18,6 +15,9 @@ import mrriegel.rwl.item.NevSword;
 import mrriegel.rwl.item.OreDust;
 import mrriegel.rwl.item.OreStick;
 import mrriegel.rwl.reference.Reference;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 @GameRegistry.ObjectHolder(Reference.MOD_ID)
 public class ModItems {
