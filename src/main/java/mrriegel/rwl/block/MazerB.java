@@ -1,6 +1,5 @@
 package mrriegel.rwl.block;
 
-import mrriegel.rwl.RWL;
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.init.ModItems;
@@ -149,6 +148,7 @@ public class MazerB extends BlockContainer {
 		// if (world.isRemote) {
 		// return false;
 		// }
+
 		ParticleEffects.spawnParticle("fire", x + 0.5d, y + 0.9d, z + 0.5d,
 				0.0D, 0.0D, 0.0D);
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y, z);
@@ -170,6 +170,7 @@ public class MazerB extends BlockContainer {
 							player.getCurrentEquippedItem().stackSize - 1));
 			tile.setActive(true);
 			System.out.println("activated");
+			return true;
 
 			// fill bottle
 		} else if (player.getCurrentEquippedItem() != null
@@ -188,6 +189,7 @@ public class MazerB extends BlockContainer {
 			player.getFoodStats().setFoodLevel(
 					player.getFoodStats().getFoodLevel() - 2);
 			System.out.println("wuerg");
+			return true;
 
 			// start
 		} else if (!player.isSneaking() && player.getHeldItem() != null
@@ -212,7 +214,7 @@ public class MazerB extends BlockContainer {
 									player.posZ);
 							player.addChatMessage(new ChatComponentText("Done!"));
 						}
-						return false;
+						return true;
 					}
 				}
 			}
@@ -231,7 +233,7 @@ public class MazerB extends BlockContainer {
 					}
 					tile.setInventorySlotContents(i, null);
 					item = false;
-					return false;
+					return true;
 				}
 			}
 			if (item) {
