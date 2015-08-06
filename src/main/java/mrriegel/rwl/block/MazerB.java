@@ -1,10 +1,12 @@
 package mrriegel.rwl.block;
 
+import mrriegel.rwl.RWL;
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.init.RitualRecipe;
 import mrriegel.rwl.init.RitualRecipes;
+import mrriegel.rwl.network.Packet;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.tile.MazerTile;
 import mrriegel.rwl.utility.BlockLocation;
@@ -16,6 +18,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -41,7 +44,6 @@ public class MazerB extends BlockContainer {
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.7F, 1.0F);
 		setLightOpacity(255);
 		useNeighborBrightness = true;
-		System.out.println("maus3");
 	}
 
 	@Override
@@ -118,14 +120,6 @@ public class MazerB extends BlockContainer {
 	}
 
 	@Override
-	public boolean onBlockEventReceived(World p_149696_1_, int p_149696_2_,
-			int p_149696_3_, int p_149696_4_, int p_149696_5_, int p_149696_6_) {
-		System.out.println("maus");
-		return super.onBlockEventReceived(p_149696_1_, p_149696_2_,
-				p_149696_3_, p_149696_4_, p_149696_5_, p_149696_6_);
-	}
-
-	@Override
 	public void breakBlock(World world, int x, int y, int z, Block block,
 			int meta) {
 		// if (world.isRemote) {
@@ -160,10 +154,13 @@ public class MazerB extends BlockContainer {
 		// }
 
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y, z);
+		// if (!world.isRemote) {
+		// RWL.net.sendTo(new Packet(x, y, z, tile.isActive()),
+		// (EntityPlayerMP) player);
+		// }
 		if (!isConstruct(world, x, y, z) && tile.isActive()) {
 
 			release(world, x, y, z);
-			tile.setActive(false);
 			System.out.println("disabeld");
 			return false;
 		}

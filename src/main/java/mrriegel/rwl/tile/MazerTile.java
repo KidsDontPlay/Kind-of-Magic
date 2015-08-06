@@ -6,6 +6,9 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.Constants;
 
@@ -59,7 +62,6 @@ public class MazerTile extends TileEntity implements IInventory {
 		}
 		return stack;
 	}
-	
 
 	@Override
 	public ItemStack getStackInSlotOnClosing(int slot) {
@@ -141,9 +143,22 @@ public class MazerTile extends TileEntity implements IInventory {
 				invList.appendTag(stackTag);
 			}
 		}
-
-		tag.setTag("Inventory", invList);
 		tag.setBoolean("active", active);
+		tag.setTag("Inventory", invList);
+
+	}
+
+	@Override
+	public Packet getDescriptionPacket() {
+		NBTTagCompound syncData = new NBTTagCompound();
+		this.writeToNBT(syncData);
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord,
+				this.zCoord, 1, syncData);
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+		readFromNBT(pkt.func_148857_g());
 	}
 
 	public void clear() {
