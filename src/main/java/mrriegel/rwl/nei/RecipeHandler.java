@@ -21,7 +21,7 @@ public class RecipeHandler extends TemplateRecipeHandler {
 		PositionedStack cat;
 
 		public CachedRitualRecipe(RitualRecipe r) {
-			output = new PositionedStack(r.getOutput(), 75, 2, false);
+			output = new PositionedStack(r.getOutput(), 75, 4, false);
 			input.add(new PositionedStack(r.getInput1(), 25, 40, false));
 			input.add(new PositionedStack(r.getInput2(), 45, 40, false));
 			input.add(new PositionedStack(r.getInput3(), 65, 40, false));
@@ -56,12 +56,23 @@ public class RecipeHandler extends TemplateRecipeHandler {
 	@Override
 	public void loadTransferRects() {
 		transferRects.add(new RecipeTransferRect(new Rectangle(75, 21, 16, 16),
-				"another"));
+				"rwl:stone"));
 	}
 
 	@Override
 	public int recipiesPerPage() {
 		return 2;
+	}
+
+	@Override
+	public void loadCraftingRecipes(String outputId, Object... results) {
+		if (outputId.equals("rwl:stone")) {
+			for (RitualRecipe recipe : RitualRecipes.lis) {
+				arecipes.add(new CachedRitualRecipe(recipe));
+			}
+
+		} else
+			super.loadCraftingRecipes(outputId, results);
 	}
 
 	@Override
@@ -78,8 +89,17 @@ public class RecipeHandler extends TemplateRecipeHandler {
 	public void loadUsageRecipes(ItemStack ingredient) {
 		for (RitualRecipe recipe : RitualRecipes.lis) {
 
-			CachedRitualRecipe crecipe = new CachedRitualRecipe(recipe);
-			arecipes.add(crecipe);
+			if (NEIServerUtils.areStacksSameTypeCrafting(recipe.getInput1(),
+					ingredient)
+					|| NEIServerUtils.areStacksSameTypeCrafting(
+							recipe.getInput2(), ingredient)
+					|| NEIServerUtils.areStacksSameTypeCrafting(
+							recipe.getInput3(), ingredient)
+					|| NEIServerUtils.areStacksSameTypeCrafting(
+							recipe.getInput4(), ingredient)
+					|| NEIServerUtils.areStacksSameTypeCrafting(
+							recipe.getCat(), ingredient))
+				arecipes.add(new CachedRitualRecipe(recipe));
 
 		}
 	}

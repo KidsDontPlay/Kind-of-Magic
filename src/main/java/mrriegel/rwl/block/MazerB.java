@@ -24,6 +24,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -39,6 +41,7 @@ public class MazerB extends BlockContainer {
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.7F, 1.0F);
 		setLightOpacity(255);
 		useNeighborBrightness = true;
+		System.out.println("maus3");
 	}
 
 	@Override
@@ -68,6 +71,7 @@ public class MazerB extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
+		System.out.println("maus1");
 		return new MazerTile();
 	}
 
@@ -94,10 +98,10 @@ public class MazerB extends BlockContainer {
 			System.out.println("disabeld");
 			return;
 		}
-		if (tile.isActive()
-				&& entity instanceof EntityItem
-				&& entity.posY >= y + 1 + +0.001F
-						- (1.0F - getBlockBoundsMaxY()) /* && !world.isRemote */) {
+		if (tile.isActive() && entity instanceof EntityItem
+				&& entity.posY <= y + 0.9D /*
+											 * && !world. isRemote
+											 */) {
 			EntityItem e = (EntityItem) entity;
 			boolean in = false;
 			for (int i = 0; i < tile.getInv().length; i++) {
@@ -111,6 +115,14 @@ public class MazerB extends BlockContainer {
 				entity.setDead();
 			}
 		}
+	}
+
+	@Override
+	public boolean onBlockEventReceived(World p_149696_1_, int p_149696_2_,
+			int p_149696_3_, int p_149696_4_, int p_149696_5_, int p_149696_6_) {
+		System.out.println("maus");
+		return super.onBlockEventReceived(p_149696_1_, p_149696_2_,
+				p_149696_3_, p_149696_4_, p_149696_5_, p_149696_6_);
 	}
 
 	@Override

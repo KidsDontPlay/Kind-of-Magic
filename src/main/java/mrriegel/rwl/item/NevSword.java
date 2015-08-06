@@ -1,6 +1,7 @@
 package mrriegel.rwl.item;
 
 import java.util.List;
+import java.util.Random;
 
 import mrriegel.rwl.RWL;
 import mrriegel.rwl.creative.CreativeTab;
@@ -35,7 +36,6 @@ public class NevSword extends ItemSword {
 	ItemStack sword = null;
 	IIcon icon_f = null;
 	EntityPlayer player1 = null;
-	int damage = -1;
 
 	public NevSword() {
 		super(MATERIAL);
@@ -106,13 +106,6 @@ public class NevSword extends ItemSword {
 		if (stack.getTagCompound() == null) {
 			return;
 		}
-		int tar = stack
-				.getTagCompound()
-				.getTagList(InventoryNevTool.tagName,
-						stack.getTagCompound().getId()).getCompoundTagAt(0)
-				.getShort("Damage");
-		if (tar != damage)
-			damage = tar;
 		super.onUpdate(stack, world, p_77663_3_, p_77663_4_, p_77663_5_);
 	}
 
@@ -170,6 +163,7 @@ public class NevSword extends ItemSword {
 		if (player.worldObj.isRemote) {
 			return false;
 		}
+		Random rand = new Random();
 		switch (stack
 				.getTagCompound()
 				.getTagList(InventoryNevTool.tagName,
@@ -179,14 +173,18 @@ public class NevSword extends ItemSword {
 			victim.setFire(7);
 			break;
 		case 7:
-			victim.addPotionEffect(new PotionEffect(Potion.poison.id, 140, 3));
+			if (rand.nextInt(4) == 3)
+				victim.addPotionEffect(new PotionEffect(Potion.poison.id, 140,
+						3));
 			break;
 		case 11:
 			victim.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id,
 					140, 2));
 			break;
 		case 12:
-			victim.addPotionEffect(new PotionEffect(Potion.wither.id, 140, 2));
+			if (rand.nextInt(5) == 3)
+				victim.addPotionEffect(new PotionEffect(Potion.wither.id, 140,
+						2));
 			break;
 		default:
 			break;

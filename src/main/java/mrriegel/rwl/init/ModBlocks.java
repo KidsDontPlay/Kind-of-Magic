@@ -1,9 +1,11 @@
 package mrriegel.rwl.init;
 
+import mrriegel.rwl.block.AOBlock;
 import mrriegel.rwl.block.AirOrus;
 import mrriegel.rwl.block.Keep;
 import mrriegel.rwl.block.Mazer;
 import mrriegel.rwl.block.MazerB;
+import mrriegel.rwl.block.OBlock;
 import mrriegel.rwl.block.Orus;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.tile.MazerTile;
@@ -18,6 +20,8 @@ public class ModBlocks {
 	public static Block orus = new Orus();
 	public static Block airorus = new AirOrus();
 	public static Block keep = new Keep();
+	public static Block oblock = new OBlock();
+	public static Block aoblock = new AOBlock();
 
 	public static void init() {
 		GameRegistry.registerBlock(mazer, "mazer");
@@ -25,6 +29,8 @@ public class ModBlocks {
 		GameRegistry.registerBlock(orus, "orus");
 		GameRegistry.registerBlock(airorus, "airorus");
 		GameRegistry.registerBlock(keep, "keep");
+		GameRegistry.registerBlock(oblock, "oblock");
+		GameRegistry.registerBlock(aoblock, "aoblock");
 
 		GameRegistry.registerTileEntity(MazerTile.class, "mazertile");
 	}

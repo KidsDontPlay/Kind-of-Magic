@@ -9,6 +9,10 @@ import mrriegel.rwl.item.Crysthal;
 import mrriegel.rwl.item.MazeDust;
 import mrriegel.rwl.item.Nev;
 import mrriegel.rwl.item.NevAxe;
+import mrriegel.rwl.item.NevBoots;
+import mrriegel.rwl.item.NevChest;
+import mrriegel.rwl.item.NevHelmet;
+import mrriegel.rwl.item.NevLeg;
 import mrriegel.rwl.item.NevPick;
 import mrriegel.rwl.item.NevShovel;
 import mrriegel.rwl.item.NevSword;
@@ -35,6 +39,10 @@ public class ModItems {
 	public static Item aodust = new AirOreDust();
 	public static Item nev = new Nev();
 	public static Item ostick = new OreStick();
+	public static Item helm = new NevHelmet();
+	public static Item chest = new NevChest();
+	public static Item leg = new NevLeg();
+	public static Item boots = new NevBoots();
 
 	public static void init() {
 		GameRegistry.registerItem(bloodie, "bloodie");
@@ -53,6 +61,10 @@ public class ModItems {
 		GameRegistry.registerItem(odust, "oredust");
 		GameRegistry.registerItem(nev, "nev");
 		GameRegistry.registerItem(ostick, "ostick");
+		GameRegistry.registerItem(helm, "helm");
+		GameRegistry.registerItem(chest, "chest");
+		GameRegistry.registerItem(leg, "leg");
+		GameRegistry.registerItem(boots, "boots");
 
 	}
 }

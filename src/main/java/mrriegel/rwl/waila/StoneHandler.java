@@ -35,9 +35,8 @@ public class StoneHandler implements IWailaDataProvider {
 		if (!(accessor.getTileEntity() instanceof MazerTile)) {
 			return null;
 		}
-		MovingObjectPosition mop = accessor.getPosition();
 		MazerTile tile = (MazerTile) accessor.getTileEntity();
-		currenttip.add("Active: " + tile.isActive());
+		currenttip.add("Activated: " + tile.isActive());
 		return currenttip;
 	}
 
@@ -62,8 +61,6 @@ public class StoneHandler implements IWailaDataProvider {
 
 	public static void callbackRegister(IWailaRegistrar registrar) {
 		registrar.registerBodyProvider(new StoneHandler(), MazerTile.class);
-		registrar.registerNBTProvider(new StoneHandler(), MazerTile.class);
-		registrar.registerHeadProvider(new StoneHandler(), MazerTile.class);
 
 	}
 

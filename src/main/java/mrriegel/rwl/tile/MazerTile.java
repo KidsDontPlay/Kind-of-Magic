@@ -59,6 +59,7 @@ public class MazerTile extends TileEntity implements IInventory {
 		}
 		return stack;
 	}
+	
 
 	@Override
 	public ItemStack getStackInSlotOnClosing(int slot) {
@@ -142,7 +143,6 @@ public class MazerTile extends TileEntity implements IInventory {
 		}
 
 		tag.setTag("Inventory", invList);
-
 		tag.setBoolean("active", active);
 	}
 

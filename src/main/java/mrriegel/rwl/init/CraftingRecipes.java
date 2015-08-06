@@ -28,14 +28,18 @@ public class CraftingRecipes {
 				"ono", "mcm", "ana", 'm', new ItemStack(ModItems.mdust), 'n',
 				new ItemStack(ModItems.nev), 'o',
 				new ItemStack(ModItems.odust), 'c', new ItemStack(
-						ModItems.catalyst, 1, OreDictionary.WILDCARD_VALUE),
-				'a', new ItemStack(ModItems.aodust));
+						ModItems.catalyst, 1, 0), 'a', new ItemStack(
+						ModItems.aodust));
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.ostick), "aqa",
 				"aqa", 'a', new ItemStack(ModItems.aodust), 'q', new ItemStack(
 						Items.quartz));
-		GameRegistry.addShapedRecipe(new ItemStack(ModItems.nevpick), "nnn",
-				" s ", " s ", 'n', new ItemStack(ModItems.nev), 's',
-				new ItemStack(ModItems.ostick));
+		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.oblock), "ooo",
+				"ooo", "ooo", 'o', new ItemStack(ModItems.odust));
+		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.aoblock), "ooo",
+				"ooo", "ooo", 'o', new ItemStack(ModItems.aodust));
+		GameRegistry.addShapedRecipe(new ItemStack(ModItems.bag), "lol", "lll",
+				'o', new ItemStack(ModItems.mdust), 'l', new ItemStack(
+						Items.leather));
 
 	}
 }

@@ -147,7 +147,7 @@ public class NevAxe extends ItemAxe {
 					player.worldObj.getBlock(x, y, z),
 					player.worldObj.getBlockMetadata(x, y, z))
 					&& player.worldObj.getBlock(x, y, z) instanceof BlockLog) {
-				chop2(stack,x, y, z, player.worldObj,
+				chop2(stack, x, y, z, player.worldObj,
 						player.worldObj.getBlock(x, y, z),
 						player.worldObj.getBlockMetadata(x, y, z));
 			}
@@ -160,7 +160,8 @@ public class NevAxe extends ItemAxe {
 		return super.onBlockStartBreak(stack, x, y, z, player);
 	}
 
-	private void chop2(ItemStack stack,int x, int y, int z, World world, Block block, int l) {
+	private void chop2(ItemStack stack, int x, int y, int z, World world,
+			Block block, int l) {
 		for (BlockLocation bl : MyUtils.getNeighbors(world, x, y, z)) {
 
 			if (world.getBlock(bl.x, bl.y, bl.z).getUnlocalizedName()
@@ -168,9 +169,9 @@ public class NevAxe extends ItemAxe {
 					&& world.getBlockMetadata(bl.x, bl.y, bl.z) == l) {
 				MyUtils.breakWithFortune(world, bl.x, bl.y, bl.z, 0);
 				stack.setItemDamage(stack.getItemDamage() + 1);
-				if(stack.getItemDamage()>MATERIAL.getMaxUses())
+				if (stack.getItemDamage() > MATERIAL.getMaxUses())
 					return;
-				chop2(stack,bl.x, bl.y, bl.z, world, block, l);
+				chop2(stack, bl.x, bl.y, bl.z, world, block, l);
 			}
 
 		}
@@ -219,7 +220,7 @@ public class NevAxe extends ItemAxe {
 			if (ForgeHooks.isToolEffective(stack, bl, meta)) {
 				MyUtils.breakWithFortune(world, b.x, b.y, b.z, 0);
 				stack.setItemDamage(stack.getItemDamage() + 1);
-				if(stack.getItemDamage()>MATERIAL.getMaxUses())
+				if (stack.getItemDamage() > MATERIAL.getMaxUses())
 					return;
 			}
 		}
