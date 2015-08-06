@@ -6,8 +6,6 @@ import mrriegel.rwl.init.CraftingRecipes;
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.init.RitualRecipes;
-import mrriegel.rwl.network.Packet;
-import mrriegel.rwl.network.PacketHandler;
 import mrriegel.rwl.proxy.ClientProxy;
 import mrriegel.rwl.proxy.CommonProxy;
 import mrriegel.rwl.reference.Reference;
@@ -23,7 +21,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
 public class RWL {
@@ -46,7 +43,6 @@ public class RWL {
 		ModBlocks.init();
 		ModItems.init();
 		net = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MOD_ID);
-		net.registerMessage(PacketHandler.class, Packet.class, 0, Side.CLIENT);
 	}
 
 	@Mod.EventHandler

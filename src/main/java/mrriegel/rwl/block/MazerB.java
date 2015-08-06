@@ -1,12 +1,10 @@
 package mrriegel.rwl.block;
 
-import mrriegel.rwl.RWL;
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.init.RitualRecipe;
 import mrriegel.rwl.init.RitualRecipes;
-import mrriegel.rwl.network.Packet;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.tile.MazerTile;
 import mrriegel.rwl.utility.BlockLocation;
@@ -18,7 +16,6 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -27,8 +24,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
