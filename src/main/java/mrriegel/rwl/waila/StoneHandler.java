@@ -36,7 +36,10 @@ public class StoneHandler implements IWailaDataProvider {
 			return null;
 		}
 		MazerTile tile = (MazerTile) accessor.getTileEntity();
-		currenttip.add("Activated: " + tile.isActive());
+		if (tile.isActive())
+			currenttip.add("Activated");
+		else
+			currenttip.add("Not Activated");
 		return currenttip;
 	}
 

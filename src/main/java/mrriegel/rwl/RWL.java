@@ -51,7 +51,7 @@ public class RWL {
 		MinecraftForge.EVENT_BUS.register(new DeathHandler());
 		CraftingRecipes.init();
 		RitualRecipes.init();
-		ClientProxy.init();
+		//ClientProxy.init();
 		FMLInterModComms.sendMessage("Waila", "register",
 				"mrriegel.rwl.waila.StoneHandler.callbackRegister");
 		String r = new StoneHandler().toString() + "eine updatenotiz";

@@ -1,11 +1,13 @@
 package mrriegel.rwl.block;
 
+import mrriegel.rwl.RWL;
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.init.RitualRecipe;
 import mrriegel.rwl.init.RitualRecipes;
 import mrriegel.rwl.reference.Reference;
+import mrriegel.rwl.render.ParticleEffects;
 import mrriegel.rwl.tile.MazerTile;
 import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.MyUtils;
@@ -147,12 +149,9 @@ public class MazerB extends BlockContainer {
 		// if (world.isRemote) {
 		// return false;
 		// }
-
+		ParticleEffects.spawnParticle("fire", x + 0.5d, y + 0.9d, z + 0.5d,
+				0.0D, 0.0D, 0.0D);
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y, z);
-		// if (!world.isRemote) {
-		// RWL.net.sendTo(new Packet(x, y, z, tile.isActive()),
-		// (EntityPlayerMP) player);
-		// }
 		if (!isConstruct(world, x, y, z) && tile.isActive()) {
 
 			release(world, x, y, z);

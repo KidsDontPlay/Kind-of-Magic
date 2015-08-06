@@ -10,6 +10,7 @@ import mrriegel.rwl.gui.GuiIDs;
 import mrriegel.rwl.gui.GuiNevTool;
 import mrriegel.rwl.inventory.InventoryBag;
 import mrriegel.rwl.inventory.InventoryNevTool;
+import net.minecraft.client.particle.EntityFX;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -58,7 +59,10 @@ public class CommonProxy implements IGuiHandler {
 		return null;
 	}
 
-	public void generateParticles(World world, double x,double y,double z) {
+	public void generateParticles(World world, double x, double y, double z) {
+	}
+
+	public void addEffect(EntityFX entityfx) {
 	}
 
 }
