@@ -9,11 +9,13 @@ import mrriegel.rwl.init.RitualRecipes;
 import mrriegel.rwl.proxy.ClientProxy;
 import mrriegel.rwl.proxy.CommonProxy;
 import mrriegel.rwl.reference.Reference;
+import mrriegel.rwl.waila.StoneHandler;
 import mrriegel.rwl.world.RWLWorld;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -46,6 +48,8 @@ public class RWL {
 		CraftingRecipes.init();
 		RitualRecipes.init();
 		ClientProxy.init();
+		FMLInterModComms.sendMessage("Waila", "register", "mrriegel.rwl.waila.StoneHandler.callbackRegister");
+		String r=new StoneHandler().toString()+"eine updatenotiz";
 	}
 
 	@Mod.EventHandler

@@ -1,26 +1,32 @@
-package mrriegel.rwl.gui;
+package mrriegel.rwl.inventory;
 
+import mrriegel.rwl.init.ModItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
-public class InventoryBag implements IInventory {
+public class InventoryNevTool implements IInventory {
+
 	private ItemStack[] inv;
 
-	public static final int INV_SIZE = 15;
-	public static String tagName = "Bag";
+	public static final int INV_SIZE = 1;
+	public static String tagName = "NevTool";
 
-	ItemStack storedInv = null;
+	public ItemStack storedInv = null;
 
-	public InventoryBag(ItemStack stack) {
+	public InventoryNevTool(ItemStack stack) {
 		inv = new ItemStack[INV_SIZE];
 		this.storedInv = stack;
 		if (!storedInv.hasTagCompound()) {
 			storedInv.setTagCompound(new NBTTagCompound());
 		}
 		readFromNBT(storedInv.getTagCompound());
+	}
+
+	public ItemStack[] getInv() {
+		return inv;
 	}
 
 	public void readFromNBT(NBTTagCompound compound) {
@@ -66,8 +72,8 @@ public class InventoryBag implements IInventory {
 	}
 
 	@Override
-	public ItemStack getStackInSlot(int p_70301_1_) {
-		return inv[p_70301_1_];
+	public ItemStack getStackInSlot(int slot) {
+		return inv[slot];
 	}
 
 	@Override
@@ -128,22 +134,24 @@ public class InventoryBag implements IInventory {
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
-		ItemStack stack = player.getHeldItem();
-		return stack != null;
+		ItemStack stack = player.getCurrentEquippedItem();
+		return stack != null
+				&& (stack.getItem() == ModItems.nevpick
+						|| stack.getItem() == ModItems.nevshovel
+						|| stack.getItem() == ModItems.nevsword || stack
+						.getItem() == ModItems.nevaxe);
 	}
 
 	@Override
 	public void openInventory() {
-
 	}
 
 	@Override
 	public void closeInventory() {
-
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_) {
+	public boolean isItemValidForSlot(int slot, ItemStack stack) {
 		return false;
 	}
 

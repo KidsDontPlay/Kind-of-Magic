@@ -1,6 +1,7 @@
 package mrriegel.rwl.gui;
 
 import mrriegel.rwl.init.ModItems;
+import mrriegel.rwl.inventory.InventoryBag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -62,7 +63,7 @@ public class ContainerBag extends Container {
 			// merges the item into player inventory since its in the tileEntity
 			if (slot < inv.getSizeInventory()) {
 				if (!this.mergeItemStack(stackInSlot, inv.getSizeInventory(),
-						36 + inv.getSizeInventory()+1, true)) {
+						36 + inv.getSizeInventory() + 1, true)) {
 					return null;
 				}
 			}

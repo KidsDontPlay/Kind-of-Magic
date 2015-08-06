@@ -97,7 +97,7 @@ public class MazerB extends BlockContainer {
 		if (tile.isActive()
 				&& entity instanceof EntityItem
 				&& entity.posY >= y + 1 + +0.001F
-						- (1.0F - getBlockBoundsMaxY()) && !world.isRemote) {
+						- (1.0F - getBlockBoundsMaxY()) /* && !world.isRemote */) {
 			EntityItem e = (EntityItem) entity;
 			boolean in = false;
 			for (int i = 0; i < tile.getInv().length; i++) {
@@ -116,9 +116,9 @@ public class MazerB extends BlockContainer {
 	@Override
 	public void breakBlock(World world, int x, int y, int z, Block block,
 			int meta) {
-		if (world.isRemote) {
-			return;
-		}
+		// if (world.isRemote) {
+		// return;
+		// }
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y, z);
 		if (tile.isActive())
 			release(world, x, y, z);
@@ -129,22 +129,23 @@ public class MazerB extends BlockContainer {
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y, z);
 		System.out.println("size: " + tile.getInv().length);
 		for (ItemStack s : tile.getInv()) {
-			if (s != null)
+			if (s != null && !world.isRemote)
 				world.spawnEntityInWorld(new EntityItem(world, x + 0.5d, y + 1,
 						z + 0.5d, s));
 		}
 		tile.clear();
-		world.spawnEntityInWorld(new EntityItem(world, x + 0.5d, y + 1,
-				z + 0.5d, new ItemStack(ModItems.relic)));
+		if (!world.isRemote)
+			world.spawnEntityInWorld(new EntityItem(world, x + 0.5d, y + 1,
+					z + 0.5d, new ItemStack(ModItems.relic)));
 	}
 
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z,
 			EntityPlayer player, int p_149727_6_, float p_149727_7_,
 			float p_149727_8_, float p_149727_9_) {
-		if (world.isRemote) {
-			return false;
-		}
+		// if (world.isRemote) {
+		// return false;
+		// }
 
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y, z);
 		if (!isConstruct(world, x, y, z) && tile.isActive()) {
@@ -177,8 +178,10 @@ public class MazerB extends BlockContainer {
 					player.inventory.currentItem,
 					new ItemStack(player.getHeldItem().getItem(), player
 							.getCurrentEquippedItem().stackSize - 1));
-			world.spawnEntityInWorld(new EntityItem(world, player.posX,
-					player.posY, player.posZ, new ItemStack(ModItems.bloodie)));
+			if (!world.isRemote)
+				world.spawnEntityInWorld(new EntityItem(world, player.posX,
+						player.posY, player.posZ, new ItemStack(
+								ModItems.bloodie)));
 			player.getFoodStats().setFoodLevel(
 					player.getFoodStats().getFoodLevel() - 2);
 			System.out.println("wuerg");
@@ -198,10 +201,14 @@ public class MazerB extends BlockContainer {
 										new ItemStack(
 												player.getHeldItem().getItem(),
 												player.getCurrentEquippedItem().stackSize - 1));
-						world.spawnEntityInWorld(new EntityItem(world,
-								player.posX, player.posY, player.posZ, r
-										.getOutput()));
-						player.addChatMessage(new ChatComponentText("Done!"));
+						if (!world.isRemote) {
+							EntityItem ei = new EntityItem(world, x + 0.5d,
+									y + 0.5d, z + 0.5d, r.getOutput());
+							world.spawnEntityInWorld(ei);
+							ei.setPosition(player.posX, player.posY,
+									player.posZ);
+							player.addChatMessage(new ChatComponentText("Done!"));
+						}
 						return false;
 					}
 				}
@@ -213,26 +220,30 @@ public class MazerB extends BlockContainer {
 			boolean item = true;
 			for (int i = tile.getInv().length - 1; i >= 0; i--) {
 				if (tile.getStackInSlot(i) != null) {
-					EntityItem ei = new EntityItem(world, x + 0.5d, y + 0.5d,
-							z + 0.5d, tile.getStackInSlot(i));
-					world.spawnEntityInWorld(ei);
-					ei.setPosition(player.posX, player.posY, player.posZ);
-
+					if (!world.isRemote) {
+						EntityItem ei = new EntityItem(world, x + 0.5d,
+								y + 0.5d, z + 0.5d, tile.getStackInSlot(i));
+						world.spawnEntityInWorld(ei);
+						ei.setPosition(player.posX, player.posY, player.posZ);
+					}
 					tile.setInventorySlotContents(i, null);
 					item = false;
 					return false;
 				}
 			}
 			if (item) {
-				EntityItem ei = new EntityItem(world, x + 0.5d, y + 0.5d,
-						z + 0.5d, new ItemStack(ModItems.relic));
-				world.spawnEntityInWorld(ei);
-				ei.setPosition(player.posX, player.posY, player.posZ);
+				if (!world.isRemote) {
+					EntityItem ei = new EntityItem(world, x + 0.5d, y + 0.5d,
+							z + 0.5d, new ItemStack(ModItems.relic));
+					world.spawnEntityInWorld(ei);
+					ei.setPosition(player.posX, player.posY, player.posZ);
+				}
 				tile.setActive(false);
 			}
 
 		}
 		System.out.println("hop: " + tile.isActive());
+		System.out.println("tile: " + tile);
 		for (ItemStack s : tile.getInv()) {
 			System.out.println("inhatl: " + s);
 		}

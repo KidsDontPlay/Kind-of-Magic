@@ -56,7 +56,7 @@ public class RecipeHandler extends TemplateRecipeHandler {
 	@Override
 	public void loadTransferRects() {
 		transferRects.add(new RecipeTransferRect(new Rectangle(75, 21, 16, 16),
-				"malsehn"));
+				"another"));
 	}
 
 	@Override
@@ -67,8 +67,6 @@ public class RecipeHandler extends TemplateRecipeHandler {
 	@Override
 	public void loadCraftingRecipes(ItemStack result) {
 		for (RitualRecipe recipe : RitualRecipes.lis) {
-			if (recipe == null)
-				continue;
 
 			if (NEIServerUtils.areStacksSameTypeCrafting(recipe.getOutput(),
 					result))
@@ -79,14 +77,10 @@ public class RecipeHandler extends TemplateRecipeHandler {
 	@Override
 	public void loadUsageRecipes(ItemStack ingredient) {
 		for (RitualRecipe recipe : RitualRecipes.lis) {
-			{
-				if (recipe == null)
-					continue;
 
-				CachedRitualRecipe crecipe = new CachedRitualRecipe(recipe);
+			CachedRitualRecipe crecipe = new CachedRitualRecipe(recipe);
+			arecipes.add(crecipe);
 
-				arecipes.add(crecipe);
-			}
 		}
 	}
 }

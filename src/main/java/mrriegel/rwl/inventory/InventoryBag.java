@@ -1,32 +1,26 @@
-package mrriegel.rwl.gui;
+package mrriegel.rwl.inventory;
 
-import mrriegel.rwl.init.ModItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
-public class InventoryNevTool implements IInventory {
-
+public class InventoryBag implements IInventory {
 	private ItemStack[] inv;
 
-	public static final int INV_SIZE = 1;
-	public static String tagName = "NevTool";
+	public static final int INV_SIZE = 15;
+	public static String tagName = "Bag";
 
-	ItemStack storedInv = null;
+	public ItemStack storedInv = null;
 
-	public InventoryNevTool(ItemStack stack) {
+	public InventoryBag(ItemStack stack) {
 		inv = new ItemStack[INV_SIZE];
 		this.storedInv = stack;
 		if (!storedInv.hasTagCompound()) {
 			storedInv.setTagCompound(new NBTTagCompound());
 		}
 		readFromNBT(storedInv.getTagCompound());
-	}
-
-	public ItemStack[] getInv() {
-		return inv;
 	}
 
 	public void readFromNBT(NBTTagCompound compound) {
@@ -72,8 +66,8 @@ public class InventoryNevTool implements IInventory {
 	}
 
 	@Override
-	public ItemStack getStackInSlot(int slot) {
-		return inv[slot];
+	public ItemStack getStackInSlot(int p_70301_1_) {
+		return inv[p_70301_1_];
 	}
 
 	@Override
@@ -134,24 +128,22 @@ public class InventoryNevTool implements IInventory {
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
-		ItemStack stack = player.getCurrentEquippedItem();
-		return stack != null
-				&& (stack.getItem() == ModItems.nevpick
-						|| stack.getItem() == ModItems.nevshovel
-						|| stack.getItem() == ModItems.nevsword || stack
-						.getItem() == ModItems.nevaxe);
+		ItemStack stack = player.getHeldItem();
+		return stack != null;
 	}
 
 	@Override
 	public void openInventory() {
+
 	}
 
 	@Override
 	public void closeInventory() {
+
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int slot, ItemStack stack) {
+	public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_) {
 		return false;
 	}
 

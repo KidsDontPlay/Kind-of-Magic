@@ -3,8 +3,8 @@ package mrriegel.rwl.handler;
 import java.util.ArrayList;
 import java.util.Random;
 
-import mrriegel.rwl.gui.InventoryNevTool;
 import mrriegel.rwl.init.ModItems;
+import mrriegel.rwl.inventory.InventoryNevTool;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;

@@ -1,5 +1,6 @@
 package mrriegel.rwl.gui;
 
+import mrriegel.rwl.inventory.InventoryNevTool;
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.util.ResourceLocation;
