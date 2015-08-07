@@ -1,14 +1,8 @@
 package mrriegel.rwl.block;
 
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.util.Random;
-
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.init.ModItems;
-import mrriegel.rwl.init.RitualRecipe;
-import mrriegel.rwl.init.RitualRecipes;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.tile.MazerTile;
 import mrriegel.rwl.utility.BlockLocation;
@@ -26,7 +20,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -120,7 +113,7 @@ public class MazerB extends BlockContainer {
 			if (in) {
 				entity.setDead();
 				world.spawnParticle("instantSpell", x + 0.5D, y + 0.75D,
-						z + 0.5D, 0, -0.1D, 0);
+						z + 0.5D, 0, -0.3D, 0);
 			}
 		}
 	}
@@ -256,7 +249,7 @@ public class MazerB extends BlockContainer {
 
 	}
 
-	public static boolean isConstruct(World world, int x, int y, int z) {
+	static boolean isConstruct(World world, int x, int y, int z) {
 		Block block = world.getBlock(x, y, z);
 		if (!world.getBlock(x, y - 1, z).equals(ModBlocks.mazer)) {
 			return false;
