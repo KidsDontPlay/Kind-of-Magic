@@ -10,6 +10,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.Constants;
 
 public class MazerTile extends TileEntity implements IInventory {
@@ -80,6 +81,7 @@ public class MazerTile extends TileEntity implements IInventory {
 			stack.stackSize = getInventoryStackLimit();
 		}
 	}
+
 	@Override
 	public String getInventoryName() {
 		return new MazerB().getLocalizedName();
@@ -158,6 +160,16 @@ public class MazerTile extends TileEntity implements IInventory {
 	@Override
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
 		readFromNBT(pkt.func_148857_g());
+	}
+
+	@Override
+	public AxisAlignedBB getRenderBoundingBox() {
+		double renderExtention = 1.0d;
+		AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(xCoord
+				- renderExtention, yCoord - renderExtention, zCoord
+				- renderExtention, xCoord + 1 + renderExtention, yCoord + 1
+				+ renderExtention, zCoord + 1 + renderExtention);
+		return bb;
 	}
 
 	public void clear() {

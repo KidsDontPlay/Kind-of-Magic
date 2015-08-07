@@ -154,9 +154,9 @@ public class MazerB extends BlockContainer {
 		// if (world.isRemote) {
 		// return false;
 		// }
-//		if (world.isRemote)
-//			ParticleEffects.spawnParticle("fire", x + 0.5d, y + 0.9d, z + 0.5d,
-//					0.0D, 0.05D, 0.0D);
+		// if (world.isRemote)
+		// ParticleEffects.spawnParticle("fire", x + 0.5d, y + 0.9d, z + 0.5d,
+		// 0.0D, 0.05D, 0.0D);
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y, z);
 		if (!isConstruct(world, x, y, z) && tile.isActive()) {
 
