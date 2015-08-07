@@ -15,7 +15,7 @@ import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class DeathHandler {
+public class ToolEventHandler {
 	
 	@SubscribeEvent
 	public void death(LivingDropsEvent event) {

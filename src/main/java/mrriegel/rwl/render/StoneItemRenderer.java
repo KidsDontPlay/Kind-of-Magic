@@ -29,10 +29,10 @@ public class StoneItemRenderer extends TileEntitySpecialRenderer {
 	public void renderTileEntityAt(TileEntity tileEntity, double d0, double d1,
 			double d2, float f) {
 		if (tileEntity instanceof MazerTile) {
-			add(tileEntity, d0 + 1.3, d1, d2 + 1.3, f, 0);
-			add(tileEntity, d0 - 1.3, d1, d2 - 1.3, f, 1);
-			add(tileEntity, d0 + 1.3, d1, d2 - 1.3, f, 2);
-			add(tileEntity, d0 - 1.3, d1, d2 + 1.3, f, 3);
+			add(tileEntity, d0 + 1.0, d1, d2 + 1.0, f, 0);
+			add(tileEntity, d0 - 1.0, d1, d2 - 1.0, f, 1);
+			add(tileEntity, d0 + 1.0, d1, d2 - 1.0, f, 2);
+			add(tileEntity, d0 - 1.0, d1, d2 + 1.0, f, 3);
 		}
 	}
 
@@ -58,7 +58,7 @@ public class StoneItemRenderer extends TileEntitySpecialRenderer {
 			}
 			GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
 			GL11.glRotatef(rotationAngle, 0.0F, 1.0F, 0.0F);
-			renderItem.doRender(ghostEntityItem, 0, 0, 0, 0, 0);
+			renderItem.doRender(ghostEntityItem, 0, 1.9D, 0, 0, 0);
 		}
 
 		GL11.glPopMatrix();

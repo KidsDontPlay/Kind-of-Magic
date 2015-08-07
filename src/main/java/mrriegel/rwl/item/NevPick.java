@@ -16,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
@@ -23,7 +24,7 @@ import net.minecraftforge.common.util.EnumHelper;
 
 public class NevPick extends ItemPickaxe {
 	public static ToolMaterial MATERIAL = EnumHelper.addToolMaterial(
-			"MATERIAL", 3, 1999, 10.0F, 2.0F, 14);
+			"MATERIAL", 3, 2222, 10.0F, 5.0F, 1);
 
 	public NevPick() {
 		super(MATERIAL);
@@ -31,7 +32,6 @@ public class NevPick extends ItemPickaxe {
 		this.setCreativeTab(CreativeTab.tab1);
 		this.setUnlocalizedName(Reference.MOD_ID + ":" + "nevpick");
 		this.setTextureName(Reference.MOD_ID + ":" + "nevpick");
-
 	}
 
 	@Override
@@ -60,7 +60,8 @@ public class NevPick extends ItemPickaxe {
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world,
 			EntityPlayer player) {
-		player.openGui(RWL.instance, GuiIDs.NEVTOOL, world, 0, 0, 0);
+		if (player.isSneaking())
+			player.openGui(RWL.instance, GuiIDs.NEVTOOL, world, 0, 0, 0);
 		return stack;
 	}
 
@@ -95,6 +96,9 @@ public class NevPick extends ItemPickaxe {
 			break;
 		case 4:
 			list.add("fortune");
+			break;
+		case 5:
+			list.add("efficient");
 			break;
 		case 13:
 			list.add("xp");

@@ -15,6 +15,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
@@ -22,7 +23,7 @@ import net.minecraftforge.common.util.EnumHelper;
 
 public class NevShovel extends ItemSpade {
 	public static ToolMaterial MATERIAL = EnumHelper.addToolMaterial(
-			"MATERIAL", 2, 1999, 10.0F, 2.0F, 14);
+			"MATERIAL", 3, 2222, 10.0F, 5.0F, 1);
 
 	public NevShovel() {
 		super(MATERIAL);
@@ -30,7 +31,6 @@ public class NevShovel extends ItemSpade {
 		this.setCreativeTab(CreativeTab.tab1);
 		this.setUnlocalizedName(Reference.MOD_ID + ":" + "nevshovel");
 		this.setTextureName(Reference.MOD_ID + ":" + "nevshovel");
-
 	}
 
 	@Override
@@ -59,7 +59,8 @@ public class NevShovel extends ItemSpade {
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world,
 			EntityPlayer player) {
-		player.openGui(RWL.instance, GuiIDs.NEVTOOL, world, 0, 0, 0);
+		if (player.isSneaking())
+			player.openGui(RWL.instance, GuiIDs.NEVTOOL, world, 0, 0, 0);
 		return stack;
 	}
 
@@ -92,6 +93,9 @@ public class NevShovel extends ItemSpade {
 		case 3:
 			list.add("silk");
 			break;
+		case 5:
+			list.add("efficient");
+			break;
 		}
 
 	}
@@ -112,7 +116,14 @@ public class NevShovel extends ItemSpade {
 				.getTagList(InventoryNevTool.tagName,
 						stack.getTagCompound().getId()).getCompoundTagAt(0)
 				.getShort("Damage") == 2) {
-			return super.getDigSpeed(stack, block, meta) / 6.5f;
+			return super.getDigSpeed(stack, block, meta) / 7.5f;
+
+		} else if (stack
+				.getTagCompound()
+				.getTagList(InventoryNevTool.tagName,
+						stack.getTagCompound().getId()).getCompoundTagAt(0)
+				.getShort("Damage") == 1) {
+			return super.getDigSpeed(stack, block, meta) / 4.5f;
 
 		}
 		return super.getDigSpeed(stack, block, meta);
@@ -146,9 +157,6 @@ public class NevShovel extends ItemSpade {
 		case 3:
 			silk(stack, x, y, z, player);
 			return true;
-		case 4:
-			fortune(stack, x, y, z, player, 3);
-			return true;
 		default:
 			break;
 
@@ -157,15 +165,8 @@ public class NevShovel extends ItemSpade {
 		return super.onBlockStartBreak(stack, x, y, z, player);
 	}
 
-	private void fortune(ItemStack stack, int x, int y, int z,
-			EntityPlayer player, int i) {
-		MyUtils.breakWithFortune(player.worldObj, x, y, z, 3);
-
-	}
-
 	private void silk(ItemStack stack, int x, int y, int z, EntityPlayer player) {
 		MyUtils.breakWithSilk(player.worldObj, x, y, z);
-
 	}
 
 	protected void radius(ItemStack stack, int x, int y, int z,

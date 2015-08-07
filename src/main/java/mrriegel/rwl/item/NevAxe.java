@@ -16,6 +16,7 @@ import net.minecraft.block.BlockLog;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
@@ -23,7 +24,7 @@ import net.minecraftforge.common.util.EnumHelper;
 
 public class NevAxe extends ItemAxe {
 	public static ToolMaterial MATERIAL = EnumHelper.addToolMaterial(
-			"MATERIAL", 2, 2000, 10.0F, 2.0F, 14);
+			"MATERIAL", 3, 2222, 10.0F, 5.0F, 1);
 
 	public NevAxe() {
 		super(MATERIAL);
@@ -59,7 +60,8 @@ public class NevAxe extends ItemAxe {
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world,
 			EntityPlayer player) {
-		player.openGui(RWL.instance, GuiIDs.NEVTOOL, world, 0, 0, 0);
+		if (player.isSneaking())
+			player.openGui(RWL.instance, GuiIDs.NEVTOOL, world, 0, 0, 0);
 		return stack;
 	}
 
@@ -89,6 +91,9 @@ public class NevAxe extends ItemAxe {
 		case 2:
 			list.add("radius 3");
 			break;
+		case 5:
+			list.add("efficient");
+			break;
 		case 8:
 			list.add("whole tree");
 			break;
@@ -114,6 +119,12 @@ public class NevAxe extends ItemAxe {
 				.getShort("Damage") == 2) {
 			return super.getDigSpeed(stack, block, meta) / 6.5f;
 
+		} else if (stack
+				.getTagCompound()
+				.getTagList(InventoryNevTool.tagName,
+						stack.getTagCompound().getId()).getCompoundTagAt(0)
+				.getShort("Damage") == 1) {
+			return super.getDigSpeed(stack, block, meta) / 3.5f;
 		}
 		return super.getDigSpeed(stack, block, meta);
 	}
@@ -170,7 +181,7 @@ public class NevAxe extends ItemAxe {
 				MyUtils.breakWithFortune(world, bl.x, bl.y, bl.z, 0);
 				stack.setItemDamage(stack.getItemDamage() + 1);
 				if (stack.getItemDamage() > MATERIAL.getMaxUses())
-					return;
+					break;
 				chop2(stack, bl.x, bl.y, bl.z, world, block, l);
 			}
 

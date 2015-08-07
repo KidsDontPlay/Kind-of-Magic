@@ -30,8 +30,8 @@ public class CraftingRecipes {
 				new ItemStack(ModItems.odust), 'c', new ItemStack(
 						ModItems.catalyst, 1, 0), 'a', new ItemStack(
 						ModItems.aodust));
-		GameRegistry.addShapedRecipe(new ItemStack(ModItems.ostick), "aqa",
-				"aqa", 'a', new ItemStack(ModItems.aodust), 'q', new ItemStack(
+		GameRegistry.addShapedRecipe(new ItemStack(ModItems.ostick), "  a",
+				" q ","a  ", 'a', new ItemStack(ModItems.aodust), 'q', new ItemStack(
 						Items.quartz));
 		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.oblock), "ooo",
 				"ooo", "ooo", 'o', new ItemStack(ModItems.odust));

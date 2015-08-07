@@ -1,5 +1,9 @@
 package mrriegel.rwl.block;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.util.Random;
+
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.init.ModItems;
@@ -115,6 +119,8 @@ public class MazerB extends BlockContainer {
 			}
 			if (in) {
 				entity.setDead();
+				world.spawnParticle("instantSpell", x + 0.5D, y + 0.75D,
+						z + 0.5D, 0, -0.1D, 0);
 			}
 		}
 	}
@@ -210,9 +216,17 @@ public class MazerB extends BlockContainer {
 										new ItemStack(
 												player.getHeldItem().getItem(),
 												player.getCurrentEquippedItem().stackSize - 1));
+						Random ran = new Random();
+						for (int i = 0; i < 20; i++) {
+							world.spawnParticle("happyVillager",
+									x + ran.nextDouble(),
+									y + 0.6d + ran.nextDouble() / 1.5,
+									z + ran.nextDouble(), 0, 0, 0);
+						}
 						if (!world.isRemote) {
 							EntityItem ei = new EntityItem(world, x + 0.5d,
 									y + 0.5d, z + 0.5d, r.getOutput());
+
 							world.spawnEntityInWorld(ei);
 							ei.setPosition(player.posX, player.posY,
 									player.posZ);

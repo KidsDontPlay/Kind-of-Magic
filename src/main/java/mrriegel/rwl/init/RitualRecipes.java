@@ -99,5 +99,25 @@ public class RitualRecipes {
 				new ItemStack(Items.writable_book), new ItemStack(
 						Items.speckled_melon), new ItemStack(ModItems.catalyst,
 						1, 1)));
+
+		lis.add(new RitualRecipe(new ItemStack(ModItems.nevsword),
+				new ItemStack(Items.iron_sword), new ItemStack(Items.diamond),
+				new ItemStack(ModItems.nev), new ItemStack(ModItems.ostick),
+				new ItemStack(ModItems.catalyst, 1, 0)));
+		
+		lis.add(new RitualRecipe(new ItemStack(ModItems.nevpick),
+				new ItemStack(Items.iron_pickaxe), new ItemStack(Items.diamond),
+				new ItemStack(ModItems.nev), new ItemStack(ModItems.ostick),
+				new ItemStack(ModItems.catalyst, 1, 0)));
+		
+		lis.add(new RitualRecipe(new ItemStack(ModItems.nevshovel),
+				new ItemStack(Items.iron_shovel), new ItemStack(Items.diamond),
+				new ItemStack(ModItems.nev), new ItemStack(ModItems.ostick),
+				new ItemStack(ModItems.catalyst, 1, 0)));
+		
+		lis.add(new RitualRecipe(new ItemStack(ModItems.nevaxe),
+				new ItemStack(Items.iron_axe), new ItemStack(Items.diamond),
+				new ItemStack(ModItems.nev), new ItemStack(ModItems.ostick),
+				new ItemStack(ModItems.catalyst, 1, 0)));
 	}
 }

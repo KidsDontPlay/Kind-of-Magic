@@ -8,6 +8,7 @@ import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.gui.GuiIDs;
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.inventory.InventoryNevTool;
+import mrriegel.rwl.packet.Packet;
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -15,6 +16,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
@@ -31,11 +33,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class NevSword extends ItemSword {
 	public static ToolMaterial MATERIAL = EnumHelper.addToolMaterial(
-			"MATERIAL", 0, 2222, 10.0F, 6.0F, 30);
+			"MATERIAL", 3, 2222, 10.0F, 5.0F, 1);
 
 	ItemStack sword = null;
 	IIcon icon_f = null;
-	EntityPlayer player1 = null;
+	short damage;
 
 	public NevSword() {
 		super(MATERIAL);
@@ -99,20 +101,39 @@ public class NevSword extends ItemSword {
 	public void onUpdate(ItemStack stack, World world, Entity p_77663_3_,
 			int p_77663_4_, boolean p_77663_5_) {
 		sword = stack;
-		if (!(p_77663_3_ instanceof EntityPlayer)) {
-			return;
-		}
-		player1 = (EntityPlayer) p_77663_3_;
-		if (stack.getTagCompound() == null) {
-			return;
-		}
+		if (!world.isRemote)
+			RWL.net.sendTo(
+					new Packet(stack
+							.getTagCompound()
+							.getTagList(InventoryNevTool.tagName,
+									stack.getTagCompound().getId())
+							.getCompoundTagAt(0).getShort("Damage")),
+					(EntityPlayerMP) p_77663_3_);
+		else
+			stack.getTagCompound()
+					.getTagList(InventoryNevTool.tagName,
+							stack.getTagCompound().getId()).getCompoundTagAt(0)
+					.setShort("Damage", Packet.damage);
+		if (world.isRemote)
+			System.out.println("klient: "
+					+ stack.getTagCompound()
+							.getTagList(InventoryNevTool.tagName,
+									stack.getTagCompound().getId())
+							.getCompoundTagAt(0).getShort("Damage"));
+		else
+			System.out.println("servierer: "
+					+ stack.getTagCompound()
+							.getTagList(InventoryNevTool.tagName,
+									stack.getTagCompound().getId())
+							.getCompoundTagAt(0).getShort("Damage"));
 		super.onUpdate(stack, world, p_77663_3_, p_77663_4_, p_77663_5_);
 	}
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world,
 			EntityPlayer player) {
-		player.openGui(RWL.instance, GuiIDs.NEVTOOL, world, 0, 0, 0);
+		if (player.isSneaking())
+			player.openGui(RWL.instance, GuiIDs.NEVTOOL, world, 0, 0, 0);
 		return stack;
 	}
 
@@ -141,6 +162,12 @@ public class NevSword extends ItemSword {
 			break;
 		case 7:
 			list.add("poison");
+			break;
+		case 9:
+			list.add("sharp 1");
+			break;
+		case 10:
+			list.add("sharp 2");
 			break;
 		case 11:
 			list.add("slow");

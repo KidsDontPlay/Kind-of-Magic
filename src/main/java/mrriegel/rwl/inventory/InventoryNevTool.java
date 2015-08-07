@@ -107,6 +107,7 @@ public class InventoryNevTool implements IInventory {
 		if (stack != null && stack.stackSize > getInventoryStackLimit()) {
 			stack.stackSize = getInventoryStackLimit();
 		}
+		writeToNBT(storedInv.getTagCompound());
 	}
 
 	@Override
