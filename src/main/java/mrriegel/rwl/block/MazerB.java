@@ -202,44 +202,29 @@ public class MazerB extends BlockContainer {
 			return true;
 
 			// start
-		} else if (!player.isSneaking() && player.getHeldItem() != null
-				&& player.getHeldItem().getItem().equals(ModItems.catalyst)
-				&& tile.isActive() && isConstruct(world, x, y, z)) {
-			ItemStack stack = player.getHeldItem();
-			for (RitualRecipe r : RitualRecipes.lis) {
-				if (ItemStack.areItemStacksEqual(stack, r.getCat())) {
-					if (r.matches(tile.getInv())) {
-						tile.clear();
-						player.inventory
-								.setInventorySlotContents(
-										player.inventory.currentItem,
-										new ItemStack(
-												player.getHeldItem().getItem(),
-												player.getCurrentEquippedItem().stackSize - 1));
-						Random ran = new Random();
-						for (int i = 0; i < 20; i++) {
-							world.spawnParticle("happyVillager",
-									x + ran.nextDouble(),
-									y + 0.6d + ran.nextDouble() / 1.5,
-									z + ran.nextDouble(), 0, 0, 0);
-						}
-						if (!world.isRemote) {
-							EntityItem ei = new EntityItem(world, x + 0.5d,
-									y + 0.5d, z + 0.5d, r.getOutput());
-
-							world.spawnEntityInWorld(ei);
-							ei.setPosition(player.posX, player.posY,
-									player.posZ);
-							player.addChatMessage(new ChatComponentText("Done!"));
-						}
-						world.markBlockForUpdate(x, y, z);
-						return true;
-					}
-				}
-			}
-
-			// back
-		} else if (player.isSneaking() && player.getHeldItem() == null
+		}/*
+		 * else if (!player.isSneaking() && player.getHeldItem() != null &&
+		 * player.getHeldItem().getItem().equals(ModItems.catalyst) &&
+		 * tile.isActive() && isConstruct(world, x, y, z)) { ItemStack stack =
+		 * player.getHeldItem(); for (RitualRecipe r : RitualRecipes.lis) { if
+		 * (ItemStack.areItemStacksEqual(stack, r.getCat())) { if
+		 * (r.matches(tile.getInv())) { tile.clear(); player.inventory
+		 * .setInventorySlotContents( player.inventory.currentItem, new
+		 * ItemStack( player.getHeldItem().getItem(),
+		 * player.getCurrentEquippedItem().stackSize - 1)); Random ran = new
+		 * Random(); for (int i = 0; i < 20; i++) {
+		 * world.spawnParticle("happyVillager", x + ran.nextDouble(), y + 0.6d +
+		 * ran.nextDouble() / 1.5, z + ran.nextDouble(), 0, 0, 0); } if
+		 * (!world.isRemote) { EntityItem ei = new EntityItem(world, x + 0.5d, y
+		 * + 0.5d, z + 0.5d, r.getOutput());
+		 * 
+		 * world.spawnEntityInWorld(ei); ei.setPosition(player.posX,
+		 * player.posY, player.posZ); player.addChatMessage(new
+		 * ChatComponentText("Done!")); } world.markBlockForUpdate(x, y, z);
+		 * return true; } } }
+		 * 
+		 * // back }
+		 */else if (player.isSneaking() && player.getHeldItem() == null
 				&& tile.isActive() && isConstruct(world, x, y, z)) {
 			boolean item = true;
 			for (int i = tile.getInv().length - 1; i >= 0; i--) {
@@ -271,7 +256,7 @@ public class MazerB extends BlockContainer {
 
 	}
 
-	private boolean isConstruct(World world, int x, int y, int z) {
+	public static boolean isConstruct(World world, int x, int y, int z) {
 		Block block = world.getBlock(x, y, z);
 		if (!world.getBlock(x, y - 1, z).equals(ModBlocks.mazer)) {
 			return false;

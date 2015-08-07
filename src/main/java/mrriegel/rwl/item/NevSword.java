@@ -114,18 +114,6 @@ public class NevSword extends ItemSword {
 					.getTagList(InventoryNevTool.tagName,
 							stack.getTagCompound().getId()).getCompoundTagAt(0)
 					.setShort("Damage", Packet.damage);
-		if (world.isRemote)
-			System.out.println("klient: "
-					+ stack.getTagCompound()
-							.getTagList(InventoryNevTool.tagName,
-									stack.getTagCompound().getId())
-							.getCompoundTagAt(0).getShort("Damage"));
-		else
-			System.out.println("servierer: "
-					+ stack.getTagCompound()
-							.getTagList(InventoryNevTool.tagName,
-									stack.getTagCompound().getId())
-							.getCompoundTagAt(0).getShort("Damage"));
 		super.onUpdate(stack, world, p_77663_3_, p_77663_4_, p_77663_5_);
 	}
 
