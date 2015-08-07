@@ -13,6 +13,7 @@ import mrriegel.rwl.utility.MyUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
@@ -89,6 +90,11 @@ public class MazerB extends BlockContainer {
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z,
 			Entity entity) {
+		if (entity instanceof EntityFX) {
+			if (entity.ticksExisted > 10)
+				entity.setDead();
+			return;
+		}
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y, z);
 		if (!isConstruct(world, x, y, z) && tile.isActive()) {
 			release(world, x, y, z);
@@ -148,9 +154,9 @@ public class MazerB extends BlockContainer {
 		// if (world.isRemote) {
 		// return false;
 		// }
-
-		ParticleEffects.spawnParticle("fire", x + 0.5d, y + 0.9d, z + 0.5d,
-				0.0D, 0.0D, 0.0D);
+//		if (world.isRemote)
+//			ParticleEffects.spawnParticle("fire", x + 0.5d, y + 0.9d, z + 0.5d,
+//					0.0D, 0.05D, 0.0D);
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y, z);
 		if (!isConstruct(world, x, y, z) && tile.isActive()) {
 

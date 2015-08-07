@@ -80,7 +80,6 @@ public class MazerTile extends TileEntity implements IInventory {
 			stack.stackSize = getInventoryStackLimit();
 		}
 	}
-
 	@Override
 	public String getInventoryName() {
 		return new MazerB().getLocalizedName();

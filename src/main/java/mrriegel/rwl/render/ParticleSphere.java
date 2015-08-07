@@ -13,16 +13,18 @@ public class ParticleSphere extends EntityFX {
 	public ParticleSphere(World par1World, double x, double y, double z,
 			float motionX, float motionY, float motionZ) {
 		super(par1World, x, y, z, 0.0D, 0.0D, 0.0D);
-		this.motionX *= 0.10000000149011612D;
-		this.motionY *= 0.10000000149011612D;
-		this.motionZ *= 0.10000000149011612D;
-		this.motionX += motionX * 0.4D;
-		this.motionY += motionY * 0.4D;
-		this.motionZ += motionZ * 0.4D;
-		this.particleRed = this.particleGreen = this.particleBlue = (float) (Math
-				.random() * 0.30000001192092896D + 0.6000000238418579D);
+//		this.motionX *= 0.10000000149011612D;
+//		this.motionY *= 0.10000000149011612D;
+//		this.motionZ *= 0.10000000149011612D;
+//		this.motionX += motionX * 0.4D;
+//		this.motionY += motionY * 0.4D;
+//		this.motionZ += motionZ * 0.4D;
+		this.motionY=motionY;
+		this.particleRed = 0.369F;
+		this.particleGreen = 0.808F;
+		this.particleBlue = 0.973F;
 		this.particleScale *= 0.75F;
-		this.noClip = true;
+		this.noClip = false;
 
 		this.particleMaxAge = 60;
 	}
@@ -43,14 +45,6 @@ public class ParticleSphere extends EntityFX {
 		par1Tessellator.setBrightness(200);// make sure you have this!!
 		super.renderParticle(par1Tessellator, par2, par3, par4, par5, par6,
 				par7);
-		par1Tessellator.draw();
-		Minecraft
-				.getMinecraft()
-				.getTextureManager()
-				.bindTexture(
-						new ResourceLocation(Reference.MOD_ID + ":"
-								+ "textures/ent/sp.png"));
-		par1Tessellator.startDrawingQuads();
 	}
 
 }

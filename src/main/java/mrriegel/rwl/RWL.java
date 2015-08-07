@@ -52,7 +52,7 @@ public class RWL {
 		CraftingRecipes.init();
 		RitualRecipes.init();
 		// ClientProxy.init();
-
+		proxy.registerRenderers();
 		FMLInterModComms.sendMessage("Waila", "register",
 				"mrriegel.rwl.waila.StoneHandler.callbackRegister");
 		String r = new StoneHandler().toString() + "eine updatenotiz";
