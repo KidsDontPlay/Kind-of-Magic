@@ -48,7 +48,7 @@ public class AirOrus extends BlockOre {
 
 	@Override
 	public int quantityDropped(Random random) {
-		return (random.nextInt(3) + 1);
+		return (random.nextInt(2) + 2);
 	}
 
 	@Override

@@ -3,10 +3,8 @@ package mrriegel.rwl.item;
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 
 public class NevChest extends ItemArmor {

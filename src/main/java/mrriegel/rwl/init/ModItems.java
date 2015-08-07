@@ -18,6 +18,7 @@ import mrriegel.rwl.item.NevShovel;
 import mrriegel.rwl.item.NevSword;
 import mrriegel.rwl.item.OreDust;
 import mrriegel.rwl.item.OreStick;
+import mrriegel.rwl.item.Up;
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -43,6 +44,7 @@ public class ModItems {
 	public static Item chest = new NevChest();
 	public static Item leg = new NevLeg();
 	public static Item boots = new NevBoots();
+	public static Item up = new Up();
 
 	public static void init() {
 		GameRegistry.registerItem(bloodie, "bloodie");
@@ -65,6 +67,7 @@ public class ModItems {
 		GameRegistry.registerItem(chest, "chest");
 		GameRegistry.registerItem(leg, "leg");
 		GameRegistry.registerItem(boots, "boots");
+		GameRegistry.registerItem(up, "up");
 
 	}
 }

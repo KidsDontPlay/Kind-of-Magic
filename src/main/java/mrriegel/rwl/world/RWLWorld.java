@@ -40,14 +40,14 @@ public class RWLWorld implements IWorldGenerator {
 					posX, posY, posZ);
 
 		}
-		if (random.nextInt(100) != 1)
+		if (random.nextInt(130) != 1)
 			return;
 
 		int posX = blockXPos + random.nextInt(maxX);
 		int posY = minY + random.nextInt(diffBtwnMinMaxY);
 		int posZ = blockZPos + random.nextInt(maxZ);
 		boolean te = false;
-		for (int i = 50; i < 100; i++) {
+		for (int i = 50; i < 80; i++) {
 			if (world.getBlock(posX, i, posZ).equals(Blocks.water)
 					|| world.getBlock(posX, i, posZ).equals(Blocks.ice)) {
 				te = true;
@@ -55,8 +55,9 @@ public class RWLWorld implements IWorldGenerator {
 			}
 		}
 		if (te)
-			(new WorldGenMinable(ModBlocks.airorus, 14, Blocks.air)).generate(
-					world, random, posX, posY + 130 + random.nextInt(50), posZ);
+			(new WorldGenMinable(ModBlocks.airorus, 8 + random.nextInt(3),
+					Blocks.air)).generate(world, random, posX, posY + 130
+					+ random.nextInt(50), posZ);
 
 	}
 

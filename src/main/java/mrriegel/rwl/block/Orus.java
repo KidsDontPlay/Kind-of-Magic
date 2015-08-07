@@ -40,17 +40,15 @@ public class Orus extends BlockOre {
 		return this.icons[side];
 
 	}
-	
-	@Override
-    public Item getItemDropped(int par1, Random random, int par2)
-    {
-        return ModItems.odust;
-    }
 
-    @Override
-    public int quantityDropped(Random random)
-    {
-        return (random.nextInt(3) + 1);
-    }
+	@Override
+	public Item getItemDropped(int par1, Random random, int par2) {
+		return ModItems.odust;
+	}
+
+	@Override
+	public int quantityDropped(Random random) {
+		return (random.nextInt(2) + 2);
+	}
 
 }

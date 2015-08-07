@@ -40,6 +40,10 @@ public class CraftingRecipes {
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.bag), "lol", "lll",
 				'o', new ItemStack(ModItems.mdust), 'l', new ItemStack(
 						Items.leather));
+		GameRegistry.addShapedRecipe(new ItemStack(ModItems.up), "aea", "ege",
+				"aea", 'a', new ItemStack(ModItems.aodust), 'e', new ItemStack(
+						Items.ender_pearl), 'g',
+				new ItemStack(Items.gold_ingot));
 
 	}
 }

@@ -6,7 +6,6 @@ import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.init.RitualRecipe;
 import mrriegel.rwl.init.RitualRecipes;
 import mrriegel.rwl.reference.Reference;
-import mrriegel.rwl.render.ParticleEffects;
 import mrriegel.rwl.tile.MazerTile;
 import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.MyUtils;
@@ -38,7 +37,7 @@ public class MazerB extends BlockContainer {
 		this.setHardness(3.5f);
 		this.setCreativeTab(CreativeTab.tab1);
 		this.setBlockName(Reference.MOD_ID + ":" + "mazerB");
-		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.7F, 1.0F);
+		setBlockBounds(0.05F, 0.0F, 0.05F, 0.95F, 0.63F, 0.95F);
 		setLightOpacity(255);
 		useNeighborBrightness = true;
 	}
@@ -70,7 +69,6 @@ public class MazerB extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-		System.out.println("maus1");
 		return new MazerTile();
 	}
 
@@ -135,7 +133,6 @@ public class MazerB extends BlockContainer {
 
 	private void release(World world, int x, int y, int z) {
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y, z);
-		System.out.println("size: " + tile.getInv().length);
 		for (ItemStack s : tile.getInv()) {
 			if (s != null && !world.isRemote)
 				world.spawnEntityInWorld(new EntityItem(world, x + 0.5d, y + 1,
@@ -158,9 +155,10 @@ public class MazerB extends BlockContainer {
 		// ParticleEffects.spawnParticle("fire", x + 0.5d, y + 0.9d, z + 0.5d,
 		// 0.0D, 0.05D, 0.0D);
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y, z);
-		if (!isConstruct(world, x, y, z) && tile.isActive()) {
+		if (!isConstruct(world, x, y, z) && tile.isActive() && !world.isRemote) {
 
 			release(world, x, y, z);
+			tile.setActive(false);
 			System.out.println("disabeld");
 			return false;
 		}
@@ -176,6 +174,7 @@ public class MazerB extends BlockContainer {
 							player.getCurrentEquippedItem().stackSize - 1));
 			tile.setActive(true);
 			System.out.println("activated");
+			world.markBlockForUpdate(x, y, z);
 			return true;
 
 			// fill bottle
@@ -194,7 +193,6 @@ public class MazerB extends BlockContainer {
 								ModItems.bloodie)));
 			player.getFoodStats().setFoodLevel(
 					player.getFoodStats().getFoodLevel() - 2);
-			System.out.println("wuerg");
 			return true;
 
 			// start
@@ -220,6 +218,7 @@ public class MazerB extends BlockContainer {
 									player.posZ);
 							player.addChatMessage(new ChatComponentText("Done!"));
 						}
+						world.markBlockForUpdate(x, y, z);
 						return true;
 					}
 				}
@@ -239,6 +238,7 @@ public class MazerB extends BlockContainer {
 					}
 					tile.setInventorySlotContents(i, null);
 					item = false;
+					world.markBlockForUpdate(x, y, z);
 					return true;
 				}
 			}
@@ -252,11 +252,6 @@ public class MazerB extends BlockContainer {
 				tile.setActive(false);
 			}
 
-		}
-		System.out.println("hop: " + tile.isActive());
-		System.out.println("tile: " + tile);
-		for (ItemStack s : tile.getInv()) {
-			System.out.println("inhatl: " + s);
 		}
 		return false;
 

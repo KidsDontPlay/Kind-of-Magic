@@ -2,14 +2,11 @@ package mrriegel.rwl.block;
 
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.reference.Reference;
-import mrriegel.rwl.tile.MazerTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;

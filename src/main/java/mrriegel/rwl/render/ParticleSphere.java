@@ -1,25 +1,25 @@
 package mrriegel.rwl.render;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ParticleSphere extends EntityFX {
 	public ParticleSphere(World par1World, double x, double y, double z,
 			float motionX, float motionY, float motionZ) {
 		super(par1World, x, y, z, 0.0D, 0.0D, 0.0D);
-//		this.motionX *= 0.10000000149011612D;
-//		this.motionY *= 0.10000000149011612D;
-//		this.motionZ *= 0.10000000149011612D;
-//		this.motionX += motionX * 0.4D;
-//		this.motionY += motionY * 0.4D;
-//		this.motionZ += motionZ * 0.4D;
-		this.motionY=motionY;
+		// this.motionX *= 0.10000000149011612D;
+		// this.motionY *= 0.10000000149011612D;
+		// this.motionZ *= 0.10000000149011612D;
+		// this.motionX += motionX * 0.4D;
+		// this.motionY += motionY * 0.4D;
+		// this.motionZ += motionZ * 0.4D;
+		this.motionY = motionY;
 		this.particleRed = 0.369F;
 		this.particleGreen = 0.808F;
 		this.particleBlue = 0.973F;
