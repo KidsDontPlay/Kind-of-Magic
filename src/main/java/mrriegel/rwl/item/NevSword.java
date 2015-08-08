@@ -37,7 +37,6 @@ public class NevSword extends ItemSword {
 
 	ItemStack sword = null;
 	IIcon icon_f = null;
-	short damage;
 
 	public NevSword() {
 		super(MATERIAL);
@@ -101,19 +100,6 @@ public class NevSword extends ItemSword {
 	public void onUpdate(ItemStack stack, World world, Entity p_77663_3_,
 			int p_77663_4_, boolean p_77663_5_) {
 		sword = stack;
-		if (!world.isRemote)
-			RWL.net.sendTo(
-					new Packet(stack
-							.getTagCompound()
-							.getTagList(InventoryNevTool.tagName,
-									stack.getTagCompound().getId())
-							.getCompoundTagAt(0).getShort("Damage")),
-					(EntityPlayerMP) p_77663_3_);
-		else
-			stack.getTagCompound()
-					.getTagList(InventoryNevTool.tagName,
-							stack.getTagCompound().getId()).getCompoundTagAt(0)
-					.setShort("Damage", Packet.damage);
 		super.onUpdate(stack, world, p_77663_3_, p_77663_4_, p_77663_5_);
 	}
 

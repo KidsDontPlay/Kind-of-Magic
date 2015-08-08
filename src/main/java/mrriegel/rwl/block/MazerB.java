@@ -259,6 +259,30 @@ public class MazerB extends BlockContainer {
 				return false;
 			}
 		}
+		for (BlockLocation bl : MyUtils.getAroundBlocks(world, x + 1, y - 1,
+				z + 1)) {
+			if (!world.getBlock(bl.x, bl.y, bl.z).equals(ModBlocks.mazer)) {
+				return false;
+			}
+		}
+		for (BlockLocation bl : MyUtils.getAroundBlocks(world, x + 1, y - 1,
+				z - 1)) {
+			if (!world.getBlock(bl.x, bl.y, bl.z).equals(ModBlocks.mazer)) {
+				return false;
+			}
+		}
+		for (BlockLocation bl : MyUtils.getAroundBlocks(world, x - 1, y - 1,
+				z + 1)) {
+			if (!world.getBlock(bl.x, bl.y, bl.z).equals(ModBlocks.mazer)) {
+				return false;
+			}
+		}
+		for (BlockLocation bl : MyUtils.getAroundBlocks(world, x - 1, y - 1,
+				z - 1)) {
+			if (!world.getBlock(bl.x, bl.y, bl.z).equals(ModBlocks.mazer)) {
+				return false;
+			}
+		}
 		if (!world.getBlock(x + 2, y, z + 2).equals(ModBlocks.mazer)) {
 			return false;
 		}

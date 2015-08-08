@@ -149,6 +149,8 @@ public class NevShovel extends ItemSpade {
 			radius(stack, x, y, z, player, 2);
 			return false;
 		case 2:
+			if(player.getFoodStats().getFoodLevel()<=2)
+				return false;
 			radius(stack, x, y, z, player, 3);
 			player.getFoodStats().setFoodLevel(
 					player.getFoodStats().getFoodLevel() - 1);

@@ -69,12 +69,28 @@ public class RWLWorld implements IWorldGenerator {
 			int ran = (int) (Math.random() * 90) + 1;
 
 			if (isSolid(x, i, z, world) && ran == 1) {
-				ArrayList<BlockLocation> lis = MyUtils.getAroundBlocks(world,
-						x, i, z);
-				for (BlockLocation l : lis) {
+				setB(x, i, z, ModBlocks.mazer, world);
+
+				for (BlockLocation l : MyUtils.getAroundBlocks(world, x, i, z)) {
 					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
 				}
-				setB(x, i, z, ModBlocks.mazer, world);
+				for (BlockLocation l : MyUtils.getAroundBlocks(world, x + 1, i,
+						z + 1)) {
+					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
+				}
+				for (BlockLocation l : MyUtils.getAroundBlocks(world, x + 1, i,
+						z - 1)) {
+					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
+				}
+				for (BlockLocation l : MyUtils.getAroundBlocks(world, x - 1, i,
+						z + 1)) {
+					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
+				}
+				for (BlockLocation l : MyUtils.getAroundBlocks(world, x - 1, i,
+						z - 1)) {
+					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
+				}
+
 				setB(x + 2, i + 1, z + 2, ModBlocks.mazer, world);
 				setB(x - 2, i + 1, z + 2, ModBlocks.mazer, world);
 				setB(x + 2, i + 1, z - 2, ModBlocks.mazer, world);
@@ -91,7 +107,7 @@ public class RWLWorld implements IWorldGenerator {
 
 	private void setB(int x, int y, int z, Block b, World world) {
 		int ran = (int) (Math.random() * Integer.MAX_VALUE);
-		if (ran % 4 != 0 && ran % 3 != 1) {
+		if (ran % 4 != 0 && ran % 3 != 1 && ran % 5 != 2) {
 			world.setBlock(x, y, z, b);
 		}
 	}

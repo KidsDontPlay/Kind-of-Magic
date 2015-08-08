@@ -77,7 +77,7 @@ public class Keep extends Block {
 			EntityPlayer player, int p_149727_6_, float p_149727_7_,
 			float p_149727_8_, float p_149727_9_) {
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y - 2, z);
-		System.out.println("time: " + world.getWorldTime()%24000);
+
 		if (!player.isSneaking() && player.getHeldItem() != null
 				&& player.getHeldItem().getItem().equals(ModItems.catalyst)
 				&& tile != null && tile.isActive()
@@ -85,8 +85,10 @@ public class Keep extends Block {
 			ItemStack stack = player.getHeldItem();
 			for (RitualRecipe r : RitualRecipes.lis) {
 				if (ItemStack.areItemStacksEqual(stack, r.getCat())) {
-					if (r.matches(tile.getInv(), world)) {
+					if (r.matches(tile.getInv(), world)
+							&& (player.experienceLevel >= 5 || player.capabilities.isCreativeMode)) {
 						tile.clear();
+						player.experienceLevel = player.experienceLevel - 5;
 						player.inventory
 								.setInventorySlotContents(
 										player.inventory.currentItem,
