@@ -24,6 +24,7 @@ public class RecipeHandler extends TemplateRecipeHandler {
 		public List<PositionedStack> input = new ArrayList<PositionedStack>();
 		PositionedStack cat;
 		int time, dimensionID;
+		public int xp;
 
 		public CachedRitualRecipe(RitualRecipe r) {
 			output = new PositionedStack(r.getOutput(), 75, 4, false);
@@ -32,8 +33,9 @@ public class RecipeHandler extends TemplateRecipeHandler {
 			input.add(new PositionedStack(r.getInput3(), 65, 40, false));
 			input.add(new PositionedStack(r.getInput4(), 85, 40, false));
 			cat = new PositionedStack(r.getCat(), 125, 40, false);
-			this.time = r.getTime();
-			this.dimensionID = r.getDimensionID();
+			time = r.getTime();
+			dimensionID = r.getDimensionID();
+			xp=r.getXp();
 		}
 
 		@Override
@@ -83,6 +85,7 @@ public class RecipeHandler extends TemplateRecipeHandler {
 			GuiDraw.drawString("Night", 7, 5, 0x404040, false);
 		else
 			GuiDraw.drawString("Anytime", 7, 5, 0x404040, false);
+		GuiDraw.drawString(r.xp+" XP", 7, 25, 0x404040, false);
 	}
 
 	@Override

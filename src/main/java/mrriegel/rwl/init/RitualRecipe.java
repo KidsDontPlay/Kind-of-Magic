@@ -15,10 +15,11 @@ public class RitualRecipe {
 	private ItemStack input4;
 	private ItemStack cat;
 	private int dimensionID, time;
+	private int xp;
 
 	public RitualRecipe(ItemStack output, ItemStack input1, ItemStack input2,
 			ItemStack input3, ItemStack input4, ItemStack cat, int dimensionID,
-			int time) {
+			int time, int xp) {
 		super();
 		this.output = output;
 		this.input1 = input1;
@@ -28,6 +29,7 @@ public class RitualRecipe {
 		this.cat = cat;
 		this.dimensionID = dimensionID;
 		this.time = time;
+		this.xp = xp;
 	}
 
 	private boolean contains(ItemStack stack, List<ItemStack> lis) {
@@ -105,8 +107,11 @@ public class RitualRecipe {
 		return dimensionID;
 	}
 
-
 	public int getTime() {
 		return time;
+	}
+
+	public int getXp() {
+		return xp;
 	}
 }

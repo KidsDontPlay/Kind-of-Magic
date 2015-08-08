@@ -86,9 +86,10 @@ public class Keep extends Block {
 			for (RitualRecipe r : RitualRecipes.lis) {
 				if (ItemStack.areItemStacksEqual(stack, r.getCat())) {
 					if (r.matches(tile.getInv(), world)
-							&& (player.experienceLevel >= 5 || player.capabilities.isCreativeMode)) {
+							&& (player.experienceLevel >= r.getXp() || player.capabilities.isCreativeMode)) {
 						tile.clear();
-						player.experienceLevel = player.experienceLevel - 5;
+						player.experienceLevel = player.experienceLevel
+								- r.getXp();
 						player.inventory
 								.setInventorySlotContents(
 										player.inventory.currentItem,
