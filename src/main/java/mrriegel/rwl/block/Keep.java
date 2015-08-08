@@ -84,7 +84,7 @@ public class Keep extends Block {
 			ItemStack stack = player.getHeldItem();
 			for (RitualRecipe r : RitualRecipes.lis) {
 				if (ItemStack.areItemStacksEqual(stack, r.getCat())) {
-					if (r.matches(tile.getInv())) {
+					if (r.matches(tile.getInv(), world)) {
 						tile.clear();
 						player.inventory
 								.setInventorySlotContents(

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class RitualRecipe {
 
@@ -13,9 +14,11 @@ public class RitualRecipe {
 	private ItemStack input3;
 	private ItemStack input4;
 	private ItemStack cat;
+	private int dimensionID, time;
 
 	public RitualRecipe(ItemStack output, ItemStack input1, ItemStack input2,
-			ItemStack input3, ItemStack input4, ItemStack cat) {
+			ItemStack input3, ItemStack input4, ItemStack cat, int dimensionID,
+			int time) {
 		super();
 		this.output = output;
 		this.input1 = input1;
@@ -23,6 +26,8 @@ public class RitualRecipe {
 		this.input3 = input3;
 		this.input4 = input4;
 		this.cat = cat;
+		this.dimensionID=dimensionID;
+		this.time=time;
 	}
 
 	private boolean contains(ItemStack stack, List<ItemStack> lis) {
@@ -39,15 +44,32 @@ public class RitualRecipe {
 		return true;
 	}
 
-	public boolean matches(ItemStack[] ar) {
+	private int day(World world) {
+		long time = world.getWorldTime();
+		if (time < 12300 || time > 23850)
+			return 0;
+		else
+			return 1;
+	}
+
+	public boolean matches(ItemStack[] ar, World world) {
 
 		List<ItemStack> ist = Arrays.asList(ar);
 		List<ItemStack> soll = Arrays.asList(new ItemStack[] { input1, input2,
 				input3, input4 });
-
-		if (eq(ist, soll)) {
+		if (world.provider.dimensionId == Integer.MAX_VALUE && time == -1) {
+			if (eq(ist, soll))
+				return true;
+		} else if (world.provider.dimensionId == Integer.MAX_VALUE) {
+			if (eq(ist, soll) && day(world) == time)
+				return true;
+		} else if (time == -1) {
+			if (eq(ist, soll) && world.provider.dimensionId == dimensionID)
+				return true;
+		} else if (eq(ist, soll) && world.provider.dimensionId == dimensionID
+				&& day(world) == time)
 			return true;
-		}
+
 		return 0 == 1;
 	}
 
