@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL11;
 import mrriegel.rwl.init.RitualRecipe;
 import mrriegel.rwl.init.RitualRecipes;
 import mrriegel.rwl.reference.Reference;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import codechicken.lib.gui.GuiDraw;
@@ -65,37 +66,23 @@ public class RecipeHandler extends TemplateRecipeHandler {
 		if (!(arecipes.get(recipe) instanceof CachedRitualRecipe)) {
 			return;
 		}
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
 		CachedRitualRecipe r = (CachedRitualRecipe) arecipes.get(recipe);
-		if (r.dimensionID == 0) {
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
-			GuiDraw.changeTexture(Reference.MOD_ID
-					+ ":textures/gui/neioverworld.png");
-			GuiDraw.drawTexturedModalRect(45, 20, 38, 35, 92, 50);
-		} else if (r.dimensionID == 1) {
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
-			GuiDraw.changeTexture(Reference.MOD_ID + ":textures/gui/neiend.png");
-			GuiDraw.drawTexturedModalRect(45, 20, 38, 35, 92, 50);
-		} else if (r.dimensionID == -1) {
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
-			GuiDraw.changeTexture(Reference.MOD_ID
-					+ ":textures/gui/neinether.png");
-			GuiDraw.drawTexturedModalRect(45, 20, 38, 35, 92, 50);
-		}
-		if (r.time == 0) {
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
-			GuiDraw.changeTexture(Reference.MOD_ID + ":textures/gui/neisun.png");
-			GuiDraw.drawTexturedModalRect(45, 20, 38, 35, 92, 50);
-		} else if (r.time == 1) {
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
-			GuiDraw.changeTexture(Reference.MOD_ID
-					+ ":textures/gui/neimoon.png");
-			GuiDraw.drawTexturedModalRect(45, 20, 38, 35, 92, 50);
-		}
+		if (r.dimensionID == 0)
+			GuiDraw.drawString("Overworld", 7, 15, 0x404040, false);
+		else if (r.dimensionID == 1)
+			GuiDraw.drawString("End", 7, 15, 0x404040, false);
+		else if (r.dimensionID == -1)
+			GuiDraw.drawString("Nether", 7, 15, 0x404040, false);
+		else
+			GuiDraw.drawString("Anywhere", 7, 15, 0x404040, false);
+		if (r.time == 0)
+			GuiDraw.drawString("Day", 7, 5, 0x404040, false);
+		else if (r.time == 1)
+			GuiDraw.drawString("Night", 7, 5, 0x404040, false);
+		else
+			GuiDraw.drawString("Anytime", 7, 5, 0x404040, false);
 	}
 
 	@Override
