@@ -40,7 +40,7 @@ public class RWLWorld implements IWorldGenerator {
 					posX, posY, posZ);
 
 		}
-		if (random.nextInt(130) != 1)
+		if (random.nextInt(120) != 1)
 			return;
 
 		int posX = blockXPos + random.nextInt(maxX);
@@ -95,10 +95,14 @@ public class RWLWorld implements IWorldGenerator {
 				setB(x - 2, i + 1, z + 2, ModBlocks.mazer, world);
 				setB(x + 2, i + 1, z - 2, ModBlocks.mazer, world);
 				setB(x - 2, i + 1, z - 2, ModBlocks.mazer, world);
-				setB(x + 2, i + 2, z + 2, ModBlocks.mazer, world);
-				setB(x - 2, i + 2, z + 2, ModBlocks.mazer, world);
-				setB(x + 2, i + 2, z - 2, ModBlocks.mazer, world);
-				setB(x - 2, i + 2, z - 2, ModBlocks.mazer, world);
+				if (world.getBlock(x + 2, i + 1, z + 2).equals(ModBlocks.mazer))
+					setB(x + 2, i + 2, z + 2, ModBlocks.mazer, world);
+				if (world.getBlock(x - 2, i + 1, z + 2).equals(ModBlocks.mazer))
+					setB(x - 2, i + 2, z + 2, ModBlocks.mazer, world);
+				if (world.getBlock(x + 2, i + 1, z - 2).equals(ModBlocks.mazer))
+					setB(x + 2, i + 2, z - 2, ModBlocks.mazer, world);
+				if (world.getBlock(x - 2, i + 1, z - 2).equals(ModBlocks.mazer))
+					setB(x - 2, i + 2, z - 2, ModBlocks.mazer, world);
 				break;
 			}
 		}

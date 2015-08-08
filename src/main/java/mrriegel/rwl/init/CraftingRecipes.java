@@ -21,18 +21,23 @@ public class CraftingRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.mdust, 2),
 				ModBlocks.mazer);
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst, 1, 0),
-				"mbm", "odo", "mom", 'm', new ItemStack(ModItems.mdust), 'd',
-				new ItemStack(Items.diamond), 'o',
-				new ItemStack(ModItems.odust), 'b', ModItems.bloodie);
+				"mbm", "odo", "lol", 'm', new ItemStack(ModItems.mdust), 'd',
+				new ItemStack(Items.gold_ingot), 'o', new ItemStack(
+						ModItems.odust), 'b', ModItems.bloodie, 'l',
+				new ItemStack(Items.dye, 1, 4));
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst, 1, 1),
-				"ono", "mcm", "ana", 'm', new ItemStack(ModItems.mdust), 'n',
-				new ItemStack(ModItems.nev), 'o',
-				new ItemStack(ModItems.odust), 'c', new ItemStack(
-						ModItems.catalyst, 1, 0), 'a', new ItemStack(
-						ModItems.aodust));
+				"mbm", "odo", "lol", 'm', new ItemStack(ModItems.mdust), 'd',
+				new ItemStack(Items.diamond), 'o',
+				new ItemStack(ModItems.odust), 'b', ModItems.bloodie, 'l',
+				new ItemStack(Items.dye, 1, 4));
+		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst, 1, 2),
+				"mbm", "odo", "lol", 'm', new ItemStack(ModItems.mdust), 'd',
+				new ItemStack(ModItems.wnugget), 'o', new ItemStack(
+						ModItems.odust), 'b', ModItems.bloodie, 'l',
+				new ItemStack(Items.dye, 1, 4));
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.ostick), "  a",
-				" q ","a  ", 'a', new ItemStack(ModItems.aodust), 'q', new ItemStack(
-						Items.quartz));
+				" q ", "a  ", 'a', new ItemStack(ModItems.aodust), 'q',
+				new ItemStack(Items.quartz));
 		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.oblock), "ooo",
 				"ooo", "ooo", 'o', new ItemStack(ModItems.odust));
 		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.aoblock), "ooo",
@@ -44,6 +49,21 @@ public class CraftingRecipes {
 				"aea", 'a', new ItemStack(ModItems.aodust), 'e', new ItemStack(
 						Items.ender_pearl), 'g',
 				new ItemStack(Items.gold_ingot));
+		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.keep), "lo ",
+				"ol ", 'o', new ItemStack(ModItems.odust), 'l', new ItemStack(
+						Items.glowstone_dust));
+		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.wnugget, 4),
+				Items.nether_star);
+		GameRegistry.addShapedRecipe(new ItemStack(Items.nether_star), "oo ",
+				"oo ", 'o', new ItemStack(ModItems.wnugget));
+		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.mazerB), "mam",
+				"mom", 'm', new ItemStack(ModBlocks.mazer), 'a', new ItemStack(
+						ModBlocks.aoblock), 'o',
+				new ItemStack(ModBlocks.oblock));
+		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.aodust, 9),
+				ModBlocks.aoblock);
+		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.odust, 9),
+				ModBlocks.oblock);
 
 	}
 }

@@ -36,7 +36,7 @@ public class RWL {
 	public static SimpleNetworkWrapper net;
 
 	private static int modGuiIndex = 0;
-	public static final String ItemInventoryGuiIndex = ""+modGuiIndex++;
+	public static final int ItemInventoryGuiIndex = modGuiIndex++;
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {

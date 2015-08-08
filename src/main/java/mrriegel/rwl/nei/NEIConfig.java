@@ -1,5 +1,6 @@
 package mrriegel.rwl.nei;
 
+import mrriegel.rwl.reference.Reference;
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
 
@@ -7,12 +8,12 @@ public class NEIConfig implements IConfigureNEI {
 
 	@Override
 	public String getName() {
-		return "RWL NEI";
+		return Reference.MOD_ID + " NEI";
 	}
 
 	@Override
 	public String getVersion() {
-		return "weiß nich";
+		return Reference.VERSION;
 	}
 
 	@Override

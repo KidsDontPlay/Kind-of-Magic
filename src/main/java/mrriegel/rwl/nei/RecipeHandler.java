@@ -19,6 +19,7 @@ public class RecipeHandler extends TemplateRecipeHandler {
 		PositionedStack output;
 		public List<PositionedStack> input = new ArrayList<PositionedStack>();
 		PositionedStack cat;
+		PositionedStack time;
 
 		public CachedRitualRecipe(RitualRecipe r) {
 			output = new PositionedStack(r.getOutput(), 75, 4, false);
@@ -27,6 +28,7 @@ public class RecipeHandler extends TemplateRecipeHandler {
 			input.add(new PositionedStack(r.getInput3(), 65, 40, false));
 			input.add(new PositionedStack(r.getInput4(), 85, 40, false));
 			cat = new PositionedStack(r.getCat(), 125, 40, false);
+			//time=new PositionedStack(object, 15, 20, false);
 		}
 
 		@Override
