@@ -34,7 +34,8 @@ public class MazerB extends BlockContainer {
 		this.setHardness(3.5f);
 		this.setCreativeTab(CreativeTab.tab1);
 		this.setBlockName(Reference.MOD_ID + ":" + "mazerB");
-		setBlockBounds(0.0625F, 0.0F, 0.0625F, 1.0F-0.0625F, 0.63F, 1.0F-0.0625F);
+		setBlockBounds(0.0625F, 0.0F, 0.0625F, 1.0F - 0.0625F, 0.63F,
+				1.0F - 0.0625F);
 		setLightOpacity(255);
 		useNeighborBrightness = true;
 	}
@@ -150,9 +151,20 @@ public class MazerB extends BlockContainer {
 		// if (world.isRemote) {
 		// return false;
 		// }
-		// if (world.isRemote)
-		// ParticleEffects.spawnParticle("fire", x + 0.5d, y + 0.9d, z + 0.5d,
-		// 0.0D, 0.05D, 0.0D);
+		boolean fx = false;
+		final World world2 = world;
+		final EntityPlayer player2 = player;
+//		new Runnable() {
+//
+//			@Override
+//			public void run() {
+//				while (!(System.currentTimeMillis() % 2000 == 0)) {
+//					world2.spawnParticle("heart", player2.posX, player2.posY,
+//							player2.posZ, 0, 0, 0);
+//				}
+//			}
+//		}.run();
+		
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y, z);
 		if (!isConstruct(world, x, y, z) && tile.isActive() && !world.isRemote) {
 

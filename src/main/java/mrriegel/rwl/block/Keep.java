@@ -87,6 +87,7 @@ public class Keep extends Block {
 				if (ItemStack.areItemStacksEqual(stack, r.getCat())) {
 					if (r.matches(tile.getInv(), world)
 							&& (player.experienceLevel >= r.getXp() || player.capabilities.isCreativeMode)) {
+						Random ran = new Random();
 						tile.clear();
 						player.experienceLevel = player.experienceLevel
 								- r.getXp();
@@ -96,7 +97,7 @@ public class Keep extends Block {
 										new ItemStack(
 												player.getHeldItem().getItem(),
 												player.getCurrentEquippedItem().stackSize - 1));
-						Random ran = new Random();
+
 						for (int i = 0; i < 20; i++) {
 							world.spawnParticle("happyVillager",
 									x + ran.nextDouble(),

@@ -20,14 +20,24 @@ public class MazerTile extends TileEntity implements IInventory {
 	private ItemStack[] inv;
 
 	private boolean active;
+	private int cool;
 
 	public MazerTile() {
 		inv = new ItemStack[INV_SIZE];
 		active = false;
+		cool=0;
 	}
 
 	public ItemStack[] getInv() {
 		return inv;
+	}
+
+	public int getCool() {
+		return cool;
+	}
+
+	public void setCool(int cool) {
+		this.cool = cool;
 	}
 
 	public boolean isActive() {
@@ -130,6 +140,7 @@ public class MazerTile extends TileEntity implements IInventory {
 				inv[slot] = ItemStack.loadItemStackFromNBT(stackTag);
 		}
 		active = tag.getBoolean("active");
+		cool=tag.getInteger("cool");
 	}
 
 	@Override
@@ -145,6 +156,7 @@ public class MazerTile extends TileEntity implements IInventory {
 			}
 		}
 		tag.setBoolean("active", active);
+		tag.setInteger("cool", cool);
 		tag.setTag("Inventory", invList);
 
 	}
