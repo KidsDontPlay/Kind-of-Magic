@@ -4,11 +4,14 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.lwjgl.opengl.GL11;
+
 import mrriegel.rwl.init.RitualRecipe;
 import mrriegel.rwl.init.RitualRecipes;
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
@@ -19,7 +22,7 @@ public class RecipeHandler extends TemplateRecipeHandler {
 		PositionedStack output;
 		public List<PositionedStack> input = new ArrayList<PositionedStack>();
 		PositionedStack cat;
-		PositionedStack time;
+		int time, dimensionID;
 
 		public CachedRitualRecipe(RitualRecipe r) {
 			output = new PositionedStack(r.getOutput(), 75, 4, false);
@@ -28,7 +31,8 @@ public class RecipeHandler extends TemplateRecipeHandler {
 			input.add(new PositionedStack(r.getInput3(), 65, 40, false));
 			input.add(new PositionedStack(r.getInput4(), 85, 40, false));
 			cat = new PositionedStack(r.getCat(), 125, 40, false);
-			//time=new PositionedStack(object, 15, 20, false);
+			this.time = r.getTime();
+			this.dimensionID = r.getDimensionID();
 		}
 
 		@Override
@@ -46,13 +50,52 @@ public class RecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public String getRecipeName() {
-		return "Stone";
+		return "Lorem ipsum";
 	}
 
 	@Override
 	public String getGuiTexture() {
 		return new ResourceLocation(Reference.MOD_ID + ":"
 				+ "textures/gui/nei.png").toString();
+	}
+
+	@Override
+	public void drawBackground(int recipe) {
+		super.drawBackground(recipe);
+		if (!(arecipes.get(recipe) instanceof CachedRitualRecipe)) {
+			return;
+		}
+		CachedRitualRecipe r = (CachedRitualRecipe) arecipes.get(recipe);
+		if (r.dimensionID == 0) {
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
+			GuiDraw.changeTexture(Reference.MOD_ID
+					+ ":textures/gui/neioverworld.png");
+			GuiDraw.drawTexturedModalRect(45, 20, 38, 35, 92, 50);
+		} else if (r.dimensionID == 1) {
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
+			GuiDraw.changeTexture(Reference.MOD_ID + ":textures/gui/neiend.png");
+			GuiDraw.drawTexturedModalRect(45, 20, 38, 35, 92, 50);
+		} else if (r.dimensionID == -1) {
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
+			GuiDraw.changeTexture(Reference.MOD_ID
+					+ ":textures/gui/neinether.png");
+			GuiDraw.drawTexturedModalRect(45, 20, 38, 35, 92, 50);
+		}
+		if (r.time == 0) {
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
+			GuiDraw.changeTexture(Reference.MOD_ID + ":textures/gui/neisun.png");
+			GuiDraw.drawTexturedModalRect(45, 20, 38, 35, 92, 50);
+		} else if (r.time == 1) {
+			GL11.glEnable(GL11.GL_BLEND);
+			GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
+			GuiDraw.changeTexture(Reference.MOD_ID
+					+ ":textures/gui/neimoon.png");
+			GuiDraw.drawTexturedModalRect(45, 20, 38, 35, 92, 50);
+		}
 	}
 
 	@Override

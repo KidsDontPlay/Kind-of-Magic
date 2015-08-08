@@ -100,4 +100,13 @@ public class RitualRecipe {
 	public ItemStack getInput4() {
 		return input4;
 	}
+
+	public int getDimensionID() {
+		return dimensionID;
+	}
+
+
+	public int getTime() {
+		return time;
+	}
 }
