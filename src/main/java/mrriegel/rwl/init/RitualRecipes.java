@@ -30,7 +30,7 @@ public class RitualRecipes {
 				new ItemStack(ModItems.mdust), new ItemStack(
 						Items.golden_apple, 1, 0), new ItemStack(
 						Items.glowstone_dust), new ItemStack(ModItems.catalyst,
-						1, 1), 1, -1, 16));
+						1, 1), -1, -1, 16));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 2),
 				new ItemStack(ModItems.cry, 1, 1),

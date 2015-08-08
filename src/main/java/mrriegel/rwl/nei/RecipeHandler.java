@@ -90,7 +90,7 @@ public class RecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public void loadTransferRects() {
-		transferRects.add(new RecipeTransferRect(new Rectangle(75, 21, 16, 16),
+		transferRects.add(new RecipeTransferRect(new Rectangle(75, 23, 16, 16),
 				"rwl:stone"));
 	}
 

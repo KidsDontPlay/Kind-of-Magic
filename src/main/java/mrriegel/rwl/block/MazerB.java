@@ -34,7 +34,7 @@ public class MazerB extends BlockContainer {
 		this.setHardness(3.5f);
 		this.setCreativeTab(CreativeTab.tab1);
 		this.setBlockName(Reference.MOD_ID + ":" + "mazerB");
-		setBlockBounds(0.05F, 0.0F, 0.05F, 0.95F, 0.63F, 0.95F);
+		setBlockBounds(0.0625F, 0.0F, 0.0625F, 1.0F-0.0625F, 0.63F, 1.0F-0.0625F);
 		setLightOpacity(255);
 		useNeighborBrightness = true;
 	}
