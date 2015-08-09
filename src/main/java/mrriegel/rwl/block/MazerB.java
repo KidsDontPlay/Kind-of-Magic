@@ -1,8 +1,15 @@
 package mrriegel.rwl.block;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.init.ModItems;
+import mrriegel.rwl.init.RitualRecipe;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.tile.MazerTile;
 import mrriegel.rwl.utility.BlockLocation;
@@ -20,6 +27,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -86,6 +94,8 @@ public class MazerB extends BlockContainer {
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z,
 			Entity entity) {
+		if (world.isRemote)
+			return;
 		if (entity instanceof EntityFX) {
 			if (entity.ticksExisted > 10)
 				entity.setDead();
@@ -99,10 +109,10 @@ public class MazerB extends BlockContainer {
 			return;
 		}
 		if (tile.isActive() && entity instanceof EntityItem
-				&& entity.posY <= y + 0.9D /*
-											 * && !world. isRemote
-											 */) {
+				&& entity.posY <= y + 0.9D) {
+
 			EntityItem e = (EntityItem) entity;
+
 			boolean in = false;
 			for (int i = 0; i < tile.getInv().length; i++) {
 				if (tile.getStackInSlot(i) == null) {
@@ -114,8 +124,9 @@ public class MazerB extends BlockContainer {
 			if (in) {
 				entity.setDead();
 				world.spawnParticle("instantSpell", x + 0.5D, y + 0.75D,
-						z + 0.5D, 0, -0.3D, 0);
+						z + 0.5D, 0, -0.4D, 0);
 			}
+
 		}
 	}
 
@@ -151,21 +162,9 @@ public class MazerB extends BlockContainer {
 		// if (world.isRemote) {
 		// return false;
 		// }
-		boolean fx = false;
-		final World world2 = world;
-		final EntityPlayer player2 = player;
-//		new Runnable() {
-//
-//			@Override
-//			public void run() {
-//				while (!(System.currentTimeMillis() % 2000 == 0)) {
-//					world2.spawnParticle("heart", player2.posX, player2.posY,
-//							player2.posZ, 0, 0, 0);
-//				}
-//			}
-//		}.run();
-		
+
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y, z);
+
 		if (!isConstruct(world, x, y, z) && tile.isActive() && !world.isRemote) {
 
 			release(world, x, y, z);

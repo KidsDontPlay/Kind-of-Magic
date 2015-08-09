@@ -1,6 +1,7 @@
 package mrriegel.rwl;
 
 import mrriegel.rwl.handler.ConfigurationHandler;
+import mrriegel.rwl.handler.DropEventHandler;
 import mrriegel.rwl.handler.ToolEventHandler;
 import mrriegel.rwl.init.CraftingRecipes;
 import mrriegel.rwl.init.ModBlocks;
@@ -52,6 +53,7 @@ public class RWL {
 	public void init(FMLInitializationEvent event) {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
 		MinecraftForge.EVENT_BUS.register(new ToolEventHandler());
+		MinecraftForge.EVENT_BUS.register(new DropEventHandler());
 		CraftingRecipes.init();
 		RitualRecipes.init();
 		// ClientProxy.init();

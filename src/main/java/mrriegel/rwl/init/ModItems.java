@@ -6,6 +6,7 @@ import mrriegel.rwl.item.Bloodie;
 import mrriegel.rwl.item.Catalyst;
 import mrriegel.rwl.item.CrystalBag;
 import mrriegel.rwl.item.Crysthal;
+import mrriegel.rwl.item.Drop;
 import mrriegel.rwl.item.MazeDust;
 import mrriegel.rwl.item.Nev;
 import mrriegel.rwl.item.NevAxe;
@@ -47,6 +48,7 @@ public class ModItems {
 	public static Item boots = new NevBoots();
 	public static Item up = new Up();
 	public static Item wnugget = new WNugget();
+	public static Item drop = new Drop();
 
 	public static void init() {
 		GameRegistry.registerItem(bloodie, "bloodie");
@@ -71,6 +73,7 @@ public class ModItems {
 		GameRegistry.registerItem(boots, "boots");
 		GameRegistry.registerItem(up, "up");
 		GameRegistry.registerItem(wnugget, "wnugget");
+		GameRegistry.registerItem(drop, "drop");
 
 	}
 }

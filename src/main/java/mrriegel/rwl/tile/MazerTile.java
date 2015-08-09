@@ -1,6 +1,9 @@
 package mrriegel.rwl.tile;
 
+import java.util.Random;
+
 import mrriegel.rwl.block.MazerB;
+import mrriegel.rwl.init.RitualRecipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -20,12 +23,14 @@ public class MazerTile extends TileEntity implements IInventory {
 	private ItemStack[] inv;
 
 	private boolean active;
+	private boolean processing;
 	private int cool;
 
 	public MazerTile() {
 		inv = new ItemStack[INV_SIZE];
 		active = false;
-		cool=0;
+		processing = false;
+		cool = 0;
 	}
 
 	public ItemStack[] getInv() {
@@ -40,12 +45,34 @@ public class MazerTile extends TileEntity implements IInventory {
 		this.cool = cool;
 	}
 
+	public boolean isProcessing() {
+		return processing;
+	}
+
+	public void setProcessing(boolean processing) {
+		this.processing = processing;
+	}
+
 	public boolean isActive() {
 		return active;
 	}
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	@Override
+	public void updateEntity() {
+		MazerB mm = (MazerB) worldObj.getBlock(xCoord, yCoord, zCoord);
+		Random ran = new Random();
+		if (processing) {
+			cool++;
+		}
+		if (cool > 50) {
+			processing = false;
+			cool = 0;
+			System.out.println("done");
+		}
 	}
 
 	@Override
@@ -140,7 +167,8 @@ public class MazerTile extends TileEntity implements IInventory {
 				inv[slot] = ItemStack.loadItemStackFromNBT(stackTag);
 		}
 		active = tag.getBoolean("active");
-		cool=tag.getInteger("cool");
+		processing = tag.getBoolean("processing");
+		cool = tag.getInteger("cool");
 	}
 
 	@Override
@@ -156,6 +184,7 @@ public class MazerTile extends TileEntity implements IInventory {
 			}
 		}
 		tag.setBoolean("active", active);
+		tag.setBoolean("processing", processing);
 		tag.setInteger("cool", cool);
 		tag.setTag("Inventory", invList);
 

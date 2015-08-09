@@ -1,5 +1,10 @@
 package mrriegel.rwl.render;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import mrriegel.rwl.tile.MazerTile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -28,6 +33,7 @@ public class StoneItemRenderer extends TileEntitySpecialRenderer {
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, double d0, double d1,
 			double d2, float f) {
+
 		if (tileEntity instanceof MazerTile) {
 			add(tileEntity, d0 + 1.0, d1, d2 + 1.0, f, 0);
 			add(tileEntity, d0 - 1.0, d1, d2 - 1.0, f, 1);

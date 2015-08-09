@@ -82,21 +82,18 @@ public class Keep extends Block {
 				&& player.getHeldItem().getItem().equals(ModItems.catalyst)
 				&& tile != null && tile.isActive()
 				&& MazerB.isConstruct(world, x, y - 2, z)) {
+
 			ItemStack stack = player.getHeldItem();
 			for (RitualRecipe r : RitualRecipes.lis) {
 				if (ItemStack.areItemStacksEqual(stack, r.getCat())) {
 					if (r.matches(tile.getInv(), world)
 							&& (player.experienceLevel >= r.getXp() || player.capabilities.isCreativeMode)) {
+						if (!tile.isProcessing())
+							tile.setProcessing(true);
 						Random ran = new Random();
 						tile.clear();
 						player.experienceLevel = player.experienceLevel
 								- r.getXp();
-						player.inventory
-								.setInventorySlotContents(
-										player.inventory.currentItem,
-										new ItemStack(
-												player.getHeldItem().getItem(),
-												player.getCurrentEquippedItem().stackSize - 1));
 
 						for (int i = 0; i < 20; i++) {
 							world.spawnParticle("happyVillager",
@@ -113,8 +110,9 @@ public class Keep extends Block {
 									player.posZ);
 							player.addChatMessage(new ChatComponentText("Done!"));
 						}
-						world.markBlockForUpdate(x, y - 2, z);
+						world.markBlockForUpdate(x, y-2, z);
 						return true;
+
 					}
 				}
 			}
