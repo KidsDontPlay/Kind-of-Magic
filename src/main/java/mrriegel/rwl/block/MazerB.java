@@ -94,13 +94,7 @@ public class MazerB extends BlockContainer {
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z,
 			Entity entity) {
-		if (world.isRemote)
-			return;
-		if (entity instanceof EntityFX) {
-			if (entity.ticksExisted > 10)
-				entity.setDead();
-			return;
-		}
+
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y, z);
 		if (!isConstruct(world, x, y, z) && tile.isActive()) {
 			release(world, x, y, z);
@@ -109,7 +103,7 @@ public class MazerB extends BlockContainer {
 			return;
 		}
 		if (tile.isActive() && entity instanceof EntityItem
-				&& entity.posY <= y + 0.9D) {
+				&& entity.posY >= y + 0.5D && entity.posY <= y + 0.78D) {
 
 			EntityItem e = (EntityItem) entity;
 

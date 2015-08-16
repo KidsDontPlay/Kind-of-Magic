@@ -5,10 +5,14 @@ import java.util.Random;
 
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.inventory.InventoryNevTool;
-import net.minecraft.entity.Entity;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -20,7 +24,9 @@ public class ToolEventHandler {
 
 	@SubscribeEvent
 	public void death(LivingDropsEvent event) {
-		Entity e = event.entity;
+		if (!(event.entity instanceof EntityLiving))
+			return;
+		EntityLivingBase e = (EntityLiving) event.entity;
 		DamageSource source = event.source;
 		if (!e.worldObj.isRemote
 				&& source.getSourceOfDamage() instanceof EntityPlayer) {
@@ -35,7 +41,8 @@ public class ToolEventHandler {
 							.getTagList(InventoryNevTool.tagName,
 									stack.getTagCompound().getId())
 							.getCompoundTagAt(0).getShort("Damage") == 4) {
-				if (e.getClass().toString().contains("entity.boss"))
+				if (e.getClass().toString().contains("entity.boss")
+						|| e instanceof EntityPlayer)
 					return;
 				ArrayList<EntityItem> l = new ArrayList<EntityItem>();
 				for (EntityItem ei : event.drops) {
@@ -61,6 +68,7 @@ public class ToolEventHandler {
 							player.worldObj, e.posX + 0.5d, e.posY,
 							e.posZ + 0.5d, EntityXPOrb.getXPSplit(0)));
 				}
+
 			}
 
 		}

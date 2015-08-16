@@ -20,7 +20,7 @@ public class RitualRecipes {
 				new ItemStack(ModItems.catalyst, 1, 0), max, -1, 5));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 0),
-				new ItemStack(Items.diamond), new ItemStack(ModItems.mdust),
+				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
 				new ItemStack(Items.gold_ingot), new ItemStack(
 						Items.glowstone_dust), new ItemStack(ModItems.catalyst,
 						1, 0), -1, -1, 8));
@@ -40,42 +40,42 @@ public class RitualRecipes {
 						2), -1, -1, 32));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 3),
-				new ItemStack(Items.diamond), new ItemStack(ModItems.mdust),
+				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
 				new ItemStack(Items.slime_ball), new ItemStack(Blocks.wool, 1,
 						13), new ItemStack(ModItems.catalyst, 1, 0), 0, 0, 4));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 4),
-				new ItemStack(Items.diamond), new ItemStack(ModItems.mdust),
+				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
 				new ItemStack(Blocks.lapis_block), new ItemStack(
 						Items.potionitem), new ItemStack(ModItems.catalyst, 1,
 						1), max, 0, 12));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 5),
-				new ItemStack(Items.diamond), new ItemStack(ModItems.mdust),
+				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
 				new ItemStack(Blocks.redstone_block),
 				new ItemStack(Items.sugar), new ItemStack(ModItems.catalyst, 1,
 						1), -1, -1, 10));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 6),
-				new ItemStack(Items.diamond), new ItemStack(ModItems.mdust),
+				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
 				new ItemStack(Items.blaze_rod), new ItemStack(
 						Items.flint_and_steel), new ItemStack(
 						ModItems.catalyst, 1, 0), -1, -1, 8));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 7),
-				new ItemStack(Items.diamond), new ItemStack(ModItems.mdust),
+				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
 				new ItemStack(Items.spider_eye), new ItemStack(
 						Items.poisonous_potato), new ItemStack(
 						ModItems.catalyst, 1, 1), max, -1, 12));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 8),
-				new ItemStack(Items.diamond), new ItemStack(ModItems.mdust),
+				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
 				new ItemStack(Blocks.sapling, 1, Short.MAX_VALUE),
 				new ItemStack(Items.iron_axe), new ItemStack(ModItems.catalyst,
 						1, 0), 0, 0, 5));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 9),
-				new ItemStack(Items.diamond), new ItemStack(ModItems.mdust),
+				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
 				new ItemStack(Items.quartz), new ItemStack(Items.ender_pearl),
 				new ItemStack(ModItems.catalyst, 1, 1), max, 1, 15));
 
@@ -86,18 +86,18 @@ public class RitualRecipes {
 				new ItemStack(ModItems.catalyst, 1, 2), -1, -1, 30));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 11),
-				new ItemStack(Items.diamond), new ItemStack(ModItems.mdust),
+				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
 				new ItemStack(Blocks.web), new ItemStack(
 						Items.fermented_spider_eye), new ItemStack(
 						ModItems.catalyst, 1, 0), 0, 1, 14));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 12),
-				new ItemStack(Items.diamond), new ItemStack(ModItems.mdust),
+				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
 				new ItemStack(Items.skull, 1, 1), new ItemStack(Items.emerald),
 				new ItemStack(ModItems.catalyst, 1, 2), 1, -1, 25));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 13),
-				new ItemStack(Items.diamond), new ItemStack(ModItems.mdust),
+				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
 				new ItemStack(Items.writable_book), new ItemStack(
 						Items.speckled_melon), new ItemStack(ModItems.catalyst,
 						1, 1), max, -1, 8));
