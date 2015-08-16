@@ -178,7 +178,7 @@ public class NevAxe extends ItemAxe {
 
 			if (world.getBlock(bl.x, bl.y, bl.z).getUnlocalizedName()
 					.equals(block.getUnlocalizedName())
-					&& world.getBlockMetadata(bl.x, bl.y, bl.z) == l) {
+					&& world.getBlockMetadata(bl.x, bl.y, bl.z)%4 == l) {
 				MyUtils.breakWithFortune(world, bl.x, bl.y, bl.z, 0);
 				stack.setItemDamage(stack.getItemDamage() + 1);
 				if (stack.getItemDamage() > MATERIAL.getMaxUses())

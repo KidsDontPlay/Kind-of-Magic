@@ -106,7 +106,9 @@ public class MazerB extends BlockContainer {
 				&& entity.posY >= y + 0.5D && entity.posY <= y + 0.78D) {
 
 			EntityItem e = (EntityItem) entity;
-
+			if (e.getEntityItem().stackSize != 1) {
+				return;
+			}
 			boolean in = false;
 			for (int i = 0; i < tile.getInv().length; i++) {
 				if (tile.getStackInSlot(i) == null) {

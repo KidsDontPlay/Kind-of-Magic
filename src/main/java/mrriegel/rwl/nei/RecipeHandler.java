@@ -35,7 +35,7 @@ public class RecipeHandler extends TemplateRecipeHandler {
 			cat = new PositionedStack(r.getCat(), 125, 40, false);
 			time = r.getTime();
 			dimensionID = r.getDimensionID();
-			xp=r.getXp();
+			xp = r.getXp();
 		}
 
 		@Override
@@ -85,7 +85,7 @@ public class RecipeHandler extends TemplateRecipeHandler {
 			GuiDraw.drawString("Night", 7, 5, 0x404040, false);
 		else
 			GuiDraw.drawString("Anytime", 7, 5, 0x404040, false);
-		GuiDraw.drawString(r.xp+" XP", 7, 25, 0x404040, false);
+		GuiDraw.drawString(r.xp + " XP", 7, 25, 0x404040, false);
 	}
 
 	@Override

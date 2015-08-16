@@ -82,6 +82,8 @@ public class ToolEventHandler {
 			if (player.getHeldItem() == null) {
 				return;
 			}
+			System.out.println("type: " + event.block + " meta: "
+					+ event.blockMetadata);
 			ItemStack stack = player.getHeldItem();
 			if (player.getHeldItem().getItem().equals(ModItems.nevpick)
 					&& stack.getTagCompound() != null
