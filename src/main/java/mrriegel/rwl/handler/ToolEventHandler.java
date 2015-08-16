@@ -25,7 +25,6 @@ public class ToolEventHandler {
 		if (!e.worldObj.isRemote
 				&& source.getSourceOfDamage() instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) source.getSourceOfDamage();
-			System.out.println(".... " + e.getClass().toString());
 			if (player.getHeldItem() == null) {
 				return;
 			}

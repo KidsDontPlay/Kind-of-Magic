@@ -84,10 +84,11 @@ public class Keep extends Block {
 				&& MazerB.isConstruct(world, x, y - 2, z)) {
 
 			ItemStack stack = player.getHeldItem();
+			boolean tmp = false;
 			for (RitualRecipe r : RitualRecipes.lis) {
 				if (ItemStack.areItemStacksEqual(stack, r.getCat())) {
-					if (r.matches(tile.getInv(), world)
-							&& (player.experienceLevel >= r.getXp() || player.capabilities.isCreativeMode)) {
+					if (r.matches(tile.getInv(), world, player)) {
+						tmp = true;
 						if (!tile.isProcessing())
 							tile.setProcessing(true);
 						Random ran = new Random();
@@ -110,10 +111,11 @@ public class Keep extends Block {
 									player.posZ);
 							player.addChatMessage(new ChatComponentText("Done!"));
 						}
-						world.markBlockForUpdate(x, y-2, z);
+						world.markBlockForUpdate(x, y - 2, z);
 						return true;
 
 					}
+
 				}
 			}
 

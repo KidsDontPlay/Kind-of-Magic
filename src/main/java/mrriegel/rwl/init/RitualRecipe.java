@@ -3,7 +3,10 @@ package mrriegel.rwl.init;
 import java.util.Arrays;
 import java.util.List;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
 
 public class RitualRecipe {
@@ -54,7 +57,7 @@ public class RitualRecipe {
 			return 1;
 	}
 
-	public boolean matches(ItemStack[] ar, World world) {
+	public boolean matches(ItemStack[] ar, World world, EntityPlayer player) {
 
 		List<ItemStack> ist = Arrays.asList(ar);
 		List<ItemStack> soll = Arrays.asList(new ItemStack[] { input1, input2,
@@ -65,9 +68,19 @@ public class RitualRecipe {
 			tmptim = day(world);
 		if (dimensionID != Integer.MAX_VALUE)
 			tmpdim = world.provider.dimensionId;
-		if (eq(ist, soll) && tmpdim == dimensionID && tmptim == time)
+		if (eq(ist, soll)
+				&& tmpdim == dimensionID
+				&& tmptim == time
+				&& (player.experienceLevel >= xp || player.capabilities.isCreativeMode))
 			return true;
-
+		if (eq(ist, soll) && !world.isRemote) {
+			if (!(tmpdim == dimensionID))
+				player.addChatMessage(new ChatComponentText("False Dimension"));
+			if (!(tmptim == time))
+				player.addChatMessage(new ChatComponentText("False Time"));
+			if (!(player.experienceLevel >= xp || player.capabilities.isCreativeMode))
+				player.addChatMessage(new ChatComponentText("Not enough XP"));
+		}
 		return 0 == 1;
 	}
 

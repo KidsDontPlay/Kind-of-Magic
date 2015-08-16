@@ -22,12 +22,12 @@ public class CraftingRecipes {
 				ModBlocks.mazer);
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst, 1, 0),
 				"mbm", "odo", "lol", 'm', new ItemStack(ModItems.mdust), 'd',
-				new ItemStack(Items.gold_ingot), 'o', new ItemStack(
+				new ItemStack(Items.diamond), 'o', new ItemStack(
 						ModItems.odust), 'b', ModItems.bloodie, 'l',
 				new ItemStack(Items.dye, 1, 4));
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst, 1, 1),
 				"mbm", "odo", "lol", 'm', new ItemStack(ModItems.mdust), 'd',
-				new ItemStack(Items.diamond), 'o',
+				new ItemStack(Items.egg), 'o',
 				new ItemStack(ModItems.odust), 'b', ModItems.bloodie, 'l',
 				new ItemStack(Items.dye, 1, 4));
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst, 1, 2),
