@@ -5,11 +5,14 @@ import java.util.Map;
 
 import mrriegel.rwl.gui.ContainerBag;
 import mrriegel.rwl.gui.ContainerNevTool;
+import mrriegel.rwl.gui.ContainerTaliBag;
 import mrriegel.rwl.gui.GuiBag;
 import mrriegel.rwl.gui.GuiIDs;
 import mrriegel.rwl.gui.GuiNevTool;
+import mrriegel.rwl.gui.GuiTaliBag;
 import mrriegel.rwl.inventory.InventoryBag;
 import mrriegel.rwl.inventory.InventoryNevTool;
+import mrriegel.rwl.inventory.InventoryTaliBag;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -40,6 +43,9 @@ public class CommonProxy implements IGuiHandler {
 		case GuiIDs.BAG:
 			return new ContainerBag(player, player.inventory, new InventoryBag(
 					player.getHeldItem()));
+		case GuiIDs.TALIBAG:
+			return new ContainerTaliBag(player, player.inventory,
+					new InventoryTaliBag(player.getHeldItem()));
 		}
 		return null;
 	}
@@ -55,6 +61,10 @@ public class CommonProxy implements IGuiHandler {
 		case GuiIDs.BAG:
 			return new GuiBag(new ContainerBag(player, player.inventory,
 					new InventoryBag(player.getHeldItem())));
+		case GuiIDs.TALIBAG:
+			return new GuiTaliBag(new ContainerTaliBag(player,
+					player.inventory,
+					new InventoryTaliBag(player.getHeldItem())));
 		}
 		return null;
 	}

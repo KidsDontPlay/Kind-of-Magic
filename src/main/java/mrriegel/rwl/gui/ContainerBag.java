@@ -18,7 +18,7 @@ public class ContainerBag extends Container {
 
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 5; j++) {
-				addSlotToContainer(new MySlot(inv, j + i * 5, 44 + j * 18,
+				addSlotToContainer(new CrySlot(inv, j + i * 5, 44 + j * 18,
 						19 + i * 18));
 			}
 		}

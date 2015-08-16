@@ -14,6 +14,9 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -82,8 +85,16 @@ public class ToolEventHandler {
 			if (player.getHeldItem() == null) {
 				return;
 			}
-			System.out.println("type: " + event.block + " meta: "
-					+ event.blockMetadata);
+			if (!player.capabilities.isCreativeMode
+					&& player.getFoodStats().needFood()) {
+				// player.getFoodStats().setFoodLevel(
+				// player.getFoodStats().getFoodLevel() + 1);
+				if (player.getHeldItem().getItem() instanceof ItemFood) {
+					ItemFood iff = (ItemFood) player.getHeldItem().getItem();
+					iff.onEaten(player.getHeldItem(), player.worldObj, player);
+				}
+			}
+			System.out.println("ate!!");
 			ItemStack stack = player.getHeldItem();
 			if (player.getHeldItem().getItem().equals(ModItems.nevpick)
 					&& stack.getTagCompound() != null

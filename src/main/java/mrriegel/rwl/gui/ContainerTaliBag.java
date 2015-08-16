@@ -1,48 +1,43 @@
 package mrriegel.rwl.gui;
 
+import mrriegel.rwl.gui.CrySlot;
+import mrriegel.rwl.gui.EvilSlot;
+import mrriegel.rwl.gui.TaliSlot;
 import mrriegel.rwl.init.ModItems;
-import mrriegel.rwl.inventory.InventoryNevTool;
+import mrriegel.rwl.inventory.InventoryBag;
+import mrriegel.rwl.inventory.InventoryTaliBag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerNevTool extends Container {
+public class ContainerTaliBag extends Container {
+	InventoryTaliBag inv;
 
-	InventoryNevTool inv;
-
-	public ContainerNevTool(EntityPlayer player, InventoryPlayer invPlayer,
-			InventoryNevTool inv) {
-		this.inv = inv;
-
-		for (int i = 0; i < 1; i++) {
-			for (int j = 0; j < 1; j++) {
-				addSlotToContainer(new CrySlot(inv, j + i * 1, 80 + j * 18,
-						48 + i * 18));
+	public ContainerTaliBag(EntityPlayer player, InventoryPlayer inventory,
+			InventoryTaliBag inventoryTaliBag) {
+		this.inv = inventoryTaliBag;
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 5; j++) {
+				addSlotToContainer(new TaliSlot(inv, j + i * 5, 44 + j * 18,
+						19 + i * 18));
 			}
 		}
 
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {
-				addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9,
+				addSlotToContainer(new Slot(inventory, j + i * 9 + 9,
 						8 + j * 18, 84 + i * 18));
 			}
 		}
 
 		for (int i = 0; i < 9; i++) {
-			if (i == invPlayer.currentItem)
-				addSlotToContainer(new EvilSlot(invPlayer, i, 8 + i * 18, 142));
-			addSlotToContainer(new Slot(invPlayer, i, 8 + i * 18, 142));
+			if (i == inventory.currentItem)
+				addSlotToContainer(new EvilSlot(inventory, i, 8 + i * 18, 142));
+			addSlotToContainer(new Slot(inventory, i, 8 + i * 18, 142));
 		}
 	}
-
-	// public void writeToNBT() {
-	// if (!this.containerstack.hasTagCompound()) {
-	// this.containerstack.setTagCompound(new NBTTagCompound());
-	// }
-	// inv.writeToNBT(this.containerstack.getTagCompound());
-	// }
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
@@ -63,14 +58,14 @@ public class ContainerNevTool extends Container {
 		// null checks and checks if the item can be stacked (maxStackSize > 1)
 		if (slotObject != null && slotObject.getHasStack()) {
 			ItemStack stackInSlot = slotObject.getStack();
-			if (!stackInSlot.getItem().equals(ModItems.cry))
-				return null;
+			// if (!stackInSlot.getItem().equals(ModItems.cry))
+			// return null;
 			stack = stackInSlot.copy();
 
 			// merges the item into player inventory since its in the tileEntity
 			if (slot < inv.getSizeInventory()) {
 				if (!this.mergeItemStack(stackInSlot, inv.getSizeInventory(),
-						36 + inv.getSizeInventory()+1, true)) {
+						36 + inv.getSizeInventory() + 1, true)) {
 					return null;
 				}
 			}
@@ -94,5 +89,4 @@ public class ContainerNevTool extends Container {
 		}
 		return stack;
 	}
-
 }

@@ -15,6 +15,7 @@ import mrriegel.rwl.item.NevShovel;
 import mrriegel.rwl.item.NevSword;
 import mrriegel.rwl.item.OreDust;
 import mrriegel.rwl.item.OreStick;
+import mrriegel.rwl.item.TaliBag;
 import mrriegel.rwl.item.Up;
 import mrriegel.rwl.item.WNugget;
 import mrriegel.rwl.reference.Reference;
@@ -41,6 +42,7 @@ public class ModItems {
 	public static Item up = new Up();
 	public static Item wnugget = new WNugget();
 	public static Item drop = new Drop();
+	public static Item tbag = new TaliBag();
 
 	public static void init() {
 		GameRegistry.registerItem(bloodie, "bloodie");
@@ -62,6 +64,7 @@ public class ModItems {
 		GameRegistry.registerItem(up, "up");
 		GameRegistry.registerItem(wnugget, "wnugget");
 		GameRegistry.registerItem(drop, "drop");
+		GameRegistry.registerItem(tbag, "tbag");
 
 	}
 }
