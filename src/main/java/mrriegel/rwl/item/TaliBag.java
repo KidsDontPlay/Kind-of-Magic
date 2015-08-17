@@ -3,7 +3,9 @@ package mrriegel.rwl.item;
 import mrriegel.rwl.RWL;
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.gui.GuiIDs;
+import mrriegel.rwl.inventory.InventoryNevTool;
 import mrriegel.rwl.reference.Reference;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -31,4 +33,22 @@ public class TaliBag extends Item {
 	public int getMaxItemUseDuration(ItemStack itemstack) {
 		return 1;
 	}
+
+	@Override
+	public void onUpdate(ItemStack stack, World world, Entity player,
+			int p_77663_4_, boolean p_77663_5_) {
+		for (int i = 0; i < 15; i++) {
+			ItemStack invStack = ItemStack
+					.loadItemStackFromNBT(stack
+							.getTagCompound()
+							.getTagList(InventoryNevTool.tagName,
+									stack.getTagCompound().getId())
+							.getCompoundTagAt(i));
+			if (invStack != null && invStack.getItem() instanceof ItemTalisman) {
+				ItemTalisman item = (ItemTalisman) invStack.getItem();
+				item.perform(invStack, (EntityPlayer) player);
+			}
+		}
+	}
+
 }
