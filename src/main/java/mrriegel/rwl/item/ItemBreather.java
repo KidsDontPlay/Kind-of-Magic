@@ -14,8 +14,7 @@ public class ItemBreather extends ItemTalisman {
 
 	@Override
 	public void perform(ItemStack stack, EntityPlayer player) {
-		if (!player.capabilities.isCreativeMode && player.isInWater()) {
+		player.setAir(300);
 
-		}
 	}
 }

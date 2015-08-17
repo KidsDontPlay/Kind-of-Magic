@@ -8,6 +8,7 @@ import mrriegel.rwl.item.CrystalBag;
 import mrriegel.rwl.item.Crysthal;
 import mrriegel.rwl.item.Drop;
 import mrriegel.rwl.item.Dung;
+import mrriegel.rwl.item.ItemBreather;
 import mrriegel.rwl.item.ItemFeeder;
 import mrriegel.rwl.item.ItemFlyer;
 import mrriegel.rwl.item.ItemRepair;
@@ -55,6 +56,7 @@ public class ModItems {
 	public static Item repair = new ItemRepair();
 	public static Item stepper = new ItemStepper();
 	public static Item flyer = new ItemFlyer();
+	public static Item breather = new ItemBreather();
 
 	public static void init() {
 		GameRegistry.registerItem(bloodie, "bloodie");
@@ -83,6 +85,7 @@ public class ModItems {
 		GameRegistry.registerItem(repair, "repair");
 		GameRegistry.registerItem(stepper, "stepper");
 		GameRegistry.registerItem(flyer, "flyer");
+		GameRegistry.registerItem(breather, "breather");
 
 	}
 }

@@ -18,8 +18,6 @@ public class ItemFlyer extends ItemTalisman {
 	@Override
 	public void perform(ItemStack stack, EntityPlayer player) {
 		player.capabilities.allowFlying = true;
-		System.out.println("light: " + player.capabilities.allowFlying);
-		System.out.println("is: " + player.capabilities.isFlying);
 	}
 
 	@SubscribeEvent
@@ -58,9 +56,10 @@ public class ItemFlyer extends ItemTalisman {
 
 				}
 			}
-			if (!anti) {
+			if (!anti && !player.capabilities.isCreativeMode) {
 				player.capabilities.allowFlying = false;
-				player.capabilities.isFlying = false;
+				if (player.capabilities.isFlying)
+					player.capabilities.isFlying = false;
 			}
 		}
 	}
