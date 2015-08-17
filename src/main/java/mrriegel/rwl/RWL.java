@@ -7,6 +7,7 @@ import mrriegel.rwl.init.CraftingRecipes;
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.init.RitualRecipes;
+import mrriegel.rwl.item.ItemFlyer;
 import mrriegel.rwl.item.ItemStepper;
 import mrriegel.rwl.packet.Packet;
 import mrriegel.rwl.packet.PacketHandler;
@@ -56,6 +57,8 @@ public class RWL {
 		MinecraftForge.EVENT_BUS.register(new ToolEventHandler());
 		MinecraftForge.EVENT_BUS.register(new DropEventHandler());
 		MinecraftForge.EVENT_BUS.register(new ItemStepper());
+		MinecraftForge.EVENT_BUS.register(new ItemFlyer());
+
 		CraftingRecipes.init();
 		RitualRecipes.init();
 		// ClientProxy.init();
