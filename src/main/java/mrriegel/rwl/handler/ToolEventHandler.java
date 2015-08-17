@@ -92,9 +92,10 @@ public class ToolEventHandler {
 				if (player.getHeldItem().getItem() instanceof ItemFood) {
 					ItemFood iff = (ItemFood) player.getHeldItem().getItem();
 					iff.onEaten(player.getHeldItem(), player.worldObj, player);
+					System.out.println("ate!!");
 				}
 			}
-			System.out.println("ate!!");
+
 			ItemStack stack = player.getHeldItem();
 			if (player.getHeldItem().getItem().equals(ModItems.nevpick)
 					&& stack.getTagCompound() != null

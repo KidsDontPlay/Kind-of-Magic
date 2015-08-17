@@ -3,6 +3,7 @@ package mrriegel.rwl.item;
 import java.util.List;
 import java.util.Vector;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import mrriegel.rwl.RWL;
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.gui.GuiIDs;
@@ -178,7 +179,7 @@ public class NevAxe extends ItemAxe {
 
 			if (world.getBlock(bl.x, bl.y, bl.z).getUnlocalizedName()
 					.equals(block.getUnlocalizedName())
-					&& world.getBlockMetadata(bl.x, bl.y, bl.z)%4 == l) {
+					&& world.getBlockMetadata(bl.x, bl.y, bl.z) % 4 == l) {
 				MyUtils.breakWithFortune(world, bl.x, bl.y, bl.z, 0);
 				stack.setItemDamage(stack.getItemDamage() + 1);
 				if (stack.getItemDamage() > MATERIAL.getMaxUses())
