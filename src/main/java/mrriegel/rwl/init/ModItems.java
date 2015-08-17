@@ -14,6 +14,7 @@ import mrriegel.rwl.item.ItemFlyer;
 import mrriegel.rwl.item.ItemRepair;
 import mrriegel.rwl.item.ItemSprinter;
 import mrriegel.rwl.item.ItemStepper;
+import mrriegel.rwl.item.ItemVision;
 import mrriegel.rwl.item.MazeDust;
 import mrriegel.rwl.item.Nev;
 import mrriegel.rwl.item.NevAxe;
@@ -57,6 +58,7 @@ public class ModItems {
 	public static Item stepper = new ItemStepper();
 	public static Item flyer = new ItemFlyer();
 	public static Item breather = new ItemBreather();
+	public static Item vision = new ItemVision();
 
 	public static void init() {
 		GameRegistry.registerItem(bloodie, "bloodie");
@@ -86,6 +88,7 @@ public class ModItems {
 		GameRegistry.registerItem(stepper, "stepper");
 		GameRegistry.registerItem(flyer, "flyer");
 		GameRegistry.registerItem(breather, "breather");
+		GameRegistry.registerItem(vision, "vision");
 
 	}
 }
