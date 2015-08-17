@@ -8,6 +8,8 @@ import mrriegel.rwl.item.CrystalBag;
 import mrriegel.rwl.item.Crysthal;
 import mrriegel.rwl.item.Drop;
 import mrriegel.rwl.item.Dung;
+import mrriegel.rwl.item.ItemFeeder;
+import mrriegel.rwl.item.ItemSprinter;
 import mrriegel.rwl.item.MazeDust;
 import mrriegel.rwl.item.Nev;
 import mrriegel.rwl.item.NevAxe;
@@ -45,6 +47,8 @@ public class ModItems {
 	public static Item drop = new Drop();
 	public static Item tbag = new TaliBag();
 	public static Item dung = new Dung();
+	public static Item feeder = new ItemFeeder();
+	public static Item sprinter = new ItemSprinter();
 
 	public static void init() {
 		GameRegistry.registerItem(bloodie, "bloodie");
@@ -68,6 +72,8 @@ public class ModItems {
 		GameRegistry.registerItem(drop, "drop");
 		GameRegistry.registerItem(tbag, "tbag");
 		GameRegistry.registerItem(dung, "dung");
+		GameRegistry.registerItem(feeder, "feeder");
+		GameRegistry.registerItem(sprinter, "sprinter");
 
 	}
 }

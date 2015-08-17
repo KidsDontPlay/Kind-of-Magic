@@ -4,6 +4,7 @@ import mrriegel.rwl.RWL;
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.gui.GuiIDs;
 import mrriegel.rwl.inventory.InventoryNevTool;
+import mrriegel.rwl.inventory.InventoryTaliBag;
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,11 +38,13 @@ public class TaliBag extends Item {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity player,
 			int p_77663_4_, boolean p_77663_5_) {
+		if (stack.getTagCompound() == null)
+			return;
 		for (int i = 0; i < 15; i++) {
 			ItemStack invStack = ItemStack
 					.loadItemStackFromNBT(stack
 							.getTagCompound()
-							.getTagList(InventoryNevTool.tagName,
+							.getTagList(InventoryTaliBag.tagName,
 									stack.getTagCompound().getId())
 							.getCompoundTagAt(i));
 			if (invStack != null && invStack.getItem() instanceof ItemTalisman) {

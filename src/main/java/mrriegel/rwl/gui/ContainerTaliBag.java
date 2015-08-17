@@ -6,6 +6,7 @@ import mrriegel.rwl.gui.TaliSlot;
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.inventory.InventoryBag;
 import mrriegel.rwl.inventory.InventoryTaliBag;
+import mrriegel.rwl.item.ItemTalisman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -58,8 +59,9 @@ public class ContainerTaliBag extends Container {
 		// null checks and checks if the item can be stacked (maxStackSize > 1)
 		if (slotObject != null && slotObject.getHasStack()) {
 			ItemStack stackInSlot = slotObject.getStack();
-			// if (!stackInSlot.getItem().equals(ModItems.cry))
-			// return null;
+			if (!stackInSlot.getItem().equals(ModItems.nev)
+					&& !(stackInSlot.getItem() instanceof ItemTalisman))
+				return null;
 			stack = stackInSlot.copy();
 
 			// merges the item into player inventory since its in the tileEntity

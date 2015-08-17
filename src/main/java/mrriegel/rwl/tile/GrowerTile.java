@@ -14,23 +14,40 @@ public class GrowerTile extends TileEntity {
 
 	@Override
 	public void updateEntity() {
-		for (int x = xCoord - 3; x < xCoord + 3; x++) {
-			for (int y = yCoord - 1; y < yCoord + 4; y++) {
-				for (int z = zCoord - 3; z < zCoord + 3; z++) {
-					if (x == xCoord && y == yCoord && z == zCoord)
-						continue;
-					Block block = worldObj.getBlock(x, y, z);
-					if (block instanceof IPlantable
-							|| block instanceof IGrowable) {
-						if (worldObj.rand.nextInt(120) == 0 && !advanced()) {
-							block.updateTick(worldObj, x, y, z, worldObj.rand);
-						} else if (worldObj.rand.nextInt(70) == 0 && advanced()) {
-							block.updateTick(worldObj, x, y, z, worldObj.rand);
+		if (advanced())
+			for (int x = xCoord - 3; x < xCoord + 3; x++) {
+				for (int y = yCoord - 1; y < yCoord + 4; y++) {
+					for (int z = zCoord - 3; z < zCoord + 3; z++) {
+						if (x == xCoord && y == yCoord && z == zCoord)
+							continue;
+						Block block = worldObj.getBlock(x, y, z);
+						if (block instanceof IPlantable
+								|| block instanceof IGrowable) {
+							if (worldObj.rand.nextInt(70) == 0) {
+								block.updateTick(worldObj, x, y, z,
+										worldObj.rand);
+							}
 						}
 					}
 				}
 			}
-		}
+		else
+			for (int x = xCoord - 1; x < xCoord + 1; x++) {
+				for (int y = yCoord - 1; y < yCoord + 4; y++) {
+					for (int z = zCoord - 1; z < zCoord + 1; z++) {
+						if (x == xCoord && y == yCoord && z == zCoord)
+							continue;
+						Block block = worldObj.getBlock(x, y, z);
+						if (block instanceof IPlantable
+								|| block instanceof IGrowable) {
+							if (worldObj.rand.nextInt(140) == 0) {
+								block.updateTick(worldObj, x, y, z,
+										worldObj.rand);
+							}
+						}
+					}
+				}
+			}
 	}
 
 	private boolean advanced() {

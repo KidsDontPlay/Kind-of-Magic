@@ -1,6 +1,7 @@
 package mrriegel.rwl.gui;
 
 import mrriegel.rwl.init.ModItems;
+import mrriegel.rwl.item.ItemTalisman;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -14,8 +15,9 @@ public class TaliSlot extends Slot {
 
 	@Override
 	public boolean isItemValid(ItemStack p) {
-		// TODO
-		// return p.getItem().equals(ModItems.cry);
-		return true;
+
+		return p.getItem().equals(ModItems.nev)
+				|| p.getItem() instanceof ItemTalisman;
+
 	}
 }
