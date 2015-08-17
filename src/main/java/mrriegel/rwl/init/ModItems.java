@@ -11,6 +11,7 @@ import mrriegel.rwl.item.Dung;
 import mrriegel.rwl.item.ItemFeeder;
 import mrriegel.rwl.item.ItemRepair;
 import mrriegel.rwl.item.ItemSprinter;
+import mrriegel.rwl.item.ItemStepper;
 import mrriegel.rwl.item.MazeDust;
 import mrriegel.rwl.item.Nev;
 import mrriegel.rwl.item.NevAxe;
@@ -51,6 +52,7 @@ public class ModItems {
 	public static Item feeder = new ItemFeeder();
 	public static Item sprinter = new ItemSprinter();
 	public static Item repair = new ItemRepair();
+	public static Item stepper = new ItemStepper();
 
 	public static void init() {
 		GameRegistry.registerItem(bloodie, "bloodie");
@@ -77,6 +79,7 @@ public class ModItems {
 		GameRegistry.registerItem(feeder, "feeder");
 		GameRegistry.registerItem(sprinter, "sprinter");
 		GameRegistry.registerItem(repair, "repair");
+		GameRegistry.registerItem(stepper, "stepper");
 
 	}
 }
