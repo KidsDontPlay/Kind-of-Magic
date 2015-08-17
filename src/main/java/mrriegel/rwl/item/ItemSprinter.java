@@ -15,10 +15,13 @@ public class ItemSprinter extends ItemTalisman {
 
 	@Override
 	public void perform(ItemStack stack, EntityPlayer player) {
-		if ((player.onGround || player.capabilities.isFlying)
-				&& player.moveForward > 0F
-				&& !player.isInsideOfMaterial(Material.water))
-			player.moveFlying(0F, 1F, player.capabilities.isFlying ? 0.14F
-					: 0.14F * 2);
+		if (player.onGround && player.moveForward > 0F
+				&& !player.isInsideOfMaterial(Material.water)
+				&& !player.isSprinting())
+			player.moveFlying(0F, 1F, 0.05F);
+		else if (player.onGround && player.moveForward > 0F
+				&& !player.isInsideOfMaterial(Material.water)
+				&& player.isSprinting())
+			player.moveFlying(0F, 1F, 0.3F);
 	}
 }

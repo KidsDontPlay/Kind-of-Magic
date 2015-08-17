@@ -16,8 +16,7 @@ public class TaliSlot extends Slot {
 	@Override
 	public boolean isItemValid(ItemStack p) {
 
-		return p.getItem().equals(ModItems.nev)
-				|| p.getItem() instanceof ItemTalisman;
+		return p.getItem() instanceof ItemTalisman;
 
 	}
 }

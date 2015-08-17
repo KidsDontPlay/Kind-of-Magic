@@ -31,7 +31,7 @@ import com.google.common.collect.Multimap;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class NevSword extends ItemSword {
+public class NevSword extends ItemSword implements INev {
 	public static ToolMaterial MATERIAL = EnumHelper.addToolMaterial(
 			"MATERIAL", 3, 2222, 10.0F, 5.0F, 1);
 

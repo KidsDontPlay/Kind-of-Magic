@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.util.EnumHelper;
 
-public class NevPick extends ItemPickaxe {
+public class NevPick extends ItemPickaxe implements INev {
 	public static ToolMaterial MATERIAL = EnumHelper.addToolMaterial(
 			"MATERIAL", 3, 2222, 10.0F, 5.0F, 1);
 
@@ -155,7 +155,8 @@ public class NevPick extends ItemPickaxe {
 			radius(stack, x, y, z, player, 2);
 			return false;
 		case 2:
-			if (player.getFoodStats().getFoodLevel() <= 2)
+			if (player.getFoodStats().getFoodLevel() <= 2
+					&& !player.capabilities.isCreativeMode)
 				return false;
 			radius(stack, x, y, z, player, 3);
 			player.getFoodStats().setFoodLevel(

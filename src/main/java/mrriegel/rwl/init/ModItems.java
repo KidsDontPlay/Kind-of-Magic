@@ -9,6 +9,7 @@ import mrriegel.rwl.item.Crysthal;
 import mrriegel.rwl.item.Drop;
 import mrriegel.rwl.item.Dung;
 import mrriegel.rwl.item.ItemFeeder;
+import mrriegel.rwl.item.ItemRepair;
 import mrriegel.rwl.item.ItemSprinter;
 import mrriegel.rwl.item.MazeDust;
 import mrriegel.rwl.item.Nev;
@@ -49,6 +50,7 @@ public class ModItems {
 	public static Item dung = new Dung();
 	public static Item feeder = new ItemFeeder();
 	public static Item sprinter = new ItemSprinter();
+	public static Item repair = new ItemRepair();
 
 	public static void init() {
 		GameRegistry.registerItem(bloodie, "bloodie");
@@ -74,6 +76,7 @@ public class ModItems {
 		GameRegistry.registerItem(dung, "dung");
 		GameRegistry.registerItem(feeder, "feeder");
 		GameRegistry.registerItem(sprinter, "sprinter");
+		GameRegistry.registerItem(repair, "repair");
 
 	}
 }

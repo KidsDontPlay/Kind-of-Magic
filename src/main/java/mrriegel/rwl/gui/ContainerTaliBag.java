@@ -59,8 +59,7 @@ public class ContainerTaliBag extends Container {
 		// null checks and checks if the item can be stacked (maxStackSize > 1)
 		if (slotObject != null && slotObject.getHasStack()) {
 			ItemStack stackInSlot = slotObject.getStack();
-			if (!stackInSlot.getItem().equals(ModItems.nev)
-					&& !(stackInSlot.getItem() instanceof ItemTalisman))
+			if (!(stackInSlot.getItem() instanceof ItemTalisman))
 				return null;
 			stack = stackInSlot.copy();
 
