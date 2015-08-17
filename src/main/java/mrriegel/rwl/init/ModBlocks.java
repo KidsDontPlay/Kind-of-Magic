@@ -2,12 +2,14 @@ package mrriegel.rwl.init;
 
 import mrriegel.rwl.block.AOBlock;
 import mrriegel.rwl.block.AirOrus;
+import mrriegel.rwl.block.Grower;
 import mrriegel.rwl.block.Keep;
 import mrriegel.rwl.block.Mazer;
 import mrriegel.rwl.block.MazerB;
 import mrriegel.rwl.block.OBlock;
 import mrriegel.rwl.block.Orus;
 import mrriegel.rwl.reference.Reference;
+import mrriegel.rwl.tile.GrowerTile;
 import mrriegel.rwl.tile.MazerTile;
 import net.minecraft.block.Block;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -22,6 +24,7 @@ public class ModBlocks {
 	public static Block keep = new Keep();
 	public static Block oblock = new OBlock();
 	public static Block aoblock = new AOBlock();
+	public static Block grower = new Grower();
 
 	public static void init() {
 		GameRegistry.registerBlock(mazer, "mazer");
@@ -31,8 +34,9 @@ public class ModBlocks {
 		GameRegistry.registerBlock(keep, "keep");
 		GameRegistry.registerBlock(oblock, "oblock");
 		GameRegistry.registerBlock(aoblock, "aoblock");
+		GameRegistry.registerBlock(grower, "grower");
 
 		GameRegistry.registerTileEntity(MazerTile.class, "mazertile");
+		GameRegistry.registerTileEntity(GrowerTile.class, "growertile");
 	}
-
 }
