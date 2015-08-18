@@ -10,6 +10,7 @@ import mrriegel.rwl.item.Drop;
 import mrriegel.rwl.item.Dung;
 import mrriegel.rwl.item.ItemBreather;
 import mrriegel.rwl.item.ItemCooler;
+import mrriegel.rwl.item.ItemDecor;
 import mrriegel.rwl.item.ItemFeeder;
 import mrriegel.rwl.item.ItemFlyer;
 import mrriegel.rwl.item.ItemJumper;
@@ -61,6 +62,7 @@ public class ModItems {
 	public static Item vision = new ItemVision();
 	public static Item jumper = new ItemJumper();
 	public static Item cooler = new ItemCooler();
+	public static Item decor = new ItemDecor();
 	public static Item dung = new Dung();
 	public static Item up = new Up();
 
@@ -95,6 +97,7 @@ public class ModItems {
 		GameRegistry.registerItem(vision, "vision");
 		GameRegistry.registerItem(jumper, "jumper");
 		GameRegistry.registerItem(cooler, "cooler");
+		GameRegistry.registerItem(decor, "decor");
 
 	}
 }

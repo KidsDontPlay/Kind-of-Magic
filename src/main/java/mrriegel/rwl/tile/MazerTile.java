@@ -3,7 +3,6 @@ package mrriegel.rwl.tile;
 import java.util.Random;
 
 import mrriegel.rwl.block.MazerB;
-import mrriegel.rwl.init.RitualRecipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;

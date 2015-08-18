@@ -1,6 +1,5 @@
 package mrriegel.rwl.gui;
 
-import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.inventory.InventoryTaliBag;
 import mrriegel.rwl.item.ItemTalisman;
 import net.minecraft.inventory.IInventory;

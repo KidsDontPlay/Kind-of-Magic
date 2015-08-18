@@ -1,13 +1,12 @@
 package mrriegel.rwl.item;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.inventory.InventoryTaliBag;
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class ItemJumper extends ItemTalisman {
 	public ItemJumper() {

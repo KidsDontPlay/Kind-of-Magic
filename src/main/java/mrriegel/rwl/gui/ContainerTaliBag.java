@@ -1,10 +1,5 @@
 package mrriegel.rwl.gui;
 
-import mrriegel.rwl.gui.CrySlot;
-import mrriegel.rwl.gui.EvilSlot;
-import mrriegel.rwl.gui.TaliSlot;
-import mrriegel.rwl.init.ModItems;
-import mrriegel.rwl.inventory.InventoryBag;
 import mrriegel.rwl.inventory.InventoryTaliBag;
 import mrriegel.rwl.item.ItemTalisman;
 import net.minecraft.entity.player.EntityPlayer;

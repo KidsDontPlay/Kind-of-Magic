@@ -1,11 +1,8 @@
 package mrriegel.rwl.item;
 
-import mrriegel.rwl.init.ModItems;
-import mrriegel.rwl.inventory.InventoryTaliBag;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.NBTHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 
 public class ItemCooler extends ItemTalisman {

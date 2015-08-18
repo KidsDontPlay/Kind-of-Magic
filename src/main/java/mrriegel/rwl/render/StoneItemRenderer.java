@@ -1,10 +1,5 @@
 package mrriegel.rwl.render;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import mrriegel.rwl.tile.MazerTile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderItem;
