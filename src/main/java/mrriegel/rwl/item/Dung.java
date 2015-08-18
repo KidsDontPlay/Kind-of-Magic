@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 public class Dung extends ItemEdelstein {
 	public Dung() {
 		super();
-		cooldown = 12000;
+		cooldown = 18000;
 		this.setUnlocalizedName(Reference.MOD_ID + ":" + "dung");
 		this.setTextureName(Reference.MOD_ID + ":" + "dung");
 	}
