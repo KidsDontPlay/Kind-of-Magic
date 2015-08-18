@@ -1,15 +1,11 @@
 package mrriegel.rwl.item;
 
-import java.util.Random;
-
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.MyUtils;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockCarrot;
 import net.minecraft.block.BlockCrops;
-import net.minecraft.block.IGrowable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;

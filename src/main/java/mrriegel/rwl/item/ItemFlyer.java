@@ -56,7 +56,8 @@ public class ItemFlyer extends ItemTalisman {
 
 				}
 			}
-			if (!anti && !player.capabilities.isCreativeMode) {
+			if ((!anti && !player.capabilities.isCreativeMode)
+					|| !TaliBag.validCount(player)) {
 				player.capabilities.allowFlying = false;
 				if (player.capabilities.isFlying)
 					player.capabilities.isFlying = false;

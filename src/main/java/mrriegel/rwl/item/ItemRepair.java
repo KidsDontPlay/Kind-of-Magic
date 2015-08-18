@@ -1,13 +1,8 @@
 package mrriegel.rwl.item;
 
-import java.util.Arrays;
-
-import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.reference.Reference;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 
 public class ItemRepair extends ItemTalisman {

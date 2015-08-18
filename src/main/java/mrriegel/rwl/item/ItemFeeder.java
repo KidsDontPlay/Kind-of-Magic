@@ -1,9 +1,7 @@
 package mrriegel.rwl.item;
 
 import mrriegel.rwl.reference.Reference;
-import net.minecraft.block.BlockStaticLiquid;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 

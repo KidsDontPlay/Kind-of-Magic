@@ -1,6 +1,5 @@
 package mrriegel.rwl.item;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.inventory.InventoryTaliBag;
 import mrriegel.rwl.reference.Reference;
@@ -9,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class ItemVision extends ItemTalisman {
 	public ItemVision() {
@@ -58,7 +58,8 @@ public class ItemVision extends ItemTalisman {
 
 				}
 			}
-			if (!anti && player.isPotionActive(Potion.nightVision.id)) {
+			if ((!anti && player.isPotionActive(Potion.nightVision.id))
+					|| !TaliBag.validCount(player)) {
 				PotionEffect nightVision = null;
 				if (player.isPotionActive(Potion.nightVision.id)) {
 					nightVision = player
@@ -71,7 +72,6 @@ public class ItemVision extends ItemTalisman {
 						player.removePotionEffect(Potion.nightVision.id);
 					}
 				}
-				System.out.println("do");
 			}
 		}
 	}

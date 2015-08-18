@@ -3,7 +3,6 @@ package mrriegel.rwl.item;
 import java.util.List;
 import java.util.Vector;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import mrriegel.rwl.RWL;
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.gui.GuiIDs;
