@@ -4,6 +4,7 @@ import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.MyUtils;
+import mrriegel.rwl.utility.NBTHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.entity.Entity;
@@ -11,38 +12,30 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
-public class Dung extends Item {
+public class Dung extends ItemEdelstein {
 	public Dung() {
 		super();
-
-		this.setMaxDamage(2000);
-		this.setCreativeTab(CreativeTab.tab1);
+		cooldown = 12000;
 		this.setUnlocalizedName(Reference.MOD_ID + ":" + "dung");
 		this.setTextureName(Reference.MOD_ID + ":" + "dung");
-		this.setMaxStackSize(1);
-
-	}
-
-	@Override
-	public boolean isDamageable() {
-		return true;
 	}
 
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world,
-			int x, int y, int z, int p_77648_7_, float p_77648_8_,
-			float p_77648_9_, float p_77648_10_) {
-
-		System.out.println("damg: " + stack.getItemDamage());
-
-		if (world.isRemote || stack.getItemDamage() != 0)
+			int x, int y, int z, int s, float xs, float ys, float zs) {
+		if (world.isRemote || NBTHelper.getInt(stack, "cooldown") != 0)
 			return false;
 		Block block = world.getBlock(x, y, z);
+		if (block == null)
+			return false;
 		if (block instanceof BlockCrops) {
 			for (BlockLocation loc : MyUtils.getAroundBlocks(world, x, y, z)) {
-				if (!world.getBlock(loc.x, loc.y, loc.z).equals(Blocks.air))
+				if (!world.getBlock(loc.x, loc.y, loc.z).equals(Blocks.air)
+						&& !world.getBlock(loc.x, loc.y, loc.z).equals(
+								Blocks.tallgrass))
 					continue;
 				if (world.getBlock(loc.x, loc.y - 1, loc.z)
 						.equals(Blocks.grass)
@@ -56,29 +49,15 @@ public class Dung extends Item {
 					world.setBlock(loc.x, loc.y, loc.z, block, 0, 2);
 				}
 			}
-
+			NBTHelper.setInteger(stack, "cooldown", cooldown);
 		}
-		stack.setItemDamage(800);
+
 		return true;
 	}
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack p_77659_1_, World p_77659_2_,
 			EntityPlayer p_77659_3_) {
-		if (p_77659_2_.isRemote)
-			System.out.println("clie: " + p_77659_1_.getItemDamage());
-		else {
-
-			System.out.println("serv: " + p_77659_1_.getItemDamage());
-		}
-		return super.onItemRightClick(p_77659_1_, p_77659_2_, p_77659_3_);
-	}
-
-	@Override
-	public void onUpdate(ItemStack par1ItemStack, World par2World,
-			Entity par3Entity, int par4, boolean par5) {
-		// if (par1ItemStack.isItemDamaged())
-		// par1ItemStack.setItemDamage(par1ItemStack.getItemDamage() - 1);
-		// System.out.println("hohoho: " + par1ItemStack.getItemDamage());
+		return p_77659_1_;
 	}
 }

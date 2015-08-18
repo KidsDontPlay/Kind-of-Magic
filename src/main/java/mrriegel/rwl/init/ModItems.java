@@ -11,6 +11,7 @@ import mrriegel.rwl.item.Dung;
 import mrriegel.rwl.item.ItemBreather;
 import mrriegel.rwl.item.ItemFeeder;
 import mrriegel.rwl.item.ItemFlyer;
+import mrriegel.rwl.item.ItemJumper;
 import mrriegel.rwl.item.ItemRepair;
 import mrriegel.rwl.item.ItemSprinter;
 import mrriegel.rwl.item.ItemStepper;
@@ -47,11 +48,9 @@ public class ModItems {
 	public static Item aodust = new AirOreDust();
 	public static Item nev = new Nev();
 	public static Item ostick = new OreStick();
-	public static Item up = new Up();
 	public static Item wnugget = new WNugget();
 	public static Item drop = new Drop();
 	public static Item tbag = new TaliBag();
-	public static Item dung = new Dung();
 	public static Item feeder = new ItemFeeder();
 	public static Item sprinter = new ItemSprinter();
 	public static Item repair = new ItemRepair();
@@ -59,6 +58,9 @@ public class ModItems {
 	public static Item flyer = new ItemFlyer();
 	public static Item breather = new ItemBreather();
 	public static Item vision = new ItemVision();
+	public static Item jumper = new ItemJumper();
+	public static Item dung = new Dung();
+	public static Item up = new Up();
 
 	public static void init() {
 		GameRegistry.registerItem(bloodie, "bloodie");
@@ -89,6 +91,7 @@ public class ModItems {
 		GameRegistry.registerItem(flyer, "flyer");
 		GameRegistry.registerItem(breather, "breather");
 		GameRegistry.registerItem(vision, "vision");
+		GameRegistry.registerItem(jumper, "jumper");
 
 	}
 }

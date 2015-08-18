@@ -40,7 +40,7 @@ public class GrowerTile extends TileEntity {
 						Block block = worldObj.getBlock(x, y, z);
 						if (block instanceof IPlantable
 								|| block instanceof IGrowable) {
-							if (worldObj.rand.nextInt(140) == 0) {
+							if (worldObj.rand.nextInt(130) == 0) {
 								block.updateTick(worldObj, x, y, z,
 										worldObj.rand);
 							}

@@ -20,6 +20,7 @@ public abstract class ItemTalisman extends Item {
 		MinecraftForge.EVENT_BUS.register(new ItemStepper());
 		MinecraftForge.EVENT_BUS.register(new ItemFlyer());
 		MinecraftForge.EVENT_BUS.register(new ItemVision());
+		MinecraftForge.EVENT_BUS.register(new ItemJumper());
 	}
 
 }
