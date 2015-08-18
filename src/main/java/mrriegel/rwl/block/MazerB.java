@@ -6,7 +6,7 @@ import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.tile.MazerTile;
 import mrriegel.rwl.utility.BlockLocation;
-import mrriegel.rwl.utility.MyUtils;
+import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -252,30 +252,30 @@ public class MazerB extends BlockContainer {
 		if (!world.getBlock(x, y - 1, z).equals(ModBlocks.mazer)) {
 			return false;
 		}
-		for (BlockLocation bl : MyUtils.getAroundBlocks(world, x, y - 1, z)) {
+		for (BlockLocation bl : RWLUtils.getAroundBlocks(world, x, y - 1, z)) {
 			if (!world.getBlock(bl.x, bl.y, bl.z).equals(ModBlocks.mazer)) {
 				return false;
 			}
 		}
-		for (BlockLocation bl : MyUtils.getAroundBlocks(world, x + 1, y - 1,
+		for (BlockLocation bl : RWLUtils.getAroundBlocks(world, x + 1, y - 1,
 				z + 1)) {
 			if (!world.getBlock(bl.x, bl.y, bl.z).equals(ModBlocks.mazer)) {
 				return false;
 			}
 		}
-		for (BlockLocation bl : MyUtils.getAroundBlocks(world, x + 1, y - 1,
+		for (BlockLocation bl : RWLUtils.getAroundBlocks(world, x + 1, y - 1,
 				z - 1)) {
 			if (!world.getBlock(bl.x, bl.y, bl.z).equals(ModBlocks.mazer)) {
 				return false;
 			}
 		}
-		for (BlockLocation bl : MyUtils.getAroundBlocks(world, x - 1, y - 1,
+		for (BlockLocation bl : RWLUtils.getAroundBlocks(world, x - 1, y - 1,
 				z + 1)) {
 			if (!world.getBlock(bl.x, bl.y, bl.z).equals(ModBlocks.mazer)) {
 				return false;
 			}
 		}
-		for (BlockLocation bl : MyUtils.getAroundBlocks(world, x - 1, y - 1,
+		for (BlockLocation bl : RWLUtils.getAroundBlocks(world, x - 1, y - 1,
 				z - 1)) {
 			if (!world.getBlock(bl.x, bl.y, bl.z).equals(ModBlocks.mazer)) {
 				return false;

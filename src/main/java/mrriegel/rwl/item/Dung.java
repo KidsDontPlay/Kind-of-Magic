@@ -2,7 +2,7 @@ package mrriegel.rwl.item;
 
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.BlockLocation;
-import mrriegel.rwl.utility.MyUtils;
+import mrriegel.rwl.utility.RWLUtils;
 import mrriegel.rwl.utility.NBTHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
@@ -28,7 +28,7 @@ public class Dung extends ItemEdelstein {
 		if (block == null)
 			return false;
 		if (block instanceof BlockCrops) {
-			for (BlockLocation loc : MyUtils.getAroundBlocks(world, x, y, z)) {
+			for (BlockLocation loc : RWLUtils.getAroundBlocks(world, x, y, z)) {
 				if (!world.getBlock(loc.x, loc.y, loc.z).equals(Blocks.air)
 						&& !world.getBlock(loc.x, loc.y, loc.z).equals(
 								Blocks.tallgrass))

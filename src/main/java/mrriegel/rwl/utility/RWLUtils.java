@@ -17,7 +17,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-public class MyUtils {
+public class RWLUtils {
 	public static ArrayList<BlockLocation> getAroundBlocks(World world, int x,
 			int y, int z) {
 		ArrayList<BlockLocation> lis = new ArrayList<BlockLocation>();

@@ -83,11 +83,9 @@ public class ModItems {
 		GameRegistry.registerItem(odust, "oredust");
 		GameRegistry.registerItem(nev, "nev");
 		GameRegistry.registerItem(ostick, "ostick");
-		GameRegistry.registerItem(up, "up");
 		GameRegistry.registerItem(wnugget, "wnugget");
 		GameRegistry.registerItem(drop, "drop");
 		GameRegistry.registerItem(tbag, "tbag");
-		GameRegistry.registerItem(dung, "dung");
 		GameRegistry.registerItem(feeder, "feeder");
 		GameRegistry.registerItem(sprinter, "sprinter");
 		GameRegistry.registerItem(repair, "repair");
@@ -98,6 +96,8 @@ public class ModItems {
 		GameRegistry.registerItem(jumper, "jumper");
 		GameRegistry.registerItem(cooler, "cooler");
 		GameRegistry.registerItem(decor, "decor");
+		GameRegistry.registerItem(up, "up");
+		GameRegistry.registerItem(dung, "dung");
 
 	}
 }

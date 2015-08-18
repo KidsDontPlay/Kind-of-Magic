@@ -10,7 +10,7 @@ import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.inventory.InventoryNevTool;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.BlockLocation;
-import mrriegel.rwl.utility.MyUtils;
+import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -178,12 +178,12 @@ public class NevPick extends ItemPickaxe implements INev {
 
 	private void fortune(ItemStack stack, int x, int y, int z,
 			EntityPlayer player, int i) {
-		MyUtils.breakWithFortune(player.worldObj, x, y, z, 3);
+		RWLUtils.breakWithFortune(player.worldObj, x, y, z, 3);
 
 	}
 
 	private void silk(ItemStack stack, int x, int y, int z, EntityPlayer player) {
-		MyUtils.breakWithSilk(player.worldObj, x, y, z);
+		RWLUtils.breakWithSilk(player.worldObj, x, y, z);
 
 	}
 
@@ -194,7 +194,7 @@ public class NevPick extends ItemPickaxe implements INev {
 		int meta = world.getBlockMetadata(x, y, z);
 		int direction = -1;
 		Vector<BlockLocation> v = new Vector<BlockLocation>();
-		MovingObjectPosition mop = MyUtils.raytraceFromEntity(world, player,
+		MovingObjectPosition mop = RWLUtils.raytraceFromEntity(world, player,
 				false, 4.5d);
 
 		if (mop == null) {
@@ -240,7 +240,7 @@ public class NevPick extends ItemPickaxe implements INev {
 							meta2).equals("pickaxe"))
 					|| bl.equals(Blocks.brick_block)
 					|| block.equals(Blocks.quartz_block)) {
-				MyUtils.breakWithFortune(world, b.x, b.y, b.z, 0);
+				RWLUtils.breakWithFortune(world, b.x, b.y, b.z, 0);
 				stack.setItemDamage(stack.getItemDamage() + 1);
 				if (stack.getItemDamage() > MATERIAL.getMaxUses())
 					return;

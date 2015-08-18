@@ -10,7 +10,7 @@ import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.inventory.InventoryNevTool;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.BlockLocation;
-import mrriegel.rwl.utility.MyUtils;
+import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.entity.player.EntityPlayer;
@@ -175,12 +175,12 @@ public class NevAxe extends ItemAxe implements INev {
 
 	private void chop2(ItemStack stack, int x, int y, int z, World world,
 			Block block, int l) {
-		for (BlockLocation bl : MyUtils.getNeighbors(world, x, y, z)) {
+		for (BlockLocation bl : RWLUtils.getNeighbors(world, x, y, z)) {
 
 			if (world.getBlock(bl.x, bl.y, bl.z).getUnlocalizedName()
 					.equals(block.getUnlocalizedName())
 					&& world.getBlockMetadata(bl.x, bl.y, bl.z) % 4 == l) {
-				MyUtils.breakWithFortune(world, bl.x, bl.y, bl.z, 0);
+				RWLUtils.breakWithFortune(world, bl.x, bl.y, bl.z, 0);
 				stack.setItemDamage(stack.getItemDamage() + 1);
 				if (stack.getItemDamage() > MATERIAL.getMaxUses())
 					break;
@@ -197,7 +197,7 @@ public class NevAxe extends ItemAxe implements INev {
 		int meta = world.getBlockMetadata(x, y, z);
 		int direction = -1;
 		Vector<BlockLocation> v = new Vector<BlockLocation>();
-		MovingObjectPosition mop = MyUtils.raytraceFromEntity(world, player,
+		MovingObjectPosition mop = RWLUtils.raytraceFromEntity(world, player,
 				false, 4.5d);
 
 		if (mop == null) {
@@ -231,7 +231,7 @@ public class NevAxe extends ItemAxe implements INev {
 		for (BlockLocation b : v) {
 			Block bl = world.getBlock(b.x, b.y, b.z);
 			if (ForgeHooks.isToolEffective(stack, bl, meta)) {
-				MyUtils.breakWithFortune(world, b.x, b.y, b.z, 0);
+				RWLUtils.breakWithFortune(world, b.x, b.y, b.z, 0);
 				stack.setItemDamage(stack.getItemDamage() + 1);
 				if (stack.getItemDamage() > MATERIAL.getMaxUses())
 					return;

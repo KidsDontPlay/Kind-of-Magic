@@ -8,7 +8,9 @@ import mrriegel.rwl.init.RitualRecipe;
 import mrriegel.rwl.init.RitualRecipes;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.tile.MazerTile;
+import mrriegel.rwl.utility.NBTHelper;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockCauldron;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -84,11 +86,9 @@ public class Keep extends Block {
 				&& MazerB.isConstruct(world, x, y - 2, z)) {
 
 			ItemStack stack = player.getHeldItem();
-			boolean tmp = false;
 			for (RitualRecipe r : RitualRecipes.lis) {
 				if (ItemStack.areItemStacksEqual(stack, r.getCat())) {
 					if (r.matches(tile.getInv(), world, player)) {
-						tmp = true;
 						if (!tile.isProcessing())
 							tile.setProcessing(true);
 						Random ran = new Random();

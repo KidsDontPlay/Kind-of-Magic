@@ -5,7 +5,7 @@ import java.util.Random;
 
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.utility.BlockLocation;
-import mrriegel.rwl.utility.MyUtils;
+import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -71,22 +71,22 @@ public class RWLWorld implements IWorldGenerator {
 			if (isSolid(x, i, z, world) && ran == 1) {
 				setB(x, i, z, ModBlocks.mazer, world);
 
-				for (BlockLocation l : MyUtils.getAroundBlocks(world, x, i, z)) {
+				for (BlockLocation l : RWLUtils.getAroundBlocks(world, x, i, z)) {
 					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
 				}
-				for (BlockLocation l : MyUtils.getAroundBlocks(world, x + 1, i,
+				for (BlockLocation l : RWLUtils.getAroundBlocks(world, x + 1, i,
 						z + 1)) {
 					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
 				}
-				for (BlockLocation l : MyUtils.getAroundBlocks(world, x + 1, i,
+				for (BlockLocation l : RWLUtils.getAroundBlocks(world, x + 1, i,
 						z - 1)) {
 					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
 				}
-				for (BlockLocation l : MyUtils.getAroundBlocks(world, x - 1, i,
+				for (BlockLocation l : RWLUtils.getAroundBlocks(world, x - 1, i,
 						z + 1)) {
 					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
 				}
-				for (BlockLocation l : MyUtils.getAroundBlocks(world, x - 1, i,
+				for (BlockLocation l : RWLUtils.getAroundBlocks(world, x - 1, i,
 						z - 1)) {
 					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
 				}
@@ -117,7 +117,7 @@ public class RWLWorld implements IWorldGenerator {
 	}
 
 	private boolean isSolid(int x, int i, int z, World world) {
-		ArrayList<BlockLocation> lis = MyUtils.getAroundBlocks(world, x, i, z);
+		ArrayList<BlockLocation> lis = RWLUtils.getAroundBlocks(world, x, i, z);
 		boolean res = true;
 		for (BlockLocation l : lis) {
 			if (world.getBlock(l.x, l.y, l.z).getMaterial()
