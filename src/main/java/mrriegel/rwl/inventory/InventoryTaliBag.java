@@ -9,6 +9,10 @@ import net.minecraft.nbt.NBTTagList;
 public class InventoryTaliBag implements IInventory {
 	private ItemStack[] inv;
 
+	public ItemStack[] getInv() {
+		return inv;
+	}
+
 	public static final int INV_SIZE = 15;
 	public static String tagName = "TaliBag";
 
@@ -146,5 +150,4 @@ public class InventoryTaliBag implements IInventory {
 	public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_) {
 		return false;
 	}
-
 }

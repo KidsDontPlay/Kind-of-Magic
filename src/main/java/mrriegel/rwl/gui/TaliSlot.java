@@ -1,6 +1,7 @@
 package mrriegel.rwl.gui;
 
 import mrriegel.rwl.init.ModItems;
+import mrriegel.rwl.inventory.InventoryTaliBag;
 import mrriegel.rwl.item.ItemTalisman;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -15,8 +16,20 @@ public class TaliSlot extends Slot {
 
 	@Override
 	public boolean isItemValid(ItemStack p) {
-
-		return p.getItem() instanceof ItemTalisman;
-
+		if (this.inventory instanceof InventoryTaliBag) {
+			InventoryTaliBag t = (InventoryTaliBag) this.inventory;
+			boolean in = false;
+			for (ItemStack tmp : t.getInv()) {
+				if (tmp == null)
+					continue;
+				if (tmp.getItem().equals(p.getItem())) {
+					in = true;
+					break;
+				}
+			}
+			return p.getItem() instanceof ItemTalisman && !in;
+		} else
+			System.out.println("this: " + this.inventory);
+		return false;
 	}
 }

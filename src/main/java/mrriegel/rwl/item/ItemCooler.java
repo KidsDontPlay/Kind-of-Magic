@@ -1,5 +1,7 @@
 package mrriegel.rwl.item;
 
+import mrriegel.rwl.init.ModItems;
+import mrriegel.rwl.inventory.InventoryTaliBag;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.NBTHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,6 +19,7 @@ public class ItemCooler extends ItemTalisman {
 	public void perform(ItemStack stack, EntityPlayer player) {
 		for (int i = 0; i < player.inventory.mainInventory.length; i++) {
 			ItemStack s = player.inventory.mainInventory[i];
+
 			if (s != null && s.getItem() instanceof ItemEdelstein) {
 				ItemEdelstein edel = (ItemEdelstein) s.getItem();
 				if (NBTHelper.getInt(s, "cooldown") != 0)

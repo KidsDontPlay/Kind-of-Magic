@@ -59,8 +59,19 @@ public class ContainerTaliBag extends Container {
 		// null checks and checks if the item can be stacked (maxStackSize > 1)
 		if (slotObject != null && slotObject.getHasStack()) {
 			ItemStack stackInSlot = slotObject.getStack();
-			if (!(stackInSlot.getItem() instanceof ItemTalisman))
+			boolean in = false;
+			for (ItemStack tmp : inv.getInv()) {
+				if (tmp == null)
+					continue;
+				if (tmp.getItem().equals(stackInSlot.getItem())
+						&& !(tmp == stackInSlot)) {
+					in = true;
+					break;
+				}
+			}
+			if (!(stackInSlot.getItem() instanceof ItemTalisman) || in)
 				return null;
+
 			stack = stackInSlot.copy();
 
 			// merges the item into player inventory since its in the tileEntity
