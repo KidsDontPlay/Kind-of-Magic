@@ -22,19 +22,17 @@ public class CraftingRecipes {
 				ModBlocks.mazer);
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst, 1, 0),
 				"mbm", "odo", "lol", 'm', new ItemStack(ModItems.mdust), 'd',
-				new ItemStack(Items.diamond), 'o', new ItemStack(
-						ModItems.odust), 'b', ModItems.bloodie, 'l',
-				new ItemStack(Items.dye, 1, 4));
-		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst, 1, 1),
-				"mbm", "odo", "lol", 'm', new ItemStack(ModItems.mdust), 'd',
-				new ItemStack(Items.egg), 'o',
+				new ItemStack(Items.diamond), 'o',
 				new ItemStack(ModItems.odust), 'b', ModItems.bloodie, 'l',
-				new ItemStack(Items.dye, 1, 4));
+				new ItemStack(ModItems.drop));
+		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst, 1, 1),
+				"dcd", "cbc", "dcd", 'd', new ItemStack(ModItems.aodust), 'c',
+				new ItemStack(ModItems.catalyst, 1, 0), 'b', new ItemStack(
+						Blocks.diamond_block));
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst, 1, 2),
-				"mbm", "odo", "lol", 'm', new ItemStack(ModItems.mdust), 'd',
-				new ItemStack(ModItems.wnugget), 'o', new ItemStack(
-						ModItems.odust), 'b', ModItems.bloodie, 'l',
-				new ItemStack(Items.dye, 1, 4));
+				"dcd", "cbc", "dcd", 'd', new ItemStack(Items.nether_star),
+				'c', new ItemStack(ModItems.catalyst, 1, 1), 'b',
+				new ItemStack(Blocks.emerald_block));
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.ostick), "  a",
 				" q ", "a  ", 'a', new ItemStack(ModItems.aodust), 'q',
 				new ItemStack(Items.quartz));

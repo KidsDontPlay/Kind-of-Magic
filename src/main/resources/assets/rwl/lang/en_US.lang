@@ -1,14 +1,34 @@
-item.rwl:cry_0.name=Radius 1 I
-item.rwl:cry_1.name=Radius 2 II
-item.rwl:cry_2.name=Radius 3 III
-item.rwl:cry_3.name=Silk I
-item.rwl:cry_4.name=Luck II
-item.rwl:cry_5.name=Effizient II
-item.rwl:cry_6.name=Fire I
-item.rwl:cry_7.name=poison II
-item.rwl:cry_8.name=whole tree I
-item.rwl:cry_9.name=sharp1 II
-item.rwl:cry_10.name=sharp2 III
-item.rwl:cry_11.name=slow I
-item.rwl:cry_12.name=wither III
-item.rwl:cry_13.name=xp II
+item.rwl:cry_0.name=Area Crystal I
+item.rwl:cry_1.name=Area Crystal II
+item.rwl:cry_2.name=Area Crystal III
+item.rwl:cry_3.name=Silk Crystal
+item.rwl:cry_4.name=Luck Crystal
+item.rwl:cry_5.name=Efficiency Crystal
+item.rwl:cry_6.name=Fire Crystal
+item.rwl:cry_7.name=Poison Crystal
+item.rwl:cry_8.name=Timber Crystal
+item.rwl:cry_9.name=Keen Crystal I
+item.rwl:cry_10.name=Keen Crystal II
+item.rwl:cry_11.name=Decelerating Crystal
+item.rwl:cry_12.name=Wither Crystal
+item.rwl:cry_13.name=Trainee Crystal
+
+item.rwl:feeder.name=Talisman of Demeter
+item.rwl:sprinter.name=Talisman of Nike
+item.rwl:repair.name=Talisman of Helios
+item.rwl:stepper.name=Talisman of Olymp
+item.rwl:flyer.name=Talisman of Hermes
+item.rwl:breather.name=Talisman of Poseidon
+item.rwl:vision.name=Talisman of Erebos
+item.rwl:jumper.name=Talisman of Herakles
+item.rwl:cooler.name=Talisman of Chronos
+item.rwl:decor.name=Talisman of Adonis
+
+item.rwl:catalyst_0.name=Catalyst I
+item.rwl:catalyst_1.name=Catalyst II
+item.rwl:catalyst_2.name=Catalyst III
+
+item.rwl:dung.name=Edelstein of Demeter
+item.rwl:up.name=Edelstein of Uranos
+
+item.rwl:drop.name=Heart of Lapis
