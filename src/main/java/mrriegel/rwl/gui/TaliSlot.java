@@ -27,8 +27,7 @@ public class TaliSlot extends Slot {
 				}
 			}
 			return p.getItem() instanceof ItemTalisman && !in;
-		} else
-			System.out.println("this: " + this.inventory);
+		}
 		return false;
 	}
 }

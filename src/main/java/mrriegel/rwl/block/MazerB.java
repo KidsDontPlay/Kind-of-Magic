@@ -90,7 +90,6 @@ public class MazerB extends BlockContainer {
 		if (!isConstruct(world, x, y, z) && tile.isActive()) {
 			release(world, x, y, z);
 			tile.setActive(false);
-			System.out.println("disabeld");
 			return;
 		}
 		if (tile.isActive() && entity instanceof EntityItem
@@ -156,7 +155,6 @@ public class MazerB extends BlockContainer {
 
 			release(world, x, y, z);
 			tile.setActive(false);
-			System.out.println("disabeld");
 			return false;
 		}
 
@@ -170,7 +168,6 @@ public class MazerB extends BlockContainer {
 					player.inventory.currentItem, new ItemStack(ModItems.relic,
 							player.getCurrentEquippedItem().stackSize - 1));
 			tile.setActive(true);
-			System.out.println("activated");
 			world.markBlockForUpdate(x, y, z);
 			return true;
 
