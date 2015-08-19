@@ -87,8 +87,6 @@ public class Keep extends Block {
 			for (RitualRecipe r : RitualRecipes.lis) {
 				if (ItemStack.areItemStacksEqual(stack, r.getCat())) {
 					if (r.matches(tile.getInv(), world, player)) {
-						if (!tile.isProcessing())
-							tile.setProcessing(true);
 						Random ran = new Random();
 						tile.clear();
 						player.experienceLevel = player.experienceLevel

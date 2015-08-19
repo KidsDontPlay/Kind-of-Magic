@@ -10,7 +10,6 @@ import mrriegel.rwl.init.RitualRecipes;
 import mrriegel.rwl.item.ItemTalisman;
 import mrriegel.rwl.proxy.CommonProxy;
 import mrriegel.rwl.reference.Reference;
-import mrriegel.rwl.waila.StoneHandler;
 import mrriegel.rwl.world.RWLWorld;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
