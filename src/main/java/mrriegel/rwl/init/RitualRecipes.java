@@ -133,28 +133,28 @@ public class RitualRecipes {
 		lis.add(new RitualRecipe(new ItemStack(ModItems.feeder), new ItemStack(
 				ModItems.nev), new ItemStack(Blocks.coal_block), new ItemStack(
 				Items.cooked_beef), new ItemStack(Items.pumpkin_pie),
-				new ItemStack(ModItems.catalyst, 1, 1), nether, anytime, 10));
+				new ItemStack(ModItems.catalyst, 1, 1), nether, anytime, 5));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.sprinter),
 				new ItemStack(ModItems.nev), new ItemStack(Blocks.coal_block),
 				new ItemStack(Blocks.redstone_block),
 				new ItemStack(Items.sugar), new ItemStack(ModItems.catalyst, 1,
-						1), nether, anytime, 10));
+						0), nether, anytime, 8));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.repair), new ItemStack(
 				ModItems.nev), new ItemStack(Blocks.coal_block), new ItemStack(
 				Blocks.anvil), new ItemStack(Items.book), new ItemStack(
-				ModItems.catalyst, 1, 1), nether, anytime, 10));
+				ModItems.catalyst, 1, 1), nether, anytime, 12));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.stepper),
 				new ItemStack(ModItems.nev), new ItemStack(Blocks.coal_block),
 				new ItemStack(Blocks.piston), new ItemStack(Items.feather),
-				new ItemStack(ModItems.catalyst, 1, 1), nether, anytime, 10));
+				new ItemStack(ModItems.catalyst, 1, 0), nether, anytime, 5));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.flyer), new ItemStack(
 				ModItems.nev), new ItemStack(Blocks.coal_block), new ItemStack(
 				Items.nether_star), new ItemStack(Items.ender_eye),
-				new ItemStack(ModItems.catalyst, 1, 1), nether, anytime, 10));
+				new ItemStack(ModItems.catalyst, 1, 2), nether, anytime, 28));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.breather),
 				new ItemStack(ModItems.nev), new ItemStack(Blocks.coal_block),
@@ -164,21 +164,36 @@ public class RitualRecipes {
 		lis.add(new RitualRecipe(new ItemStack(ModItems.vision), new ItemStack(
 				ModItems.nev), new ItemStack(Blocks.coal_block), new ItemStack(
 				Items.potionitem, 1, 8262), new ItemStack(Items.golden_apple),
-				new ItemStack(ModItems.catalyst, 1, 1), nether, anytime, 10));
+				new ItemStack(ModItems.catalyst, 1, 1), nether, anytime, 8));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.jumper), new ItemStack(
 				ModItems.nev), new ItemStack(Blocks.coal_block), new ItemStack(
 				Blocks.piston), new ItemStack(Items.slime_ball), new ItemStack(
-				ModItems.catalyst, 1, 1), nether, anytime, 10));
+				ModItems.catalyst, 1, 0), nether, anytime, 6));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cooler), new ItemStack(
 				ModItems.nev), new ItemStack(Blocks.coal_block), new ItemStack(
 				Items.clock), new ItemStack(Items.bed), new ItemStack(
-				ModItems.catalyst, 1, 1), nether, anytime, 10));
+				ModItems.catalyst, 1, 2), nether, anytime, 20));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.decor), new ItemStack(
 				ModItems.nev), new ItemStack(Blocks.coal_block), new ItemStack(
-				Items.fireworks), new ItemStack(Blocks.torch), new ItemStack(
-				ModItems.catalyst, 1, 1), nether, anytime, 10));
+				Items.firework_charge), new ItemStack(Blocks.torch), new ItemStack(
+				ModItems.catalyst, 1, 0), nether, anytime, 2));
+		
+		lis.add(new RitualRecipe(new ItemStack(ModBlocks.grower), new ItemStack(
+				ModItems.nev), new ItemStack(Blocks.emerald_block), new ItemStack(
+				Blocks.glowstone), new ItemStack(Items.dye,1,15), new ItemStack(
+				ModItems.catalyst, 1, 1), overworld, day, 2));
+		
+		lis.add(new RitualRecipe(new ItemStack(ModItems.dung), new ItemStack(
+				ModItems.nev), new ItemStack(Items.emerald), new ItemStack(
+				Items.glowstone_dust), new ItemStack(Items.dye,1,15), new ItemStack(
+				ModItems.catalyst, 1, 0), nether, anytime, 2));
+		
+		lis.add(new RitualRecipe(new ItemStack(ModItems.up), new ItemStack(
+				ModItems.nev), new ItemStack(Items.ender_pearl), new ItemStack(
+				ModItems.aodust), new ItemStack(Items.gold_ingot), new ItemStack(
+				ModItems.catalyst, 1, 0), nether, anytime, 2));
 	}
 }

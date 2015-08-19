@@ -16,7 +16,7 @@ public class CreativeTab {
 
 		@Override
 		public String getTranslatedTabLabel() {
-			return "RWL";
+			return Reference.MOD_NAME;
 		}
 	};
 

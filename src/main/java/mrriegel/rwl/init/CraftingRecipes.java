@@ -43,10 +43,6 @@ public class CraftingRecipes {
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.bag), "lol", "lll",
 				'o', new ItemStack(ModItems.mdust), 'l', new ItemStack(
 						Items.leather));
-		GameRegistry.addShapedRecipe(new ItemStack(ModItems.up), "aea", "ege",
-				"aea", 'a', new ItemStack(ModItems.aodust), 'e', new ItemStack(
-						Items.ender_pearl), 'g',
-				new ItemStack(Items.gold_ingot));
 		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.keep), "lo ",
 				"ol ", 'o', new ItemStack(ModItems.odust), 'l', new ItemStack(
 						Items.glowstone_dust));
@@ -62,6 +58,9 @@ public class CraftingRecipes {
 				ModBlocks.aoblock);
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.odust, 9),
 				ModBlocks.oblock);
+		GameRegistry.addShapedRecipe(new ItemStack(ModItems.tbag), "lol", "lll",
+				'o', new ItemStack(ModItems.drop), 'l', new ItemStack(
+						Items.leather));
 
 	}
 }

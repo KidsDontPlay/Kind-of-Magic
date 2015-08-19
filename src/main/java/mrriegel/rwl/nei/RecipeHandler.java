@@ -9,6 +9,7 @@ import mrriegel.rwl.init.RitualRecipes;
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
 
@@ -53,7 +54,7 @@ public class RecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public String getRecipeName() {
-		return "Lorem ipsum";
+		return StatCollector.translateToLocal("tile.rwl:mazerB.name");
 	}
 
 	@Override

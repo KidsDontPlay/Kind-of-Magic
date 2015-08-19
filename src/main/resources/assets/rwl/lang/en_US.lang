@@ -1,3 +1,12 @@
+tile.rwl:mazer.name=Block of Sipal
+tile.rwl:mazerB.name=Secret Block of Sipal
+tile.rwl:orus.name=Nev Ore
+tile.rwl:airorus.name=Light Nev Ore
+tile.rwl:oblock.name=Block of Nev
+tile.rwl:aoblock.name=Block of Light Nev
+tile.rwl:keep.name=Upper Stone
+tile.rwl:grower.name=Floralizer
+
 item.rwl:cry_0.name=Area Crystal I
 item.rwl:cry_1.name=Area Crystal II
 item.rwl:cry_2.name=Area Crystal III
@@ -33,3 +42,17 @@ item.rwl:up.name=Edelstein of Uranos
 
 item.rwl:drop.name=Heart of Lapis
 item.rwl:bloodie.name=Blood Bottle
+item.rwl:relic.name=Lapis Relic
+item.rwl:oredust.name=Nev Dust
+item.rwl:airoredust.name=Light Nev Dust
+item.rwl:mdust.name=Sipal Dust
+item.rwl:ostick.name=Stick of Nev
+item.rwl:nev.name=Nev Crystal
+item.rwl:wnugget.name=Nether Chunk
+item.rwl:cbag.name=Crystal Bag
+item.rwl:tbag.name=Talisman Bag
+
+item.rwl:nevsword.name=Nev Sword
+item.rwl:nevpick.name=Nev Pickaxe
+item.rwl:nevaxe.name=Nev Axe
+item.rwl:nevshovel.name=Nev Shovel

@@ -59,7 +59,6 @@ public class RWL {
 		proxy.registerRenderers();
 		FMLInterModComms.sendMessage("Waila", "register",
 				"mrriegel.rwl.waila.StoneHandler.callbackRegister");
-		String r = new StoneHandler().toString() + "eine updatenotiz";
 	}
 
 	@Mod.EventHandler

@@ -17,7 +17,7 @@ public class DropEventHandler {
 		Block b = e.block;
 		Random ran = new Random();
 		if (b.equals(Blocks.lapis_ore) && e.getPlayer() != null
-				&& !e.getPlayer().worldObj.isRemote && ran.nextInt(10) == 1) {
+				&& !e.getPlayer().worldObj.isRemote && ran.nextInt(15) == 1) {
 			EntityItem ei = new EntityItem(e.getPlayer().worldObj, e.x + 0.5D,
 					e.y, e.z + 0.5D, new ItemStack(ModItems.drop));
 			e.getPlayer().worldObj.spawnEntityInWorld(ei);

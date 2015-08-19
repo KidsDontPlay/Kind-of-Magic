@@ -2,8 +2,8 @@ package mrriegel.rwl.item;
 
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.BlockLocation;
-import mrriegel.rwl.utility.RWLUtils;
 import mrriegel.rwl.utility.NBTHelper;
+import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.entity.player.EntityPlayer;
