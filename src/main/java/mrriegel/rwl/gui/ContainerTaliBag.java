@@ -14,11 +14,8 @@ public class ContainerTaliBag extends Container {
 	public ContainerTaliBag(EntityPlayer player, InventoryPlayer inventory,
 			InventoryTaliBag inventoryTaliBag) {
 		this.inv = inventoryTaliBag;
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 5; j++) {
-				addSlotToContainer(new TaliSlot(inv, j + i * 5, 44 + j * 18,
-						19 + i * 18));
-			}
+		for (int j = 0; j < 6; j++) {
+			addSlotToContainer(new TaliSlot(inv, j, 44 + j * 18, 19));
 		}
 
 		for (int i = 0; i < 3; i++) {

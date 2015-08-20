@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL11;
 public class GuiTaliBag extends GuiContainer {
 	private final InventoryTaliBag inventory;
 	private static final ResourceLocation texture = new ResourceLocation(
-			Reference.MOD_ID + ":" + "textures/gui/bag.png");
+			Reference.MOD_ID + ":" + "textures/gui/tbag.png");
 
 	public GuiTaliBag(ContainerTaliBag containerTaliBag) {
 		super(containerTaliBag);

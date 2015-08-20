@@ -13,7 +13,7 @@ public class InventoryTaliBag implements IInventory {
 		return inv;
 	}
 
-	public static final int INV_SIZE = 15;
+	public static final int INV_SIZE = 6;
 	public static String tagName = "TaliBag";
 
 	public ItemStack storedInv = null;
