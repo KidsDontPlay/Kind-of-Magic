@@ -15,20 +15,20 @@ public class ContainerTaliBag extends Container {
 			InventoryTaliBag inventoryTaliBag) {
 		this.inv = inventoryTaliBag;
 		for (int j = 0; j < 6; j++) {
-			addSlotToContainer(new TaliSlot(inv, j, 44 + j * 18, 19));
+			addSlotToContainer(new TaliSlot(inv, j, 35 + j * 18, 18));
 		}
 
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {
 				addSlotToContainer(new Slot(inventory, j + i * 9 + 9,
-						8 + j * 18, 84 + i * 18));
+						8 + j * 18, 51 + i * 18));
 			}
 		}
 
 		for (int i = 0; i < 9; i++) {
 			if (i == inventory.currentItem)
-				addSlotToContainer(new EvilSlot(inventory, i, 8 + i * 18, 142));
-			addSlotToContainer(new Slot(inventory, i, 8 + i * 18, 142));
+				addSlotToContainer(new EvilSlot(inventory, i, 8 + i * 18, 109));
+			addSlotToContainer(new Slot(inventory, i, 8 + i * 18, 109));
 		}
 	}
 

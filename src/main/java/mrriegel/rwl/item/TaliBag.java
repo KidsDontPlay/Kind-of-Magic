@@ -38,13 +38,15 @@ public class TaliBag extends Item {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity player,
 			int p_77663_4_, boolean p_77663_5_) {
+		// if (world.isRemote)
+		// return;
 		if (!(player instanceof EntityPlayer))
 			return;
 		if (stack.getTagCompound() == null)
 			return;
 		if (!validCount((EntityPlayer) player))
 			return;
-		for (int i = 0; i < 15; i++) {
+		for (int i = 0; i < 6; i++) {
 			ItemStack invStack = ItemStack
 					.loadItemStackFromNBT(stack
 							.getTagCompound()

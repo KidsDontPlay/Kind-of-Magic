@@ -28,14 +28,6 @@ public class GrowerTile extends TileEntity {
 							if (worldObj.rand.nextInt(70) == 0) {
 								block.updateTick(worldObj, x, y, z,
 										worldObj.rand);
-								if (block instanceof IPlantable) {
-									IPlantable ip = (IPlantable) block;
-									System.out.println("ip :"
-											+ ip.getPlantMetadata(worldObj, x,
-													y, z));
-								} else if (block instanceof IGrowable) {
-									IGrowable ig = (IGrowable) block;
-								}
 							}
 						}
 					}
@@ -53,20 +45,11 @@ public class GrowerTile extends TileEntity {
 							if (worldObj.rand.nextInt(130) == 0) {
 								block.updateTick(worldObj, x, y, z,
 										worldObj.rand);
-								particle(worldObj, x - 0.5D, y + 0.5D, z - 0.5D);
 							}
 						}
 					}
 				}
 			}
-	}
-
-	private void particle(World world, double x, double y, double z) {
-		Random ran = new Random();
-		for (int i = 0; i < 20; i++) {
-			world.spawnParticle("happyVillager", x + ran.nextDouble(), y, z
-					+ ran.nextDouble(), 0, 0, 0);
-		}
 	}
 
 	private boolean advanced() {
