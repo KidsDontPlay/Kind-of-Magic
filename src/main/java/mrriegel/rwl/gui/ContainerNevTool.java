@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 public class ContainerNevTool extends Container {
 
 	InventoryNevTool inv;
+	ItemStack con;
 
 	public ContainerNevTool(EntityPlayer player, InventoryPlayer invPlayer,
 			InventoryNevTool inv) {
@@ -35,14 +36,13 @@ public class ContainerNevTool extends Container {
 				addSlotToContainer(new EvilSlot(invPlayer, i, 8 + i * 18, 142));
 			addSlotToContainer(new Slot(invPlayer, i, 8 + i * 18, 142));
 		}
+		con = invPlayer.getCurrentItem();
+		if (con != null && con.stackTagCompound != null) {
+			ItemStack stack = ItemStack.loadItemStackFromNBT(con.stackTagCompound.getCompoundTag(InventoryNevTool.tagName));
+			inv.setInventorySlotContents(0, stack);
+		}
+		
 	}
-
-	// public void writeToNBT() {
-	// if (!this.containerstack.hasTagCompound()) {
-	// this.containerstack.setTagCompound(new NBTTagCompound());
-	// }
-	// inv.writeToNBT(this.containerstack.getTagCompound());
-	// }
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
@@ -51,7 +51,7 @@ public class ContainerNevTool extends Container {
 
 	@Override
 	public void onContainerClosed(EntityPlayer p_75134_1_) {
-		inv.updateNBT();
+		//inv.updateNBT();
 		super.onContainerClosed(p_75134_1_);
 	}
 
@@ -70,7 +70,7 @@ public class ContainerNevTool extends Container {
 			// merges the item into player inventory since its in the tileEntity
 			if (slot < inv.getSizeInventory()) {
 				if (!this.mergeItemStack(stackInSlot, inv.getSizeInventory(),
-						36 + inv.getSizeInventory()+1, true)) {
+						36 + inv.getSizeInventory() + 1, true)) {
 					return null;
 				}
 			}
