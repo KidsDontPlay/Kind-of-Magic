@@ -44,21 +44,18 @@ public class ItemEdelRenderer implements IItemRenderer {
 		if (itemStack.stackTagCompound == null)
 			return;
 
-		ItemStack chiselTarget = ItemStack
-				.loadItemStackFromNBT(itemStack
-						.getTagCompound()
-						.getTagList(InventoryNevTool.tagName,
-								itemStack.getTagCompound().getId())
-					.getCompoundTagAt(0));
-		if (chiselTarget == null)
+		ItemStack target = ItemStack.loadItemStackFromNBT(itemStack
+				.getTagCompound().getCompoundTag(InventoryNevTool.tagName));
+
+		if (target == null)
 			return;
 
 		GL11.glPushMatrix();
-		GL11.glScalef(0.65f, 0.65f, 0.65f);
+		GL11.glScalef(0.48f, 0.48f, 0.48f);
 		GL11.glTranslatef(-8f, -8f, 0.0f);
 
 		renderItem.renderItemIntoGUI(Minecraft.getMinecraft().fontRenderer,
-				Minecraft.getMinecraft().renderEngine, chiselTarget, 8, 8);
+				Minecraft.getMinecraft().renderEngine, target, 25, 25);
 
 		GL11.glPopMatrix();
 	}

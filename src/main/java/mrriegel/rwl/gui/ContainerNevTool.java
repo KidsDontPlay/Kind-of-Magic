@@ -6,21 +6,25 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 public class ContainerNevTool extends Container {
 
 	InventoryNevTool inv;
 	ItemStack con;
+	InventoryPlayer playerInventory;
 
 	public ContainerNevTool(EntityPlayer player, InventoryPlayer invPlayer,
 			InventoryNevTool inv) {
+		System.out.println("cont");
 		this.inv = inv;
 
 		for (int i = 0; i < 1; i++) {
 			for (int j = 0; j < 1; j++) {
-				addSlotToContainer(new CrySlot(inv, j + i * 1, 80 + j * 18,
-						48 + i * 18));
+				addSlotToContainer(new CrySlot(this, inv, j + i * 1,
+						80 + j * 18, 48 + i * 18));
 			}
 		}
 
@@ -37,22 +41,22 @@ public class ContainerNevTool extends Container {
 			addSlotToContainer(new Slot(invPlayer, i, 8 + i * 18, 142));
 		}
 		con = invPlayer.getCurrentItem();
+		playerInventory = invPlayer;
 		if (con != null && con.stackTagCompound != null) {
-			ItemStack stack = ItemStack.loadItemStackFromNBT(con.stackTagCompound.getCompoundTag(InventoryNevTool.tagName));
+//			ItemStack stack = ItemStack
+//					.loadItemStackFromNBT(con.stackTagCompound.getTagList(
+//							InventoryNevTool.tagName,
+//							con.getTagCompound().getId()).getCompoundTagAt(0));
+			ItemStack stack = ItemStack
+					.loadItemStackFromNBT(con.stackTagCompound.getCompoundTag(inv.tagName));
 			inv.setInventorySlotContents(0, stack);
 		}
-		
+
 	}
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
 		return inv.isUseableByPlayer(player);
-	}
-
-	@Override
-	public void onContainerClosed(EntityPlayer p_75134_1_) {
-		//inv.updateNBT();
-		super.onContainerClosed(p_75134_1_);
 	}
 
 	@Override
@@ -93,6 +97,25 @@ public class ContainerNevTool extends Container {
 			slotObject.onPickupFromSlot(player, stackInSlot);
 		}
 		return stack;
+	}
+
+	public void onSlotChanged() {
+		ItemStack stack = playerInventory.mainInventory[0];
+
+		setTarget(con, inv.getStackInSlot(0));
+
+		playerInventory.mainInventory[0] = con;
+	}
+
+	private void setTarget(ItemStack con2, ItemStack stackInSlot) {
+		if (!con.hasTagCompound())
+			con.setTagCompound(new NBTTagCompound());
+		NBTTagCompound tag = new NBTTagCompound();
+		if (stackInSlot != null)
+			stackInSlot.writeToNBT(tag);
+		con2.getTagCompound().setTag(inv.tagName, tag);
+		
+
 	}
 
 }

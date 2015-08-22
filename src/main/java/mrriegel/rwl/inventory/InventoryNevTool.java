@@ -1,8 +1,11 @@
 package mrriegel.rwl.inventory;
 
+import mrriegel.rwl.gui.ContainerNevTool;
 import mrriegel.rwl.init.ModItems;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -14,6 +17,7 @@ public class InventoryNevTool implements IInventory {
 	public static final int INV_SIZE = 1;
 	public static String tagName = "NevTool";
 
+	public ContainerNevTool container;
 	public ItemStack storedInv = null;
 
 	public InventoryNevTool(ItemStack stack) {
@@ -30,6 +34,7 @@ public class InventoryNevTool implements IInventory {
 	}
 
 //	public void readFromNBT(NBTTagCompound compound) {
+//		System.out.println("read");
 //		String key = tagName;
 //		if (key == null || key.equals("")) {
 //			return;
@@ -45,11 +50,8 @@ public class InventoryNevTool implements IInventory {
 //
 //	}
 //
-//	public void updateNBT() {
-//		writeToNBT(storedInv.getTagCompound());
-//	}
-//
 //	public void writeToNBT(NBTTagCompound compound) {
+//		System.out.println("write");
 //		String key = tagName;
 //		if (key == null || key.equals("")) {
 //			return;
@@ -107,7 +109,7 @@ public class InventoryNevTool implements IInventory {
 		if (stack != null && stack.stackSize > getInventoryStackLimit()) {
 			stack.stackSize = getInventoryStackLimit();
 		}
-		//writeToNBT(storedInv.getTagCompound());
+		// writeToNBT(storedInv.getTagCompound());
 	}
 
 	@Override
@@ -127,10 +129,6 @@ public class InventoryNevTool implements IInventory {
 
 	@Override
 	public void markDirty() {
-		for (int i = 0; i < getSizeInventory(); ++i) {
-			if (getStackInSlot(i) != null && getStackInSlot(i).stackSize == 0)
-				inv[i] = null;
-		}
 	}
 
 	@Override
@@ -154,6 +152,20 @@ public class InventoryNevTool implements IInventory {
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
 		return false;
+	}
+	public void updateItems() {
+		ItemStack cry = getStackInSlot(0);
+
+		if (cry == null) {
+			container.onSlotChanged();
+			return;
+		}
+
+		Item item = cry.getItem();
+		if (item == null)
+			return;
+
+		container.onSlotChanged();
 	}
 
 }
