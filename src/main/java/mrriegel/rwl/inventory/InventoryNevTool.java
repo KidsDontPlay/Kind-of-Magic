@@ -26,47 +26,47 @@ public class InventoryNevTool implements IInventory {
 		if (!storedInv.hasTagCompound()) {
 			storedInv.setTagCompound(new NBTTagCompound());
 		}
-		//readFromNBT(storedInv.getTagCompound());
+		// readFromNBT(storedInv.getTagCompound());
 	}
 
 	public ItemStack[] getInv() {
 		return inv;
 	}
 
-//	public void readFromNBT(NBTTagCompound compound) {
-//		System.out.println("read");
-//		String key = tagName;
-//		if (key == null || key.equals("")) {
-//			return;
-//		}
-//		NBTTagList items = compound.getTagList(key, compound.getId());
-//		for (int i = 0; i < items.tagCount(); ++i) {
-//			NBTTagCompound item = items.getCompoundTagAt(i);
-//			byte slot = item.getByte("Slot");
-//			if (slot >= 0 && slot < getSizeInventory()) {
-//				inv[slot] = ItemStack.loadItemStackFromNBT(item);
-//			}
-//		}
-//
-//	}
-//
-//	public void writeToNBT(NBTTagCompound compound) {
-//		System.out.println("write");
-//		String key = tagName;
-//		if (key == null || key.equals("")) {
-//			return;
-//		}
-//		NBTTagList items = new NBTTagList();
-//		for (int i = 0; i < getSizeInventory(); ++i) {
-//			if (getStackInSlot(i) != null) {
-//				NBTTagCompound item = new NBTTagCompound();
-//				item.setByte("Slot", (byte) i);
-//				getStackInSlot(i).writeToNBT(item);
-//				items.appendTag(item);
-//			}
-//		}
-//		compound.setTag(key, items);
-//	}
+	// public void readFromNBT(NBTTagCompound compound) {
+	// System.out.println("read");
+	// String key = tagName;
+	// if (key == null || key.equals("")) {
+	// return;
+	// }
+	// NBTTagList items = compound.getTagList(key, compound.getId());
+	// for (int i = 0; i < items.tagCount(); ++i) {
+	// NBTTagCompound item = items.getCompoundTagAt(i);
+	// byte slot = item.getByte("Slot");
+	// if (slot >= 0 && slot < getSizeInventory()) {
+	// inv[slot] = ItemStack.loadItemStackFromNBT(item);
+	// }
+	// }
+	//
+	// }
+	//
+	// public void writeToNBT(NBTTagCompound compound) {
+	// System.out.println("write");
+	// String key = tagName;
+	// if (key == null || key.equals("")) {
+	// return;
+	// }
+	// NBTTagList items = new NBTTagList();
+	// for (int i = 0; i < getSizeInventory(); ++i) {
+	// if (getStackInSlot(i) != null) {
+	// NBTTagCompound item = new NBTTagCompound();
+	// item.setByte("Slot", (byte) i);
+	// getStackInSlot(i).writeToNBT(item);
+	// items.appendTag(item);
+	// }
+	// }
+	// compound.setTag(key, items);
+	// }
 
 	@Override
 	public int getSizeInventory() {
@@ -153,6 +153,7 @@ public class InventoryNevTool implements IInventory {
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
 		return false;
 	}
+
 	public void updateItems() {
 		ItemStack cry = getStackInSlot(0);
 

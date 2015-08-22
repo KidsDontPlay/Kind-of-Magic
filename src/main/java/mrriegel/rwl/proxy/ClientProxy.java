@@ -1,7 +1,7 @@
 package mrriegel.rwl.proxy;
 
 import mrriegel.rwl.init.ModItems;
-import mrriegel.rwl.render.ItemEdelRenderer;
+import mrriegel.rwl.render.NevToolRenderer;
 import mrriegel.rwl.render.StoneItemRenderer;
 import mrriegel.rwl.tile.MazerTile;
 import net.minecraft.client.Minecraft;
@@ -22,6 +22,12 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(MazerTile.class,
 				new StoneItemRenderer());
 		MinecraftForgeClient.registerItemRenderer(ModItems.nevpick,
-				new ItemEdelRenderer());
+				new NevToolRenderer());
+		MinecraftForgeClient.registerItemRenderer(ModItems.nevaxe,
+				new NevToolRenderer());
+		MinecraftForgeClient.registerItemRenderer(ModItems.nevshovel,
+				new NevToolRenderer());
+		MinecraftForgeClient.registerItemRenderer(ModItems.nevsword,
+				new NevToolRenderer());
 	}
 }

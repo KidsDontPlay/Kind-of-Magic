@@ -18,7 +18,6 @@ public class ContainerNevTool extends Container {
 
 	public ContainerNevTool(EntityPlayer player, InventoryPlayer invPlayer,
 			InventoryNevTool inv) {
-		System.out.println("cont");
 		this.inv = inv;
 
 		for (int i = 0; i < 1; i++) {
@@ -100,11 +99,11 @@ public class ContainerNevTool extends Container {
 	}
 
 	public void onSlotChanged() {
-		ItemStack stack = playerInventory.mainInventory[0];
+		ItemStack stack = playerInventory.mainInventory[playerInventory.currentItem];
 
 		setTarget(con, inv.getStackInSlot(0));
 
-		playerInventory.mainInventory[0] = con;
+		playerInventory.mainInventory[playerInventory.currentItem] = con;
 	}
 
 	private void setTarget(ItemStack con2, ItemStack stackInSlot) {
