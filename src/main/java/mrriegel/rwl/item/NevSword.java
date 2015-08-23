@@ -34,7 +34,6 @@ public class NevSword extends ItemSword implements INev {
 			"MATERIAL", 3, 2222, 10.0F, 5.0F, 1);
 
 	ItemStack sword = null;
-	IIcon icon_f = null;
 
 	public NevSword() {
 		super(MATERIAL);
@@ -53,30 +52,9 @@ public class NevSword extends ItemSword implements INev {
 
 	@Override
 	public void registerIcons(IIconRegister p_94581_1_) {
-
-		this.icon_f = p_94581_1_.registerIcon(Reference.MOD_ID + ":"
-				+ "nevsword_fire");
-
 		this.itemIcon = p_94581_1_.registerIcon(Reference.MOD_ID + ":"
 				+ "nevsword");
 
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public IIcon getIconFromDamage(int p_77617_1_) {
-		if (sword == null || sword.getTagCompound() == null) {
-			return itemIcon;
-		}
-		if (sword
-				.getTagCompound()
-				.getTagList(InventoryNevTool.tagName,
-						sword.getTagCompound().getId()).getCompoundTagAt(0)
-				.getShort("Damage") == 6) {
-			return icon_f;
-		} else {
-			return itemIcon;
-		}
 	}
 
 	@Override
@@ -114,41 +92,35 @@ public class NevSword extends ItemSword implements INev {
 			boolean boo) {
 		if (stack.getTagCompound() == null)
 			return;
-		if (stack
-				.getTagCompound()
-				.getTagList(InventoryNevTool.tagName,
-						stack.getTagCompound().getId()).getStringTagAt(0)
-				.equals("")) {
+		if (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
+				.toString().equals("{}")) {
 			return;
 		}
-		switch (stack
-				.getTagCompound()
-				.getTagList(InventoryNevTool.tagName,
-						stack.getTagCompound().getId()).getCompoundTagAt(0)
+		switch (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
 				.getShort("Damage")) {
 		case 4:
-			list.add("loot");
+			list.add("Loot");
 			break;
 		case 6:
-			list.add("fire");
+			list.add("Fire");
 			break;
 		case 7:
-			list.add("poison");
+			list.add("Poison");
 			break;
 		case 9:
-			list.add("sharp 1");
+			list.add("Keen I");
 			break;
 		case 10:
-			list.add("sharp 2");
+			list.add("Keen II");
 			break;
 		case 11:
-			list.add("slow");
+			list.add("Slownes");
 			break;
 		case 12:
-			list.add("wither");
+			list.add("Wither");
 			break;
 		case 13:
-			list.add("xp");
+			list.add("XP");
 			break;
 		}
 
@@ -163,16 +135,13 @@ public class NevSword extends ItemSword implements INev {
 			return false;
 		}
 		Random rand = new Random();
-		switch (stack
-				.getTagCompound()
-				.getTagList(InventoryNevTool.tagName,
-						stack.getTagCompound().getId()).getCompoundTagAt(0)
+		switch (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
 				.getShort("Damage")) {
 		case 6:
 			victim.setFire(7);
 			break;
 		case 7:
-			if (rand.nextInt(4) == 3)
+			if (rand.nextInt(3) == 3)
 				victim.addPotionEffect(new PotionEffect(Potion.poison.id, 140,
 						3));
 			break;
@@ -198,21 +167,18 @@ public class NevSword extends ItemSword implements INev {
 		if (sword == null || sword.getTagCompound() == null) {
 			return super.getItemAttributeModifiers();
 		}
-		switch (sword
-				.getTagCompound()
-				.getTagList(InventoryNevTool.tagName,
-						sword.getTagCompound().getId()).getCompoundTagAt(0)
+		switch (sword.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
 				.getShort("Damage")) {
 		case 9:
 			multimap.put(SharedMonsterAttributes.attackDamage
 					.getAttributeUnlocalizedName(),
 					new AttributeModifier(field_111210_e, "Weapon modifier",
-							(double) 8.0F + MATERIAL.getDamageVsEntity(), 0));
+							(double) 6.0F + MATERIAL.getDamageVsEntity(), 0));
 			return multimap;
 		case 10:
 			multimap.put(SharedMonsterAttributes.attackDamage
 					.getAttributeUnlocalizedName(), new AttributeModifier(
-					field_111210_e, "Weapon modifier", (double) 12.0F
+					field_111210_e, "Weapon modifier", (double) 10.0F
 							+ MATERIAL.getDamageVsEntity(), 0));
 			return multimap;
 		default:

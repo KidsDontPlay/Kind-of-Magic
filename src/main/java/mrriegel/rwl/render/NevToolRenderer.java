@@ -1,28 +1,17 @@
 package mrriegel.rwl.render;
 
-import javax.swing.Icon;
-
-import org.lwjgl.opengl.GL11;
-
-import mrriegel.rwl.creative.CreativeTab;
-import mrriegel.rwl.init.ModBlocks;
-import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.inventory.InventoryNevTool;
-import mrriegel.rwl.inventory.InventoryTaliBag;
 import mrriegel.rwl.item.NevAxe;
 import mrriegel.rwl.item.NevPick;
 import mrriegel.rwl.item.NevShovel;
 import mrriegel.rwl.item.NevSword;
-import mrriegel.rwl.reference.Reference;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraftforge.client.IItemRenderer;
+
+import org.lwjgl.opengl.GL11;
 
 public class NevToolRenderer implements IItemRenderer {
 	private static RenderItem renderItem = new RenderItem();

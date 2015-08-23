@@ -34,9 +34,8 @@ public class ToolEventHandler {
 			if (player.getHeldItem().getItem().equals(ModItems.nevsword)
 					&& stack.getTagCompound() != null
 					&& stack.getTagCompound()
-							.getTagList(InventoryNevTool.tagName,
-									stack.getTagCompound().getId())
-							.getCompoundTagAt(0).getShort("Damage") == 4) {
+							.getCompoundTag(InventoryNevTool.tagName)
+							.getShort("Damage") == 4) {
 				if (e.getClass().toString().contains("entity.boss")
 						|| e instanceof EntityPlayer)
 					return;
@@ -56,9 +55,8 @@ public class ToolEventHandler {
 			} else if (player.getHeldItem().getItem().equals(ModItems.nevsword)
 					&& stack.getTagCompound() != null
 					&& stack.getTagCompound()
-							.getTagList(InventoryNevTool.tagName,
-									stack.getTagCompound().getId())
-							.getCompoundTagAt(0).getShort("Damage") == 13) {
+							.getCompoundTag(InventoryNevTool.tagName)
+							.getShort("Damage") == 13) {
 				for (int i = 0; i < 3; i++) {
 					player.worldObj.spawnEntityInWorld(new EntityXPOrb(
 							player.worldObj, e.posX + 0.5d, e.posY,
@@ -83,9 +81,8 @@ public class ToolEventHandler {
 			if (player.getHeldItem().getItem().equals(ModItems.nevpick)
 					&& stack.getTagCompound() != null
 					&& stack.getTagCompound()
-							.getTagList(InventoryNevTool.tagName,
-									stack.getTagCompound().getId())
-							.getCompoundTagAt(0).getShort("Damage") == 13) {
+							.getCompoundTag(InventoryNevTool.tagName)
+							.getShort("Damage") == 13) {
 				int xp = event.block.getExpDrop(player.worldObj,
 						player.worldObj.getBlockMetadata(event.x, event.y,
 								event.z), 0);

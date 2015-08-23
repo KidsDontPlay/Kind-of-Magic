@@ -2,13 +2,11 @@ package mrriegel.rwl.inventory;
 
 import mrriegel.rwl.gui.ContainerNevTool;
 import mrriegel.rwl.init.ModItems;
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 
 public class InventoryNevTool implements IInventory {
 
@@ -26,47 +24,11 @@ public class InventoryNevTool implements IInventory {
 		if (!storedInv.hasTagCompound()) {
 			storedInv.setTagCompound(new NBTTagCompound());
 		}
-		// readFromNBT(storedInv.getTagCompound());
 	}
 
 	public ItemStack[] getInv() {
 		return inv;
 	}
-
-	// public void readFromNBT(NBTTagCompound compound) {
-	// System.out.println("read");
-	// String key = tagName;
-	// if (key == null || key.equals("")) {
-	// return;
-	// }
-	// NBTTagList items = compound.getTagList(key, compound.getId());
-	// for (int i = 0; i < items.tagCount(); ++i) {
-	// NBTTagCompound item = items.getCompoundTagAt(i);
-	// byte slot = item.getByte("Slot");
-	// if (slot >= 0 && slot < getSizeInventory()) {
-	// inv[slot] = ItemStack.loadItemStackFromNBT(item);
-	// }
-	// }
-	//
-	// }
-	//
-	// public void writeToNBT(NBTTagCompound compound) {
-	// System.out.println("write");
-	// String key = tagName;
-	// if (key == null || key.equals("")) {
-	// return;
-	// }
-	// NBTTagList items = new NBTTagList();
-	// for (int i = 0; i < getSizeInventory(); ++i) {
-	// if (getStackInSlot(i) != null) {
-	// NBTTagCompound item = new NBTTagCompound();
-	// item.setByte("Slot", (byte) i);
-	// getStackInSlot(i).writeToNBT(item);
-	// items.appendTag(item);
-	// }
-	// }
-	// compound.setTag(key, items);
-	// }
 
 	@Override
 	public int getSizeInventory() {
@@ -109,7 +71,6 @@ public class InventoryNevTool implements IInventory {
 		if (stack != null && stack.stackSize > getInventoryStackLimit()) {
 			stack.stackSize = getInventoryStackLimit();
 		}
-		// writeToNBT(storedInv.getTagCompound());
 	}
 
 	@Override

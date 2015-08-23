@@ -179,17 +179,17 @@ public class RitualRecipes {
 		lis.add(new RitualRecipe(new ItemStack(ModBlocks.grower),
 				new ItemStack(ModItems.nev),
 				new ItemStack(Blocks.emerald_block), new ItemStack(
-						Blocks.glowstone), new ItemStack(Items.dye, 1, 15),
-				new ItemStack(ModItems.catalyst, 1, 1), overworld, day, 2));
+						Blocks.glowstone), new ItemStack(Items.bone),
+				new ItemStack(ModItems.catalyst, 1, 1), overworld, day, 16));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.dung), new ItemStack(
 				ModItems.nev), new ItemStack(Items.emerald), new ItemStack(
 				Items.glowstone_dust), new ItemStack(Items.dye, 1, 15),
-				new ItemStack(ModItems.catalyst, 1, 0), nether, anytime, 2));
+				new ItemStack(ModItems.catalyst, 1, 0), nether, anytime, 22));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.up), new ItemStack(
 				ModItems.nev), new ItemStack(Items.ender_pearl), new ItemStack(
 				ModItems.aodust), new ItemStack(Items.gold_ingot),
-				new ItemStack(ModItems.catalyst, 1, 0), nether, anytime, 2));
+				new ItemStack(ModItems.catalyst, 1, 0), nether, anytime, 5));
 	}
 }

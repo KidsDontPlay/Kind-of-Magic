@@ -29,7 +29,7 @@ public class Up extends ItemEdelstein {
 						trueVal(player.posZ)).getMaterial() == Material.air
 						&& world.getBlock(trueVal(player.posX), trueVal(i + 2),
 								trueVal(player.posZ)).getMaterial() == Material.air) {
-					player.setPositionAndUpdate(player.posX, i + 1.1D,
+					player.setPositionAndUpdate(player.posX, i + 1.05D,
 							player.posZ);
 					NBTHelper.setInteger(stack, "cooldown", cooldown);
 					break;

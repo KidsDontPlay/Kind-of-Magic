@@ -42,12 +42,9 @@ public class ContainerNevTool extends Container {
 		con = invPlayer.getCurrentItem();
 		playerInventory = invPlayer;
 		if (con != null && con.stackTagCompound != null) {
-//			ItemStack stack = ItemStack
-//					.loadItemStackFromNBT(con.stackTagCompound.getTagList(
-//							InventoryNevTool.tagName,
-//							con.getTagCompound().getId()).getCompoundTagAt(0));
 			ItemStack stack = ItemStack
-					.loadItemStackFromNBT(con.stackTagCompound.getCompoundTag(inv.tagName));
+					.loadItemStackFromNBT(con.stackTagCompound
+							.getCompoundTag(inv.tagName));
 			inv.setInventorySlotContents(0, stack);
 		}
 
@@ -113,7 +110,6 @@ public class ContainerNevTool extends Container {
 		if (stackInSlot != null)
 			stackInSlot.writeToNBT(tag);
 		con2.getTagCompound().setTag(inv.tagName, tag);
-		
 
 	}
 

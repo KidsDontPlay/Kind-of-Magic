@@ -41,7 +41,7 @@ public abstract class ItemEdelstein extends Item {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list,
 			boolean boo) {
-		list.add("Cooldown: " + NBTHelper.getInt(stack, "cooldown"));
+		list.add("Cooldown: " + NBTHelper.getInt(stack, "cooldown")/10);
 	}
 
 }

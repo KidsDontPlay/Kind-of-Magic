@@ -2,7 +2,10 @@ package mrriegel.rwl.tile;
 
 import java.util.Random;
 
+import mrriegel.rwl.RWL;
+import mrriegel.rwl.packet.ParticlePacket;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -25,10 +28,14 @@ public class GrowerTile extends TileEntity {
 						Block block = worldObj.getBlock(x, y, z);
 						if (block instanceof IPlantable
 								|| block instanceof IGrowable) {
+							int meta1 = worldObj.getBlockMetadata(x, y, z);
 							if (worldObj.rand.nextInt(70) == 0) {
 								block.updateTick(worldObj, x, y, z,
 										worldObj.rand);
 							}
+							if (worldObj.getBlockMetadata(x, y, z) != meta1)
+								RWL.net.sendToAll(new ParticlePacket(x, y, z,
+										worldObj.provider.dimensionId));
 						}
 					}
 				}

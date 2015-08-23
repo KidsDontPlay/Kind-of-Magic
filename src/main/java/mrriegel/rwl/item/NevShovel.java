@@ -68,32 +68,26 @@ public class NevShovel extends ItemSpade implements INev {
 			boolean boo) {
 		if (stack.getTagCompound() == null)
 			return;
-		if (stack
-				.getTagCompound()
-				.getTagList(InventoryNevTool.tagName,
-						stack.getTagCompound().getId()).getStringTagAt(0)
-				.equals("")) {
+		if (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
+				.toString().equals("{}")) {
 			return;
 		}
-		switch (stack
-				.getTagCompound()
-				.getTagList(InventoryNevTool.tagName,
-						stack.getTagCompound().getId()).getCompoundTagAt(0)
+		switch (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
 				.getShort("Damage")) {
 		case 0:
-			list.add("radius 1");
+			list.add("Area I");
 			break;
 		case 1:
-			list.add("radius 2");
+			list.add("Area II");
 			break;
 		case 2:
-			list.add("radius 3");
+			list.add("Area III");
 			break;
 		case 3:
-			list.add("silk");
+			list.add("Silk");
 			break;
 		case 5:
-			list.add("efficient");
+			list.add("Efficiency");
 			break;
 		}
 
@@ -103,25 +97,16 @@ public class NevShovel extends ItemSpade implements INev {
 	public float getDigSpeed(ItemStack stack, Block block, int meta) {
 		if (stack.getTagCompound() == null)
 			return super.getDigSpeed(stack, block, meta);
-		if (stack
-				.getTagCompound()
-				.getTagList(InventoryNevTool.tagName,
-						stack.getTagCompound().getId()).getCompoundTagAt(0)
+		if (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
 				.getShort("Damage") == 5) {
 			return super.getDigSpeed(stack, block, meta) * 2.5f;
 
-		} else if (stack
-				.getTagCompound()
-				.getTagList(InventoryNevTool.tagName,
-						stack.getTagCompound().getId()).getCompoundTagAt(0)
-				.getShort("Damage") == 2) {
+		} else if (stack.getTagCompound()
+				.getCompoundTag(InventoryNevTool.tagName).getShort("Damage") == 2) {
 			return super.getDigSpeed(stack, block, meta) / 7.5f;
 
-		} else if (stack
-				.getTagCompound()
-				.getTagList(InventoryNevTool.tagName,
-						stack.getTagCompound().getId()).getCompoundTagAt(0)
-				.getShort("Damage") == 1) {
+		} else if (stack.getTagCompound()
+				.getCompoundTag(InventoryNevTool.tagName).getShort("Damage") == 1) {
 			return super.getDigSpeed(stack, block, meta) / 4.5f;
 
 		}
@@ -137,10 +122,7 @@ public class NevShovel extends ItemSpade implements INev {
 			return false;
 		}
 
-		switch (stack
-				.getTagCompound()
-				.getTagList(InventoryNevTool.tagName,
-						stack.getTagCompound().getId()).getCompoundTagAt(0)
+		switch (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
 				.getShort("Damage")) {
 		case 0:
 			radius(stack, x, y, z, player, 1);
@@ -153,8 +135,9 @@ public class NevShovel extends ItemSpade implements INev {
 					&& !player.capabilities.isCreativeMode)
 				return false;
 			radius(stack, x, y, z, player, 3);
-			player.getFoodStats().setFoodLevel(
-					player.getFoodStats().getFoodLevel() - 1);
+			if (!player.capabilities.isCreativeMode)
+				player.getFoodStats().setFoodLevel(
+						player.getFoodStats().getFoodLevel() - 1);
 			return false;
 		case 3:
 			silk(stack, x, y, z, player);
@@ -187,11 +170,8 @@ public class NevShovel extends ItemSpade implements INev {
 		if (!ForgeHooks.isToolEffective(stack, block, meta)) {
 			return;
 		}
-		if (stack
-				.getTagCompound()
-				.getTagList(InventoryNevTool.tagName,
-						stack.getTagCompound().getId()).getStringTagAt(0)
-				.equals("")) {
+		if (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
+				.toString().equals("{}")) {
 			return;
 		}
 
