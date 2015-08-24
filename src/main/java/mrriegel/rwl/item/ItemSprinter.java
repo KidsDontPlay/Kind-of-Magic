@@ -24,6 +24,10 @@ public class ItemSprinter extends ItemTalisman {
 				&& !player.isInsideOfMaterial(Material.water)
 				&& player.isSprinting())
 			player.moveFlying(0F, 1F, 0.16F);
+		else if (player.capabilities.isFlying && player.moveForward > 0F
+				&& !player.isInsideOfMaterial(Material.water)
+				&& player.isSprinting())
+			player.moveFlying(0F, 1F, 0.1F);
 
 	}
 

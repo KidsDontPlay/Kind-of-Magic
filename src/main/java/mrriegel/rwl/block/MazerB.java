@@ -189,7 +189,7 @@ public class MazerB extends BlockContainer {
 					player.getFoodStats().getFoodLevel() - 2);
 			return true;
 
-			// start
+			// back
 		} else if (player.isSneaking() && player.getHeldItem() == null
 				&& tile.isActive() && isConstruct(world, x, y, z)) {
 			boolean item = true;

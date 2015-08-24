@@ -139,10 +139,7 @@ public class NevAxe extends ItemAxe implements INev {
 						player.getFoodStats().getFoodLevel() - 1);
 			return false;
 		case 8:
-			if (ForgeHooks.isToolEffective(stack,
-					player.worldObj.getBlock(x, y, z),
-					player.worldObj.getBlockMetadata(x, y, z))
-					&& player.worldObj.getBlock(x, y, z) instanceof BlockLog) {
+			if (player.worldObj.getBlock(x, y, z) instanceof BlockLog) {
 				chop2(stack, x, y, z, player.worldObj,
 						player.worldObj.getBlock(x, y, z),
 						player.worldObj.getBlockMetadata(x, y, z));
@@ -158,8 +155,7 @@ public class NevAxe extends ItemAxe implements INev {
 
 	private void chop2(ItemStack stack, int x, int y, int z, World world,
 			Block block, int l) {
-		for (BlockLocation bl : RWLUtils.getNeighbors(world, x, y, z)) {
-
+		for (BlockLocation bl : RWLUtils.getNeighbors12(world, x, y, z)) {
 			if (world.getBlock(bl.x, bl.y, bl.z).getUnlocalizedName()
 					.equals(block.getUnlocalizedName())
 					&& world.getBlockMetadata(bl.x, bl.y, bl.z) % 4 == l) {

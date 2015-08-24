@@ -109,6 +109,12 @@ public class RitualRecipes {
 						Items.speckled_melon), new ItemStack(ModItems.catalyst,
 						1, 1), anywhere, anytime, 8));
 
+		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 14),
+				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
+				new ItemStack(Blocks.lapis_block), new ItemStack(
+						Blocks.redstone_block), new ItemStack(
+						ModItems.catalyst, 1, 1), nether, anytime, 10));
+
 		lis.add(new RitualRecipe(new ItemStack(ModItems.nevsword),
 				new ItemStack(Items.iron_sword), new ItemStack(Items.diamond),
 				new ItemStack(ModItems.nev), new ItemStack(ModItems.ostick),
@@ -179,12 +185,12 @@ public class RitualRecipes {
 		lis.add(new RitualRecipe(new ItemStack(ModBlocks.grower),
 				new ItemStack(ModItems.nev),
 				new ItemStack(Blocks.emerald_block), new ItemStack(
-						Blocks.glowstone), new ItemStack(Items.bone),
+						ModItems.wnugget), new ItemStack(Items.bone),
 				new ItemStack(ModItems.catalyst, 1, 1), overworld, day, 16));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.dung), new ItemStack(
 				ModItems.nev), new ItemStack(Items.emerald), new ItemStack(
-				Items.glowstone_dust), new ItemStack(Items.dye, 1, 15),
+				ModItems.wnugget), new ItemStack(Items.dye, 1, 15),
 				new ItemStack(ModItems.catalyst, 1, 0), nether, anytime, 22));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.up), new ItemStack(

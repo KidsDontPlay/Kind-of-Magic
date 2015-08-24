@@ -46,8 +46,9 @@ public class RWL {
 		ModBlocks.init();
 		ModItems.init();
 		net = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MOD_ID);
-		net.registerMessage(ParticlePacketHandler.class, ParticlePacket.class,0, Side.CLIENT);
-		
+		net.registerMessage(ParticlePacketHandler.class, ParticlePacket.class,
+				0, Side.CLIENT);
+
 	}
 
 	@Mod.EventHandler

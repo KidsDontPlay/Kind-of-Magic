@@ -124,8 +124,8 @@ public class RWLUtils {
 
 	}
 
-	public static Vector<BlockLocation> getNeighbors(World world, int x, int y,
-			int z) {
+	public static Vector<BlockLocation> getNeighbors12(World world, int x,
+			int y, int z) {
 		Vector<BlockLocation> v = new Vector<BlockLocation>();
 		v.add(new BlockLocation(x + 1, y, z + 1));
 		v.add(new BlockLocation(x + 1, y, z));
@@ -145,6 +145,42 @@ public class RWLUtils {
 		v.add(new BlockLocation(x - 1, y + 1, z + 1));
 		v.add(new BlockLocation(x - 1, y + 1, z));
 		v.add(new BlockLocation(x - 1, y + 1, z - 1));
+		return v;
+	}
+
+	public static Vector<BlockLocation> getCube(World world, int x, int y, int z) {
+		Vector<BlockLocation> v = new Vector<BlockLocation>();
+
+		v.add(new BlockLocation(x, y, z));
+
+		v.add(new BlockLocation(x + 1, y, z + 1));
+		v.add(new BlockLocation(x + 1, y, z));
+		v.add(new BlockLocation(x + 1, y, z - 1));
+		v.add(new BlockLocation(x, y, z + 1));
+		v.add(new BlockLocation(x, y, z - 1));
+		v.add(new BlockLocation(x - 1, y, z + 1));
+		v.add(new BlockLocation(x - 1, y, z));
+		v.add(new BlockLocation(x - 1, y, z - 1));
+
+		v.add(new BlockLocation(x + 1, y + 1, z + 1));
+		v.add(new BlockLocation(x + 1, y + 1, z));
+		v.add(new BlockLocation(x + 1, y + 1, z - 1));
+		v.add(new BlockLocation(x, y + 1, z + 1));
+		v.add(new BlockLocation(x, y + 1, z));
+		v.add(new BlockLocation(x, y + 1, z - 1));
+		v.add(new BlockLocation(x - 1, y + 1, z + 1));
+		v.add(new BlockLocation(x - 1, y + 1, z));
+		v.add(new BlockLocation(x - 1, y + 1, z - 1));
+
+		v.add(new BlockLocation(x + 1, y - 1, z + 1));
+		v.add(new BlockLocation(x + 1, y - 1, z));
+		v.add(new BlockLocation(x + 1, y - 1, z - 1));
+		v.add(new BlockLocation(x, y - 1, z + 1));
+		v.add(new BlockLocation(x, y - 1, z));
+		v.add(new BlockLocation(x, y - 1, z - 1));
+		v.add(new BlockLocation(x - 1, y - 1, z + 1));
+		v.add(new BlockLocation(x - 1, y - 1, z));
+		v.add(new BlockLocation(x - 1, y - 1, z - 1));
 		return v;
 	}
 }

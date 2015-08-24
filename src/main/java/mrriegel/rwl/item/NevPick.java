@@ -12,6 +12,9 @@ import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockOre;
+import net.minecraft.block.BlockRedstoneOre;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemPickaxe;
@@ -20,6 +23,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class NevPick extends ItemPickaxe implements INev {
 	public static ToolMaterial MATERIAL = EnumHelper.addToolMaterial(
@@ -96,6 +100,9 @@ public class NevPick extends ItemPickaxe implements INev {
 		case 13:
 			list.add("XP");
 			break;
+		case 14:
+			list.add("Vein");
+			break;
 		}
 
 	}
@@ -151,12 +158,48 @@ public class NevPick extends ItemPickaxe implements INev {
 		case 4:
 			fortune(stack, x, y, z, player, 3);
 			return true;
+		case 14:
+			Block block =player.worldObj.getBlock(x, y, z);
+			if (block.getUnlocalizedName()
+					.contains("ore")||block instanceof BlockOre||block instanceof BlockRedstoneOre) {
+				vein(stack, x, y, z, player, player.worldObj.getBlock(x, y, z),
+						player.worldObj.getBlockMetadata(x, y, z));
+				return true;
+			}
+			return false;
 		default:
 			break;
 
 		}
 
 		return super.onBlockStartBreak(stack, x, y, z, player);
+	}
+
+	private void vein(ItemStack stack, int x, int y, int z,
+			EntityPlayer player, Block block, int i) {
+		World world = player.worldObj;
+		for (BlockLocation bl : RWLUtils.getCube(world, x, y, z)) {
+			if (world.getBlock(bl.x, bl.y, bl.z).getUnlocalizedName()
+					.equals(block.getUnlocalizedName())
+					&& world.getBlockMetadata(bl.x, bl.y, bl.z) == i) {
+				List<ItemStack> ls = world.getBlock(bl.x, bl.y, bl.z).getDrops(
+						world, x, y, z, i, 0);
+				for (ItemStack s : ls) {
+					EntityItem ei = new EntityItem(world, player.posX,
+							player.posY, player.posZ, s);
+					world.spawnEntityInWorld(ei);
+				}
+				world.setBlock(bl.x, bl.y, bl.z, Blocks.air);
+				int l = world.getBlockMetadata(x, y, z);
+				world.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(block)
+						+ (l << 12));
+				stack.setItemDamage(stack.getItemDamage() + 1);
+				if (stack.getItemDamage() > MATERIAL.getMaxUses())
+					break;
+				vein(stack, bl.x, bl.y, bl.z, player, block, i);
+			}
+
+		}
 	}
 
 	private void fortune(ItemStack stack, int x, int y, int z,
