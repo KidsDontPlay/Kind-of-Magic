@@ -13,6 +13,7 @@ import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
@@ -21,6 +22,7 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.util.EnumHelper;
 
 public class NevShovel extends ItemSpade implements INev {
+
 	public static ToolMaterial MATERIAL = EnumHelper.addToolMaterial(
 			"MATERIAL", 3, 2222, 10.0F, 5.0F, 1);
 
@@ -61,6 +63,24 @@ public class NevShovel extends ItemSpade implements INev {
 		if (player.isSneaking())
 			player.openGui(RWL.instance, GuiIDs.NEVTOOL, world, 0, 0, 0);
 		return stack;
+	}
+
+	@Override
+	public boolean onItemUse(ItemStack p_77648_1_, EntityPlayer p_77648_2_,
+			World p_77648_3_, int p_77648_4_, int p_77648_5_, int p_77648_6_,
+			int p_77648_7_, float p_77648_8_, float p_77648_9_,
+			float p_77648_10_) {
+		if (!p_77648_2_.isSneaking()) {
+			Block k = p_77648_3_.getBlock(p_77648_4_, p_77648_5_, p_77648_6_);
+			if (k != null && (k.equals(Blocks.dirt) || k.equals(Blocks.grass))) {
+				p_77648_3_.setBlock(p_77648_4_, p_77648_5_, p_77648_6_,
+						Blocks.farmland);
+				p_77648_1_.setItemDamage(p_77648_1_.getItemDamage() + 1);
+			}
+		}
+		return super.onItemUse(p_77648_1_, p_77648_2_, p_77648_3_, p_77648_4_,
+				p_77648_5_, p_77648_6_, p_77648_7_, p_77648_8_, p_77648_9_,
+				p_77648_10_);
 	}
 
 	@Override

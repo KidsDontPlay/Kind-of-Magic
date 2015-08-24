@@ -14,6 +14,7 @@ import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.BlockRedstoneOre;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -103,6 +104,9 @@ public class NevPick extends ItemPickaxe implements INev {
 		case 14:
 			list.add("Vein");
 			break;
+		case 15:
+			list.add("Detector");
+			break;
 		}
 
 	}
@@ -159,12 +163,26 @@ public class NevPick extends ItemPickaxe implements INev {
 			fortune(stack, x, y, z, player, 3);
 			return true;
 		case 14:
-			Block block =player.worldObj.getBlock(x, y, z);
-			if (block.getUnlocalizedName()
-					.contains("ore")||block instanceof BlockOre||block instanceof BlockRedstoneOre) {
+			Block block = player.worldObj.getBlock(x, y, z);
+			if (block.getUnlocalizedName().contains("ore")
+					|| block instanceof BlockOre
+					|| block instanceof BlockRedstoneOre) {
 				vein(stack, x, y, z, player, player.worldObj.getBlock(x, y, z),
 						player.worldObj.getBlockMetadata(x, y, z));
 				return true;
+			}
+			return false;
+		case 15:
+			Block block2 = player.worldObj.getBlock(x, y, z);
+			int meta = player.worldObj.getBlockMetadata(x, y, z);
+			if (ForgeHooks.isToolEffective(stack, block2, meta)
+					|| block2.equals(Blocks.brick_block)
+					|| block2.getMaterial().equals(Material.rock)
+					|| (block2.getHarvestTool(meta) != null && block2
+							.getHarvestTool(meta).equals("pickaxe"))
+					|| block2.equals(Blocks.quartz_block)) {
+				return detect(stack, x, y, z, player,
+						player.worldObj.getBlock(x, y, z));
 			}
 			return false;
 		default:
@@ -173,6 +191,48 @@ public class NevPick extends ItemPickaxe implements INev {
 		}
 
 		return super.onBlockStartBreak(stack, x, y, z, player);
+	}
+
+	private boolean detect(ItemStack stack, int x, int y, int z,
+			EntityPlayer player, Block block) {
+		for (int y2 = y; y2 > 0; y2--) {
+			for (BlockLocation bl : RWLUtils.getAroundBlocks(player.worldObj,
+					x, y2, z)) {
+				Block b = player.worldObj.getBlock(bl.x, bl.y, bl.z);
+				if (b.getUnlocalizedName().contains("ore")
+						|| b instanceof BlockOre
+						|| b instanceof BlockRedstoneOre) {
+					for (ItemStack s : b.getDrops(player.worldObj, bl.x, bl.y,
+							bl.z,
+							player.worldObj.getBlockMetadata(bl.x, bl.y, bl.z),
+							0)) {
+						EntityItem ei = new EntityItem(player.worldObj,
+								player.posX, player.posY, player.posZ, s);
+						player.worldObj.spawnEntityInWorld(ei);
+					}
+					player.worldObj.setBlock(bl.x, bl.y, bl.z, Blocks.stone);
+					stack.setItemDamage(stack.getItemDamage() + 1);
+					return true;
+
+				}
+			}
+			Block b2 = player.worldObj.getBlock(x, y2, z);
+			if (b2.getUnlocalizedName().contains("ore")
+					|| b2 instanceof BlockOre || b2 instanceof BlockRedstoneOre) {
+				for (ItemStack s : b2.getDrops(player.worldObj, x, y2, z,
+						player.worldObj.getBlockMetadata(x, y2, z), 0)) {
+					EntityItem ei = new EntityItem(player.worldObj,
+							player.posX, player.posY, player.posZ, s);
+					player.worldObj.spawnEntityInWorld(ei);
+				}
+				player.worldObj.setBlock(x, y2, z, Blocks.stone);
+				stack.setItemDamage(stack.getItemDamage() + 1);
+				return true;
+
+			}
+		}
+		return false;
+
 	}
 
 	private void vein(ItemStack stack, int x, int y, int z,

@@ -115,6 +115,11 @@ public class RitualRecipes {
 						Blocks.redstone_block), new ItemStack(
 						ModItems.catalyst, 1, 1), nether, anytime, 10));
 
+		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 15),
+				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
+				new ItemStack(ModItems.wnugget), new ItemStack(Items.emerald),
+				new ItemStack(ModItems.catalyst, 1, 1), nether, night, 18));
+
 		lis.add(new RitualRecipe(new ItemStack(ModItems.nevsword),
 				new ItemStack(Items.iron_sword), new ItemStack(Items.diamond),
 				new ItemStack(ModItems.nev), new ItemStack(ModItems.ostick),
