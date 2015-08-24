@@ -2,6 +2,7 @@ package mrriegel.rwl.item;
 
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.NBTHelper;
+import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -23,12 +24,12 @@ public class Up extends ItemEdelstein {
 			return stack;
 		for (double i = player.posY + 2.0D; i < 255; i = i + 1.0D) {
 			if (world
-					.getBlock(trueVal(player.posX), trueVal(i),
-							trueVal(player.posZ)).getMaterial().isSolid()) {
-				if (world.getBlock(trueVal(player.posX), trueVal(i + 1),
-						trueVal(player.posZ)).getMaterial() == Material.air
-						&& world.getBlock(trueVal(player.posX), trueVal(i + 2),
-								trueVal(player.posZ)).getMaterial() == Material.air) {
+					.getBlock(RWLUtils.trueVal(player.posX), RWLUtils.trueVal(i),
+							RWLUtils.trueVal(player.posZ)).getMaterial().isSolid()) {
+				if (world.getBlock(RWLUtils.trueVal(player.posX), RWLUtils.trueVal(i + 1),
+						RWLUtils.trueVal(player.posZ)).getMaterial() == Material.air
+						&& world.getBlock(RWLUtils.trueVal(player.posX), RWLUtils.trueVal(i + 2),
+								RWLUtils.trueVal(player.posZ)).getMaterial() == Material.air) {
 					player.setPositionAndUpdate(player.posX, i + 1.05D,
 							player.posZ);
 					NBTHelper.setInteger(stack, "cooldown", cooldown);
@@ -39,13 +40,6 @@ public class Up extends ItemEdelstein {
 		}
 		return stack;
 
-	}
-
-	private int trueVal(double num) {
-		if (num < 0) {
-			num--;
-		}
-		return (int) num;
 	}
 
 	@Override

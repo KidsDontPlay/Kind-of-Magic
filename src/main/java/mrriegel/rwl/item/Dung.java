@@ -9,7 +9,10 @@ import net.minecraft.block.BlockCrops;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import net.minecraft.world.gen.ChunkProviderServer;
 
 public class Dung extends ItemEdelstein {
 	public Dung() {
@@ -54,6 +57,15 @@ public class Dung extends ItemEdelstein {
 	@Override
 	public ItemStack onItemRightClick(ItemStack p_77659_1_, World p_77659_2_,
 			EntityPlayer p_77659_3_) {
+		if (p_77659_2_.isRemote)
+			return p_77659_1_;
+		ChunkPosition cp = p_77659_2_.findClosestStructure("Dungeon",
+				(int) p_77659_3_.posX, (int) p_77659_3_.posY,
+				(int) p_77659_3_.posZ);
+		if (cp == null)
+			return p_77659_1_;
+		System.out.println("x: " + cp.chunkPosX + " y: " + cp.chunkPosY
+				+ " z: " + cp.chunkPosZ);
 		return p_77659_1_;
 	}
 }

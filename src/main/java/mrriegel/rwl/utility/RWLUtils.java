@@ -34,6 +34,13 @@ public class RWLUtils {
 
 	}
 
+	public static int trueVal(double num) {
+		if (num < 0) {
+			num--;
+		}
+		return (int) num;
+	}
+
 	public static boolean breakWithFortune(World world, int x, int y, int z,
 			int fortune) {
 		Block block = world.getBlock(x, y, z);
@@ -108,16 +115,18 @@ public class RWLUtils {
 			int side) {
 		Block b = world.getBlock(x, y, z);
 		switch (side) {
+		case 0:
+			return new BlockLocation(x, y - 1, z);
 		case 1:
 			return new BlockLocation(x, y + 1, z);
 		case 2:
-			return new BlockLocation(x, y, z + 1);
-		case 3:
 			return new BlockLocation(x, y, z - 1);
+		case 3:
+			return new BlockLocation(x, y, z + 1);
 		case 4:
-			return new BlockLocation(x + 1, y, z);
-		case 5:
 			return new BlockLocation(x - 1, y, z);
+		case 5:
+			return new BlockLocation(x + 1, y, z);
 		default:
 			return null;
 		}
@@ -183,4 +192,5 @@ public class RWLUtils {
 		v.add(new BlockLocation(x - 1, y - 1, z - 1));
 		return v;
 	}
+
 }

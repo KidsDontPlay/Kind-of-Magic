@@ -17,6 +17,7 @@ import mrriegel.rwl.item.ItemRepair;
 import mrriegel.rwl.item.ItemSprinter;
 import mrriegel.rwl.item.ItemStepper;
 import mrriegel.rwl.item.ItemVision;
+import mrriegel.rwl.item.Light;
 import mrriegel.rwl.item.MazeDust;
 import mrriegel.rwl.item.Nev;
 import mrriegel.rwl.item.NevAxe;
@@ -64,6 +65,7 @@ public class ModItems {
 	// public static Item decor = new ItemDecor();
 	public static Item dung = new Dung();
 	public static Item up = new Up();
+	public static Item light = new Light();
 
 	public static void init() {
 		GameRegistry.registerItem(bloodie, "bloodie");
@@ -97,6 +99,7 @@ public class ModItems {
 		// GameRegistry.registerItem(decor, "decor");
 		GameRegistry.registerItem(up, "up");
 		GameRegistry.registerItem(dung, "dung");
+		GameRegistry.registerItem(light, "light");
 
 	}
 }

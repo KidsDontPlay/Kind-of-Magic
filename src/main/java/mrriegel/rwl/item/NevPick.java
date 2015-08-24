@@ -125,6 +125,9 @@ public class NevPick extends ItemPickaxe implements INev {
 		} else if (stack.getTagCompound()
 				.getCompoundTag(InventoryNevTool.tagName).getShort("Damage") == 2) {
 			return super.getDigSpeed(stack, block, meta) / 10.5f;
+		} else if (stack.getTagCompound()
+				.getCompoundTag(InventoryNevTool.tagName).getShort("Damage") == 15) {
+			return super.getDigSpeed(stack, block, meta) / 7.5f;
 		}
 		return super.getDigSpeed(stack, block, meta);
 	}
