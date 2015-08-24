@@ -13,7 +13,7 @@ public class ItemRepair extends ItemTalisman {
 	}
 
 	@Override
-	public void perform(ItemStack stack, EntityPlayer player) {
+	public void perform(EntityPlayer player) {
 		int repair = -1;
 		for (int i = 0; i < player.inventory.mainInventory.length; i++) {
 			ItemStack s = player.inventory.mainInventory[i];

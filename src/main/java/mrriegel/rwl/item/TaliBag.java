@@ -55,7 +55,7 @@ public class TaliBag extends Item {
 							.getCompoundTagAt(i));
 			if (invStack != null && invStack.getItem() instanceof ItemTalisman) {
 				ItemTalisman item = (ItemTalisman) invStack.getItem();
-				item.perform(invStack, (EntityPlayer) player);
+				item.perform((EntityPlayer) player);
 			}
 		}
 	}

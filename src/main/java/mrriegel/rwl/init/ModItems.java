@@ -10,7 +10,6 @@ import mrriegel.rwl.item.Drop;
 import mrriegel.rwl.item.Dung;
 import mrriegel.rwl.item.ItemBreather;
 import mrriegel.rwl.item.ItemCooler;
-import mrriegel.rwl.item.ItemDecor;
 import mrriegel.rwl.item.ItemFeeder;
 import mrriegel.rwl.item.ItemFlyer;
 import mrriegel.rwl.item.ItemJumper;

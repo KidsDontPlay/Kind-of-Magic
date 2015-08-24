@@ -16,7 +16,7 @@ public class ItemFlyer extends ItemTalisman {
 	}
 
 	@Override
-	public void perform(ItemStack stack, EntityPlayer player) {
+	public void perform(EntityPlayer player) {
 		player.capabilities.allowFlying = true;
 	}
 

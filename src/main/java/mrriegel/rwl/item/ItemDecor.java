@@ -57,12 +57,12 @@ public class ItemDecor extends ItemTalisman {
 	}
 
 	@Override
-	public void perform(ItemStack stack, EntityPlayer player) {
+	public void perform(EntityPlayer player) {
 		if (player.motionX != 0.0D || player.motionZ != 0.0D) {
 			if (!player.capabilities.isFlying)
 				for (int i = 0; i < 10; i++)
 					player.worldObj.spawnParticle(
-							map.get(NBTHelper.getInt(stack, "enum")),
+							map.get(NBTHelper.getInt(null, "enum")),
 							player.posX, player.posY - 1.3, player.posZ, 0, 0,
 							0);
 		}

@@ -1,16 +1,11 @@
 package mrriegel.rwl.creative;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-
-import com.google.common.collect.Ordering;
 
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 public class CreativeTab {
 

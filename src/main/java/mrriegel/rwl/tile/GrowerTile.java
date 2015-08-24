@@ -29,11 +29,12 @@ public class GrowerTile extends TileEntity {
 						if (block instanceof IPlantable
 								|| block instanceof IGrowable) {
 							int meta1 = worldObj.getBlockMetadata(x, y, z);
-							if (worldObj.rand.nextInt(70) == 0) {
+							if (worldObj.rand.nextInt(75) == 0) {
 								block.updateTick(worldObj, x, y, z,
 										worldObj.rand);
 							}
-							if (worldObj.getBlockMetadata(x, y, z) != meta1)
+							if (worldObj.getBlockMetadata(x, y, z) != meta1
+									&& block instanceof IGrowable)
 								RWL.net.sendToAll(new ParticlePacket(x, y, z,
 										worldObj.provider.dimensionId));
 						}

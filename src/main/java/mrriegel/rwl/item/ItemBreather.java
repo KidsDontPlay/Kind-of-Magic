@@ -12,7 +12,7 @@ public class ItemBreather extends ItemTalisman {
 	}
 
 	@Override
-	public void perform(ItemStack stack, EntityPlayer player) {
+	public void perform(EntityPlayer player) {
 		player.setAir(300);
 
 	}

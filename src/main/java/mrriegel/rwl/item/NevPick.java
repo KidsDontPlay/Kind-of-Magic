@@ -12,7 +12,6 @@ import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemPickaxe;

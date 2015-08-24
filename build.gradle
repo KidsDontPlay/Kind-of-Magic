@@ -28,7 +28,7 @@ repositories {
 
 apply plugin: 'forge'
 
-version = "1.7.10-0.0.1"
+version = "1.7.10-0.0.2"
 group= "de.mrriegel.rwl" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "KindOfMagic"
 

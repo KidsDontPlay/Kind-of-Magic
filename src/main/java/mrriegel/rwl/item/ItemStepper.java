@@ -16,7 +16,7 @@ public class ItemStepper extends ItemTalisman {
 	}
 
 	@Override
-	public void perform(ItemStack stack, EntityPlayer player) {
+	public void perform(EntityPlayer player) {
 		if (player.isSneaking())
 			player.stepHeight = 0.50001F;
 		else

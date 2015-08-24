@@ -18,7 +18,7 @@ public class ItemVision extends ItemTalisman {
 	}
 
 	@Override
-	public void perform(ItemStack stack, EntityPlayer player) {
+	public void perform(EntityPlayer player) {
 		player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 300, -4));
 	}
 

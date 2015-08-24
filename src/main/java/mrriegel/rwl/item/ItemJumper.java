@@ -16,7 +16,7 @@ public class ItemJumper extends ItemTalisman {
 	}
 
 	@Override
-	public void perform(ItemStack stack, EntityPlayer player) {
+	public void perform(EntityPlayer player) {
 	}
 
 	@SubscribeEvent

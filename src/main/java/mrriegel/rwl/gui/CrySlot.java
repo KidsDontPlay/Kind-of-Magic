@@ -5,7 +5,6 @@ import mrriegel.rwl.inventory.InventoryNevTool;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class CrySlot extends Slot {
 	InventoryNevTool inv;

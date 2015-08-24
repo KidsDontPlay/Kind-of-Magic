@@ -13,7 +13,7 @@ public class ItemCooler extends ItemTalisman {
 	}
 
 	@Override
-	public void perform(ItemStack stack, EntityPlayer player) {
+	public void perform(EntityPlayer player) {
 		for (int i = 0; i < player.inventory.mainInventory.length; i++) {
 			ItemStack s = player.inventory.mainInventory[i];
 

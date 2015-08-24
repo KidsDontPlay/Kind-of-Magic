@@ -14,7 +14,7 @@ public abstract class ItemTalisman extends Item {
 		this.setMaxStackSize(1);
 	}
 
-	abstract public void perform(ItemStack stack, EntityPlayer player);
+	abstract public void perform(EntityPlayer player);
 
 	public static void init() {
 		MinecraftForge.EVENT_BUS.register(new ItemStepper());

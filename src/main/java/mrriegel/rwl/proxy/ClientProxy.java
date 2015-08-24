@@ -1,6 +1,7 @@
 package mrriegel.rwl.proxy;
 
 import mrriegel.rwl.init.ModItems;
+import mrriegel.rwl.render.EdelsteinRenderer;
 import mrriegel.rwl.render.NevToolRenderer;
 import mrriegel.rwl.render.StoneItemRenderer;
 import mrriegel.rwl.tile.MazerTile;
@@ -29,5 +30,9 @@ public class ClientProxy extends CommonProxy {
 				new NevToolRenderer());
 		MinecraftForgeClient.registerItemRenderer(ModItems.nevsword,
 				new NevToolRenderer());
+		// MinecraftForgeClient.registerItemRenderer(ModItems.up,
+		// new EdelsteinRenderer());
+		// MinecraftForgeClient.registerItemRenderer(ModItems.dung,
+		//		new EdelsteinRenderer());
 	}
 }

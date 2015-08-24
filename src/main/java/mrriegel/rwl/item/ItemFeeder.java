@@ -13,7 +13,7 @@ public class ItemFeeder extends ItemTalisman {
 	}
 
 	@Override
-	public void perform(ItemStack stack, EntityPlayer player) {
+	public void perform(EntityPlayer player) {
 		if (!player.capabilities.isCreativeMode
 				&& player.getFoodStats().needFood()) {
 			for (int i = 0; i < player.inventory.mainInventory.length; i++) {
