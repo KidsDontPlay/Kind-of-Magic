@@ -2,7 +2,6 @@ package mrriegel.rwl.item;
 
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 
 public class ItemBreather extends ItemTalisman {
 	public ItemBreather() {

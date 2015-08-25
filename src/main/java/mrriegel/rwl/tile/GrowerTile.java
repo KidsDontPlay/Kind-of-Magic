@@ -1,16 +1,12 @@
 package mrriegel.rwl.tile;
 
-import java.util.Random;
-
 import mrriegel.rwl.RWL;
 import mrriegel.rwl.packet.ParticlePacket;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFurnace;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 
 public class GrowerTile extends TileEntity {

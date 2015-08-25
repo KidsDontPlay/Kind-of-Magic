@@ -1,8 +1,5 @@
 package mrriegel.rwl.render;
 
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-
 import mrriegel.rwl.entity.Ice;
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.client.renderer.Tessellator;
@@ -10,8 +7,12 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.util.ResourceLocation;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+
 import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderEnergyBlastProjectile extends Render {

@@ -1,6 +1,5 @@
 package mrriegel.rwl.item;
 
-import mrriegel.rwl.entity.Ice;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.NBTHelper;
@@ -10,10 +9,7 @@ import net.minecraft.block.BlockCrops;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
-import net.minecraft.world.gen.ChunkProviderServer;
 
 public class Dung extends ItemEdelstein {
 	public Dung() {

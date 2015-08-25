@@ -3,10 +3,6 @@ package mrriegel.rwl.item;
 import mrriegel.rwl.entity.Ice;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.NBTHelper;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -14,7 +10,7 @@ import net.minecraft.world.World;
 public class Shoot extends ItemEdelstein {
 	public Shoot() {
 		super();
-		cooldown = 100;
+		cooldown = 60;
 		this.setUnlocalizedName(Reference.MOD_ID + ":" + "shoot");
 		this.setTextureName(Reference.MOD_ID + ":" + "shoot");
 	}
