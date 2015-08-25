@@ -5,6 +5,7 @@ import mrriegel.rwl.handler.DropEventHandler;
 import mrriegel.rwl.handler.ToolEventHandler;
 import mrriegel.rwl.init.CraftingRecipes;
 import mrriegel.rwl.init.ModBlocks;
+import mrriegel.rwl.init.ModEntities;
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.init.RitualRecipes;
 import mrriegel.rwl.item.ItemTalisman;
@@ -58,6 +59,7 @@ public class RWL {
 		MinecraftForge.EVENT_BUS.register(new DropEventHandler());
 		ItemTalisman.init();
 
+		ModEntities.init();
 		CraftingRecipes.init();
 		RitualRecipes.init();
 		proxy.registerRenderers();

@@ -196,11 +196,26 @@ public class RitualRecipes {
 		lis.add(new RitualRecipe(new ItemStack(ModItems.dung), new ItemStack(
 				ModItems.nev), new ItemStack(Items.emerald), new ItemStack(
 				ModItems.wnugget), new ItemStack(Items.dye, 1, 15),
-				new ItemStack(ModItems.catalyst, 1, 0), nether, anytime, 22));
+				new ItemStack(ModItems.catalyst, 1, 1), nether, anytime, 22));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.up), new ItemStack(
 				ModItems.nev), new ItemStack(Items.ender_pearl), new ItemStack(
 				ModItems.aodust), new ItemStack(Items.gold_ingot),
 				new ItemStack(ModItems.catalyst, 1, 0), nether, anytime, 5));
+
+		lis.add(new RitualRecipe(new ItemStack(ModItems.light), new ItemStack(
+				ModItems.nev), new ItemStack(Items.ender_pearl), new ItemStack(
+				Items.glowstone_dust), new ItemStack(Blocks.torch),
+				new ItemStack(ModItems.catalyst, 1, 0), nether, anytime, 3));
+
+		lis.add(new RitualRecipe(new ItemStack(ModItems.flash), new ItemStack(
+				ModItems.nev), new ItemStack(Items.blaze_rod), new ItemStack(
+				ModItems.aodust), new ItemStack(Blocks.iron_block),
+				new ItemStack(ModItems.catalyst, 1, 1), nether, anytime, 12));
+
+		lis.add(new RitualRecipe(new ItemStack(ModItems.shoot), new ItemStack(
+				ModItems.nev), new ItemStack(Items.bow), new ItemStack(
+				Items.arrow), new ItemStack(Items.fire_charge), new ItemStack(
+				ModItems.catalyst, 1, 0), nether, anytime, 4));
 	}
 }

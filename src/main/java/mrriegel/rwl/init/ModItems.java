@@ -8,6 +8,7 @@ import mrriegel.rwl.item.CrystalBag;
 import mrriegel.rwl.item.Crysthal;
 import mrriegel.rwl.item.Drop;
 import mrriegel.rwl.item.Dung;
+import mrriegel.rwl.item.Flash;
 import mrriegel.rwl.item.ItemBreather;
 import mrriegel.rwl.item.ItemCooler;
 import mrriegel.rwl.item.ItemFeeder;
@@ -26,6 +27,7 @@ import mrriegel.rwl.item.NevShovel;
 import mrriegel.rwl.item.NevSword;
 import mrriegel.rwl.item.OreDust;
 import mrriegel.rwl.item.OreStick;
+import mrriegel.rwl.item.Shoot;
 import mrriegel.rwl.item.TaliBag;
 import mrriegel.rwl.item.Up;
 import mrriegel.rwl.item.WNugget;
@@ -66,6 +68,8 @@ public class ModItems {
 	public static Item dung = new Dung();
 	public static Item up = new Up();
 	public static Item light = new Light();
+	public static Item flash = new Flash();
+	public static Item shoot = new Shoot();
 
 	public static void init() {
 		GameRegistry.registerItem(bloodie, "bloodie");
@@ -100,6 +104,8 @@ public class ModItems {
 		GameRegistry.registerItem(up, "up");
 		GameRegistry.registerItem(dung, "dung");
 		GameRegistry.registerItem(light, "light");
+		GameRegistry.registerItem(flash, "flash");
+		GameRegistry.registerItem(shoot, "shoot");
 
 	}
 }

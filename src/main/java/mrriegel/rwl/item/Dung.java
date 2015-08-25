@@ -1,5 +1,6 @@
 package mrriegel.rwl.item;
 
+import mrriegel.rwl.entity.Ice;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.NBTHelper;
@@ -57,15 +58,6 @@ public class Dung extends ItemEdelstein {
 	@Override
 	public ItemStack onItemRightClick(ItemStack p_77659_1_, World p_77659_2_,
 			EntityPlayer p_77659_3_) {
-		if (p_77659_2_.isRemote)
-			return p_77659_1_;
-		ChunkPosition cp = p_77659_2_.findClosestStructure("Dungeon",
-				(int) p_77659_3_.posX, (int) p_77659_3_.posY,
-				(int) p_77659_3_.posZ);
-		if (cp == null)
-			return p_77659_1_;
-		System.out.println("x: " + cp.chunkPosX + " y: " + cp.chunkPosY
-				+ " z: " + cp.chunkPosZ);
 		return p_77659_1_;
 	}
 }

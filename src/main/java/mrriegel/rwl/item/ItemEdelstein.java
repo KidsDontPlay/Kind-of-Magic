@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public abstract class ItemEdelstein extends Item {
-	protected int cooldown;
+	public int cooldown;
 
 	public ItemEdelstein() {
 		super();
@@ -20,14 +20,13 @@ public abstract class ItemEdelstein extends Item {
 	}
 
 	@Override
-	abstract public boolean onItemUse(ItemStack p_77648_1_,
-			EntityPlayer p_77648_2_, World p_77648_3_, int p_77648_4_,
-			int p_77648_5_, int p_77648_6_, int p_77648_7_, float p_77648_8_,
+	abstract public boolean onItemUse(ItemStack stack, EntityPlayer player,
+			World world, int x, int y, int z, int side, float p_77648_8_,
 			float p_77648_9_, float p_77648_10_);
 
 	@Override
-	abstract public ItemStack onItemRightClick(ItemStack p_77659_1_,
-			World p_77659_2_, EntityPlayer p_77659_3_);
+	abstract public ItemStack onItemRightClick(ItemStack stack, World world,
+			EntityPlayer player);
 
 	@Override
 	public void onUpdate(ItemStack p_77663_1_, World p_77663_2_,
@@ -41,7 +40,7 @@ public abstract class ItemEdelstein extends Item {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list,
 			boolean boo) {
-		list.add("Cooldown: " + NBTHelper.getInt(stack, "cooldown")/10);
+		list.add("Cooldown: " + NBTHelper.getInt(stack, "cooldown") / 20);
 	}
 
 }

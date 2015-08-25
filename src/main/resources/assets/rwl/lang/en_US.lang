@@ -42,6 +42,8 @@ item.rwl:catalyst_2.name=Catalyst III
 item.rwl:dung.name=Edelstein of Demeter
 item.rwl:up.name=Edelstein of Uranos
 item.rwl:light.name=Edelstein of Apollo
+item.rwl:flash.name=Edelstein of Zeus
+item.rwl:shoot.name=Edelstein of Hekate
 
 item.rwl:drop.name=Heart of Lapis
 item.rwl:bloodie.name=Blood Bottle
