@@ -9,6 +9,8 @@ import net.minecraft.block.BlockOre;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -51,4 +53,9 @@ public class Orus extends BlockOre {
 		return (random.nextInt(2) + 2);
 	}
 
+	@Override
+	public int getExpDrop(IBlockAccess world, int metadata, int fortune) {
+		Random rand = new Random();
+		return MathHelper.getRandomIntegerInRange(rand, 2, 4);
+	}
 }

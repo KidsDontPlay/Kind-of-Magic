@@ -1,5 +1,6 @@
 package mrriegel.rwl.item;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -23,7 +24,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.event.world.BlockEvent;
 
 public class NevPick extends ItemPickaxe implements INev {
 	public static ToolMaterial MATERIAL = EnumHelper.addToolMaterial(
@@ -267,11 +270,16 @@ public class NevPick extends ItemPickaxe implements INev {
 	private void fortune(ItemStack stack, int x, int y, int z,
 			EntityPlayer player, int i) {
 		RWLUtils.breakWithFortune(player.worldObj, x, y, z, 3);
-
 	}
 
 	private void silk(ItemStack stack, int x, int y, int z, EntityPlayer player) {
 		RWLUtils.breakWithSilk(player.worldObj, x, y, z);
+		ArrayList<ItemStack> al = new ArrayList<ItemStack>();
+		al.add(new ItemStack(Blocks.lapis_ore));
+		MinecraftForge.EVENT_BUS.post(new BlockEvent.HarvestDropsEvent(x, y, z,
+				player.worldObj, player.worldObj.getBlock(x, y, z),
+				player.worldObj.getBlockMetadata(x, y, z), 0, 1.0F, al, player,
+				true));
 
 	}
 

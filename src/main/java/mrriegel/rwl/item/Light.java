@@ -32,7 +32,7 @@ public class Light extends ItemEdelstein {
 		if (world.isRemote || NBTHelper.getInt(stack, "cooldown") != 0)
 			return stack;
 		MovingObjectPosition mop = Minecraft.getMinecraft().renderViewEntity
-				.rayTrace(20, 1.0F);
+				.rayTrace(30, 1.0F);
 		if (mop == null)
 			return stack;
 		BlockLocation bl = RWLUtils.getNeighbor(world, mop.blockX, mop.blockY,

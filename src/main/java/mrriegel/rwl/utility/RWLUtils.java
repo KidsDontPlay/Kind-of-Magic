@@ -54,7 +54,7 @@ public class RWLUtils {
 
 			block.dropBlockAsItem(world, x, y, z, l, fortune);
 
-			return world.setBlock(x, y, z, Blocks.air, 0, 3);
+			return world.setBlock(x, y, z, Blocks.air);
 		}
 	}
 

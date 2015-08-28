@@ -57,10 +57,10 @@ public class ToolEventHandler {
 					&& stack.getTagCompound()
 							.getCompoundTag(InventoryNevTool.tagName)
 							.getShort("Damage") == 13) {
-				for (int i = 0; i < 3; i++) {
+				for (int i = 0; i < e.getMaxHealth() / 3; i++) {
 					player.worldObj.spawnEntityInWorld(new EntityXPOrb(
 							player.worldObj, e.posX + 0.5d, e.posY,
-							e.posZ + 0.5d, EntityXPOrb.getXPSplit(0)));
+							e.posZ + 0.5d, EntityXPOrb.getXPSplit(1)));
 				}
 
 			}
@@ -87,14 +87,10 @@ public class ToolEventHandler {
 						player.worldObj.getBlockMetadata(event.x, event.y,
 								event.z), 0);
 				if (xp > 0) {
-					for (int i = 0; i < 2; i++) {
-						player.worldObj.spawnEntityInWorld(new EntityXPOrb(
-								player.worldObj, event.x + 0.5d, event.y,
-								event.z + 0.5d, EntityXPOrb.getXPSplit(0)));
-					}
+					event.setExpToDrop((int) (event.getExpToDrop() * 1.5));
 				}
-
 			}
+
 		}
 	}
 }
