@@ -21,15 +21,15 @@ public class RitualRecipes {
 	public static void init() {
 		lis = new ArrayList<RitualRecipe>();
 		lis.add(new RitualRecipe(new ItemStack(ModItems.nev), new ItemStack(
-				Items.diamond), new ItemStack(ModBlocks.mazer), new ItemStack(
-				ModBlocks.oblock), new ItemStack(ModBlocks.aoblock),
-				new ItemStack(ModItems.catalyst, 1, 0), anywhere, anytime, 5));
+				Items.diamond), new ItemStack(ModItems.mdust), new ItemStack(
+				ModItems.odust), new ItemStack(ModItems.aodust), new ItemStack(
+				ModItems.catalyst, 1, 0), anywhere, anytime, 3));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 0),
 				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
 				new ItemStack(Items.gold_ingot), new ItemStack(
 						Items.glowstone_dust), new ItemStack(ModItems.catalyst,
-						1, 0), nether, anytime, 8));
+						1, 0), anywhere, anytime, 8));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 1),
 				new ItemStack(ModItems.cry, 1, 0),
@@ -43,7 +43,7 @@ public class RitualRecipes {
 				new ItemStack(ModItems.mdust), new ItemStack(
 						Items.golden_apple, 1, 1), new ItemStack(
 						Blocks.glowstone), new ItemStack(ModItems.catalyst, 1,
-						2), nether, anytime, 32));
+						2), end, anytime, 32));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 3),
 				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
@@ -61,7 +61,7 @@ public class RitualRecipes {
 				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
 				new ItemStack(Blocks.redstone_block),
 				new ItemStack(Items.sugar), new ItemStack(ModItems.catalyst, 1,
-						1), nether, anytime, 10));
+						1), anywhere, night, 10));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 6),
 				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),

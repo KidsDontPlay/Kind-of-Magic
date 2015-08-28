@@ -8,6 +8,7 @@ import mrriegel.rwl.block.Mazer;
 import mrriegel.rwl.block.MazerB;
 import mrriegel.rwl.block.OBlock;
 import mrriegel.rwl.block.Orus;
+import mrriegel.rwl.block.PanLog;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.tile.GrowerTile;
 import mrriegel.rwl.tile.MazerTile;
@@ -25,6 +26,7 @@ public class ModBlocks {
 	public static Block oblock = new OBlock();
 	public static Block aoblock = new AOBlock();
 	public static Block grower = new Grower();
+	public static Block panlog = new PanLog();
 
 	public static void init() {
 		GameRegistry.registerBlock(mazer, "mazer");
@@ -35,6 +37,7 @@ public class ModBlocks {
 		GameRegistry.registerBlock(oblock, "oblock");
 		GameRegistry.registerBlock(aoblock, "aoblock");
 		GameRegistry.registerBlock(grower, "grower");
+		GameRegistry.registerBlock(panlog, "panlog");
 
 		GameRegistry.registerTileEntity(MazerTile.class, "mazertile");
 		GameRegistry.registerTileEntity(GrowerTile.class, "growertile");

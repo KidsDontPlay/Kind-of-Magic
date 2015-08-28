@@ -162,8 +162,13 @@ public class NevPick extends ItemPickaxe implements INev {
 						player.getFoodStats().getFoodLevel() - 1);
 			return false;
 		case 3:
-			silk(stack, x, y, z, player);
-			return true;
+			if (player.worldObj.getBlock(x, y, z).canSilkHarvest(
+					player.worldObj, player, x, y, z,
+					player.worldObj.getBlockMetadata(x, y, z))) {
+				silk(stack, x, y, z, player);
+				return true;
+			} else
+				return false;
 		case 4:
 			fortune(stack, x, y, z, player, 3);
 			return true;

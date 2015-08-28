@@ -48,7 +48,9 @@ public class RitualRecipe {
 		return true;
 	}
 
-	private int day(World world) {
+	private int day(World world, int time2) {
+		if (world.provider.dimensionId != 0)
+			return time2;
 		long time = world.getWorldTime() % 24000;
 		if (time < 12300 || time > 23850)
 			return 0;
@@ -64,7 +66,7 @@ public class RitualRecipe {
 		int tmpdim = dimensionID;
 		int tmptim = time;
 		if (time != -1)
-			tmptim = day(world);
+			tmptim = day(world, time);
 		if (dimensionID != Integer.MAX_VALUE)
 			tmpdim = world.provider.dimensionId;
 		if (eq(ist, soll)
