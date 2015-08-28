@@ -6,6 +6,9 @@ tile.rwl:oblock.name=Block of Nev
 tile.rwl:aoblock.name=Block of Light Nev
 tile.rwl:keep.name=Upper Stone
 tile.rwl:grower.name=Floralizer
+tile.rwl:panlog.name=Pan Wood
+tile.rwl:panleaves.name=Pan Leaves
+tile.rwl:pansapling.name=Pan Sapling
 
 item.rwl:cry_0.name=Area Crystal I
 item.rwl:cry_1.name=Area Crystal II
@@ -45,12 +48,16 @@ item.rwl:light.name=Edelstein of Apollo
 item.rwl:flash.name=Edelstein of Zeus
 item.rwl:shoot.name=Edelstein of Hekate
 
-item.rwl:drop.name=Heart of Lapis
+item.rwl:drop_0.name=Heart of Lapis
+item.rwl:drop_1.name=Advanced Heart of Lapis
+item.rwl:drop_2.name=Refined Heart of Lapis
+item.rwl:drop_3.name=Reinforced Heart of Lapis
 item.rwl:bloodie.name=Blood Bottle
 item.rwl:relic.name=Lapis Relic
 item.rwl:oredust.name=Nev Dust
 item.rwl:airoredust.name=Light Nev Dust
 item.rwl:mdust.name=Sipal Dust
+item.rwl:panstick.name=Pan Stick
 item.rwl:ostick.name=Stick of Nev
 item.rwl:nev.name=Nev Crystal
 item.rwl:wnugget.name=Nether Chunk

@@ -3,12 +3,9 @@ package mrriegel.rwl.block;
 import java.util.ArrayList;
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.block.BlockLog;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,6 +13,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class PanLog extends BlockLog {
 
@@ -32,7 +31,7 @@ public class PanLog extends BlockLog {
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
 		list.add(new ItemStack(item, 1, 0));
-		list.add(new ItemStack(item, 1, 1));
+		//list.add(new ItemStack(item, 1, 1));
 	}
 
 	@SideOnly(Side.CLIENT)

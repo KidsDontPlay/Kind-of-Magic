@@ -86,6 +86,8 @@ public class NevSword extends ItemSword implements INev {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list,
 			boolean boo) {
+		for(Object s:list)
+			System.out.println("ob: "+s);
 		if (stack.getTagCompound() == null)
 			return;
 		if (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
@@ -169,12 +171,12 @@ public class NevSword extends ItemSword implements INev {
 			multimap.put(SharedMonsterAttributes.attackDamage
 					.getAttributeUnlocalizedName(),
 					new AttributeModifier(field_111210_e, "Weapon modifier",
-							(double) 6.0F + MATERIAL.getDamageVsEntity(), 0));
+							(double) 7.0F + MATERIAL.getDamageVsEntity(), 0));
 			return multimap;
 		case 10:
 			multimap.put(SharedMonsterAttributes.attackDamage
 					.getAttributeUnlocalizedName(), new AttributeModifier(
-					field_111210_e, "Weapon modifier", (double) 10.0F
+					field_111210_e, "Weapon modifier", (double) 13.0F
 							+ MATERIAL.getDamageVsEntity(), 0));
 			return multimap;
 		default:

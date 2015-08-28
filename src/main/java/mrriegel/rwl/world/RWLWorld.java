@@ -74,20 +74,20 @@ public class RWLWorld implements IWorldGenerator {
 				for (BlockLocation l : RWLUtils.getAroundBlocks(world, x, i, z)) {
 					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
 				}
-				for (BlockLocation l : RWLUtils.getAroundBlocks(world, x + 1, i,
-						z + 1)) {
+				for (BlockLocation l : RWLUtils.getAroundBlocks(world, x + 1,
+						i, z + 1)) {
 					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
 				}
-				for (BlockLocation l : RWLUtils.getAroundBlocks(world, x + 1, i,
-						z - 1)) {
+				for (BlockLocation l : RWLUtils.getAroundBlocks(world, x + 1,
+						i, z - 1)) {
 					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
 				}
-				for (BlockLocation l : RWLUtils.getAroundBlocks(world, x - 1, i,
-						z + 1)) {
+				for (BlockLocation l : RWLUtils.getAroundBlocks(world, x - 1,
+						i, z + 1)) {
 					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
 				}
-				for (BlockLocation l : RWLUtils.getAroundBlocks(world, x - 1, i,
-						z - 1)) {
+				for (BlockLocation l : RWLUtils.getAroundBlocks(world, x - 1,
+						i, z - 1)) {
 					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
 				}
 

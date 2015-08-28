@@ -45,7 +45,7 @@ public class MazerB extends BlockContainer {
 		for (int i = 0; i < 6; i++) {
 			if (i == 0 || i == 1) {
 				this.icons[i] = reg.registerIcon(Reference.MOD_ID + ":"
-						+ "mazer");
+						+ "mazer_top");
 			} else {
 				this.icons[i] = reg.registerIcon(Reference.MOD_ID + ":"
 						+ "mazerB");

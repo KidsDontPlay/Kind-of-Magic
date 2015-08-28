@@ -27,6 +27,7 @@ import mrriegel.rwl.item.NevShovel;
 import mrriegel.rwl.item.NevSword;
 import mrriegel.rwl.item.OreDust;
 import mrriegel.rwl.item.OreStick;
+import mrriegel.rwl.item.PanStick;
 import mrriegel.rwl.item.Shoot;
 import mrriegel.rwl.item.TaliBag;
 import mrriegel.rwl.item.Up;
@@ -70,6 +71,7 @@ public class ModItems {
 	public static Item light = new Light();
 	public static Item flash = new Flash();
 	public static Item shoot = new Shoot();
+	public static Item panstick = new PanStick();
 
 	public static void init() {
 		GameRegistry.registerItem(bloodie, "bloodie");
@@ -106,6 +108,7 @@ public class ModItems {
 		GameRegistry.registerItem(light, "light");
 		GameRegistry.registerItem(flash, "flash");
 		GameRegistry.registerItem(shoot, "shoot");
+		GameRegistry.registerItem(panstick, "panstick");
 
 	}
 }
