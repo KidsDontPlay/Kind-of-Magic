@@ -1,6 +1,7 @@
 package mrriegel.rwl.init;
 
 import mrriegel.rwl.item.AirOreDust;
+import mrriegel.rwl.item.Amber;
 import mrriegel.rwl.item.BloodRelic;
 import mrriegel.rwl.item.Bloodie;
 import mrriegel.rwl.item.Catalyst;
@@ -11,6 +12,7 @@ import mrriegel.rwl.item.Dung;
 import mrriegel.rwl.item.Flash;
 import mrriegel.rwl.item.ItemBreather;
 import mrriegel.rwl.item.ItemCooler;
+import mrriegel.rwl.item.ItemExtinger;
 import mrriegel.rwl.item.ItemFeeder;
 import mrriegel.rwl.item.ItemFlyer;
 import mrriegel.rwl.item.ItemJumper;
@@ -28,6 +30,7 @@ import mrriegel.rwl.item.NevSword;
 import mrriegel.rwl.item.OreDust;
 import mrriegel.rwl.item.OreStick;
 import mrriegel.rwl.item.PanStick;
+import mrriegel.rwl.item.Resin;
 import mrriegel.rwl.item.Shoot;
 import mrriegel.rwl.item.TaliBag;
 import mrriegel.rwl.item.Up;
@@ -65,6 +68,7 @@ public class ModItems {
 	public static Item vision = new ItemVision();
 	public static Item jumper = new ItemJumper();
 	public static Item cooler = new ItemCooler();
+	public static Item extinger = new ItemExtinger();
 	// public static Item decor = new ItemDecor();
 	public static Item dung = new Dung();
 	public static Item up = new Up();
@@ -72,6 +76,8 @@ public class ModItems {
 	public static Item flash = new Flash();
 	public static Item shoot = new Shoot();
 	public static Item panstick = new PanStick();
+	public static Item resin = new Resin();
+	public static Item amber = new Amber();
 
 	public static void init() {
 		GameRegistry.registerItem(bloodie, "bloodie");
@@ -102,6 +108,7 @@ public class ModItems {
 		GameRegistry.registerItem(vision, "vision");
 		GameRegistry.registerItem(jumper, "jumper");
 		GameRegistry.registerItem(cooler, "cooler");
+		GameRegistry.registerItem(extinger, "extinger");
 		// GameRegistry.registerItem(decor, "decor");
 		GameRegistry.registerItem(up, "up");
 		GameRegistry.registerItem(dung, "dung");
@@ -109,6 +116,7 @@ public class ModItems {
 		GameRegistry.registerItem(flash, "flash");
 		GameRegistry.registerItem(shoot, "shoot");
 		GameRegistry.registerItem(panstick, "panstick");
-
+		GameRegistry.registerItem(resin, "resin");
+		GameRegistry.registerItem(amber, "amber");
 	}
 }

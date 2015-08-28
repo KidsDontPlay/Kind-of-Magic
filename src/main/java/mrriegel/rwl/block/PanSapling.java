@@ -40,7 +40,7 @@ public class PanSapling extends BlockSapling {
 
 	@Override
 	public void func_149878_d(World world, int x, int y, int z, Random rand) {
-		if (rand.nextInt(10) != 3)
+		if (rand.nextInt(5) != 3)
 			return;
 		if (world.isRemote || !TerrainGen.saplingGrowTree(world, rand, x, y, z))
 			return;

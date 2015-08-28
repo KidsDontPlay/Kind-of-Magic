@@ -67,6 +67,9 @@ public class CraftingRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.pansapling),
 				new ItemStack(ModItems.drop, 1, 1), new ItemStack(
 						Blocks.sapling, 1, Short.MAX_VALUE));
+		GameRegistry.addShapedRecipe(new ItemStack(ModItems.amber), "sis",
+				"iri", "sis", 's', new ItemStack(ModItems.panstick), 'i',
+				new ItemStack(Blocks.ice), 'r', new ItemStack(ModItems.resin));
 
 	}
 }

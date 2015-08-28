@@ -39,7 +39,7 @@ public class ItemVision extends ItemTalisman {
 			boolean anti = false;
 			if (contains != -1) {
 				ItemStack bag = player.inventory.mainInventory[contains];
-				for (int i = 0; i < 15; i++) {
+				for (int i = 0; i < 6; i++) {
 					try {
 						ItemStack invStack = ItemStack.loadItemStackFromNBT(bag
 								.getTagCompound()

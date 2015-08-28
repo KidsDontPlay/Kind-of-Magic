@@ -186,6 +186,11 @@ public class RitualRecipes {
 				ModItems.nev), new ItemStack(Blocks.coal_block), new ItemStack(
 				Items.clock), new ItemStack(ModItems.drop,1,2), new ItemStack(
 				ModItems.catalyst, 1, 2), nether, anytime, 20));
+		
+		lis.add(new RitualRecipe(new ItemStack(ModItems.extinger), new ItemStack(
+				ModItems.nev), new ItemStack(Blocks.coal_block), new ItemStack(
+				Items.magma_cream), new ItemStack(ModItems.drop,1,3), new ItemStack(
+				ModItems.catalyst, 1, 2), nether, anytime, 27));
 
 		lis.add(new RitualRecipe(new ItemStack(ModBlocks.grower),
 				new ItemStack(ModItems.nev),
@@ -232,7 +237,7 @@ public class RitualRecipes {
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.drop, 1, 3),
 				new ItemStack(ModItems.drop, 1, 2), new ItemStack(
-						ModItems.mdust), new ItemStack(ModItems.wnugget),
+						ModItems.mdust), new ItemStack(Items.nether_star),
 				new ItemStack(ModItems.bloodie), new ItemStack(
 						ModItems.catalyst, 1, 2), anywhere, anytime, 27));
 

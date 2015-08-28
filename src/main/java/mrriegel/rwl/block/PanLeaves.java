@@ -64,6 +64,11 @@ public class PanLeaves extends BlockLeaves {
 			this.dropBlockAsItem(world, x, y, z, new ItemStack(item));
 
 		}
+		if (world.rand.nextInt(59) == 0) {
+			Item item = ModItems.resin;
+			this.dropBlockAsItem(world, x, y, z, new ItemStack(item));
+
+		}
 		if (world.rand.nextInt(61) == 0) {
 			Item item = ModItems.drop;
 			this.dropBlockAsItem(world, x, y, z, new ItemStack(item));

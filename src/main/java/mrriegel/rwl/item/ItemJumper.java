@@ -38,7 +38,7 @@ public class ItemJumper extends ItemTalisman {
 		}
 		if (stack == null || stack.getTagCompound() == null)
 			return;
-		for (int i = 0; i < 15; i++) {
+		for (int i = 0; i < 6; i++) {
 			ItemStack invStack = ItemStack
 					.loadItemStackFromNBT(stack
 							.getTagCompound()

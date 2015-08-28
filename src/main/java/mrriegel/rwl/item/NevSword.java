@@ -86,8 +86,6 @@ public class NevSword extends ItemSword implements INev {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list,
 			boolean boo) {
-		for(Object s:list)
-			System.out.println("ob: "+s);
 		if (stack.getTagCompound() == null)
 			return;
 		if (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
