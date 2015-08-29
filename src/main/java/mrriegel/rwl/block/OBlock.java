@@ -24,8 +24,7 @@ public class OBlock extends Block {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister reg) {
 		for (int i = 0; i < 6; i++) {
-			this.icons[i] = reg
-					.registerIcon(Reference.MOD_ID + ":" + "oblock");
+			this.icons[i] = reg.registerIcon(Reference.MOD_ID + ":" + "oblock");
 		}
 	}
 

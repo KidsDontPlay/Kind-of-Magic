@@ -15,7 +15,5 @@ public class EvilSlot extends Slot {
 	public boolean canTakeStack(EntityPlayer p_82869_1_) {
 		return false;
 	}
-	
-	
 
 }

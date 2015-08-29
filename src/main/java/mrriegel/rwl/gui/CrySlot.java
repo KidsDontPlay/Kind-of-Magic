@@ -18,13 +18,13 @@ public class CrySlot extends Slot {
 
 	}
 
-	public CrySlot(ContainerNevTool con,IInventory inv, int p_i1824_2_, int p_i1824_3_,
-			int p_i1824_4_) {
+	public CrySlot(ContainerNevTool con, IInventory inv, int p_i1824_2_,
+			int p_i1824_3_, int p_i1824_4_) {
 
 		super(inv, p_i1824_2_, p_i1824_3_, p_i1824_4_);
 		this.inv = (InventoryNevTool) inv;
-		this.con=con;
-		this.inv.container=con;
+		this.con = con;
+		this.inv.container = con;
 
 	}
 

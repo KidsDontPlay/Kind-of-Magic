@@ -38,7 +38,7 @@ public class PanLeaves extends BlockLeaves {
 
 	@Override
 	public Item getItemDropped(int par1, Random par2Random, int par3) {
-		return Items.golden_apple;
+		return ModItems.resin;
 	}
 
 	@Override
@@ -59,23 +59,23 @@ public class PanLeaves extends BlockLeaves {
 			return;
 		}
 
-		if (world.rand.nextInt(50) == 0) {
+		if (world.rand.nextInt(69) == 0) {
 			Item item = this.getItemDropped(metadata, world.rand, fortune);
 			this.dropBlockAsItem(world, x, y, z, new ItemStack(item));
 
 		}
-		if (world.rand.nextInt(59) == 0) {
-			Item item = ModItems.resin;
-			this.dropBlockAsItem(world, x, y, z, new ItemStack(item));
-
-		}
-		if (world.rand.nextInt(61) == 0) {
+		if (world.rand.nextInt(71) == 0) {
 			Item item = ModItems.drop;
 			this.dropBlockAsItem(world, x, y, z, new ItemStack(item));
 
 		}
-		if (world.rand.nextInt(73) == 0) {
+		if (world.rand.nextInt(83) == 0) {
 			Item item = ModItems.panstick;
+			this.dropBlockAsItem(world, x, y, z, new ItemStack(item));
+
+		}
+		if (world.rand.nextInt(89) == 0) {
+			Item item = Items.golden_apple;
 			this.dropBlockAsItem(world, x, y, z, new ItemStack(item));
 
 		}

@@ -49,8 +49,8 @@ public class RenderEnergyBlastProjectile extends Render {
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {
 		if (entity instanceof Ice) {
-			return new ResourceLocation(
-					Reference.MOD_ID + ":" + "textures/ent/ice.png");
+			return new ResourceLocation(Reference.MOD_ID + ":"
+					+ "textures/ent/ice.png");
 		}
 
 		return null;

@@ -24,11 +24,14 @@ public class Up extends ItemEdelstein {
 			return stack;
 		for (double i = player.posY + 2.0D; i < 255; i = i + 1.0D) {
 			if (world
-					.getBlock(RWLUtils.trueVal(player.posX), RWLUtils.trueVal(i),
-							RWLUtils.trueVal(player.posZ)).getMaterial().isSolid()) {
-				if (world.getBlock(RWLUtils.trueVal(player.posX), RWLUtils.trueVal(i + 1),
-						RWLUtils.trueVal(player.posZ)).getMaterial() == Material.air
-						&& world.getBlock(RWLUtils.trueVal(player.posX), RWLUtils.trueVal(i + 2),
+					.getBlock(RWLUtils.trueVal(player.posX),
+							RWLUtils.trueVal(i), RWLUtils.trueVal(player.posZ))
+					.getMaterial().isSolid()) {
+				if (world.getBlock(RWLUtils.trueVal(player.posX),
+						RWLUtils.trueVal(i + 1), RWLUtils.trueVal(player.posZ))
+						.getMaterial() == Material.air
+						&& world.getBlock(RWLUtils.trueVal(player.posX),
+								RWLUtils.trueVal(i + 2),
 								RWLUtils.trueVal(player.posZ)).getMaterial() == Material.air) {
 					player.setPositionAndUpdate(player.posX, i + 1.05D,
 							player.posZ);

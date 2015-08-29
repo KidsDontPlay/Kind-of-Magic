@@ -29,7 +29,7 @@ item.rwl:cry_15.name=Detecting Crystal
 
 item.rwl:feeder.name=Talisman of Demeter
 item.rwl:sprinter.name=Talisman of Nike
-item.rwl:repair.name=Talisman of Helios
+item.rwl:repair.name=Talisman of Hephaistos
 item.rwl:stepper.name=Talisman of Olymp
 item.rwl:flyer.name=Talisman of Hermes
 item.rwl:breather.name=Talisman of Poseidon
@@ -37,6 +37,7 @@ item.rwl:vision.name=Talisman of Erebos
 item.rwl:jumper.name=Talisman of Herakles
 item.rwl:cooler.name=Talisman of Chronos
 item.rwl:decor.name=Talisman of Adonis
+item.rwl:extinger.name=Talisman of Helios
 
 item.rwl:catalyst_0.name=Catalyst I
 item.rwl:catalyst_1.name=Catalyst II
@@ -63,6 +64,8 @@ item.rwl:nev.name=Nev Crystal
 item.rwl:wnugget.name=Nether Chunk
 item.rwl:cbag.name=Crystal Bag
 item.rwl:tbag.name=Talisman Bag
+item.rwl:resin.name=Pan Resin
+item.rwl:amber.name=Cold Amber
 
 item.rwl:nevsword.name=Nev Sword
 item.rwl:nevpick.name=Nev Pickaxe
