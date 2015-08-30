@@ -96,7 +96,7 @@ public class RitualRecipes {
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 11),
 				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
-				new ItemStack(ModItems.drop, 1, 0), new ItemStack(
+				new ItemStack(ModItems.drop, 1, 1), new ItemStack(
 						Items.fermented_spider_eye), new ItemStack(
 						ModItems.catalyst, 1, 0), overworld, night, 11));
 
@@ -153,7 +153,7 @@ public class RitualRecipes {
 				new ItemStack(ModItems.nev), new ItemStack(Blocks.coal_block),
 				new ItemStack(Blocks.redstone_block), new ItemStack(
 						ModItems.drop, 1, 1), new ItemStack(ModItems.catalyst,
-						1, 0), nether, anytime, 8));
+						1, 0), anywhere, anytime, 8));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.repair), new ItemStack(
 				ModItems.nev), new ItemStack(Blocks.coal_block), new ItemStack(
@@ -164,7 +164,7 @@ public class RitualRecipes {
 				new ItemStack(ModItems.nev), new ItemStack(Blocks.coal_block),
 				new ItemStack(Blocks.piston),
 				new ItemStack(ModItems.drop, 1, 0), new ItemStack(
-						ModItems.catalyst, 1, 0), nether, anytime, 5));
+						ModItems.catalyst, 1, 0), anywhere, anytime, 5));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.flyer), new ItemStack(
 				ModItems.nev), new ItemStack(Blocks.coal_block), new ItemStack(
@@ -185,7 +185,7 @@ public class RitualRecipes {
 		lis.add(new RitualRecipe(new ItemStack(ModItems.jumper), new ItemStack(
 				ModItems.nev), new ItemStack(Blocks.coal_block), new ItemStack(
 				ModItems.drop, 1, 0), new ItemStack(Items.slime_ball),
-				new ItemStack(ModItems.catalyst, 1, 0), nether, anytime, 6));
+				new ItemStack(ModItems.catalyst, 1, 0), anywhere, anytime, 6));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cooler), new ItemStack(
 				ModItems.nev), new ItemStack(Blocks.coal_block), new ItemStack(
@@ -218,7 +218,7 @@ public class RitualRecipes {
 				ModItems.nev), new ItemStack(ModItems.drop, 1, 0),
 				new ItemStack(Items.glowstone_dust),
 				new ItemStack(Blocks.torch), new ItemStack(ModItems.catalyst,
-						1, 0), nether, anytime, 3));
+						1, 0), anywhere, anytime, 3));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.flash), new ItemStack(
 				ModItems.nev), new ItemStack(Items.blaze_rod), new ItemStack(
@@ -234,19 +234,19 @@ public class RitualRecipes {
 				new ItemStack(ModItems.drop, 1, 0), new ItemStack(
 						ModItems.mdust), new ItemStack(Items.gold_ingot),
 				new ItemStack(ModItems.bloodie), new ItemStack(
-						ModItems.catalyst, 1, 0), anywhere, anytime, 9));
+						ModItems.catalyst, 1, 0), anywhere, anytime, 7));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.drop, 1, 2),
 				new ItemStack(ModItems.drop, 1, 1), new ItemStack(
 						ModItems.mdust), new ItemStack(Items.diamond),
 				new ItemStack(ModItems.amber), new ItemStack(
-						ModItems.catalyst, 1, 1), anywhere, anytime, 18));
+						ModItems.catalyst, 1, 1), anywhere, anytime, 14));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.drop, 1, 3),
 				new ItemStack(ModItems.drop, 1, 2), new ItemStack(
 						ModItems.mdust), new ItemStack(Items.nether_star),
 				new ItemStack(ModItems.amber), new ItemStack(
-						ModItems.catalyst, 1, 2), anywhere, anytime, 27));
+						ModItems.catalyst, 1, 2), anywhere, anytime, 21));
 
 	}
 }

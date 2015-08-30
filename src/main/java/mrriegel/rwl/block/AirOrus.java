@@ -20,7 +20,7 @@ public class AirOrus extends BlockOre {
 
 	public AirOrus() {
 		super();
-		this.setHarvestLevel("pickaxe", 3);
+		this.setHarvestLevel("pickaxe", 2);
 		this.setHardness(3.5f);
 		this.setCreativeTab(CreativeTab.tab1);
 		this.setBlockName(Reference.MOD_ID + ":" + "airorus");
@@ -34,6 +34,13 @@ public class AirOrus extends BlockOre {
 					.registerIcon(Reference.MOD_ID + ":" + "airorus");
 
 		}
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean shouldSideBeRendered(IBlockAccess acces, int x, int y,
+			int z, int meta) {
+		return false;
 	}
 
 	@Override

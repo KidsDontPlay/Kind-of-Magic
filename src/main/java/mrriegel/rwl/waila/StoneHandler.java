@@ -6,6 +6,7 @@ import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
 import mcp.mobius.waila.api.IWailaRegistrar;
+import mrriegel.rwl.handler.ConfigurationHandler;
 import mrriegel.rwl.tile.MazerTile;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -37,6 +38,23 @@ public class StoneHandler implements IWailaDataProvider {
 			currenttip.add("Activated");
 		else
 			currenttip.add("Not Activated");
+		if (!ConfigurationHandler.wailaAltar)
+			return currenttip;
+		if (ConfigurationHandler.wailaDirection.equals("vertical"))
+			for (ItemStack s : tile.getInv()) {
+				if (s != null)
+					currenttip.add(s.getDisplayName());
+			}
+		else if (ConfigurationHandler.wailaDirection.equals("horizontal")) {
+			String res = "{";
+			for (ItemStack s : tile.getInv()) {
+				if (s != null) {
+					res = res + s.getDisplayName() + ", ";
+				}
+			}
+			res = res.substring(res.length() - 2);
+			res = res + "}";
+		}
 		return currenttip;
 	}
 

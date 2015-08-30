@@ -1,5 +1,9 @@
 package mrriegel.rwl.init;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import mrriegel.rwl.item.AirOreDust;
 import mrriegel.rwl.item.Amber;
 import mrriegel.rwl.item.BloodRelic;
@@ -79,6 +83,14 @@ public class ModItems {
 	public static Item resin = new Resin();
 	public static Item amber = new Amber();
 
+	static Item[] f = { bloodie, relic, catalyst, odust, aodust, mdust,
+			nevsword, nevpick, nevshovel, nevaxe, ostick, panstick, resin,
+			amber, drop, wnugget, bag, tbag, nev, cry, feeder, sprinter,
+			repair, stepper, flyer, breather, vision, jumper, cooler, extinger,
+			dung, up, light, flash, shoot };
+	
+	public static List<Item> lis = new ArrayList<Item>();
+
 	public static void init() {
 		GameRegistry.registerItem(bloodie, "bloodie");
 		bloodie.setContainerItem(Items.glass_bottle);
@@ -118,5 +130,8 @@ public class ModItems {
 		GameRegistry.registerItem(panstick, "panstick");
 		GameRegistry.registerItem(resin, "resin");
 		GameRegistry.registerItem(amber, "amber");
+		
+		for (Item i : f)
+			lis.add(i);
 	}
 }

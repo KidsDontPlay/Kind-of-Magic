@@ -1,11 +1,14 @@
 package mrriegel.rwl.creative;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import mrriegel.rwl.init.ModBlocks;
+import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class CreativeTab {
 
@@ -24,8 +27,18 @@ public class CreativeTab {
 		@Override
 		public void displayAllReleventItems(List p_78018_1_) {
 			super.displayAllReleventItems(p_78018_1_);
+			// List<ItemStack> copy = new ArrayList<ItemStack>();
+			// for (Object s : p_78018_1_)
+			// copy.add((ItemStack) s);
+			// p_78018_1_.clear();
+			// List<Item> lis = ModBlocks.lis;
+			// for (Item ii : ModItems.lis)
+			// lis.add(ii);
+			// for (Item i : lis)
+			// for (ItemStack s : copy)
+			// if (s.getItem().equals(i))
+			//			p_78018_1_.add(s);
 		}
-
 	};
 
 }

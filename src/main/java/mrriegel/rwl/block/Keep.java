@@ -64,15 +64,6 @@ public class Keep extends Block {
 	}
 
 	@Override
-	public void onEntityCollidedWithBlock(World world, int x, int y, int z,
-			Entity entity) {
-		if (entity instanceof EntityFX) {
-			EntityFX e = (EntityFX) entity;
-			e.motionY = -e.motionY;
-		}
-	}
-
-	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z,
 			EntityPlayer player, int p_149727_6_, float p_149727_7_,
 			float p_149727_8_, float p_149727_9_) {
@@ -101,11 +92,11 @@ public class Keep extends Block {
 						if (!world.isRemote) {
 							EntityItem ei = new EntityItem(world, x + 0.5d,
 									y + 0.5d, z - 1.5d, r.getOutput());
-
 							world.spawnEntityInWorld(ei);
 							ei.setPosition(player.posX, player.posY,
 									player.posZ);
-							player.addChatMessage(new ChatComponentText("Done!"));
+							player.addChatMessage(new ChatComponentText(
+									"Success"));
 						}
 						world.markBlockForUpdate(x, y - 2, z);
 						return true;
@@ -114,8 +105,6 @@ public class Keep extends Block {
 
 				}
 			}
-
-			// back
 		}
 		return false;
 

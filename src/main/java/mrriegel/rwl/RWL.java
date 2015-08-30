@@ -1,5 +1,12 @@
 package mrriegel.rwl;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+import com.google.common.base.Function;
+import com.google.common.collect.Ordering;
+
 import mrriegel.rwl.handler.ConfigurationHandler;
 import mrriegel.rwl.handler.DropEventHandler;
 import mrriegel.rwl.handler.ToolEventHandler;
@@ -14,6 +21,8 @@ import mrriegel.rwl.packet.ParticlePacketHandler;
 import mrriegel.rwl.proxy.CommonProxy;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.world.RWLWorld;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -38,6 +47,7 @@ public class RWL {
 	public static SimpleNetworkWrapper net;
 
 	private static int modGuiIndex = 0;
+
 	public static final int ItemInventoryGuiIndex = modGuiIndex++;
 
 	@Mod.EventHandler

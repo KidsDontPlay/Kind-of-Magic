@@ -170,8 +170,11 @@ public class NevPick extends ItemPickaxe implements INev {
 			} else
 				return false;
 		case 4:
-			fortune(stack, x, y, z, player, 3);
-			return true;
+			if (!player.capabilities.isCreativeMode) {
+				fortune(stack, x, y, z, player, 3);
+				return true;
+			} else
+				return false;
 		case 14:
 			Block block = player.worldObj.getBlock(x, y, z);
 			if (block.getUnlocalizedName().contains("ore")
@@ -275,6 +278,12 @@ public class NevPick extends ItemPickaxe implements INev {
 	private void fortune(ItemStack stack, int x, int y, int z,
 			EntityPlayer player, int i) {
 		RWLUtils.breakWithFortune(player.worldObj, x, y, z, 3);
+		MinecraftForge.EVENT_BUS.post(new BlockEvent.HarvestDropsEvent(x, y, z,
+				player.worldObj, player.worldObj.getBlock(x, y, z),
+				player.worldObj.getBlockMetadata(x, y, z), 3, 1.0F,
+				player.worldObj.getBlock(x, y, z).getDrops(player.worldObj, x,
+						y, z, player.worldObj.getBlockMetadata(x, y, z), 3),
+				player, false));
 	}
 
 	private void silk(ItemStack stack, int x, int y, int z, EntityPlayer player) {
@@ -307,7 +316,10 @@ public class NevPick extends ItemPickaxe implements INev {
 				&& !block.equals(Blocks.brick_block)
 				&& !(block.getHarvestTool(meta) != null && block
 						.getHarvestTool(meta).equals("pickaxe"))
-				&& !block.equals(Blocks.quartz_block)) {
+				&& !block.equals(Blocks.quartz_block)
+				&& !block.getMaterial().equals(Material.rock)
+				&& !block.getMaterial().equals(Material.glass)
+				&& !block.getMaterial().equals(Material.iron)) {
 			return;
 		}
 		if (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)

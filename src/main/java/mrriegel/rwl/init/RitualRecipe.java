@@ -86,7 +86,10 @@ public class RitualRecipe {
 	}
 
 	public ItemStack getOutput() {
+		if (output.stackSize <= 0)
+			output.stackSize = 1;
 		return output;
+
 	}
 
 	public void setOutput(ItemStack output) {

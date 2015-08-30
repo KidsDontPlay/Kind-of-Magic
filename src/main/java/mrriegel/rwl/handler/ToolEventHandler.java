@@ -31,7 +31,7 @@ public class ToolEventHandler {
 				return;
 			}
 			ItemStack stack = player.getHeldItem();
-			if (player.getHeldItem().getItem().equals(ModItems.nevsword)
+			if (stack.getItem().equals(ModItems.nevsword)
 					&& stack.getTagCompound() != null
 					&& stack.getTagCompound()
 							.getCompoundTag(InventoryNevTool.tagName)
@@ -39,6 +39,7 @@ public class ToolEventHandler {
 				if (e.getClass().toString().contains("entity.boss")
 						|| e instanceof EntityPlayer)
 					return;
+
 				ArrayList<EntityItem> l = new ArrayList<EntityItem>();
 				for (EntityItem ei : event.drops) {
 					l.add(new EntityItem(ei.worldObj, ei.posX, ei.posY,
