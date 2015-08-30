@@ -1,7 +1,6 @@
 package mrriegel.rwl.init;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import mrriegel.rwl.item.AirOreDust;
@@ -46,49 +45,49 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 @GameRegistry.ObjectHolder(Reference.MOD_ID)
 public class ModItems {
-	public static Item bloodie = new Bloodie();
-	public static Item relic = new BloodRelic();
-	public static Item catalyst = new Catalyst();
-	public static Item mdust = new MazeDust();
-	public static Item nevsword = new NevSword();
-	public static Item nevpick = new NevPick();
-	public static Item nevshovel = new NevShovel();
-	public static Item nevaxe = new NevAxe();
-	public static Item cry = new Crysthal();
-	public static Item bag = new CrystalBag();
-	public static Item odust = new OreDust();
-	public static Item aodust = new AirOreDust();
-	public static Item nev = new Nev();
-	public static Item ostick = new OreStick();
-	public static Item wnugget = new WNugget();
-	public static Item drop = new Drop();
-	public static Item tbag = new TaliBag();
-	public static Item feeder = new ItemFeeder();
-	public static Item sprinter = new ItemSprinter();
-	public static Item repair = new ItemRepair();
-	public static Item stepper = new ItemStepper();
-	public static Item flyer = new ItemFlyer();
-	public static Item breather = new ItemBreather();
-	public static Item vision = new ItemVision();
-	public static Item jumper = new ItemJumper();
-	public static Item cooler = new ItemCooler();
-	public static Item extinger = new ItemExtinger();
+	public static final Item bloodie = new Bloodie();
+	public static final Item relic = new BloodRelic();
+	public static final Item catalyst = new Catalyst();
+	public static final Item odust = new OreDust();
+	public static final Item aodust = new AirOreDust();
+	public static final Item mdust = new MazeDust();
+	public static final Item nevsword = new NevSword();
+	public static final Item nevpick = new NevPick();
+	public static final Item nevshovel = new NevShovel();
+	public static final Item nevaxe = new NevAxe();
+	public static final Item ostick = new OreStick();
+	public static final Item panstick = new PanStick();
+	public static final Item resin = new Resin();
+	public static final Item amber = new Amber();
+	public static final Item drop = new Drop();
+	public static final Item wnugget = new WNugget();
+	public static final Item bag = new CrystalBag();
+	public static final Item tbag = new TaliBag();
+	public static final Item nev = new Nev();
+	public static final Item cry = new Crysthal();
+	public static final Item feeder = new ItemFeeder();
+	public static final Item sprinter = new ItemSprinter();
+	public static final Item repair = new ItemRepair();
+	public static final Item stepper = new ItemStepper();
+	public static final Item flyer = new ItemFlyer();
+	public static final Item breather = new ItemBreather();
+	public static final Item vision = new ItemVision();
+	public static final Item jumper = new ItemJumper();
+	public static final Item cooler = new ItemCooler();
+	public static final Item extinger = new ItemExtinger();
 	// public static Item decor = new ItemDecor();
-	public static Item dung = new Dung();
-	public static Item up = new Up();
-	public static Item light = new Light();
-	public static Item flash = new Flash();
-	public static Item shoot = new Shoot();
-	public static Item panstick = new PanStick();
-	public static Item resin = new Resin();
-	public static Item amber = new Amber();
+	public static final Item dung = new Dung();
+	public static final Item up = new Up();
+	public static final Item light = new Light();
+	public static final Item flash = new Flash();
+	public static final Item shoot = new Shoot();
 
 	static Item[] f = { bloodie, relic, catalyst, odust, aodust, mdust,
 			nevsword, nevpick, nevshovel, nevaxe, ostick, panstick, resin,
 			amber, drop, wnugget, bag, tbag, nev, cry, feeder, sprinter,
 			repair, stepper, flyer, breather, vision, jumper, cooler, extinger,
 			dung, up, light, flash, shoot };
-	
+
 	public static List<Item> lis = new ArrayList<Item>();
 
 	public static void init() {
@@ -97,20 +96,24 @@ public class ModItems {
 		GameRegistry.registerItem(relic, "relic");
 		GameRegistry.registerItem(catalyst, "catalyst");
 		catalyst.setContainerItem(catalyst);
+		GameRegistry.registerItem(odust, "oredust");
+		GameRegistry.registerItem(aodust, "airoredust");
 		GameRegistry.registerItem(mdust, "mdust");
+
 		GameRegistry.registerItem(nevsword, "nevsword");
 		GameRegistry.registerItem(nevpick, "nevpick");
 		GameRegistry.registerItem(nevshovel, "nevshovel");
 		GameRegistry.registerItem(nevaxe, "nevaxe");
-		GameRegistry.registerItem(cry, "cry");
-		GameRegistry.registerItem(bag, "bag");
-		GameRegistry.registerItem(aodust, "airoredust");
-		GameRegistry.registerItem(odust, "oredust");
-		GameRegistry.registerItem(nev, "nev");
 		GameRegistry.registerItem(ostick, "ostick");
-		GameRegistry.registerItem(wnugget, "wnugget");
+		GameRegistry.registerItem(panstick, "panstick");
+		GameRegistry.registerItem(resin, "resin");
+		GameRegistry.registerItem(amber, "amber");
 		GameRegistry.registerItem(drop, "drop");
+		GameRegistry.registerItem(wnugget, "wnugget");
+		GameRegistry.registerItem(bag, "bag");
 		GameRegistry.registerItem(tbag, "tbag");
+		GameRegistry.registerItem(nev, "nev");
+		GameRegistry.registerItem(cry, "cry");
 		GameRegistry.registerItem(feeder, "feeder");
 		GameRegistry.registerItem(sprinter, "sprinter");
 		GameRegistry.registerItem(repair, "repair");
@@ -122,15 +125,12 @@ public class ModItems {
 		GameRegistry.registerItem(cooler, "cooler");
 		GameRegistry.registerItem(extinger, "extinger");
 		// GameRegistry.registerItem(decor, "decor");
-		GameRegistry.registerItem(up, "up");
 		GameRegistry.registerItem(dung, "dung");
+		GameRegistry.registerItem(up, "up");
 		GameRegistry.registerItem(light, "light");
 		GameRegistry.registerItem(flash, "flash");
 		GameRegistry.registerItem(shoot, "shoot");
-		GameRegistry.registerItem(panstick, "panstick");
-		GameRegistry.registerItem(resin, "resin");
-		GameRegistry.registerItem(amber, "amber");
-		
+
 		for (Item i : f)
 			lis.add(i);
 	}

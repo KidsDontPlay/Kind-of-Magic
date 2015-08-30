@@ -38,13 +38,6 @@ public class AirOrus extends BlockOre {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockAccess acces, int x, int y,
-			int z, int meta) {
-		return false;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
 		return this.icons[side];
 

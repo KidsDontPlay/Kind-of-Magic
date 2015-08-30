@@ -24,18 +24,17 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 @GameRegistry.ObjectHolder(Reference.MOD_ID)
 public class ModBlocks {
-
-	public static Block mazer = new Mazer();
-	public static Block mazerB = new MazerB();
-	public static Block orus = new Orus();
-	public static Block airorus = new AirOrus();
-	public static Block keep = new Keep();
-	public static Block oblock = new OBlock();
-	public static Block aoblock = new AOBlock();
-	public static Block grower = new Grower();
-	public static Block panlog = new PanLog();
-	public static Block panleaves = new PanLeaves();
-	public static Block pansapling = new PanSapling();
+	public static final Block orus = new Orus();
+	public static final Block airorus = new AirOrus();
+	public static final Block mazer = new Mazer();
+	public static final Block mazerB = new MazerB();
+	public static final Block keep = new Keep();
+	public static final Block oblock = new OBlock();
+	public static final Block aoblock = new AOBlock();
+	public static final Block panlog = new PanLog();
+	public static final Block panleaves = new PanLeaves();
+	public static final Block pansapling = new PanSapling();
+	public static final Block grower = new Grower();
 
 	static Item[] f = { Item.getItemFromBlock(orus),
 			Item.getItemFromBlock(airorus), Item.getItemFromBlock(mazer),
@@ -47,18 +46,17 @@ public class ModBlocks {
 	public static List<Item> lis = new ArrayList<Item>();
 
 	public static void init() {
-
-		GameRegistry.registerBlock(mazer, "mazer");
-		GameRegistry.registerBlock(mazerB, "mazerB");
 		GameRegistry.registerBlock(orus, "orus");
 		GameRegistry.registerBlock(airorus, "airorus");
+		GameRegistry.registerBlock(mazer, "mazer");
+		GameRegistry.registerBlock(mazerB, "mazerB");
 		GameRegistry.registerBlock(keep, "keep");
 		GameRegistry.registerBlock(oblock, "oblock");
 		GameRegistry.registerBlock(aoblock, "aoblock");
-		GameRegistry.registerBlock(grower, "grower");
 		GameRegistry.registerBlock(panlog, "panlog");
 		GameRegistry.registerBlock(panleaves, "panleaves");
 		GameRegistry.registerBlock(pansapling, "pansapling");
+		GameRegistry.registerBlock(grower, "grower");
 
 		GameRegistry.registerTileEntity(MazerTile.class, "mazertile");
 		GameRegistry.registerTileEntity(GrowerTile.class, "growertile");

@@ -140,7 +140,7 @@ public class NevAxe extends ItemAxe implements INev {
 			return false;
 		case 8:
 			if (player.worldObj.getBlock(x, y, z) instanceof BlockLog) {
-				chop2(stack, x, y, z, player.worldObj,
+				chop2(stack, x, y, z, player.worldObj, player,
 						player.worldObj.getBlock(x, y, z),
 						player.worldObj.getBlockMetadata(x, y, z));
 			}
@@ -154,16 +154,16 @@ public class NevAxe extends ItemAxe implements INev {
 	}
 
 	private void chop2(ItemStack stack, int x, int y, int z, World world,
-			Block block, int l) {
+			EntityPlayer player, Block block, int l) {
 		for (BlockLocation bl : RWLUtils.getNeighbors12(world, x, y, z)) {
 			if (world.getBlock(bl.x, bl.y, bl.z).getUnlocalizedName()
 					.equals(block.getUnlocalizedName())
 					&& world.getBlockMetadata(bl.x, bl.y, bl.z) % 4 == l) {
-				RWLUtils.breakWithFortune(world, bl.x, bl.y, bl.z, 0);
+				RWLUtils.breakWithFortune(player, world, bl.x, bl.y, bl.z, 0);
 				stack.setItemDamage(stack.getItemDamage() + 1);
 				if (stack.getItemDamage() > MATERIAL.getMaxUses())
 					break;
-				chop2(stack, bl.x, bl.y, bl.z, world, block, l);
+				chop2(stack, bl.x, bl.y, bl.z, world, player, block, l);
 			}
 
 		}
@@ -207,7 +207,7 @@ public class NevAxe extends ItemAxe implements INev {
 		for (BlockLocation b : v) {
 			Block bl = world.getBlock(b.x, b.y, b.z);
 			if (ForgeHooks.isToolEffective(stack, bl, meta)) {
-				RWLUtils.breakWithFortune(world, b.x, b.y, b.z, 0);
+				RWLUtils.breakWithFortune(player, world, b.x, b.y, b.z, 0);
 				stack.setItemDamage(stack.getItemDamage() + 1);
 				if (stack.getItemDamage() > MATERIAL.getMaxUses())
 					return;

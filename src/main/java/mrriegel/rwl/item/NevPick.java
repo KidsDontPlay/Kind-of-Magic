@@ -277,24 +277,11 @@ public class NevPick extends ItemPickaxe implements INev {
 
 	private void fortune(ItemStack stack, int x, int y, int z,
 			EntityPlayer player, int i) {
-		RWLUtils.breakWithFortune(player.worldObj, x, y, z, 3);
-		MinecraftForge.EVENT_BUS.post(new BlockEvent.HarvestDropsEvent(x, y, z,
-				player.worldObj, player.worldObj.getBlock(x, y, z),
-				player.worldObj.getBlockMetadata(x, y, z), 3, 1.0F,
-				player.worldObj.getBlock(x, y, z).getDrops(player.worldObj, x,
-						y, z, player.worldObj.getBlockMetadata(x, y, z), 3),
-				player, false));
+		RWLUtils.breakWithFortune(player, player.worldObj, x, y, z, 3);
 	}
 
 	private void silk(ItemStack stack, int x, int y, int z, EntityPlayer player) {
-		RWLUtils.breakWithSilk(player.worldObj, x, y, z);
-		ArrayList<ItemStack> al = new ArrayList<ItemStack>();
-		al.add(new ItemStack(Blocks.lapis_ore));
-		MinecraftForge.EVENT_BUS.post(new BlockEvent.HarvestDropsEvent(x, y, z,
-				player.worldObj, player.worldObj.getBlock(x, y, z),
-				player.worldObj.getBlockMetadata(x, y, z), 0, 1.0F, al, player,
-				true));
-
+		RWLUtils.breakWithSilk(player, player.worldObj, x, y, z);
 	}
 
 	protected void radius(ItemStack stack, int x, int y, int z,
@@ -350,7 +337,7 @@ public class NevPick extends ItemPickaxe implements INev {
 							meta2).equals("pickaxe"))
 					|| bl.equals(Blocks.brick_block)
 					|| block.equals(Blocks.quartz_block)) {
-				RWLUtils.breakWithFortune(world, b.x, b.y, b.z, 0);
+				RWLUtils.breakWithFortune(player, world, b.x, b.y, b.z, 0);
 				stack.setItemDamage(stack.getItemDamage() + 1);
 				if (stack.getItemDamage() > MATERIAL.getMaxUses())
 					return;

@@ -176,7 +176,7 @@ public class NevShovel extends ItemSpade implements INev {
 	}
 
 	private void silk(ItemStack stack, int x, int y, int z, EntityPlayer player) {
-		RWLUtils.breakWithSilk(player.worldObj, x, y, z);
+		RWLUtils.breakWithSilk(player, player.worldObj, x, y, z);
 	}
 
 	protected void radius(ItemStack stack, int x, int y, int z,
@@ -217,7 +217,7 @@ public class NevShovel extends ItemSpade implements INev {
 		for (BlockLocation b : v) {
 			Block bl = world.getBlock(b.x, b.y, b.z);
 			if (ForgeHooks.isToolEffective(stack, bl, meta)) {
-				RWLUtils.breakWithFortune(world, b.x, b.y, b.z, 0);
+				RWLUtils.breakWithFortune(player, world, b.x, b.y, b.z, 0);
 				stack.setItemDamage(stack.getItemDamage() + 1);
 				if (stack.getItemDamage() > MATERIAL.getMaxUses())
 					return;

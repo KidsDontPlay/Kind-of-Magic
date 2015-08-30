@@ -16,6 +16,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.world.BlockEvent;
 
 public class RWLUtils {
 	public static ArrayList<BlockLocation> getAroundBlocks(World world, int x,
@@ -41,8 +43,8 @@ public class RWLUtils {
 		return (int) num;
 	}
 
-	public static boolean breakWithFortune(World world, int x, int y, int z,
-			int fortune) {
+	public static boolean breakWithFortune(EntityPlayer player, World world,
+			int x, int y, int z, int fortune) {
 		Block block = world.getBlock(x, y, z);
 
 		if (block.getMaterial() == Material.air) {
@@ -53,12 +55,17 @@ public class RWLUtils {
 					+ (l << 12));
 
 			block.dropBlockAsItem(world, x, y, z, l, fortune);
-
+			MinecraftForge.EVENT_BUS.post(new BlockEvent.HarvestDropsEvent(x,
+					y, z, world, block, l, fortune, 1.0F, block.getDrops(world,
+							x, y, z, l, fortune), player, false));
+			MinecraftForge.EVENT_BUS.post(new BlockEvent.BreakEvent(x, y, z,
+					world, block, l, player));
 			return world.setBlock(x, y, z, Blocks.air);
 		}
 	}
 
-	public static boolean breakWithSilk(World world, int x, int y, int z) {
+	public static boolean breakWithSilk(EntityPlayer player, World world,
+			int x, int y, int z) {
 		Block block = world.getBlock(x, y, z);
 
 		if (block.getMaterial() == Material.air) {
@@ -73,6 +80,11 @@ public class RWLUtils {
 			EntityItem ei = new EntityItem(world, x + 0.5d, y + 0.4, z + 0.5d,
 					stack);
 			world.spawnEntityInWorld(ei);
+			MinecraftForge.EVENT_BUS.post(new BlockEvent.HarvestDropsEvent(x,
+					y, z, world, block, l, 0, 1.0F, block.getDrops(world, x, y,
+							z, l, 0), player, true));
+			MinecraftForge.EVENT_BUS.post(new BlockEvent.BreakEvent(x, y, z,
+					world, block, l, player));
 
 			return world.setBlock(x, y, z, Blocks.air, 0, 3);
 		}

@@ -74,11 +74,6 @@ public class PanLeaves extends BlockLeaves {
 			this.dropBlockAsItem(world, x, y, z, new ItemStack(item));
 
 		}
-		if (world.rand.nextInt(89) == 0) {
-			Item item = Items.golden_apple;
-			this.dropBlockAsItem(world, x, y, z, new ItemStack(item));
-
-		}
 	}
 
 	@Override
