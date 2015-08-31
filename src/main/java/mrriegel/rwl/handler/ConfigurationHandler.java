@@ -9,6 +9,11 @@ public class ConfigurationHandler {
 
 	public static boolean wailaAltar;
 	public static String wailaDirection;
+	public static boolean swordHUD;
+	public static boolean pickHUD;
+	public static boolean shovelHUD;
+	public static boolean axeHUD;
+	public static String HUDType;
 
 	static final String CLIENT = "Client";
 	static final String COMMON = "Common";
@@ -19,11 +24,21 @@ public class ConfigurationHandler {
 		}
 		try {
 			configuration.load();
-
+wailaDirection = configuration.get(CLIENT, "wailaDirection",
+					"vertical", "direction of ingredients").getString();
 			wailaAltar = configuration.get(CLIENT, "wailaIngredients", true,
 					"show ingredients of secrect stone in waila").getBoolean();
-			wailaDirection = configuration.get(CLIENT, "wailaDirection",
-					"vertical", "direction of ingredients").getString();
+			HUDType = configuration.get(CLIENT, "HUDType", "name",
+					"name or icon").getString();
+			swordHUD = configuration.get(CLIENT, "toolHUD", false,
+					"shows the name/icon of the crystal while holding Nev Sword").getBoolean();
+			pickHUD = configuration.get(CLIENT, "toolHUD", true,
+					"shows the name/icon of the crystal while holding Nev Pickaxe").getBoolean();
+			shovelHUD = configuration.get(CLIENT, "toolHUD", true,
+					"shows the name/icon of the crystal while holding Nev Shovel").getBoolean();
+			axeHUD = configuration.get(CLIENT, "toolHUD", true,
+					"shows the name/icon of the crystal while holding Nev Axe").getBoolean();
+			
 
 		} catch (Exception e) {
 

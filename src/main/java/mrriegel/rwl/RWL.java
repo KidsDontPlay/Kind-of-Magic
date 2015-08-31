@@ -13,6 +13,7 @@ import mrriegel.rwl.packet.ParticlePacket;
 import mrriegel.rwl.packet.ParticlePacketHandler;
 import mrriegel.rwl.proxy.CommonProxy;
 import mrriegel.rwl.reference.Reference;
+import mrriegel.rwl.render.NevToolOverlayRenderer;
 import mrriegel.rwl.world.RWLWorld;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
@@ -58,6 +59,7 @@ public class RWL {
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
 		MinecraftForge.EVENT_BUS.register(new ToolEventHandler());
 		MinecraftForge.EVENT_BUS.register(new DropEventHandler());
+		MinecraftForge.EVENT_BUS.register(new NevToolOverlayRenderer());
 		ItemTalisman.init();
 
 		ModEntities.init();

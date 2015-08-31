@@ -68,7 +68,7 @@ public class RWLUtils {
 	public static boolean breakWithSilk(EntityPlayer player, World world,
 			int x, int y, int z) {
 		Block block = world.getBlock(x, y, z);
-
+		
 		if (block.getMaterial() == Material.air) {
 			return false;
 		} else {
@@ -81,9 +81,10 @@ public class RWLUtils {
 			EntityItem ei = new EntityItem(world, x + 0.5d, y + 0.4, z + 0.5d,
 					stack);
 			world.spawnEntityInWorld(ei);
+			ArrayList<ItemStack> lis = new ArrayList<ItemStack>();
+			lis.add(new ItemStack(block));
 			MinecraftForge.EVENT_BUS.post(new BlockEvent.HarvestDropsEvent(x,
-					y, z, world, block, l, 0, 1.0F, block.getDrops(world, x, y,
-							z, l, 0), player, true));
+					y, z, world, block, l, 0, 1.0F, lis, player, true));
 			MinecraftForge.EVENT_BUS.post(new BlockEvent.BreakEvent(x, y, z,
 					world, block, l, player));
 
