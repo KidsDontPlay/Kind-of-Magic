@@ -1,7 +1,6 @@
 package mrriegel.rwl.init;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import mrriegel.rwl.block.AOBlock;

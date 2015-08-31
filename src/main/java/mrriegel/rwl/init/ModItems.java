@@ -37,7 +37,6 @@ import mrriegel.rwl.item.Resin;
 import mrriegel.rwl.item.Shoot;
 import mrriegel.rwl.item.TaliBag;
 import mrriegel.rwl.item.Up;
-import mrriegel.rwl.item.WNugget;
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;

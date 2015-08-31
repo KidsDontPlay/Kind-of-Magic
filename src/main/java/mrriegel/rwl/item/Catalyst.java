@@ -2,25 +2,18 @@ package mrriegel.rwl.item;
 
 import java.util.List;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.reference.Reference;
-import mrriegel.rwl.utility.BlockLocation;
-import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import net.minecraftforge.event.entity.item.ItemEvent;
-import net.minecraftforge.event.entity.item.ItemTossEvent;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 
 public class Catalyst extends Item {
 	public IIcon[] icons = new IIcon[3];

@@ -25,11 +25,12 @@ public class Up extends ItemEdelstein {
 		for (double i = player.posY + 2.0D; i < 255; i = i + 1.0D) {
 			if (world
 					.getBlock(RWLUtils.double2int(player.posX),
-							RWLUtils.double2int(i), RWLUtils.double2int(player.posZ))
-					.getMaterial().isSolid()) {
+							RWLUtils.double2int(i),
+							RWLUtils.double2int(player.posZ)).getMaterial()
+					.isSolid()) {
 				if (world.getBlock(RWLUtils.double2int(player.posX),
-						RWLUtils.double2int(i + 1), RWLUtils.double2int(player.posZ))
-						.getMaterial() == Material.air
+						RWLUtils.double2int(i + 1),
+						RWLUtils.double2int(player.posZ)).getMaterial() == Material.air
 						&& world.getBlock(RWLUtils.double2int(player.posX),
 								RWLUtils.double2int(i + 2),
 								RWLUtils.double2int(player.posZ)).getMaterial() == Material.air) {

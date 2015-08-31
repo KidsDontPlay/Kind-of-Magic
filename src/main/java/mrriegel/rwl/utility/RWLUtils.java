@@ -60,7 +60,7 @@ public class RWLUtils {
 							x, y, z, l, fortune), player, false));
 			MinecraftForge.EVENT_BUS.post(new BlockEvent.BreakEvent(x, y, z,
 					world, block, l, player));
-			//block.harvestBlock(world, player, x, y, z, l);
+			// block.harvestBlock(world, player, x, y, z, l);
 			return world.setBlock(x, y, z, Blocks.air);
 		}
 	}

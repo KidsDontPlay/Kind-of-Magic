@@ -5,7 +5,6 @@ import java.util.Random;
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.inventory.InventoryNevTool;
 import net.minecraft.block.Block;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -19,7 +18,7 @@ public class DropEventHandler {
 			return;
 		Block b = e.block;
 		Random ran = new Random();
-		
+
 		if (b.equals(Blocks.lapis_ore)
 				&& !e.harvester.capabilities.isCreativeMode
 				&& !e.world.isRemote

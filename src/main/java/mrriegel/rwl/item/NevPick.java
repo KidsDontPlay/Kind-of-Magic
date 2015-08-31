@@ -1,10 +1,7 @@
 package mrriegel.rwl.item;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-
-import org.lwjgl.opengl.GL11;
 
 import mrriegel.rwl.RWL;
 import mrriegel.rwl.creative.CreativeTab;
@@ -18,21 +15,15 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.BlockRedstoneOre;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.event.world.BlockEvent;
 
 public class NevPick extends ItemPickaxe implements INev {
 	public static ToolMaterial MATERIAL = EnumHelper.addToolMaterial(
