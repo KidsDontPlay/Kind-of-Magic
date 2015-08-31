@@ -57,7 +57,8 @@ public class Light extends ItemEdelstein {
 		default:
 			return stack;
 		}
-		if (player.getDistance(mop.blockX, mop.blockY, mop.blockZ) > 20)
+		if (player.getDistance(mop.blockX, mop.blockY, mop.blockZ) > 20
+				|| !world.getBlock(bl.x, bl.y, bl.z).equals(Blocks.air))
 			return stack;
 		world.setBlock(bl.x, bl.y, bl.z, Blocks.torch, meta, 3);
 		NBTHelper.setInteger(stack, "cooldown", cooldown);

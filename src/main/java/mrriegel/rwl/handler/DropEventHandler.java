@@ -19,6 +19,7 @@ public class DropEventHandler {
 			return;
 		Block b = e.block;
 		Random ran = new Random();
+		
 		if (b.equals(Blocks.lapis_ore)
 				&& !e.harvester.capabilities.isCreativeMode
 				&& !e.world.isRemote
@@ -26,6 +27,14 @@ public class DropEventHandler {
 						.areItemStacksEqual(e.drops.get(0), new ItemStack(b))))
 				&& ran.nextInt(8 - e.fortuneLevel) == 1) {
 			e.drops.add(new ItemStack(ModItems.drop));
+			if (e.harvester.getHeldItem().getItem().equals(ModItems.nevpick)
+					&& e.harvester.getHeldItem().getTagCompound()
+							.getCompoundTag(InventoryNevTool.tagName)
+							.getShort("Damage") == 4) {
+				EntityItem ei = new EntityItem(e.world, e.x + 0.5D, e.y,
+						e.z + 0.5D, new ItemStack(ModItems.drop));
+				e.world.spawnEntityInWorld(ei);
+			}
 		}
 	}
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import org.lwjgl.opengl.GL11;
+
 import mrriegel.rwl.RWL;
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.gui.GuiIDs;
@@ -16,12 +18,16 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.BlockRedstoneOre;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
@@ -120,6 +126,10 @@ public class NevPick extends ItemPickaxe implements INev {
 		if (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
 				.getShort("Damage") == 5) {
 			return super.getDigSpeed(stack, block, meta) * 3.0f;
+
+		} else if (stack.getTagCompound()
+				.getCompoundTag(InventoryNevTool.tagName).getShort("Damage") == 0) {
+			return super.getDigSpeed(stack, block, meta) / 2.5f;
 
 		} else if (stack.getTagCompound()
 				.getCompoundTag(InventoryNevTool.tagName).getShort("Damage") == 1) {

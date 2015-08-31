@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import mrriegel.rwl.creative.CreativeTab;
+import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.world.PanTree;
 import net.minecraft.block.BlockSapling;
@@ -14,7 +15,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -59,5 +62,11 @@ public class PanSapling extends BlockSapling {
 	@Override
 	public int damageDropped(int par1) {
 		return par1 & 7;
+	}
+
+	@Override
+	public boolean func_149851_a(World p_149851_1_, int p_149851_2_,
+			int p_149851_3_, int p_149851_4_, boolean p_149851_5_) {
+		return false;
 	}
 }

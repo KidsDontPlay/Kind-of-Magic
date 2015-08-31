@@ -9,10 +9,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class CraftingRecipes {
 	public static void init() {
-		GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.mazer),
-				new ItemStack(ModItems.catalyst, 1,
-						OreDictionary.WILDCARD_VALUE), new ItemStack(
-						Blocks.lapis_block));
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 				new ItemStack(ModItems.relic), "glg", "dbd", "glg", 'g',
 				"blockGlass", 'l', new ItemStack(Items.dye, 1, 4), 'd',

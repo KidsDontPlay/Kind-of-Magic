@@ -43,7 +43,7 @@ public class StoneHandler implements IWailaDataProvider {
 		if (ConfigurationHandler.wailaDirection.equals("vertical"))
 			for (ItemStack s : tile.getInv()) {
 				if (s != null)
-					currenttip.add("-"+s.getDisplayName());
+					currenttip.add("-" + s.getDisplayName());
 			}
 		else if (ConfigurationHandler.wailaDirection.equals("horizontal")) {
 			String res = "{";
@@ -52,7 +52,7 @@ public class StoneHandler implements IWailaDataProvider {
 					res = res + s.getDisplayName() + ", ";
 				}
 			}
-			res = res.substring(0,res.length() - 2);
+			res = res.substring(0, res.length() - 2);
 			res = res + "}";
 			currenttip.add(res);
 		}

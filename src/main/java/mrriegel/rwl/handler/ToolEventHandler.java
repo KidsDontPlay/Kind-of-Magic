@@ -88,7 +88,7 @@ public class ToolEventHandler {
 						player.worldObj.getBlockMetadata(event.x, event.y,
 								event.z), 0);
 				if (xp > 0) {
-					event.setExpToDrop((int) (event.getExpToDrop() * 1.5));
+					event.setExpToDrop((int) (event.getExpToDrop() * 1.8));
 				}
 			}
 

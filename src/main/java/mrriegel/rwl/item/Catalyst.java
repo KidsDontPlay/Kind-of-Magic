@@ -2,13 +2,25 @@ package mrriegel.rwl.item;
 
 import java.util.List;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mrriegel.rwl.creative.CreativeTab;
+import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.reference.Reference;
+import mrriegel.rwl.utility.BlockLocation;
+import mrriegel.rwl.utility.RWLUtils;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+import net.minecraftforge.event.entity.item.ItemEvent;
+import net.minecraftforge.event.entity.item.ItemTossEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 
 public class Catalyst extends Item {
 	public IIcon[] icons = new IIcon[3];
@@ -30,6 +42,19 @@ public class Catalyst extends Item {
 	@Override
 	public ItemStack getContainerItem(ItemStack itemStack) {
 		return itemStack;
+	}
+
+	@Override
+	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world,
+			int x, int y, int z, int s, float xs, float ys, float zs) {
+		if (world.getBlock(x, y, z).equals(Blocks.lapis_block)
+				&& !world.isRemote) {
+			world.playAuxSFX(2001, x, y, z,
+					Block.getIdFromBlock(Blocks.lapis_block) + (0 << 12));
+			world.setBlock(x, y, z, ModBlocks.mazer);
+			return true;
+		}
+		return false;
 	}
 
 	@Override

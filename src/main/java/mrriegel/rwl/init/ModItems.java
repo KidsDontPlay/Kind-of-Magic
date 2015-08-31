@@ -95,7 +95,6 @@ public class ModItems {
 		bloodie.setContainerItem(Items.glass_bottle);
 		GameRegistry.registerItem(relic, "relic");
 		GameRegistry.registerItem(catalyst, "catalyst");
-		catalyst.setContainerItem(catalyst);
 		GameRegistry.registerItem(odust, "oredust");
 		GameRegistry.registerItem(aodust, "airoredust");
 		GameRegistry.registerItem(mdust, "mdust");

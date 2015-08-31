@@ -15,6 +15,7 @@ import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.init.ModEntities;
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.init.RitualRecipes;
+import mrriegel.rwl.item.Catalyst;
 import mrriegel.rwl.item.ItemTalisman;
 import mrriegel.rwl.packet.ParticlePacket;
 import mrriegel.rwl.packet.ParticlePacketHandler;
