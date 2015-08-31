@@ -6,8 +6,12 @@ import net.minecraftforge.common.config.Configuration;
 
 public class ConfigurationHandler {
 	public static Configuration configuration;
+
 	public static boolean wailaAltar;
 	public static String wailaDirection;
+
+	static final String CLIENT = "Client";
+	static final String COMMON = "Common";
 
 	public static void init(File file) {
 		if (configuration == null) {
@@ -16,12 +20,10 @@ public class ConfigurationHandler {
 		try {
 			configuration.load();
 
-			wailaAltar = configuration.get(Configuration.CATEGORY_GENERAL,
-					"wailaIngredients", true, "show ingredients in waila")
-					.getBoolean();
-			wailaDirection = configuration.get(Configuration.CATEGORY_GENERAL,
-					"wailaDirection", "vertical", "show ingredients in waila")
-					.getString();
+			wailaAltar = configuration.get(CLIENT, "wailaIngredients", true,
+					"show ingredients of secrect stone in waila").getBoolean();
+			wailaDirection = configuration.get(CLIENT, "wailaDirection",
+					"vertical", "direction of ingredients").getString();
 
 		} catch (Exception e) {
 

@@ -15,12 +15,12 @@ public class RitualRecipe {
 	private ItemStack input2;
 	private ItemStack input3;
 	private ItemStack input4;
-	private ItemStack cat;
+	private int cat;
 	private int dimensionID, time;
 	private int xp;
 
 	public RitualRecipe(ItemStack output, ItemStack input1, ItemStack input2,
-			ItemStack input3, ItemStack input4, ItemStack cat, int dimensionID,
+			ItemStack input3, ItemStack input4, int cat, int dimensionID,
 			int time, int xp) {
 		super();
 		this.output = output;
@@ -58,7 +58,8 @@ public class RitualRecipe {
 			return 1;
 	}
 
-	public boolean matches(ItemStack[] ar, World world, EntityPlayer player) {
+	public boolean matches(ItemStack[] ar, World world, EntityPlayer player,
+			int catmeta) {
 
 		List<ItemStack> ist = Arrays.asList(ar);
 		List<ItemStack> soll = Arrays.asList(new ItemStack[] { input1, input2,
@@ -72,9 +73,12 @@ public class RitualRecipe {
 		if (eq(ist, soll)
 				&& tmpdim == dimensionID
 				&& tmptim == time
+				&& catmeta >= cat
 				&& (player.experienceLevel >= xp || player.capabilities.isCreativeMode))
 			return true;
 		if (eq(ist, soll) && !world.isRemote) {
+			if (!(catmeta >= cat))
+				player.addChatMessage(new ChatComponentText("Catalyst too weak"));
 			if (!(tmpdim == dimensionID))
 				player.addChatMessage(new ChatComponentText("False Dimension"));
 			if (!(tmptim == time))
@@ -86,6 +90,7 @@ public class RitualRecipe {
 	}
 
 	public ItemStack getOutput() {
+
 		if (output.stackSize <= 0)
 			output.stackSize = 1;
 		return output;
@@ -96,11 +101,11 @@ public class RitualRecipe {
 		this.output = output;
 	}
 
-	public ItemStack getCat() {
+	public int getCat() {
 		return cat;
 	}
 
-	public void setCat(ItemStack cat) {
+	public void setCat(int cat) {
 		this.cat = cat;
 	}
 

@@ -36,7 +36,7 @@ public class RWLUtils {
 
 	}
 
-	public static int trueVal(double num) {
+	public static int double2int(double num) {
 		if (num < 0) {
 			num--;
 		}
@@ -90,7 +90,6 @@ public class RWLUtils {
 		}
 	}
 
-	/** by tinkers construct */
 	public static MovingObjectPosition raytraceFromEntity(World world,
 			Entity player, boolean par3, double range) {
 		float f = 1.0F;

@@ -60,7 +60,7 @@ public class ModItems {
 	public static final Item resin = new Resin();
 	public static final Item amber = new Amber();
 	public static final Item drop = new Drop();
-	public static final Item wnugget = new WNugget();
+	// public static final Item wnugget = new WNugget();
 	public static final Item bag = new CrystalBag();
 	public static final Item tbag = new TaliBag();
 	public static final Item nev = new Nev();
@@ -84,7 +84,7 @@ public class ModItems {
 
 	static Item[] f = { bloodie, relic, catalyst, odust, aodust, mdust,
 			nevsword, nevpick, nevshovel, nevaxe, ostick, panstick, resin,
-			amber, drop, wnugget, bag, tbag, nev, cry, feeder, sprinter,
+			amber, drop, /* wnugget, */bag, tbag, nev, cry, feeder, sprinter,
 			repair, stepper, flyer, breather, vision, jumper, cooler, extinger,
 			dung, up, light, flash, shoot };
 
@@ -109,7 +109,7 @@ public class ModItems {
 		GameRegistry.registerItem(resin, "resin");
 		GameRegistry.registerItem(amber, "amber");
 		GameRegistry.registerItem(drop, "drop");
-		GameRegistry.registerItem(wnugget, "wnugget");
+		// GameRegistry.registerItem(wnugget, "wnugget");
 		GameRegistry.registerItem(bag, "bag");
 		GameRegistry.registerItem(tbag, "tbag");
 		GameRegistry.registerItem(nev, "nev");

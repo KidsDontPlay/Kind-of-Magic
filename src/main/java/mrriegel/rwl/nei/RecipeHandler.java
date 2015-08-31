@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
+import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.init.RitualRecipe;
 import mrriegel.rwl.init.RitualRecipes;
 import mrriegel.rwl.reference.Reference;
@@ -33,7 +34,8 @@ public class RecipeHandler extends TemplateRecipeHandler {
 			input.add(new PositionedStack(r.getInput2(), 45, 40, false));
 			input.add(new PositionedStack(r.getInput3(), 65, 40, false));
 			input.add(new PositionedStack(r.getInput4(), 85, 40, false));
-			cat = new PositionedStack(r.getCat(), 125, 40, false);
+			cat = new PositionedStack(new ItemStack(ModItems.catalyst, 1,
+					r.getCat()), 125, 40, false);
 			time = r.getTime();
 			dimensionID = r.getDimensionID();
 			xp = r.getXp();
@@ -133,8 +135,8 @@ public class RecipeHandler extends TemplateRecipeHandler {
 							recipe.getInput3(), ingredient)
 					|| NEIServerUtils.areStacksSameTypeCrafting(
 							recipe.getInput4(), ingredient)
-					|| NEIServerUtils.areStacksSameTypeCrafting(
-							recipe.getCat(), ingredient))
+					|| NEIServerUtils.areStacksSameTypeCrafting(new ItemStack(
+							ModItems.catalyst, 1, recipe.getCat()), ingredient))
 				arecipes.add(new CachedRitualRecipe(recipe));
 
 		}

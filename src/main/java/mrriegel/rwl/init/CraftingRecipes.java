@@ -46,10 +46,6 @@ public class CraftingRecipes {
 		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.keep), " o ",
 				"olo", " o ", 'o', new ItemStack(ModItems.odust), 'l',
 				new ItemStack(Blocks.torch));
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.wnugget, 4),
-				Items.nether_star);
-		GameRegistry.addShapedRecipe(new ItemStack(Items.nether_star), "oo ",
-				"oo ", 'o', new ItemStack(ModItems.wnugget));
 		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.mazerB), " a ",
 				"mom", 'm', new ItemStack(ModBlocks.mazer), 'a', new ItemStack(
 						ModItems.drop), 'o', new ItemStack(ModBlocks.oblock));

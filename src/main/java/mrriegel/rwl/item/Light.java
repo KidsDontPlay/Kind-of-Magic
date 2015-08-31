@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 public class Light extends ItemEdelstein {
 	public Light() {
 		super();
-		cooldown = 60;
+		cooldown = 50;
 		this.setUnlocalizedName(Reference.MOD_ID + ":" + "light");
 		this.setTextureName(Reference.MOD_ID + ":" + "light");
 
