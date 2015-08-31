@@ -1,5 +1,7 @@
 package mrriegel.rwl;
 
+import java.io.File;
+
 import mrriegel.rwl.handler.ConfigurationHandler;
 import mrriegel.rwl.handler.DropEventHandler;
 import mrriegel.rwl.handler.ToolEventHandler;
@@ -16,6 +18,7 @@ import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.render.NevToolOverlayRenderer;
 import mrriegel.rwl.world.RWLWorld;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -44,7 +47,11 @@ public class RWL {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		ConfigurationHandler.init(event.getSuggestedConfigurationFile());
+		File configFile = event.getSuggestedConfigurationFile();
+		ConfigurationHandler.configuration = new Configuration(configFile);
+		ConfigurationHandler.configuration.load();
+		ConfigurationHandler.refreshConfig();
+		
 		GameRegistry.registerWorldGenerator(new RWLWorld(), 1);
 		ModBlocks.init();
 		ModItems.init();

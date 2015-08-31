@@ -9,6 +9,7 @@ public class ConfigurationHandler {
 
 	public static boolean wailaAltar;
 	public static String wailaDirection;
+
 	public static boolean swordHUD;
 	public static boolean pickHUD;
 	public static boolean shovelHUD;
@@ -18,36 +19,32 @@ public class ConfigurationHandler {
 	static final String CLIENT = "Client";
 	static final String COMMON = "Common";
 
-	public static void init(File file) {
-		if (configuration == null) {
-			configuration = new Configuration(file);
+	public static boolean refreshConfig() {
+
+		/* client */
+		wailaAltar = configuration.get(CLIENT, "wailaAltar", true,
+				"show ingredients of secrect stone in waila").getBoolean(true);
+		wailaDirection = configuration.get(CLIENT, "wailaDirection",
+				"vertical", "direction of ingredients").getString();
+		swordHUD = configuration.get(CLIENT, "swordHUD", false,
+				"shows the name/icon of the crystal while holding Nev Sword")
+				.getBoolean(false);
+		pickHUD = configuration.get(CLIENT, "pickHUD", true,
+				"shows the name/icon of the crystal while holding Nev Pickaxe")
+				.getBoolean(true);
+		shovelHUD = configuration.get(CLIENT, "shovelHUD", true,
+				"shows the name/icon of the crystal while holding Nev Shovel")
+				.getBoolean(true);
+		axeHUD = configuration.get(CLIENT, "axeHUD", true,
+				"shows the name/icon of the crystal while holding Nev Axe")
+				.getBoolean(true);
+		HUDType = configuration.get(CLIENT, "HUDType", "name", "name or icon")
+				.getString();
+
+		if (configuration.hasChanged()) {
+			configuration.save();
 		}
-		try {
-			configuration.load();
-wailaDirection = configuration.get(CLIENT, "wailaDirection",
-					"vertical", "direction of ingredients").getString();
-			wailaAltar = configuration.get(CLIENT, "wailaIngredients", true,
-					"show ingredients of secrect stone in waila").getBoolean();
-			HUDType = configuration.get(CLIENT, "HUDType", "name",
-					"name or icon").getString();
-			swordHUD = configuration.get(CLIENT, "toolHUD", false,
-					"shows the name/icon of the crystal while holding Nev Sword").getBoolean();
-			pickHUD = configuration.get(CLIENT, "toolHUD", true,
-					"shows the name/icon of the crystal while holding Nev Pickaxe").getBoolean();
-			shovelHUD = configuration.get(CLIENT, "toolHUD", true,
-					"shows the name/icon of the crystal while holding Nev Shovel").getBoolean();
-			axeHUD = configuration.get(CLIENT, "toolHUD", true,
-					"shows the name/icon of the crystal while holding Nev Axe").getBoolean();
-			
-
-		} catch (Exception e) {
-
-		} finally {
-			if (configuration.hasChanged()) {
-				configuration.save();
-			}
-		}
-
+		return true;
 	}
 
 }
