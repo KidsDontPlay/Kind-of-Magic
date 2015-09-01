@@ -64,8 +64,6 @@ public class Ice extends EnergyBlastProjectile {
 		}
 		if (worldObj.isAirBlock((int) this.posX, (int) this.posY,
 				(int) this.posZ)) {
-			// worldObj.setBlock((int)this.posX, (int)this.posY,
-			// (int)this.posZ,Block.fire.blockID);
 		}
 
 		spawnHitParticles("magicCrit", 8);

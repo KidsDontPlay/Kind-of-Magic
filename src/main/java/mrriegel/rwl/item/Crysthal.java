@@ -45,13 +45,13 @@ public class Crysthal extends Item {
 
 		switch (stack.getItemDamage()) {
 		case 0:
-			list.add("Pickaxe, Shovel, Axe");
+			list.add("Pickaxe, Shovel, Axe, Sword");
 			break;
 		case 1:
-			list.add("Pickaxe, Shovel, Axe");
+			list.add("Pickaxe, Shovel, Axe, Sword");
 			break;
 		case 2:
-			list.add("Pickaxe, Shovel, Axe");
+			list.add("Pickaxe, Shovel, Axe, Sword");
 			break;
 		case 3:
 			list.add("Pickaxe, Shovel");

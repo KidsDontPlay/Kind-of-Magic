@@ -10,6 +10,7 @@ import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.inventory.InventoryNevTool;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.NBTHelper;
+import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -20,6 +21,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSource;
 import net.minecraft.world.World;
 
 import com.google.common.collect.HashMultimap;
@@ -98,6 +102,15 @@ public class NevSword extends ItemSword implements INev {
 
 		switch (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
 				.getShort("Damage")) {
+		case 0:
+			list.add("AoE I");
+			break;
+		case 1:
+			list.add("AoE II");
+			break;
+		case 2:
+			list.add("AoE III");
+			break;
 		case 4:
 			list.add("Loot");
 			break;
@@ -134,9 +147,22 @@ public class NevSword extends ItemSword implements INev {
 		if (player.worldObj.isRemote) {
 			return false;
 		}
+		if (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
+				.toString().equals("{}")) {
+			return false;
+		}
 		Random rand = new Random();
 		switch (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
 				.getShort("Damage")) {
+		case 0:
+			aoe(player, victim, 1.1f);
+			return true;
+		case 1:
+			aoe(player, victim, 2.1f);
+			return true;
+		case 2:
+			aoe(player, victim, 3.1f);
+			return true;
 		case 6:
 			victim.setFire(7);
 			break;
@@ -161,6 +187,24 @@ public class NevSword extends ItemSword implements INev {
 		return super.hitEntity(stack, player, victim);
 	}
 
+	private void aoe(EntityLivingBase player, EntityLivingBase victim, float f) {
+		List<EntityLivingBase> lis = player.worldObj.getEntitiesWithinAABB(
+				EntityLivingBase.class, AxisAlignedBB.getBoundingBox(
+						victim.posX - f, victim.posY - f, victim.posZ - f,
+						victim.posX + f, victim.posY + f, victim.posZ + f));
+
+		for (EntityLivingBase e : lis)
+			if (!(e instanceof EntityPlayer)) {
+				double d = ((AttributeModifier) getItemAttributeModifiers()
+						.get(SharedMonsterAttributes.attackDamage
+								.getAttributeUnlocalizedName()).toArray()[0])
+						.getAmount();
+				e.attackEntityFrom(new EntityDamageSource("player", player),
+						(float) (d / 4));
+
+			}
+	}
+
 	@Override
 	public Multimap getItemAttributeModifiers() {
 		if (sword == null)
@@ -169,7 +213,6 @@ public class NevSword extends ItemSword implements INev {
 		plus = NBTHelper.getBoolean(sword, "tier1") ? 1 : 0;
 		plus = NBTHelper.getBoolean(sword, "tier2") ? 2 : plus;
 		Multimap multimap = HashMultimap.create();
-		
 
 		if (sword.getTagCompound() == null) {
 			multimap.put(SharedMonsterAttributes.attackDamage
