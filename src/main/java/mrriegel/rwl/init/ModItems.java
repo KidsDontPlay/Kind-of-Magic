@@ -47,8 +47,8 @@ public class ModItems {
 	public static final Item bloodie = new Bloodie();
 	public static final Item relic = new BloodRelic();
 	public static final Item catalyst = new Catalyst();
-	public static final Item odust = new OreDust();
-	public static final Item aodust = new AirOreDust();
+	public static final Item oredust = new OreDust();
+	public static final Item airoredust = new AirOreDust();
 	public static final Item mdust = new MazeDust();
 	public static final Item nevsword = new NevSword();
 	public static final Item nevpick = new NevPick();
@@ -81,7 +81,7 @@ public class ModItems {
 	public static final Item flash = new Flash();
 	public static final Item shoot = new Shoot();
 
-	static Item[] f = { bloodie, relic, catalyst, odust, aodust, mdust,
+	static Item[] f = { bloodie, relic, catalyst, oredust, airoredust, mdust,
 			nevsword, nevpick, nevshovel, nevaxe, ostick, panstick, resin,
 			amber, drop, /* wnugget, */bag, tbag, nev, cry, feeder, sprinter,
 			repair, stepper, flyer, breather, vision, jumper, cooler, extinger,
@@ -94,8 +94,8 @@ public class ModItems {
 		bloodie.setContainerItem(Items.glass_bottle);
 		GameRegistry.registerItem(relic, "relic");
 		GameRegistry.registerItem(catalyst, "catalyst");
-		GameRegistry.registerItem(odust, "oredust");
-		GameRegistry.registerItem(aodust, "airoredust");
+		GameRegistry.registerItem(oredust, "oredust");
+		GameRegistry.registerItem(airoredust, "airoredust");
 		GameRegistry.registerItem(mdust, "mdust");
 
 		GameRegistry.registerItem(nevsword, "nevsword");

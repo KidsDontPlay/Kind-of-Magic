@@ -22,7 +22,7 @@ public class RitualRecipes {
 		lis = new ArrayList<RitualRecipe>();
 		lis.add(new RitualRecipe(new ItemStack(ModItems.nev), new ItemStack(
 				Items.diamond), new ItemStack(ModItems.drop, 1, 0),
-				new ItemStack(ModItems.odust), new ItemStack(ModItems.aodust),
+				new ItemStack(ModItems.oredust), new ItemStack(ModItems.airoredust),
 				0, anywhere, anytime, 3));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 0),
@@ -191,7 +191,7 @@ public class RitualRecipes {
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.up), new ItemStack(
 				ModItems.nev), new ItemStack(Items.ender_pearl), new ItemStack(
-				ModItems.aodust), new ItemStack(Items.gold_ingot), 0, nether,
+				ModItems.airoredust), new ItemStack(Items.gold_ingot), 0, nether,
 				anytime, 5));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.light), new ItemStack(
@@ -201,7 +201,7 @@ public class RitualRecipes {
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.flash), new ItemStack(
 				ModItems.nev), new ItemStack(Items.blaze_rod), new ItemStack(
-				ModItems.aodust), new ItemStack(ModItems.drop, 1, 2), 1,
+				ModItems.airoredust), new ItemStack(ModItems.drop, 1, 2), 1,
 				nether, anytime, 12));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.shoot), new ItemStack(

@@ -5,6 +5,7 @@ import java.io.File;
 import mrriegel.rwl.handler.ConfigurationHandler;
 import mrriegel.rwl.handler.DropEventHandler;
 import mrriegel.rwl.handler.ToolEventHandler;
+import mrriegel.rwl.handler.ToolUpgradeHandler;
 import mrriegel.rwl.init.CraftingRecipes;
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.init.ModEntities;
@@ -67,6 +68,7 @@ public class RWL {
 		MinecraftForge.EVENT_BUS.register(new ToolEventHandler());
 		MinecraftForge.EVENT_BUS.register(new DropEventHandler());
 		MinecraftForge.EVENT_BUS.register(new NevToolOverlayRenderer());
+		MinecraftForge.EVENT_BUS.register(new ToolUpgradeHandler());
 		ItemTalisman.init();
 
 		ModEntities.init();

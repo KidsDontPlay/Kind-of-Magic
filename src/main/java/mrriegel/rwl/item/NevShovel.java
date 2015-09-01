@@ -10,6 +10,7 @@ import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.inventory.InventoryNevTool;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.BlockLocation;
+import mrriegel.rwl.utility.NBTHelper;
 import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,9 +23,6 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.util.EnumHelper;
 
 public class NevShovel extends ItemSpade implements INev {
-
-	public static ToolMaterial MATERIAL = EnumHelper.addToolMaterial(
-			"MATERIAL", 3, 2222, 10.0F, 5.0F, 1);
 
 	public NevShovel() {
 		super(MATERIAL);
@@ -87,12 +85,18 @@ public class NevShovel extends ItemSpade implements INev {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list,
 			boolean boo) {
+		list.add(NBTHelper.getInt(stack, "exp")
+				+ "/"
+				+ String.valueOf((NBTHelper.getBoolean(stack, "tier1") || NBTHelper
+						.getBoolean(stack, "tier2")) ? 10000 : 1000));
 		if (stack.getTagCompound() == null)
 			return;
+
 		if (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
 				.toString().equals("{}")) {
 			return;
 		}
+
 		switch (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
 				.getShort("Damage")) {
 		case 0:
@@ -116,22 +120,25 @@ public class NevShovel extends ItemSpade implements INev {
 
 	@Override
 	public float getDigSpeed(ItemStack stack, Block block, int meta) {
+		int plus = 0;
+		plus = NBTHelper.getBoolean(stack, "tier1") ? 1 : 0;
+		plus = NBTHelper.getBoolean(stack, "tier2") ? 2 : plus;
 		if (stack.getTagCompound() == null)
-			return super.getDigSpeed(stack, block, meta);
+			return super.getDigSpeed(stack, block, meta) + plus;
 		if (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
 				.getShort("Damage") == 5) {
-			return super.getDigSpeed(stack, block, meta) * 2.5f;
+			return super.getDigSpeed(stack, block, meta) * 2.5f + plus;
 
 		} else if (stack.getTagCompound()
 				.getCompoundTag(InventoryNevTool.tagName).getShort("Damage") == 2) {
-			return super.getDigSpeed(stack, block, meta) / 7.5f;
+			return super.getDigSpeed(stack, block, meta) / 7.5f + plus;
 
 		} else if (stack.getTagCompound()
 				.getCompoundTag(InventoryNevTool.tagName).getShort("Damage") == 1) {
-			return super.getDigSpeed(stack, block, meta) / 4.5f;
+			return super.getDigSpeed(stack, block, meta) / 4.5f + plus;
 
 		}
-		return super.getDigSpeed(stack, block, meta);
+		return super.getDigSpeed(stack, block, meta) + plus;
 	}
 
 	@Override

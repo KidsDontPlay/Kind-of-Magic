@@ -24,8 +24,6 @@ public class ConfigurationHandler {
 	public static int floralSpeed;
 	public static int floralSpeedAdvanced;
 
-	public static int durability;
-
 	static final String CLIENT = "Client";
 	static final String COMMON = "Common";
 
@@ -70,8 +68,6 @@ public class ConfigurationHandler {
 		floralSpeedAdvanced = config.get(COMMON, "floralSpeedAdvanced", 75,
 				"speed of upgraded floralizer").getInt(75);
 
-		durability = config.get(COMMON, "durability", 2222,
-				"durability of nev tools").getInt(2222);
 		if (config.hasChanged()) {
 			config.save();
 		}

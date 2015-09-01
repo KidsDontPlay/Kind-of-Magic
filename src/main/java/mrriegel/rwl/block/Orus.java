@@ -45,7 +45,7 @@ public class Orus extends BlockOre {
 
 	@Override
 	public Item getItemDropped(int par1, Random random, int par2) {
-		return ModItems.odust;
+		return ModItems.oredust;
 	}
 
 	@Override

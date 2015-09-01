@@ -18,10 +18,10 @@ public class CraftingRecipes {
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst, 1, 0),
 				"mbm", "odo", "lol", 'm', new ItemStack(ModItems.mdust), 'd',
 				new ItemStack(Items.diamond), 'o',
-				new ItemStack(ModItems.odust), 'b', ModItems.bloodie, 'l',
+				new ItemStack(ModItems.oredust), 'b', ModItems.bloodie, 'l',
 				new ItemStack(ModItems.drop));
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst, 1, 1),
-				"dcd", "cbc", "dcd", 'd', new ItemStack(ModItems.aodust), 'c',
+				"dcd", "cbc", "dcd", 'd', new ItemStack(ModItems.airoredust), 'c',
 				new ItemStack(ModItems.catalyst, 1, 0), 'b', new ItemStack(
 						Blocks.diamond_block));
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst, 1, 2),
@@ -29,24 +29,24 @@ public class CraftingRecipes {
 				'c', new ItemStack(ModItems.catalyst, 1, 1), 'b',
 				new ItemStack(Blocks.emerald_block));
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.ostick), " a ",
-				"asa", " a ", 'a', new ItemStack(ModItems.aodust), 's',
+				"asa", " a ", 'a', new ItemStack(ModItems.airoredust), 's',
 				new ItemStack(ModItems.panstick));
 		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.oblock), "ooo",
-				"ooo", "ooo", 'o', new ItemStack(ModItems.odust));
+				"ooo", "ooo", 'o', new ItemStack(ModItems.oredust));
 		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.aoblock), "ooo",
-				"ooo", "ooo", 'o', new ItemStack(ModItems.aodust));
+				"ooo", "ooo", 'o', new ItemStack(ModItems.airoredust));
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.bag), "lol", "lll",
 				'o', new ItemStack(ModItems.mdust), 'l', new ItemStack(
 						Items.leather));
 		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.keep), " o ",
-				"olo", " o ", 'o', new ItemStack(ModItems.odust), 'l',
+				"olo", " o ", 'o', new ItemStack(ModItems.oredust), 'l',
 				new ItemStack(Blocks.torch));
 		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.mazerB), " a ",
 				"mom", 'm', new ItemStack(ModBlocks.mazer), 'a', new ItemStack(
 						ModItems.drop), 'o', new ItemStack(ModBlocks.oblock));
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.aodust, 9),
+		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.airoredust, 9),
 				ModBlocks.aoblock);
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.odust, 9),
+		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.oredust, 9),
 				ModBlocks.oblock);
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.tbag), "lol",
 				"lll", 'o', new ItemStack(ModItems.drop), 'l', new ItemStack(

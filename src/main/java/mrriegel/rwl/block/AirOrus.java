@@ -45,7 +45,7 @@ public class AirOrus extends BlockOre {
 
 	@Override
 	public Item getItemDropped(int par1, Random random, int par2) {
-		return ModItems.aodust;
+		return ModItems.airoredust;
 	}
 
 	@Override
