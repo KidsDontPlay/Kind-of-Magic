@@ -225,7 +225,8 @@ public class NevPick extends ItemPickaxe implements INev {
 						player.worldObj.spawnEntityInWorld(ei);
 					}
 					player.worldObj.setBlock(bl.x, bl.y, bl.z, Blocks.stone);
-					stack.setItemDamage(stack.getItemDamage() + 1);
+					if (!player.capabilities.isCreativeMode)
+						stack.setItemDamage(stack.getItemDamage() + 1);
 					return true;
 
 				}
@@ -240,7 +241,8 @@ public class NevPick extends ItemPickaxe implements INev {
 					player.worldObj.spawnEntityInWorld(ei);
 				}
 				player.worldObj.setBlock(x, y2, z, Blocks.stone);
-				stack.setItemDamage(stack.getItemDamage() + 1);
+				if (!player.capabilities.isCreativeMode)
+					stack.setItemDamage(stack.getItemDamage() + 1);
 				return true;
 
 			}
@@ -267,7 +269,8 @@ public class NevPick extends ItemPickaxe implements INev {
 				int l = world.getBlockMetadata(x, y, z);
 				world.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(block)
 						+ (l << 12));
-				stack.setItemDamage(stack.getItemDamage() + 1);
+				if (!player.capabilities.isCreativeMode)
+					stack.setItemDamage(stack.getItemDamage() + 1);
 				if (stack.getItemDamage() > MATERIAL.getMaxUses())
 					break;
 				vein(stack, bl.x, bl.y, bl.z, player, block, i);
@@ -339,7 +342,8 @@ public class NevPick extends ItemPickaxe implements INev {
 					|| bl.equals(Blocks.brick_block)
 					|| block.equals(Blocks.quartz_block)) {
 				RWLUtils.breakWithFortune(player, world, b.x, b.y, b.z, 0);
-				stack.setItemDamage(stack.getItemDamage() + 1);
+				if (!player.capabilities.isCreativeMode)
+					stack.setItemDamage(stack.getItemDamage() + 1);
 				if (stack.getItemDamage() > MATERIAL.getMaxUses())
 					return;
 			}

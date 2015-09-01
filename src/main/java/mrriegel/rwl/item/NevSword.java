@@ -53,10 +53,10 @@ public class NevSword extends ItemSword implements INev {
 
 	}
 
-	@Override
-	public int getMaxItemUseDuration(ItemStack itemstack) {
-		return 1;
-	}
+//	@Override
+//	public int getMaxItemUseDuration(ItemStack itemstack) {
+//		return 1;
+//	}
 
 	@Override
 	public int getItemEnchantability() {
@@ -80,7 +80,7 @@ public class NevSword extends ItemSword implements INev {
 			EntityPlayer player) {
 		if (player.isSneaking())
 			player.openGui(RWL.instance, GuiIDs.NEVTOOL, world, 0, 0, 0);
-		return stack;
+		return super.onItemRightClick(stack, world, player);
 	}
 
 	@Override

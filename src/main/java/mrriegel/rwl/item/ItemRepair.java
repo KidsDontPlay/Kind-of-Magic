@@ -33,8 +33,7 @@ public class ItemRepair extends ItemTalisman {
 						return;
 					if (player.inventory.mainInventory[repair].stackSize != 1) {
 						player.inventory.mainInventory[repair].stackSize--;
-						iNev.setItemDamage(iNev.getItemDamage()
-								- iNev.getMaxDamage() / 4);
+						iNev.setItemDamage(0);
 					} else {
 						player.inventory.mainInventory[repair].stackSize--;
 						iNev.setItemDamage(0);

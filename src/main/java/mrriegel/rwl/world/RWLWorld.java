@@ -3,6 +3,7 @@ package mrriegel.rwl.world;
 import java.util.ArrayList;
 import java.util.Random;
 
+import mrriegel.rwl.handler.ConfigurationHandler;
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.RWLUtils;
@@ -23,29 +24,37 @@ public class RWLWorld implements IWorldGenerator {
 		if (world.provider.dimensionId == 0) {
 			generateShrine(random, chunkX, chunkZ, world);
 			addOreSpawn(ModBlocks.orus, world, random, chunkX * 16,
-					chunkZ * 16, 16, 16, 5 + random.nextInt(3), 5, 16, 32);
+					chunkZ * 16, 16, 16, 16, 32);
+			addOreSpawnL(ModBlocks.airorus, world, random, chunkX * 16,
+					chunkZ * 16, 16, 16, 140, 160);
 		}
 
 	}
 
 	public void addOreSpawn(Block block, World world, Random random,
-			int blockXPos, int blockZPos, int maxX, int maxZ, int maxVeinSize,
-			int chancesToSpawn, int minY, int maxY) {
-		int diffBtwnMinMaxY = maxY - minY;
-		for (int x = 0; x < chancesToSpawn; x++) {
+			int blockXPos, int blockZPos, int maxX, int maxZ, int minY, int maxY) {
+
+		for (int i = 0; i < 200; i++) {
+			if (random.nextInt(ConfigurationHandler.nevOreRarity) != 1)
+				continue;
+			int diffBtwnMinMaxY = maxY - minY;
 			int posX = blockXPos + random.nextInt(maxX);
 			int posY = minY + random.nextInt(diffBtwnMinMaxY);
 			int posZ = blockZPos + random.nextInt(maxZ);
-			(new WorldGenMinable(block, maxVeinSize)).generate(world, random,
-					posX, posY, posZ);
-
+			(new WorldGenMinable(block, 5 + random.nextInt(3))).generate(world,
+					random, posX, posY, posZ);
 		}
-		if (random.nextInt(120) != 1)
-			return;
+	}
 
+	public void addOreSpawnL(Block block, World world, Random random,
+			int blockXPos, int blockZPos, int maxX, int maxZ, int minY, int maxY) {
+		if (random.nextInt(ConfigurationHandler.lightNevOreRarity) != 1)
+			return;
+		int diffBtwnMinMaxY = maxY - minY;
 		int posX = blockXPos + random.nextInt(maxX);
 		int posY = minY + random.nextInt(diffBtwnMinMaxY);
 		int posZ = blockZPos + random.nextInt(maxZ);
+
 		boolean te = false;
 		for (int i = 50; i < 80; i++) {
 			if (world.getBlock(posX, i, posZ).equals(Blocks.water)
@@ -55,9 +64,8 @@ public class RWLWorld implements IWorldGenerator {
 			}
 		}
 		if (te)
-			(new WorldGenMinable(ModBlocks.airorus, 8 + random.nextInt(3),
-					Blocks.air)).generate(world, random, posX, posY + 135
-					+ random.nextInt(50), posZ);
+			(new WorldGenMinable(block, 8 + random.nextInt(3), Blocks.air))
+					.generate(world, random, posX, posY, posZ);
 
 	}
 
@@ -66,7 +74,7 @@ public class RWLWorld implements IWorldGenerator {
 		int x = chunkX * 16 + random.nextInt(16);
 		int z = chunkZ * 16 + random.nextInt(16);
 		for (int i = 110; i > 50; i--) {
-			int ran = (int) (Math.random() * 90) + 1;
+			int ran = (int) (Math.random() * ConfigurationHandler.structureRarity) + 1;
 
 			if (isSolid(x, i, z, world) && ran == 1) {
 				setB(x, i, z, ModBlocks.mazer, world);

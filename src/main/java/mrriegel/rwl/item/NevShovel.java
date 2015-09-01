@@ -75,7 +75,8 @@ public class NevShovel extends ItemSpade implements INev {
 			if (k != null && (k.equals(Blocks.dirt) || k.equals(Blocks.grass))) {
 				p_77648_3_.setBlock(p_77648_4_, p_77648_5_, p_77648_6_,
 						Blocks.farmland);
-				p_77648_1_.setItemDamage(p_77648_1_.getItemDamage() + 1);
+				if (!p_77648_2_.capabilities.isCreativeMode)
+					p_77648_1_.setItemDamage(p_77648_1_.getItemDamage() + 1);
 			}
 		}
 		return super.onItemUse(p_77648_1_, p_77648_2_, p_77648_3_, p_77648_4_,
@@ -218,7 +219,8 @@ public class NevShovel extends ItemSpade implements INev {
 			Block bl = world.getBlock(b.x, b.y, b.z);
 			if (ForgeHooks.isToolEffective(stack, bl, meta)) {
 				RWLUtils.breakWithFortune(player, world, b.x, b.y, b.z, 0);
-				stack.setItemDamage(stack.getItemDamage() + 1);
+				if (!player.capabilities.isCreativeMode)
+					stack.setItemDamage(stack.getItemDamage() + 1);
 				if (stack.getItemDamage() > MATERIAL.getMaxUses())
 					return;
 			}

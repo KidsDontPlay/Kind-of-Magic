@@ -15,6 +15,9 @@ public class ConfigurationHandler {
 	public static boolean shovelHUD;
 	public static boolean axeHUD;
 	public static String HUDType;
+	public static int structureRarity;
+	public static int nevOreRarity;
+	public static int lightNevOreRarity;
 
 	static final String CLIENT = "Client";
 	static final String COMMON = "Common";
@@ -40,6 +43,13 @@ public class ConfigurationHandler {
 				.getBoolean(true);
 		HUDType = configuration.get(CLIENT, "HUDType", "name", "name or icon")
 				.getString();
+
+		structureRarity = configuration.get(COMMON, "structureRarity", 90,
+				"rarity of generated shrines").getInt(90);
+		nevOreRarity = configuration.get(COMMON, "nevOreRarity", 40,
+				"rarity of nev ore").getInt(40);
+		lightNevOreRarity = configuration.get(COMMON, "lightNevOreRarity", 100,
+				"rarity of light nev ore").getInt(100);
 
 		if (configuration.hasChanged()) {
 			configuration.save();
