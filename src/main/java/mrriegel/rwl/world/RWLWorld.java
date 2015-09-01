@@ -35,7 +35,7 @@ public class RWLWorld implements IWorldGenerator {
 			int blockXPos, int blockZPos, int maxX, int maxZ, int minY, int maxY) {
 
 		for (int i = 0; i < 200; i++) {
-			if (random.nextInt(ConfigurationHandler.nevOreRarity) != 1)
+			if (random.nextInt(ConfigurationHandler.nevOreRarity) != 0)
 				continue;
 			int diffBtwnMinMaxY = maxY - minY;
 			int posX = blockXPos + random.nextInt(maxX);
@@ -48,7 +48,7 @@ public class RWLWorld implements IWorldGenerator {
 
 	public void addOreSpawnL(Block block, World world, Random random,
 			int blockXPos, int blockZPos, int maxX, int maxZ, int minY, int maxY) {
-		if (random.nextInt(ConfigurationHandler.lightNevOreRarity) != 1)
+		if (random.nextInt(ConfigurationHandler.lightNevOreRarity) != 0)
 			return;
 		int diffBtwnMinMaxY = maxY - minY;
 		int posX = blockXPos + random.nextInt(maxX);

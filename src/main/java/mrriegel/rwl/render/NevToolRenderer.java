@@ -1,5 +1,6 @@
 package mrriegel.rwl.render;
 
+import mrriegel.rwl.handler.ConfigurationHandler;
 import mrriegel.rwl.inventory.InventoryNevTool;
 import mrriegel.rwl.item.NevAxe;
 import mrriegel.rwl.item.NevPick;
@@ -42,6 +43,8 @@ public class NevToolRenderer implements IItemRenderer {
 				.getTagCompound().getCompoundTag(InventoryNevTool.tagName));
 
 		if (target == null)
+			return;
+		if (!ConfigurationHandler.renderCrystal)
 			return;
 
 		GL11.glPushMatrix();

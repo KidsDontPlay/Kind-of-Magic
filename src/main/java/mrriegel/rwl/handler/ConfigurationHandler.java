@@ -1,11 +1,9 @@
 package mrriegel.rwl.handler;
 
-import java.io.File;
-
 import net.minecraftforge.common.config.Configuration;
 
 public class ConfigurationHandler {
-	public static Configuration configuration;
+	public static Configuration config;
 
 	public static boolean wailaAltar;
 	public static String wailaDirection;
@@ -15,9 +13,18 @@ public class ConfigurationHandler {
 	public static boolean shovelHUD;
 	public static boolean axeHUD;
 	public static String HUDType;
+	public static boolean renderCrystal;
+
 	public static int structureRarity;
 	public static int nevOreRarity;
 	public static int lightNevOreRarity;
+
+	public static int floralRadius;
+	public static int floralRadiusAdvanced;
+	public static int floralSpeed;
+	public static int floralSpeedAdvanced;
+
+	public static int durability;
 
 	static final String CLIENT = "Client";
 	static final String COMMON = "Common";
@@ -25,34 +32,48 @@ public class ConfigurationHandler {
 	public static boolean refreshConfig() {
 
 		/* client */
-		wailaAltar = configuration.get(CLIENT, "wailaAltar", true,
+		wailaAltar = config.get(CLIENT, "wailaAltar", true,
 				"show ingredients of secrect stone in waila").getBoolean(true);
-		wailaDirection = configuration.get(CLIENT, "wailaDirection",
-				"vertical", "direction of ingredients").getString();
-		swordHUD = configuration.get(CLIENT, "swordHUD", false,
+		wailaDirection = config.get(CLIENT, "wailaDirection", "vertical",
+				"direction of ingredients").getString();
+		swordHUD = config.get(CLIENT, "swordHUD", false,
 				"shows the name/icon of the crystal while holding Nev Sword")
 				.getBoolean(false);
-		pickHUD = configuration.get(CLIENT, "pickHUD", true,
+		pickHUD = config.get(CLIENT, "pickHUD", true,
 				"shows the name/icon of the crystal while holding Nev Pickaxe")
 				.getBoolean(true);
-		shovelHUD = configuration.get(CLIENT, "shovelHUD", true,
+		shovelHUD = config.get(CLIENT, "shovelHUD", true,
 				"shows the name/icon of the crystal while holding Nev Shovel")
 				.getBoolean(true);
-		axeHUD = configuration.get(CLIENT, "axeHUD", true,
+		axeHUD = config.get(CLIENT, "axeHUD", true,
 				"shows the name/icon of the crystal while holding Nev Axe")
 				.getBoolean(true);
-		HUDType = configuration.get(CLIENT, "HUDType", "name", "name or icon")
+		renderCrystal = config.get(CLIENT, "renderCrystal", true,
+				"render crystal on nev tool").getBoolean(true);
+		HUDType = config.get(CLIENT, "HUDType", "name", "name or icon")
 				.getString();
 
-		structureRarity = configuration.get(COMMON, "structureRarity", 90,
+		/* common */
+		structureRarity = config.get(COMMON, "structureRarity", 90,
 				"rarity of generated shrines").getInt(90);
-		nevOreRarity = configuration.get(COMMON, "nevOreRarity", 40,
+		nevOreRarity = config.get(COMMON, "nevOreRarity", 40,
 				"rarity of nev ore").getInt(40);
-		lightNevOreRarity = configuration.get(COMMON, "lightNevOreRarity", 100,
+		lightNevOreRarity = config.get(COMMON, "lightNevOreRarity", 100,
 				"rarity of light nev ore").getInt(100);
 
-		if (configuration.hasChanged()) {
-			configuration.save();
+		floralRadius = config.get(COMMON, "floralRadius", 1,
+				"radius of floralizer").getInt(1);
+		floralRadiusAdvanced = config.get(COMMON, "floralRadiusAdvanced", 3,
+				"radius of upgraded floralizer").getInt(3);
+		floralSpeed = config.get(COMMON, "floralSpeed", 130,
+				"speed of floralizer").getInt(130);
+		floralSpeedAdvanced = config.get(COMMON, "floralSpeedAdvanced", 75,
+				"speed of upgraded floralizer").getInt(75);
+
+		durability = config.get(COMMON, "durability", 2222,
+				"durability of nev tools").getInt(2222);
+		if (config.hasChanged()) {
+			config.save();
 		}
 		return true;
 	}

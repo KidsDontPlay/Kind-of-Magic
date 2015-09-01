@@ -68,7 +68,7 @@ public class RWLUtils {
 	public static boolean breakWithSilk(EntityPlayer player, World world,
 			int x, int y, int z) {
 		Block block = world.getBlock(x, y, z);
-		
+
 		if (block.getMaterial() == Material.air) {
 			return false;
 		} else {

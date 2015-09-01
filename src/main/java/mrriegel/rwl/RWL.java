@@ -48,10 +48,10 @@ public class RWL {
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		File configFile = event.getSuggestedConfigurationFile();
-		ConfigurationHandler.configuration = new Configuration(configFile);
-		ConfigurationHandler.configuration.load();
+		ConfigurationHandler.config = new Configuration(configFile);
+		ConfigurationHandler.config.load();
 		ConfigurationHandler.refreshConfig();
-		
+
 		GameRegistry.registerWorldGenerator(new RWLWorld(), 1);
 		ModBlocks.init();
 		ModItems.init();

@@ -11,7 +11,6 @@ import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -45,7 +44,7 @@ public class NevToolOverlayRenderer {
 					return;
 				RenderItem r = new RenderItem();
 				r.zLevel = 200.0F;
-				IIcon i = s.getItem().getIconFromDamage(0);
+
 				int centerX = (resolution.getScaledWidth() - mc.fontRenderer
 						.getStringWidth(s.getDisplayName())) / 2;
 				int centerY = (resolution.getScaledHeight() - mc.fontRenderer.FONT_HEIGHT) / 2;

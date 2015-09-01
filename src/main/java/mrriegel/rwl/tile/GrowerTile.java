@@ -1,6 +1,7 @@
 package mrriegel.rwl.tile;
 
 import mrriegel.rwl.RWL;
+import mrriegel.rwl.handler.ConfigurationHandler;
 import mrriegel.rwl.packet.ParticlePacket;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
@@ -15,17 +16,19 @@ public class GrowerTile extends TileEntity {
 	public void updateEntity() {
 		if (worldObj.isRemote)
 			return;
-		if (advanced())
-			for (int x = xCoord - 3; x < xCoord + 3; x++) {
+		if (advanced()) {
+			int rad = ConfigurationHandler.floralRadiusAdvanced;
+			for (int x = xCoord - rad; x < xCoord + rad; x++) {
 				for (int y = yCoord - 1; y < yCoord + 4; y++) {
-					for (int z = zCoord - 3; z < zCoord + 3; z++) {
+					for (int z = zCoord - rad; z < zCoord + rad; z++) {
 						if (x == xCoord && y == yCoord && z == zCoord)
 							continue;
 						Block block = worldObj.getBlock(x, y, z);
 						if (block instanceof IPlantable
 								|| block instanceof IGrowable) {
 							int meta1 = worldObj.getBlockMetadata(x, y, z);
-							if (worldObj.rand.nextInt(75) == 0) {
+							if (worldObj.rand
+									.nextInt(ConfigurationHandler.floralSpeedAdvanced) == 0) {
 								block.updateTick(worldObj, x, y, z,
 										worldObj.rand);
 							}
@@ -37,16 +40,18 @@ public class GrowerTile extends TileEntity {
 					}
 				}
 			}
-		else
-			for (int x = xCoord - 1; x < xCoord + 1; x++) {
+		} else {
+			int rad = ConfigurationHandler.floralRadius;
+			for (int x = xCoord - rad; x < xCoord + rad; x++) {
 				for (int y = yCoord - 1; y < yCoord + 4; y++) {
-					for (int z = zCoord - 1; z < zCoord + 1; z++) {
+					for (int z = zCoord - rad; z < zCoord + rad; z++) {
 						if (x == xCoord && y == yCoord && z == zCoord)
 							continue;
 						Block block = worldObj.getBlock(x, y, z);
 						if (block instanceof IPlantable
 								|| block instanceof IGrowable) {
-							if (worldObj.rand.nextInt(130) == 0) {
+							if (worldObj.rand
+									.nextInt(ConfigurationHandler.floralSpeed) == 0) {
 								block.updateTick(worldObj, x, y, z,
 										worldObj.rand);
 							}
@@ -54,6 +59,7 @@ public class GrowerTile extends TileEntity {
 					}
 				}
 			}
+		}
 	}
 
 	private boolean advanced() {

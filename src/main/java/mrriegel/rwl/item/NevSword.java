@@ -20,14 +20,11 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.EnumHelper;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 public class NevSword extends ItemSword implements INev {
-	public static ToolMaterial MATERIAL = EnumHelper.addToolMaterial(
-			"MATERIAL", 3, 2222, 10.0F, 5.0F, 1);
 
 	ItemStack sword = null;
 
@@ -53,10 +50,10 @@ public class NevSword extends ItemSword implements INev {
 
 	}
 
-//	@Override
-//	public int getMaxItemUseDuration(ItemStack itemstack) {
-//		return 1;
-//	}
+	// @Override
+	// public int getMaxItemUseDuration(ItemStack itemstack) {
+	// return 1;
+	// }
 
 	@Override
 	public int getItemEnchantability() {
@@ -110,7 +107,7 @@ public class NevSword extends ItemSword implements INev {
 			list.add("Keen II");
 			break;
 		case 11:
-			list.add("Slownes");
+			list.add("Slowness");
 			break;
 		case 12:
 			list.add("Wither");

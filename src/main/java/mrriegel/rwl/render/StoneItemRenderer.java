@@ -50,7 +50,7 @@ public class StoneItemRenderer extends TileEntitySpecialRenderer {
 			ghostEntityItem.setEntityItemStack(tile.getStackInSlot(slot));
 			float displacement = 0.2F;
 
-			float swing = (float) (6.28318530718F * (System.currentTimeMillis()*4 & 0x3FFFL) / 0x3FFFL);
+			float swing = (float) (6.28318530718F * (System.currentTimeMillis() * 4 & 0x3FFFL) / 0x3FFFL);
 			float tar = (float) Math.sin(swing);
 			if (ghostEntityItem.getEntityItem().getItem() instanceof ItemBlock) {
 				GL11.glTranslatef((float) d0 + 0.5F, (float) d1 + displacement
