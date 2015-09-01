@@ -4,6 +4,7 @@ import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.NBTHelper;
 import mrriegel.rwl.utility.RWLUtils;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -60,8 +61,11 @@ public class Light extends ItemEdelstein {
 		if (player.getDistance(mop.blockX, mop.blockY, mop.blockZ) > 20
 				|| !world.getBlock(bl.x, bl.y, bl.z).equals(Blocks.air))
 			return stack;
-		world.setBlock(bl.x, bl.y, bl.z, Blocks.torch, meta, 3);
-		NBTHelper.setInteger(stack, "cooldown", cooldown);
+		if (world.getBlock(mop.blockX, mop.blockY, mop.blockZ)
+				.canPlaceTorchOnTop(world, mop.blockX, mop.blockY, mop.blockZ)) {
+			world.setBlock(bl.x, bl.y, bl.z, Blocks.torch, meta, 3);
+			NBTHelper.setInteger(stack, "cooldown", cooldown);
+		}
 		return stack;
 	}
 

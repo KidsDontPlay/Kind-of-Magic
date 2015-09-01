@@ -69,6 +69,7 @@ public class RWL {
 		MinecraftForge.EVENT_BUS.register(new DropEventHandler());
 		MinecraftForge.EVENT_BUS.register(new NevToolOverlayRenderer());
 		MinecraftForge.EVENT_BUS.register(new ToolUpgradeHandler());
+		MinecraftForge.EVENT_BUS.register(this);
 		ItemTalisman.init();
 
 		ModEntities.init();
@@ -81,6 +82,5 @@ public class RWL {
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-
 	}
 }

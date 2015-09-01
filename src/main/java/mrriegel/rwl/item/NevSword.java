@@ -141,9 +141,10 @@ public class NevSword extends ItemSword implements INev {
 
 	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase victim,
-			EntityLivingBase player) {
+			EntityLivingBase playe) {
 		if (stack.getTagCompound() == null)
 			return false;
+		EntityPlayer player = (EntityPlayer) playe;
 		if (player.worldObj.isRemote) {
 			return false;
 		}
@@ -155,13 +156,13 @@ public class NevSword extends ItemSword implements INev {
 		switch (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
 				.getShort("Damage")) {
 		case 0:
-			aoe(player, victim, 1.1f);
+			aoe(player, victim, 1.1f, rand);
 			return true;
 		case 1:
-			aoe(player, victim, 2.1f);
+			aoe(player, victim, 2.1f, rand);
 			return true;
 		case 2:
-			aoe(player, victim, 3.1f);
+			aoe(player, victim, 3.1f, rand);
 			return true;
 		case 6:
 			victim.setFire(7);
@@ -187,7 +188,8 @@ public class NevSword extends ItemSword implements INev {
 		return super.hitEntity(stack, player, victim);
 	}
 
-	private void aoe(EntityLivingBase player, EntityLivingBase victim, float f) {
+	private void aoe(EntityPlayer player, EntityLivingBase victim, float f,
+			Random rand) {
 		List<EntityLivingBase> lis = player.worldObj.getEntitiesWithinAABB(
 				EntityLivingBase.class, AxisAlignedBB.getBoundingBox(
 						victim.posX - f, victim.posY - f, victim.posZ - f,
@@ -201,6 +203,10 @@ public class NevSword extends ItemSword implements INev {
 						.getAmount();
 				e.attackEntityFrom(new EntityDamageSource("player", player),
 						(float) (d / 4));
+				if (rand.nextInt(4) == 0)
+					if (!player.capabilities.isCreativeMode)
+						player.getHeldItem().setItemDamage(
+								player.getHeldItem().getItemDamage() + 1);
 
 			}
 	}
