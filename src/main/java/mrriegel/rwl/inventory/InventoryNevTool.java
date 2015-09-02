@@ -1,17 +1,14 @@
 package mrriegel.rwl.inventory;
 
-import mrriegel.rwl.gui.ContainerNevTool;
 import mrriegel.rwl.gui.IContainer;
-import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.item.INev;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class InventoryNevTool implements IInventory,IInventoryItem {
+public class InventoryNevTool implements IInventory, IInventoryItem {
 
 	private ItemStack[] inv;
 
@@ -98,8 +95,7 @@ public class InventoryNevTool implements IInventory,IInventoryItem {
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
 		ItemStack stack = player.getCurrentEquippedItem();
-		return stack != null
-				&& (stack.getItem() instanceof INev);
+		return stack != null && (stack.getItem() instanceof INev);
 	}
 
 	@Override
@@ -137,7 +133,7 @@ public class InventoryNevTool implements IInventory,IInventoryItem {
 
 	@Override
 	public void setContainer(IContainer con) {
-		this.container=con;
+		this.container = con;
 	}
 
 }

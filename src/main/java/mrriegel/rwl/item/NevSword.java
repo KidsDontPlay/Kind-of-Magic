@@ -10,7 +10,6 @@ import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.inventory.InventoryNevTool;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.NBTHelper;
-import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,7 +21,6 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.world.World;
 

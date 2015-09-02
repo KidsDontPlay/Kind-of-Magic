@@ -34,6 +34,7 @@ public class StoneItemRenderer extends TileEntitySpecialRenderer {
 			add(tileEntity, d0 - 1.0, d1, d2 - 1.0, f, 1);
 			add(tileEntity, d0 + 1.0, d1, d2 - 1.0, f, 2);
 			add(tileEntity, d0 - 1.0, d1, d2 + 1.0, f, 3);
+			render(tileEntity, d0, d1 - 0.1D, d2);
 		}
 	}
 
@@ -62,6 +63,34 @@ public class StoneItemRenderer extends TileEntitySpecialRenderer {
 			GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
 			GL11.glRotatef(rotationAngle, 0.0F, 1.0F, 0.0F);
 			renderItem.doRender(ghostEntityItem, 0, 1.9D, 0, 0, 0);
+		}
+		GL11.glPopMatrix();
+	}
+
+	private void render(TileEntity tileEntity, double d0, double d1, double d2) {
+		MazerTile tile = (MazerTile) tileEntity;
+		GL11.glPushMatrix();
+		if (tile.getStack() != null && tile.isProcessing()) {
+			float scaleFactor = 0.75F;
+			float rotationAngle = Minecraft.getMinecraft().gameSettings.fancyGraphics ? (float) (720.0 * (System
+					.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) : 0;
+			EntityItem ghostEntityItem = new EntityItem(tile.getWorldObj());
+			ghostEntityItem.hoverStart = 0.0F;
+			ghostEntityItem.setEntityItemStack(tile.getStack());
+			float displacement = 0.2F;
+
+			if (ghostEntityItem.getEntityItem().getItem() instanceof ItemBlock) {
+				GL11.glTranslatef((float) d0 + 0.5F, (float) d1 + displacement
+						+ 0.6F, (float) d2 + 0.5F);
+			} else {
+				GL11.glTranslatef((float) d0 + 0.5F, (float) d1 + displacement
+						+ 0.5F, (float) d2 + 0.5F);
+			}
+			final double cool = 75.0D;
+			double height = (cool - (tile.getCooldown() / cool) - (cool - 1)) * 1.25D;
+			GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
+			GL11.glRotatef(rotationAngle, 0.0F, 1.0F, 0.0F);
+			renderItem.doRender(ghostEntityItem, 0, height, 0, 0, 0);
 		}
 
 		GL11.glPopMatrix();

@@ -22,8 +22,8 @@ public class RitualRecipes {
 		lis = new ArrayList<RitualRecipe>();
 		lis.add(new RitualRecipe(new ItemStack(ModItems.nev), new ItemStack(
 				Items.diamond), new ItemStack(ModItems.drop, 1, 0),
-				new ItemStack(ModItems.oredust), new ItemStack(ModItems.airoredust),
-				0, anywhere, anytime, 3));
+				new ItemStack(ModItems.oredust), new ItemStack(
+						ModItems.airoredust), 0, anywhere, anytime, 3));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 0),
 				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
@@ -191,8 +191,8 @@ public class RitualRecipes {
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.up), new ItemStack(
 				ModItems.nev), new ItemStack(Items.ender_pearl), new ItemStack(
-				ModItems.airoredust), new ItemStack(Items.gold_ingot), 0, nether,
-				anytime, 5));
+				ModItems.airoredust), new ItemStack(Items.gold_ingot), 0,
+				nether, anytime, 5));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.light), new ItemStack(
 				ModItems.nev), new ItemStack(ModItems.drop, 1, 0),

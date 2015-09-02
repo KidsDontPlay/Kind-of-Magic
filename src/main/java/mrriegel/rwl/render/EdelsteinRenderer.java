@@ -3,12 +3,10 @@ package mrriegel.rwl.render;
 import mrriegel.rwl.item.ItemEdelstein;
 import mrriegel.rwl.utility.NBTHelper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
@@ -42,8 +40,8 @@ public class EdelsteinRenderer implements IItemRenderer {
 			renderItem.renderItemIntoGUI(Minecraft.getMinecraft().fontRenderer,
 					Minecraft.getMinecraft().renderEngine, itemStack, 0, 0);
 			// GL11.glPopMatrix();
-//			IIcon icon = ie.getIconFromDamage(0);
-//			renderItem.renderIcon(0, 0, icon, 16, 16);
+			// IIcon icon = ie.getIconFromDamage(0);
+			// renderItem.renderIcon(0, 0, icon, 16, 16);
 
 			GL11.glDisable(GL11.GL_TEXTURE_2D);
 			GL11.glEnable(GL11.GL_BLEND);
@@ -54,10 +52,10 @@ public class EdelsteinRenderer implements IItemRenderer {
 			Tessellator tessellator = Tessellator.instance;
 			tessellator.startDrawing(GL11.GL_QUADS);
 			tessellator.setColorRGBA(255, 40, 40, 128);
-			tessellator.addVertex(0, s*16.0D, 0);//lo
-			tessellator.addVertex(0, 16, 0);//lu
-			tessellator.addVertex(16, 16, 0);//ru
-			tessellator.addVertex(16, s*16.0D, 0);//ro
+			tessellator.addVertex(0, s * 16.0D, 0);// lo
+			tessellator.addVertex(0, 16, 0);// lu
+			tessellator.addVertex(16, 16, 0);// ru
+			tessellator.addVertex(16, s * 16.0D, 0);// ro
 			tessellator.draw();
 
 			GL11.glDepthMask(true);

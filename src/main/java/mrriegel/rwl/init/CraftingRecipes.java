@@ -13,17 +13,17 @@ public class CraftingRecipes {
 				"blockGlass", 'l', new ItemStack(Items.dye, 1, 4), 'd',
 				new ItemStack(Items.diamond), 'b', new ItemStack(
 						ModItems.bloodie)));
-		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.mdust, 2),
+		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.mdust, 4),
 				ModBlocks.mazer);
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst, 1, 0),
 				"mbm", "odo", "lol", 'm', new ItemStack(ModItems.mdust), 'd',
-				new ItemStack(Items.diamond), 'o',
-				new ItemStack(ModItems.oredust), 'b', ModItems.bloodie, 'l',
+				new ItemStack(Items.diamond), 'o', new ItemStack(
+						ModItems.oredust), 'b', ModItems.bloodie, 'l',
 				new ItemStack(ModItems.drop));
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst, 1, 1),
-				"dcd", "cbc", "dcd", 'd', new ItemStack(ModItems.airoredust), 'c',
-				new ItemStack(ModItems.catalyst, 1, 0), 'b', new ItemStack(
-						Blocks.diamond_block));
+				"dcd", "cbc", "dcd", 'd', new ItemStack(ModItems.airoredust),
+				'c', new ItemStack(ModItems.catalyst, 1, 0), 'b',
+				new ItemStack(Blocks.diamond_block));
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst, 1, 2),
 				"dcd", "cbc", "dcd", 'd', new ItemStack(Items.nether_star),
 				'c', new ItemStack(ModItems.catalyst, 1, 1), 'b',

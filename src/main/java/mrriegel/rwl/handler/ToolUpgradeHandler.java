@@ -1,10 +1,8 @@
 package mrriegel.rwl.handler;
 
 import mrriegel.rwl.item.INev;
-import mrriegel.rwl.item.NevPick;
 import mrriegel.rwl.item.NevSword;
 import mrriegel.rwl.utility.NBTHelper;
-import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

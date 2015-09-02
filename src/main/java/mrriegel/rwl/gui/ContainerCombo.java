@@ -10,7 +10,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class ContainerCombo extends Container implements IContainer{
+public class ContainerCombo extends Container implements IContainer {
 	InventoryNevTool inv1;
 	InventoryBag inv2;
 	ItemStack con;
@@ -27,14 +27,14 @@ public class ContainerCombo extends Container implements IContainer{
 						26 + j * 18, 37 + i * 18));
 			}
 		}
-		
+
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 5; j++) {
 				addSlotToContainer(new CryBagSlot(inv2, j + i * 5, 62 + j * 18,
 						19 + i * 18));
 			}
 		}
-		
+
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {
 				addSlotToContainer(new Slot(invPlayer, j + i * 9 + 9,
@@ -62,13 +62,14 @@ public class ContainerCombo extends Container implements IContainer{
 	public boolean canInteractWith(EntityPlayer p_75145_1_) {
 		boolean res = false;
 		for (ItemStack s : playerInventory.mainInventory)
-			if (s!=null&&s.getItem().equals(ModItems.bag)) {
+			if (s != null && s.getItem().equals(ModItems.bag)) {
 				res = true;
 				break;
 			}
 
 		return inv1.isUseableByPlayer(p_75145_1_) && res;
 	}
+
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
 		ItemStack stack = null;
@@ -108,12 +109,13 @@ public class ContainerCombo extends Container implements IContainer{
 		}
 		return stack;
 	}
+
 	@Override
 	public void onContainerClosed(EntityPlayer p_75134_1_) {
 		inv2.updateNBT();
 		super.onContainerClosed(p_75134_1_);
 	}
-	
+
 	@Override
 	public void onSlotChanged() {
 		ItemStack stack = playerInventory.mainInventory[playerInventory.currentItem];

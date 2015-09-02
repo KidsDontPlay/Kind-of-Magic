@@ -11,10 +11,8 @@ import mrriegel.rwl.tile.MazerTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -74,30 +72,19 @@ public class Keep extends Block {
 
 			ItemStack stack = player.getHeldItem();
 			for (RitualRecipe r : RitualRecipes.lis) {
-				if (stack.getItem().equals(ModItems.catalyst)) {
+				if (!tile.isProcessing()) {
 					if (r.matches(tile.getInv(), world, player,
 							stack.getItemDamage())) {
 						Random ran = new Random();
 						tile.clear();
+						tile.setProcessing(true);
+						tile.setCooldown(75);
+						tile.setStack(r.getOutput());
+						tile.setPlayer(player);
+
 						player.experienceLevel = player.experienceLevel
 								- r.getXp();
 
-						for (int i = 0; i < 20; i++) {
-							world.spawnParticle("happyVillager",
-									x + ran.nextDouble(),
-									(y + 0.6d + ran.nextDouble() / 1.5) - 1.8D,
-									z + ran.nextDouble(), 0, 0, 0);
-						}
-						if (!world.isRemote) {
-							EntityItem ei = new EntityItem(world, x + 0.5d,
-									y + 0.5d, z - 1.5d, r.getOutput());
-							world.spawnEntityInWorld(ei);
-							ei.setPosition(player.posX, player.posY,
-									player.posZ);
-							player.addChatMessage(new ChatComponentText(
-									"Success"));
-						}
-						world.markBlockForUpdate(x, y - 2, z);
 						return true;
 
 					}

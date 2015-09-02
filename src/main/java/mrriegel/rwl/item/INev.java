@@ -1,6 +1,5 @@
 package mrriegel.rwl.item;
 
-import mrriegel.rwl.handler.ConfigurationHandler;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.common.util.EnumHelper;
 

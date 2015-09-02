@@ -1,6 +1,9 @@
 package mrriegel.rwl.tile;
 
+import java.util.Random;
+
 import mrriegel.rwl.block.MazerB;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -11,6 +14,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.common.util.Constants;
 
 public class MazerTile extends TileEntity implements IInventory {
@@ -20,10 +24,46 @@ public class MazerTile extends TileEntity implements IInventory {
 	private ItemStack[] inv;
 
 	private boolean active;
+	private boolean processing;
+	private int cooldown = 0;
+	private ItemStack stack;
+	private EntityPlayer player;
 
 	public MazerTile() {
 		inv = new ItemStack[INV_SIZE];
 		active = false;
+	}
+
+	public EntityPlayer getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(EntityPlayer player) {
+		this.player = player;
+	}
+
+	public ItemStack getStack() {
+		return stack;
+	}
+
+	public void setStack(ItemStack s) {
+		this.stack = s;
+	}
+
+	public int getCooldown() {
+		return cooldown;
+	}
+
+	public void setCooldown(int cooldown) {
+		this.cooldown = cooldown;
+	}
+
+	public boolean isProcessing() {
+		return processing;
+	}
+
+	public void setProcessing(boolean processing) {
+		this.processing = processing;
 	}
 
 	public ItemStack[] getInv() {
@@ -130,6 +170,8 @@ public class MazerTile extends TileEntity implements IInventory {
 				inv[slot] = ItemStack.loadItemStackFromNBT(stackTag);
 		}
 		active = tag.getBoolean("active");
+		processing = tag.getBoolean("processing");
+		cooldown = tag.getInteger("cooldown");
 	}
 
 	@Override
@@ -145,6 +187,8 @@ public class MazerTile extends TileEntity implements IInventory {
 			}
 		}
 		tag.setBoolean("active", active);
+		tag.setBoolean("processing", processing);
+		tag.setInteger("cooldown", cooldown);
 		tag.setTag("Inventory", invList);
 
 	}
@@ -174,5 +218,29 @@ public class MazerTile extends TileEntity implements IInventory {
 
 	public void clear() {
 		inv = new ItemStack[INV_SIZE];
+	}
+
+	@Override
+	public void updateEntity() {
+		Random ran = new Random();
+		if (processing) {
+			if (cooldown <= 0) {
+				cooldown = 0;
+				processing = false;
+				if (!worldObj.isRemote) {
+					EntityItem ei = new EntityItem(worldObj, xCoord + 0.5d,
+							yCoord + 1.1d, zCoord + 0.5d, stack);
+					worldObj.spawnEntityInWorld(ei);
+					ei.setPosition(player.posX, player.posY, player.posZ);
+					// ei.setVelocity(0, +0.2D, 0);
+					player.addChatMessage(new ChatComponentText("Success"));
+				}
+				worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+
+				stack = null;
+				player = null;
+			}
+			cooldown--;
+		}
 	}
 }

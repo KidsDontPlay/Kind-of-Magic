@@ -9,7 +9,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class ContainerNevTool extends Container implements IContainer{
+public class ContainerNevTool extends Container implements IContainer {
 
 	InventoryNevTool inv;
 	ItemStack con;
