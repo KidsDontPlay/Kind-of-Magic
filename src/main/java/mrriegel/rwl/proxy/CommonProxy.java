@@ -4,17 +4,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 import mrriegel.rwl.gui.ContainerBag;
+import mrriegel.rwl.gui.ContainerCombo;
 import mrriegel.rwl.gui.ContainerNevTool;
 import mrriegel.rwl.gui.ContainerTaliBag;
 import mrriegel.rwl.gui.GuiBag;
+import mrriegel.rwl.gui.GuiCombo;
 import mrriegel.rwl.gui.GuiIDs;
 import mrriegel.rwl.gui.GuiNevTool;
 import mrriegel.rwl.gui.GuiTaliBag;
+import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.inventory.InventoryBag;
 import mrriegel.rwl.inventory.InventoryNevTool;
 import mrriegel.rwl.inventory.InventoryTaliBag;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -46,6 +50,16 @@ public class CommonProxy implements IGuiHandler {
 		case GuiIDs.TALIBAG:
 			return new ContainerTaliBag(player, player.inventory,
 					new InventoryTaliBag(player.getHeldItem()));
+		case GuiIDs.COMBOBAG:
+			InventoryBag b = null;
+			for (ItemStack s : player.inventory.mainInventory) {
+				if (s != null && s.getItem().equals(ModItems.bag))
+					b = new InventoryBag(s);
+			}
+			if (b == null)
+				return null;
+			return new ContainerCombo(player, player.inventory,
+					new InventoryNevTool(player.getHeldItem()), b);
 		}
 		return null;
 	}
@@ -65,6 +79,16 @@ public class CommonProxy implements IGuiHandler {
 			return new GuiTaliBag(new ContainerTaliBag(player,
 					player.inventory,
 					new InventoryTaliBag(player.getHeldItem())));
+		case GuiIDs.COMBOBAG:
+			InventoryBag b = null;
+			for (ItemStack s : player.inventory.mainInventory) {
+				if (s != null && s.getItem().equals(ModItems.bag))
+					b = new InventoryBag(s);
+			}
+			if (b == null)
+				return null;
+			return new GuiCombo(new ContainerCombo(player, player.inventory,
+					new InventoryNevTool(player.getHeldItem()), b));
 		}
 		return null;
 	}

@@ -80,9 +80,19 @@ public class NevSword extends ItemSword implements INev {
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world,
 			EntityPlayer player) {
+		boolean res = false;
+		for (ItemStack s : player.inventory.mainInventory)
+			if (s != null && s.getItem().equals(ModItems.bag)) {
+				res = true;
+				break;
+			}
+
 		if (player.isSneaking())
-			player.openGui(RWL.instance, GuiIDs.NEVTOOL, world, 0, 0, 0);
-		return super.onItemRightClick(stack, world, player);
+			if (!res)
+				player.openGui(RWL.instance, GuiIDs.NEVTOOL, world, 0, 0, 0);
+			else
+				player.openGui(RWL.instance, GuiIDs.COMBOBAG, world, 0, 0, 0);
+		return stack;
 	}
 
 	@Override
