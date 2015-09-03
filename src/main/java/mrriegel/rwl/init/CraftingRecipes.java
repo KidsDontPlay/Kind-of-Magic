@@ -4,6 +4,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class CraftingRecipes {
@@ -15,6 +16,8 @@ public class CraftingRecipes {
 						ModItems.bloodie)));
 		GameRegistry.addShapelessRecipe(new ItemStack(ModItems.mdust, 4),
 				ModBlocks.mazer);
+		GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.mazer), "oo",
+				"oo", 'o', new ItemStack(ModItems.mdust));
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.catalyst, 1, 0),
 				"mbm", "odo", "lol", 'm', new ItemStack(ModItems.mdust), 'd',
 				new ItemStack(Items.diamond), 'o', new ItemStack(
@@ -55,9 +58,11 @@ public class CraftingRecipes {
 				" l ", "l  ", 'l', new ItemStack(ModBlocks.panlog));
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.panstick), "l  ",
 				" l ", "  l", 'l', new ItemStack(ModBlocks.panlog));
-		GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.pansapling),
-				new ItemStack(ModItems.drop, 1, 1), new ItemStack(
-						Blocks.sapling, 1, Short.MAX_VALUE));
+		// GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.pansapling),
+		// new ItemStack(ModItems.drop, 1, 1), "treeSapling");
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(
+				ModBlocks.pansapling), new ItemStack(ModItems.drop, 1, 1),
+				"treeSapling"));
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.amber), "sis",
 				"iri", "sis", 's', new ItemStack(ModItems.panstick), 'i',
 				new ItemStack(Blocks.ice), 'r', new ItemStack(ModItems.resin));

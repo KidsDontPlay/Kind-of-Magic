@@ -11,6 +11,7 @@ import mrriegel.rwl.reference.Reference;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.oredict.OreDictionary;
 
 import org.lwjgl.opengl.GL11;
 
@@ -30,15 +31,35 @@ public class RecipeHandler extends TemplateRecipeHandler {
 
 		public CachedRitualRecipe(RitualRecipe r) {
 			output = new PositionedStack(r.getOutput(), 75, 4, false);
-			input.add(new PositionedStack(r.getInput1(), 25, 40, false));
-			input.add(new PositionedStack(r.getInput2(), 45, 40, false));
-			input.add(new PositionedStack(r.getInput3(), 65, 40, false));
-			input.add(new PositionedStack(r.getInput4(), 85, 40, false));
+			put(r);
 			cat = new PositionedStack(new ItemStack(ModItems.catalyst, 1,
 					r.getCat()), 125, 40, false);
 			time = r.getTime();
 			dimensionID = r.getDimensionID();
 			xp = r.getXp();
+		}
+
+		private void put(RitualRecipe r) {
+			if (r.getInput1() instanceof String)
+				input.add(new PositionedStack(OreDictionary.getOres((String) r
+						.getInput1()), 25, 40));
+			else
+				input.add(new PositionedStack(r.getInput1(), 25, 40));
+			if (r.getInput2() instanceof String)
+				input.add(new PositionedStack(OreDictionary.getOres((String) r
+						.getInput2()), 45, 40));
+			else
+				input.add(new PositionedStack(r.getInput2(), 45, 40));
+			if (r.getInput3() instanceof String)
+				input.add(new PositionedStack(OreDictionary.getOres((String) r
+						.getInput3()), 65, 40));
+			else
+				input.add(new PositionedStack(r.getInput3(), 65, 40));
+			if (r.getInput4() instanceof String)
+				input.add(new PositionedStack(OreDictionary.getOres((String) r
+						.getInput4()), 85, 40));
+			else
+				input.add(new PositionedStack(r.getInput4(), 85, 40));
 		}
 
 		@Override
@@ -49,7 +70,7 @@ public class RecipeHandler extends TemplateRecipeHandler {
 		@Override
 		public List<PositionedStack> getIngredients() {
 			input.add(cat);
-			return input;
+			return getCycledIngredients(cycleticks / 20, input);
 		}
 
 	}
@@ -126,18 +147,23 @@ public class RecipeHandler extends TemplateRecipeHandler {
 	@Override
 	public void loadUsageRecipes(ItemStack ingredient) {
 		for (RitualRecipe recipe : RitualRecipes.lis) {
+			ItemStack one;
+			ItemStack two;
+			ItemStack three;
+			ItemStack four;
 
-			if (NEIServerUtils.areStacksSameTypeCrafting(recipe.getInput1(),
-					ingredient)
-					|| NEIServerUtils.areStacksSameTypeCrafting(
-							recipe.getInput2(), ingredient)
-					|| NEIServerUtils.areStacksSameTypeCrafting(
-							recipe.getInput3(), ingredient)
-					|| NEIServerUtils.areStacksSameTypeCrafting(
-							recipe.getInput4(), ingredient)
+			CachedRitualRecipe crecipe = new CachedRitualRecipe(recipe);
+			if (/*
+				 * NEIServerUtils.areStacksSameTypeCrafting(recipe.getInput1(),
+				 * ingredient) || NEIServerUtils.areStacksSameTypeCrafting(
+				 * recipe.getInput2(), ingredient) ||
+				 * NEIServerUtils.areStacksSameTypeCrafting( recipe.getInput3(),
+				 * ingredient) || NEIServerUtils.areStacksSameTypeCrafting(
+				 * recipe.getInput4(), ingredient) ||
+				 */crecipe.contains(crecipe.input, ingredient)
 					|| NEIServerUtils.areStacksSameTypeCrafting(new ItemStack(
 							ModItems.catalyst, 1, recipe.getCat()), ingredient))
-				arecipes.add(new CachedRitualRecipe(recipe));
+				arecipes.add(crecipe);
 
 		}
 	}

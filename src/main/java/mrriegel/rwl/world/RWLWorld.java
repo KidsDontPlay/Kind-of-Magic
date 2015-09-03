@@ -26,7 +26,7 @@ public class RWLWorld implements IWorldGenerator {
 
 		if (world.provider.dimensionId != -1 && world.provider.dimensionId != 1) {
 			addOreSpawn(ModBlocks.orus, world, random, chunkX * 16,
-					chunkZ * 16, 16, 16, 16, 32);
+					chunkZ * 16, 16, 16, 0, 32);
 			addOreSpawnL(ModBlocks.airorus, world, random, chunkX * 16,
 					chunkZ * 16, 16, 16, 140, 160);
 		}
@@ -43,7 +43,7 @@ public class RWLWorld implements IWorldGenerator {
 			int posX = blockXPos + random.nextInt(maxX);
 			int posY = minY + random.nextInt(diffBtwnMinMaxY);
 			int posZ = blockZPos + random.nextInt(maxZ);
-			(new WorldGenMinable(block, 8 + random.nextInt(3))).generate(world,
+			(new WorldGenMinable(block, 6 + random.nextInt(3))).generate(world,
 					random, posX, posY, posZ);
 		}
 	}

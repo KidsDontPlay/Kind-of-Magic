@@ -357,7 +357,10 @@ public class NevPick extends ItemPickaxe implements INev {
 					|| (bl.getHarvestTool(meta2) != null && bl.getHarvestTool(
 							meta2).equals("pickaxe"))
 					|| bl.equals(Blocks.brick_block)
-					|| block.equals(Blocks.quartz_block)) {
+					|| block.equals(Blocks.quartz_block)
+					|| block.getMaterial().equals(Material.rock)
+					|| block.getMaterial().equals(Material.glass)
+					|| block.getMaterial().equals(Material.iron)) {
 				RWLUtils.breakWithFortune(player, world, b.x, b.y, b.z, 0);
 				if (!player.capabilities.isCreativeMode)
 					stack.setItemDamage(stack.getItemDamage() + 1);

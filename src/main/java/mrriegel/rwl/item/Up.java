@@ -34,6 +34,8 @@ public class Up extends ItemEdelstein {
 						&& world.getBlock(RWLUtils.double2int(player.posX),
 								RWLUtils.double2int(i + 2),
 								RWLUtils.double2int(player.posZ)).getMaterial() == Material.air) {
+					if (i >= 127 && world.provider.dimensionId == -1)
+						break;
 					player.setPositionAndUpdate(player.posX, i + 1.05D,
 							player.posZ);
 					NBTHelper.setInteger(stack, "cooldown", cooldown);

@@ -49,8 +49,6 @@ public class PanTree extends WorldGenAbstractTree {
 						world, x, y, z)
 						&& !(world.getBlock(bl.x, bl.y, bl.z) instanceof BlockLeaves)
 						&& !(world.getBlock(bl.x, bl.y, bl.z) instanceof BlockLog)) {
-					System.out.println("falsch: "
-							+ world.getBlock(bl.x, bl.y, bl.z));
 					return false;
 				}
 			}

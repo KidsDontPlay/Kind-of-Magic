@@ -232,7 +232,6 @@ public class MazerTile extends TileEntity implements IInventory {
 							yCoord + 1.1d, zCoord + 0.5d, stack);
 					worldObj.spawnEntityInWorld(ei);
 					ei.setPosition(player.posX, player.posY, player.posZ);
-					// ei.setVelocity(0, +0.2D, 0);
 					player.addChatMessage(new ChatComponentText("Success"));
 				}
 				worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);

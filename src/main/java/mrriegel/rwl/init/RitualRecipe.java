@@ -1,5 +1,6 @@
 package mrriegel.rwl.init;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -7,21 +8,22 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class RitualRecipe {
 
 	private ItemStack output;
-	private ItemStack input1;
-	private ItemStack input2;
-	private ItemStack input3;
-	private ItemStack input4;
+	private Object input1;
+	private Object input2;
+	private Object input3;
+	private Object input4;
 	private int cat;
 	private int dimensionID, time;
 	private int xp;
 
-	public RitualRecipe(ItemStack output, ItemStack input1, ItemStack input2,
-			ItemStack input3, ItemStack input4, int cat, int dimensionID,
-			int time, int xp) {
+	public RitualRecipe(ItemStack output, Object input1, Object input2,
+			Object input3, Object input4, int cat, int dimensionID, int time,
+			int xp) {
 		super();
 		this.output = output;
 		this.input1 = input1;
@@ -34,16 +36,21 @@ public class RitualRecipe {
 		this.xp = xp;
 	}
 
-	private boolean contains(ItemStack stack, List<ItemStack> lis) {
-		for (ItemStack s : lis)
-			if (ItemStack.areItemStacksEqual(s, stack))
-				return true;
+	private boolean contains(ItemStack stack, List<ArrayList> soll) {
+
+		for (ArrayList<ItemStack> l : soll)
+			for (ItemStack s : l)
+				if (OreDictionary.itemMatches(s, stack, false))
+					return true;
+		// else if (s.getItemDamage() == Short.MAX_VALUE
+		// && s.getItem().equals(stack.getItem()))
+		// return true;
 		return false;
 	}
 
-	private boolean eq(List<ItemStack> a, List<ItemStack> b) {
-		for (ItemStack s : a)
-			if (!contains(s, b))
+	private boolean eq(List<ItemStack> ist, List<ArrayList> soll) {
+		for (ItemStack s : ist)
+			if (!contains(s, soll))
 				return false;
 		return true;
 	}
@@ -62,8 +69,36 @@ public class RitualRecipe {
 			int catmeta) {
 
 		List<ItemStack> ist = Arrays.asList(ar);
-		List<ItemStack> soll = Arrays.asList(new ItemStack[] { input1, input2,
-				input3, input4 });
+		ArrayList<ItemStack> inputI;
+		ArrayList<ItemStack> inputII;
+		ArrayList<ItemStack> inputIII;
+		ArrayList<ItemStack> inputIIII;
+		if (input1 instanceof String)
+			inputI = OreDictionary.getOres((String) input1);
+		else {
+			inputI = new ArrayList<ItemStack>();
+			inputI.add((ItemStack) input1);
+		}
+		if (input2 instanceof String)
+			inputII = OreDictionary.getOres((String) input2);
+		else {
+			inputII = new ArrayList<ItemStack>();
+			inputII.add((ItemStack) input2);
+		}
+		if (input3 instanceof String)
+			inputIII = OreDictionary.getOres((String) input3);
+		else {
+			inputIII = new ArrayList<ItemStack>();
+			inputIII.add((ItemStack) input3);
+		}
+		if (input4 instanceof String)
+			inputIIII = OreDictionary.getOres((String) input4);
+		else {
+			inputIIII = new ArrayList<ItemStack>();
+			inputIIII.add((ItemStack) input4);
+		}
+		List<ArrayList> soll = Arrays.asList(new ArrayList[] { inputI, inputII,
+				inputIII, inputIIII });
 		int tmpdim = dimensionID;
 		int tmptim = time;
 		if (time != -1)
@@ -109,19 +144,19 @@ public class RitualRecipe {
 		this.cat = cat;
 	}
 
-	public ItemStack getInput1() {
+	public Object getInput1() {
 		return input1;
 	}
 
-	public ItemStack getInput2() {
+	public Object getInput2() {
 		return input2;
 	}
 
-	public ItemStack getInput3() {
+	public Object getInput3() {
 		return input3;
 	}
 
-	public ItemStack getInput4() {
+	public Object getInput4() {
 		return input4;
 	}
 

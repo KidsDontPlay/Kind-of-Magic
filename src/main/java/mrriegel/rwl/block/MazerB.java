@@ -151,9 +151,9 @@ public class MazerB extends BlockContainer {
 
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y, z);
 
-		if (!isConstruct(world, x, y, z) && tile.isActive() && !world.isRemote) {
-
-			release(world, x, y, z);
+		if (!isConstruct(world, x, y, z) && tile.isActive()) {
+			if (!world.isRemote)
+				release(world, x, y, z);
 			tile.setActive(false);
 			return false;
 		}

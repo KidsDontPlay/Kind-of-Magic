@@ -24,9 +24,9 @@ public class DropEventHandler {
 				&& !e.world.isRemote
 				&& !(e.isSilkTouching || (e.drops.get(0) != null && ItemStack
 						.areItemStacksEqual(e.drops.get(0), new ItemStack(b))))
-				&& ran.nextInt(7 - e.fortuneLevel) == 1) {
+				&& ran.nextInt(6 - e.fortuneLevel) == 1) {
 			ItemStack stack = new ItemStack(ModItems.drop, 1,
-					ran.nextInt(7 - e.fortuneLevel) == 2 ? 1 : 0);
+					ran.nextInt(6 - e.fortuneLevel) == 2 ? 1 : 0);
 
 			e.drops.add(stack);
 			if (e.harvester.getHeldItem().getItem().equals(ModItems.nevpick)
