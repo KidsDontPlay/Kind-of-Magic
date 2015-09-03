@@ -3,6 +3,7 @@ package mrriegel.rwl.tile;
 import java.util.Random;
 
 import mrriegel.rwl.block.MazerB;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -12,9 +13,11 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 
 public class MazerTile extends TileEntity implements IInventory {
@@ -28,10 +31,19 @@ public class MazerTile extends TileEntity implements IInventory {
 	private int cooldown = 0;
 	private ItemStack stack;
 	private EntityPlayer player;
+	private String name;
 
 	public MazerTile() {
 		inv = new ItemStack[INV_SIZE];
 		active = false;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public EntityPlayer getPlayer() {
@@ -172,6 +184,10 @@ public class MazerTile extends TileEntity implements IInventory {
 		active = tag.getBoolean("active");
 		processing = tag.getBoolean("processing");
 		cooldown = tag.getInteger("cooldown");
+		name = tag.getString("name");
+
+		NBTTagCompound st = (NBTTagCompound) tag.getTag("stack");
+		stack = ItemStack.loadItemStackFromNBT(st);
 	}
 
 	@Override
@@ -189,6 +205,14 @@ public class MazerTile extends TileEntity implements IInventory {
 		tag.setBoolean("active", active);
 		tag.setBoolean("processing", processing);
 		tag.setInteger("cooldown", cooldown);
+		if (name != null && !name.equals(""))
+			tag.setString("name", name);
+
+		NBTTagCompound st = new NBTTagCompound();
+		if (stack != null)
+			stack.writeToNBT(st);
+
+		tag.setTag("stack", st);
 		tag.setTag("Inventory", invList);
 
 	}
@@ -222,7 +246,6 @@ public class MazerTile extends TileEntity implements IInventory {
 
 	@Override
 	public void updateEntity() {
-		Random ran = new Random();
 		if (processing) {
 			if (cooldown <= 0) {
 				cooldown = 0;
@@ -231,13 +254,23 @@ public class MazerTile extends TileEntity implements IInventory {
 					EntityItem ei = new EntityItem(worldObj, xCoord + 0.5d,
 							yCoord + 1.1d, zCoord + 0.5d, stack);
 					worldObj.spawnEntityInWorld(ei);
-					ei.setPosition(player.posX, player.posY, player.posZ);
-					player.addChatMessage(new ChatComponentText("Success"));
+					for (World w : MinecraftServer.getServer().worldServers) {
+						for (Object o : w.playerEntities) {
+							EntityPlayer p = (EntityPlayer) o;
+							if (p.getDisplayName().equals(name))
+								player = p;
+						}
+					}
+					if (player != null) {
+						ei.setPosition(player.posX, player.posY, player.posZ);
+						player.addChatMessage(new ChatComponentText("Success"));
+					}
 				}
 				worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 
 				stack = null;
 				player = null;
+				name = null;
 			}
 			cooldown--;
 		}

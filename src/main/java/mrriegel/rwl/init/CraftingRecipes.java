@@ -58,8 +58,6 @@ public class CraftingRecipes {
 				" l ", "l  ", 'l', new ItemStack(ModBlocks.panlog));
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.panstick), "l  ",
 				" l ", "  l", 'l', new ItemStack(ModBlocks.panlog));
-		// GameRegistry.addShapelessRecipe(new ItemStack(ModBlocks.pansapling),
-		// new ItemStack(ModItems.drop, 1, 1), "treeSapling");
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(
 				ModBlocks.pansapling), new ItemStack(ModItems.drop, 1, 1),
 				"treeSapling"));

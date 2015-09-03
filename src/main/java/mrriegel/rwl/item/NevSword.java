@@ -160,7 +160,7 @@ public class NevSword extends ItemSword implements INev {
 				.toString().equals("{}")) {
 			return false;
 		}
-		Random rand = new Random();
+		Random rand = player.worldObj.rand;
 		switch (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
 				.getShort("Damage")) {
 		case 0:

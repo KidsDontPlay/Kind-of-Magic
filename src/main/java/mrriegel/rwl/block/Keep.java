@@ -75,12 +75,12 @@ public class Keep extends Block {
 				if (!tile.isProcessing()) {
 					if (r.matches(tile.getInv(), world, player,
 							stack.getItemDamage())) {
-						Random ran = new Random();
 						tile.clear();
 						tile.setProcessing(true);
 						tile.setCooldown(75);
 						tile.setStack(r.getOutput());
 						tile.setPlayer(player);
+						tile.setName(player.getDisplayName());
 
 						player.experienceLevel = player.experienceLevel
 								- r.getXp();

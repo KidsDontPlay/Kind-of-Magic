@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -27,12 +28,32 @@ public class PanLeaves extends BlockLeaves {
 		this.setBlockName(Reference.MOD_ID + ":" + "panleaves");
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerBlockIcons(IIconRegister register) {
 		FancyLeaves = register.registerIcon(Reference.MOD_ID + ":"
 				+ "panleaves");
 		FastLeaves = register.registerIcon(Reference.MOD_ID + ":"
 				+ "panleaves_fast");
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getBlockColor() {
+		return 0x00bfff;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getRenderColor(int p_149741_1_) {
+		return 0x00bfff;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int colorMultiplier(IBlockAccess p_149720_1_, int p_149720_2_,
+			int p_149720_3_, int p_149720_4_) {
+		return 0x00bfff;
 	}
 
 	@Override
@@ -58,17 +79,17 @@ public class PanLeaves extends BlockLeaves {
 			return;
 		}
 
-		if (world.rand.nextInt(69) == 0) {
+		if (world.rand.nextInt(59) == 0) {
 			Item item = this.getItemDropped(metadata, world.rand, fortune);
 			this.dropBlockAsItem(world, x, y, z, new ItemStack(item));
 
 		}
-		if (world.rand.nextInt(71) == 0) {
+		if (world.rand.nextInt(59) == 0) {
 			Item item = ModItems.drop;
 			this.dropBlockAsItem(world, x, y, z, new ItemStack(item));
 
 		}
-		if (world.rand.nextInt(83) == 0) {
+		if (world.rand.nextInt(79) == 0) {
 			Item item = ModItems.panstick;
 			this.dropBlockAsItem(world, x, y, z, new ItemStack(item));
 
@@ -77,10 +98,8 @@ public class PanLeaves extends BlockLeaves {
 
 	@Override
 	public IIcon getIcon(int p_149691_1_, int p_149691_2_) {
-		if (Minecraft.getMinecraft().gameSettings.fancyGraphics)
-			return this.FancyLeaves;
-		else
-			return this.FastLeaves;
+		return Minecraft.getMinecraft().gameSettings.fancyGraphics ? this.FancyLeaves
+				: this.FastLeaves;
 	}
 
 	@Override

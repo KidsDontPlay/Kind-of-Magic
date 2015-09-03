@@ -46,8 +46,7 @@ public class ToolEventHandler {
 							ei.posZ, ei.getEntityItem()));
 				}
 				for (EntityItem ei : l) {
-					Random r = new Random();
-					int c = r.nextInt(1) + 1;
+					int c = e.worldObj.rand.nextInt(1) + 1;
 					for (int i = 0; i < c; i++) {
 						event.drops.add(new EntityItem(ei.worldObj, ei.posX,
 								ei.posY, ei.posZ, ei.getEntityItem()));
