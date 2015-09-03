@@ -69,12 +69,7 @@ public class RitualRecipes {
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 8),
 				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
-				new ItemStack(ModItems.drop, 1, 0), "treeSapling" /*
-																 * new
-																 * ItemStack(
-																 * Items
-																 * .iron_axe)
-																 */, 0,
+				new ItemStack(ModItems.drop, 1, 0), "treeSapling", 0,
 				overworld, day, 5));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 9),
