@@ -1,18 +1,24 @@
 package mrriegel.rwl.block;
 
-import java.util.Random;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 import mrriegel.rwl.creative.CreativeTab;
+import mrriegel.rwl.init.LandRecipe;
+import mrriegel.rwl.init.LandRecipes;
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.init.RitualRecipe;
 import mrriegel.rwl.init.RitualRecipes;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.tile.MazerTile;
+import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -89,6 +95,85 @@ public class Keep extends Block {
 
 					}
 
+				}
+			}
+			for (LandRecipe r : LandRecipes.lis) {
+				if (!tile.isProcessing()) {
+					if (r.matches(tile.getInv(), world, player,
+							stack.getItemDamage())) {
+						tile.clear();
+						player.experienceLevel = player.experienceLevel
+								- r.getXp();
+						if (r.getOutput() instanceof String) {
+							if (((String) r.getOutput()).equals("Day")) {
+								long ku = world.getWorldTime() % 24000;
+								world.setWorldTime(world.getWorldTime() - ku);
+								world.setWorldTime(world.getWorldTime() + 24000);
+							} else if (((String) r.getOutput()).equals("Night")) {
+								long ku = world.getWorldTime() % 24000;
+								world.setWorldTime(world.getWorldTime() - ku);
+								world.setWorldTime(world.getWorldTime() + 12000);
+							}
+						} else if (r.getOutput() instanceof Class
+								&& !world.isRemote) {
+							System.out.println("cls: "+r.getOutput());
+							System.out.println("num: "+r.getNumber());
+							for (int i = 0; i < r.getNumber(); i++) {
+								System.out.println("cls: jappp");
+								Class<?> cl = (Class) r.getOutput();
+								if (cl.getName().contains("boss"))
+									return false;
+								Constructor<?> ct = null;
+								try {
+									ct = cl.getConstructor(World.class);
+								} catch (NoSuchMethodException e1) {
+									e1.printStackTrace();
+								} catch (SecurityException e1) {
+									e1.printStackTrace();
+								}
+								EntityLivingBase e = null;
+								try {
+									e = (EntityLivingBase) ct
+											.newInstance(new Object[] { world });
+								} catch (InstantiationException e1) {
+									e1.printStackTrace();
+								} catch (IllegalAccessException e1) {
+									e1.printStackTrace();
+								} catch (IllegalArgumentException e1) {
+									e1.printStackTrace();
+								} catch (InvocationTargetException e1) {
+									e1.printStackTrace();
+								}
+								double xtmp = world.rand.nextBoolean() ? -1.0d
+										: 1.0d;
+								double ztmp = world.rand.nextBoolean() ? -1.0d
+										: 1.0d;
+								e.posX = x + world.rand.nextDouble() * 1.5D
+										* xtmp;
+								e.posY = y + 0.5D;
+								e.posZ = z + world.rand.nextDouble() * 1.5D
+										* ztmp;
+								System.out.println(String.format("%f %f %f",
+										e.posX, e.posY, e.posZ));
+								if ((RWLUtils.double2int(e.posX) == x && RWLUtils
+										.double2int(e.posZ) == z)
+										|| (RWLUtils.double2int(e.posX) == x + 2 && RWLUtils
+												.double2int(e.posZ) == z + 2)
+										|| (RWLUtils.double2int(e.posX) == x - 2 && RWLUtils
+												.double2int(e.posZ) == z + 2)
+										|| (RWLUtils.double2int(e.posX) == x + 2 && RWLUtils
+												.double2int(e.posZ) == z - 2)
+										|| (RWLUtils.double2int(e.posX) == x - 2 && RWLUtils
+												.double2int(e.posZ) == z - 2)) {
+									i--;
+									continue;
+								}
+								world.spawnEntityInWorld(e);
+								e.setPositionAndUpdate(e.posX, e.posY, e.posZ);
+								System.out.println("gespawn: "+e);
+							}
+						}
+					}
 				}
 			}
 		}

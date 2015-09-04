@@ -4,9 +4,9 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
+import mrriegel.rwl.init.LandRecipe;
+import mrriegel.rwl.init.LandRecipes;
 import mrriegel.rwl.init.ModItems;
-import mrriegel.rwl.init.RitualRecipe;
-import mrriegel.rwl.init.RitualRecipes;
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -20,26 +20,28 @@ import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
 
-public class RecipeHandler extends TemplateRecipeHandler {
-
-	public class CachedRitualRecipe extends CachedRecipe {
-		PositionedStack output;
+public class LandRecipeHandler extends TemplateRecipeHandler {
+	public class CachedLandRecipe extends CachedRecipe {
+		public Object output;
 		public List<PositionedStack> input = new ArrayList<PositionedStack>();
 		PositionedStack cat;
 		int time, dimensionID;
 		public int xp;
+		public int number;
 
-		public CachedRitualRecipe(RitualRecipe r) {
-			output = new PositionedStack(r.getOutput(), 75, 4, false);
+		public CachedLandRecipe(LandRecipe r) {
+			// output = new PositionedStack(r.getOutput(), 75, 4, false);
+			output = r.getOutput();
 			put(r);
 			cat = new PositionedStack(new ItemStack(ModItems.catalyst, 1,
 					r.getCat()), 125, 40, false);
 			time = r.getTime();
 			dimensionID = r.getDimensionID();
 			xp = r.getXp();
+			number = r.getNumber();
 		}
 
-		private void put(RitualRecipe r) {
+		private void put(LandRecipe r) {
 			if (r.getInput1() instanceof String)
 				input.add(new PositionedStack(OreDictionary.getOres((String) r
 						.getInput1()), 25, 40));
@@ -63,14 +65,15 @@ public class RecipeHandler extends TemplateRecipeHandler {
 		}
 
 		@Override
-		public PositionedStack getResult() {
-			return output;
-		}
-
-		@Override
 		public List<PositionedStack> getIngredients() {
 			input.add(cat);
 			return getCycledIngredients(cycleticks / 20, input);
+		}
+
+		@Override
+		public PositionedStack getResult() {
+			// TODO Auto-generated method stub
+			return null;
 		}
 
 	}
@@ -89,12 +92,12 @@ public class RecipeHandler extends TemplateRecipeHandler {
 	@Override
 	public void drawBackground(int recipe) {
 		super.drawBackground(recipe);
-		if (!(arecipes.get(recipe) instanceof CachedRitualRecipe)) {
+		if (!(arecipes.get(recipe) instanceof CachedLandRecipe)) {
 			return;
 		}
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
-		CachedRitualRecipe r = (CachedRitualRecipe) arecipes.get(recipe);
+		CachedLandRecipe r = (CachedLandRecipe) arecipes.get(recipe);
 		if (r.dimensionID == 0)
 			GuiDraw.drawString("Overworld", 7, 15, 0x404040, false);
 		else if (r.dimensionID == 1)
@@ -110,12 +113,19 @@ public class RecipeHandler extends TemplateRecipeHandler {
 		else
 			GuiDraw.drawString("Anytime", 7, 5, 0x404040, false);
 		GuiDraw.drawString(r.xp + " XP", 7, 25, 0x404040, false);
+		if (r.output instanceof String)
+			GuiDraw.drawString((String) r.output, 70, 5, 0x404040, false);
+		else if (r.output instanceof Class) {
+			GuiDraw.drawString(r.number + "x", 62, 5, 0x404040, false);
+			GuiDraw.drawString(((Class) r.output).getSimpleName().substring(6), 78, 5, 0x404040,
+					false);
+		}
 	}
 
 	@Override
 	public void loadTransferRects() {
 		transferRects.add(new RecipeTransferRect(new Rectangle(75, 23, 16, 16),
-				"rwl:stone"));
+				"rwl:stoneL"));
 	}
 
 	@Override
@@ -125,34 +135,30 @@ public class RecipeHandler extends TemplateRecipeHandler {
 
 	@Override
 	public void loadCraftingRecipes(String outputId, Object... results) {
-		if (outputId.equals("rwl:stone")) {
-			for (RitualRecipe recipe : RitualRecipes.lis) {
-				arecipes.add(new CachedRitualRecipe(recipe));
+		if (outputId.equals("rwl:stoneL")) {
+			for (LandRecipe recipe : LandRecipes.lis) {
+				arecipes.add(new CachedLandRecipe(recipe));
 			}
 
 		} else
 			super.loadCraftingRecipes(outputId, results);
 	}
 
-	@Override
-	public void loadCraftingRecipes(ItemStack result) {
-		for (RitualRecipe recipe : RitualRecipes.lis) {
-
-			if (NEIServerUtils.areStacksSameTypeCrafting(recipe.getOutput(),
-					result))
-				arecipes.add(new CachedRitualRecipe(recipe));
-		}
-	}
+	// @Override
+	// public void loadCraftingRecipes(ItemStack result) {
+	// for (LandRecipe recipe : LandRecipes.lis) {
+	//
+	// if (NEIServerUtils.areStacksSameTypeCrafting(recipe.getOutput(),
+	// result))
+	// arecipes.add(new CachedLandRecipe(recipe));
+	// }
+	// }
 
 	@Override
 	public void loadUsageRecipes(ItemStack ingredient) {
-		for (RitualRecipe recipe : RitualRecipes.lis) {
-			ItemStack one;
-			ItemStack two;
-			ItemStack three;
-			ItemStack four;
+		for (LandRecipe recipe : LandRecipes.lis) {
 
-			CachedRitualRecipe crecipe = new CachedRitualRecipe(recipe);
+			CachedLandRecipe crecipe = new CachedLandRecipe(recipe);
 			if (/*
 				 * NEIServerUtils.areStacksSameTypeCrafting(recipe.getInput1(),
 				 * ingredient) || NEIServerUtils.areStacksSameTypeCrafting(

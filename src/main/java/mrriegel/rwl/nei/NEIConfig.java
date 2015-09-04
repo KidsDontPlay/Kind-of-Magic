@@ -18,8 +18,10 @@ public class NEIConfig implements IConfigureNEI {
 
 	@Override
 	public void loadConfig() {
-		API.registerRecipeHandler(new RecipeHandler());
-		API.registerUsageHandler(new RecipeHandler());
+		API.registerRecipeHandler(new RitualRecipeHandler());
+		API.registerUsageHandler(new RitualRecipeHandler());
+		API.registerRecipeHandler(new LandRecipeHandler());
+		API.registerUsageHandler(new LandRecipeHandler());
 	}
 
 }

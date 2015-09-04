@@ -7,6 +7,7 @@ import mrriegel.rwl.handler.DropEventHandler;
 import mrriegel.rwl.handler.ToolEventHandler;
 import mrriegel.rwl.handler.ToolUpgradeHandler;
 import mrriegel.rwl.init.CraftingRecipes;
+import mrriegel.rwl.init.LandRecipes;
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.init.ModEntities;
 import mrriegel.rwl.init.ModItems;
@@ -74,6 +75,7 @@ public class RWL {
 		ModEntities.init();
 		CraftingRecipes.init();
 		RitualRecipes.init();
+		LandRecipes.init();
 		proxy.registerRenderers();
 		FMLInterModComms.sendMessage("Waila", "register",
 				"mrriegel.rwl.waila.StoneHandler.callbackRegister");

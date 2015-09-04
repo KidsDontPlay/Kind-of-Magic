@@ -254,13 +254,13 @@ public class MazerTile extends TileEntity implements IInventory {
 					EntityItem ei = new EntityItem(worldObj, xCoord + 0.5d,
 							yCoord + 1.1d, zCoord + 0.5d, stack);
 					worldObj.spawnEntityInWorld(ei);
-					for (World w : MinecraftServer.getServer().worldServers) {
-						for (Object o : w.playerEntities) {
-							EntityPlayer p = (EntityPlayer) o;
-							if (p.getDisplayName().equals(name))
-								player = p;
-						}
-					}
+					if (player == null)
+						for (World w : MinecraftServer.getServer().worldServers)
+							for (Object o : w.playerEntities) {
+								EntityPlayer p = (EntityPlayer) o;
+								if (p.getDisplayName().equals(name))
+									player = p;
+							}
 					if (player != null) {
 						ei.setPosition(player.posX, player.posY, player.posZ);
 						player.addChatMessage(new ChatComponentText("Success"));

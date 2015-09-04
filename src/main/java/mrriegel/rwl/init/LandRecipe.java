@@ -10,9 +10,8 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class RitualRecipe {
-
-	private ItemStack output;
+public class LandRecipe {
+	private Object output;
 	private Object input1;
 	private Object input2;
 	private Object input3;
@@ -20,10 +19,11 @@ public class RitualRecipe {
 	private int cat;
 	private int dimensionID, time;
 	private int xp;
+	private int number;
 
-	public RitualRecipe(ItemStack output, Object input1, Object input2,
+	public LandRecipe(Object output, Object input1, Object input2,
 			Object input3, Object input4, int cat, int dimensionID, int time,
-			int xp) {
+			int xp, int number) {
 		super();
 		this.output = output;
 		this.input1 = input1;
@@ -34,6 +34,7 @@ public class RitualRecipe {
 		this.dimensionID = dimensionID;
 		this.time = time;
 		this.xp = xp;
+		this.number=number;
 	}
 
 	private boolean contains(ItemStack stack, List<ArrayList> soll) {
@@ -121,10 +122,8 @@ public class RitualRecipe {
 		return 0 == 1;
 	}
 
-	public ItemStack getOutput() {
+	public Object getOutput() {
 		if (output != null) {
-			if (output.stackSize <= 0)
-				output.stackSize = 1;
 			return output;
 		} else
 			return null;
@@ -168,5 +167,9 @@ public class RitualRecipe {
 
 	public int getXp() {
 		return xp;
+	}
+
+	public int getNumber() {
+		return number;
 	}
 }

@@ -176,7 +176,7 @@ public class MazerB extends BlockContainer {
 				&& player.getCurrentEquippedItem().getItem()
 						.equals(Items.glass_bottle)
 				&& player.getActivePotionEffect(Potion.confusion) == null) {
-			player.addPotionEffect(new PotionEffect(9, 100, 40));
+			player.addPotionEffect(new PotionEffect(Potion.confusion.id, 150, 40));
 			player.inventory.setInventorySlotContents(
 					player.inventory.currentItem,
 					new ItemStack(player.getHeldItem().getItem(), player
