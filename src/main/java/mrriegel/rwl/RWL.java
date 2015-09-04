@@ -1,6 +1,8 @@
 package mrriegel.rwl;
 
 import java.io.File;
+import java.util.Map;
+import java.util.Set;
 
 import mrriegel.rwl.handler.ConfigurationHandler;
 import mrriegel.rwl.handler.DropEventHandler;
@@ -21,6 +23,8 @@ import mrriegel.rwl.render.NevToolOverlayRenderer;
 import mrriegel.rwl.world.RWLWorld;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -79,9 +83,14 @@ public class RWL {
 		proxy.registerRenderers();
 		FMLInterModComms.sendMessage("Waila", "register",
 				"mrriegel.rwl.waila.StoneHandler.callbackRegister");
+
 	}
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
+		// for (Map.Entry<String, Fluid> entry : FluidRegistry
+		// .getRegisteredFluids().entrySet()) {
+		// System.out.println(entry.getKey() + "/" + entry.getValue());
+		// }
 	}
 }

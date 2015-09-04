@@ -8,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class RitualRecipe {
@@ -37,22 +38,22 @@ public class RitualRecipe {
 	}
 
 	private boolean contains(ItemStack stack, List<ArrayList> soll) {
-
-		for (ArrayList<ItemStack> l : soll)
-			for (ItemStack s : l)
-				if (OreDictionary.itemMatches(s, stack, false))
+		for (ArrayList<ItemStack> l : soll) {
+			for (ItemStack s : l) {
+				if (OreDictionary.itemMatches(s, stack, false)) {
 					return true;
+				}
+			}
+		}
 		return false;
 	}
 
 	private boolean eq(List<ItemStack> ist, List<ArrayList> soll) {
-		if (!soll.toString().contains("torch")) {
-			System.out.println("warnign");
-			return false;
-		}
-		for (ItemStack s : ist)
-			if (!contains(s, soll))
+		for (ItemStack s : ist) {
+			if (!contains(s, soll)) {
 				return false;
+			}
+		}
 		return true;
 	}
 
@@ -109,13 +110,11 @@ public class RitualRecipe {
 			tmptim = day(world, time);
 		if (dimensionID != Integer.MAX_VALUE)
 			tmpdim = world.provider.dimensionId;
-		System.out.println("ist: " + ist);
-		System.out.println("soll: " + soll);
 		if (eq(ist, soll)
 				&& tmpdim == dimensionID
 				&& tmptim == time
 				&& catmeta >= cat
-				&& (player.experienceLevel >= xp || player.capabilities.isCreativeMode))
+				&& ((player.experienceLevel >= xp || player.capabilities.isCreativeMode) || player instanceof FakePlayer))
 			return true;
 		if (eq(ist, soll) && !world.isRemote) {
 			if (!(catmeta >= cat))

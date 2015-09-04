@@ -22,6 +22,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fluids.IFluidHandler;
 
 public class MazerTile extends TileEntity implements ISidedInventory {
@@ -272,7 +273,7 @@ public class MazerTile extends TileEntity implements ISidedInventory {
 									if (p.getDisplayName().equals(name))
 										player = p;
 								}
-						if (player != null) {
+						if (player != null && !(player instanceof FakePlayer)) {
 							ei.setPosition(player.posX, player.posY,
 									player.posZ);
 							player.addChatMessage(new ChatComponentText(

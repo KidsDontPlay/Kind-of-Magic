@@ -11,6 +11,7 @@ import mrriegel.rwl.init.RitualRecipe;
 import mrriegel.rwl.init.RitualRecipes;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.tile.MazerTile;
+import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -18,9 +19,20 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.FakePlayer;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.IFluidContainerItem;
+import net.minecraftforge.fluids.IFluidHandler;
+import net.minecraftforge.fluids.FluidEvent.FluidDrainingEvent;
+import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -69,25 +81,65 @@ public class Keep extends Block {
 	public boolean onBlockActivated(World world, int x, int y, int z,
 			EntityPlayer player, int p_149727_6_, float p_149727_7_,
 			float p_149727_8_, float p_149727_9_) {
-		
-		if(world.getTileEntity(x, y - 2, z)==null)
+
+		if (world.getTileEntity(x, y - 2, z) == null)
 			return false;
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y - 2, z);
-		System.out.println("sneak:" +player.isSneaking());
-		System.out.println("item:" +player.getHeldItem());
 		if (!player.isSneaking() && player.getHeldItem() != null
 				&& player.getHeldItem().getItem().equals(ModItems.catalyst)
 				&& tile != null && tile.isActive()
 				&& MazerB.isConstruct(world, x, y - 2, z)) {
-			
+
 			ItemStack stack = player.getHeldItem();
 			for (RitualRecipe r : RitualRecipes.lis) {
-				System.out.println("holly1");
 				if (!tile.isProcessing()) {
-					System.out.println("holly2");
 					if (r.matches(tile.getInv(), world, player,
 							stack.getItemDamage())) {
-						System.out.println("holly3");
+						if (player instanceof FakePlayer) {
+							for (int i = 0; i < 6; i++) {
+								if (i == 0 || i == 1)
+									continue;
+								BlockLocation bl = RWLUtils.getNeighbor(world,
+										x, y - 2, z, i);
+								if (world.getTileEntity(bl.x, bl.y, bl.z) != null) {
+									if (world.getTileEntity(bl.x, bl.y, bl.z) instanceof IFluidHandler) {
+										IFluidHandler fh = (IFluidHandler) world
+												.getTileEntity(bl.x, bl.y, bl.z);
+										Fluid fl = FluidRegistry
+												.getFluid("xpjuice");
+										if (fh == null)
+											continue;
+										System.out.println("fh: " + fh);
+										System.out.println("übeltäter: " + i);
+										System.out.println("fhori: "
+												+ fh.getTankInfo(ForgeDirection
+														.getOrientation(i)));
+										if (fh.getTankInfo(ForgeDirection
+												.getOrientation(i)) == null) {
+											continue;
+										}
+										for (FluidTankInfo in : fh
+												.getTankInfo(ForgeDirection
+														.getOrientation(i))) {
+											if(in.fluid==null)
+												continue;
+											if (in.fluid
+													.isFluidEqual(new FluidStack(
+															fl, 0))
+													&& fh.canDrain(
+															ForgeDirection
+																	.getOrientation(i),
+															fl)) {
+												System.out.println("menge: "
+														+ in.fluid.amount);
+												return true;
+											}
+										}
+
+									}
+								}
+							}
+						}
 						tile.clear();
 						tile.setProcessing(true);
 						tile.setCooldown(75);
@@ -123,8 +175,8 @@ public class Keep extends Block {
 							}
 						} else if (r.getOutput() instanceof Class
 								&& !world.isRemote) {
-							System.out.println("cls: "+r.getOutput());
-							System.out.println("num: "+r.getNumber());
+							System.out.println("cls: " + r.getOutput());
+							System.out.println("num: " + r.getNumber());
 							for (int i = 0; i < r.getNumber(); i++) {
 								System.out.println("cls: jappp");
 								Class<?> cl = (Class) r.getOutput();
@@ -177,7 +229,7 @@ public class Keep extends Block {
 								}
 								world.spawnEntityInWorld(e);
 								e.setPositionAndUpdate(e.posX, e.posY, e.posZ);
-								System.out.println("gespawn: "+e);
+								System.out.println("gespawn: " + e);
 							}
 						}
 					}
