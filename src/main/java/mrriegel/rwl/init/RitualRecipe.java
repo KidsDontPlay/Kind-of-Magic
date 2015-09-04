@@ -46,6 +46,10 @@ public class RitualRecipe {
 	}
 
 	private boolean eq(List<ItemStack> ist, List<ArrayList> soll) {
+		if (!soll.toString().contains("torch")) {
+			System.out.println("warnign");
+			return false;
+		}
 		for (ItemStack s : ist)
 			if (!contains(s, soll))
 				return false;
@@ -94,14 +98,19 @@ public class RitualRecipe {
 			inputIIII = new ArrayList<ItemStack>();
 			inputIIII.add((ItemStack) input4);
 		}
-		List<ArrayList> soll = Arrays.asList(new ArrayList[] { inputI, inputII,
-				inputIII, inputIIII });
+		List<ArrayList> soll = new ArrayList<ArrayList>();
+		soll.add(inputI);
+		soll.add(inputII);
+		soll.add(inputIII);
+		soll.add(inputIIII);
 		int tmpdim = dimensionID;
 		int tmptim = time;
 		if (time != -1)
 			tmptim = day(world, time);
 		if (dimensionID != Integer.MAX_VALUE)
 			tmpdim = world.provider.dimensionId;
+		System.out.println("ist: " + ist);
+		System.out.println("soll: " + soll);
 		if (eq(ist, soll)
 				&& tmpdim == dimensionID
 				&& tmptim == time

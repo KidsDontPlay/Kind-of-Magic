@@ -2,11 +2,14 @@ package mrriegel.rwl.tile;
 
 import java.util.Random;
 
+import mrriegel.rwl.block.Mazer;
 import mrriegel.rwl.block.MazerB;
+import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -19,8 +22,9 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fluids.IFluidHandler;
 
-public class MazerTile extends TileEntity implements IInventory {
+public class MazerTile extends TileEntity implements ISidedInventory {
 
 	public static final int INV_SIZE = 4;
 	public static String tagName = "Alt";
@@ -92,7 +96,7 @@ public class MazerTile extends TileEntity implements IInventory {
 
 	@Override
 	public int getSizeInventory() {
-		return inv.length;
+		return INV_SIZE;
 	}
 
 	@Override
@@ -106,14 +110,19 @@ public class MazerTile extends TileEntity implements IInventory {
 		if (stack != null) {
 			if (stack.stackSize <= amt) {
 				setInventorySlotContents(slot, null);
+				markDirty();
+				return stack;
 			} else {
 				stack = stack.splitStack(amt);
 				if (stack.stackSize == 0) {
 					setInventorySlotContents(slot, null);
 				}
+				markDirty();
+				return stack;
 			}
+		} else {
+			return null;
 		}
-		return stack;
 	}
 
 	@Override
@@ -132,6 +141,7 @@ public class MazerTile extends TileEntity implements IInventory {
 		if (stack != null && stack.stackSize > getInventoryStackLimit()) {
 			stack.stackSize = getInventoryStackLimit();
 		}
+		markDirty();
 	}
 
 	@Override
@@ -141,7 +151,7 @@ public class MazerTile extends TileEntity implements IInventory {
 
 	@Override
 	public boolean hasCustomInventoryName() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -166,7 +176,7 @@ public class MazerTile extends TileEntity implements IInventory {
 
 	@Override
 	public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_) {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -253,17 +263,21 @@ public class MazerTile extends TileEntity implements IInventory {
 				if (!worldObj.isRemote) {
 					EntityItem ei = new EntityItem(worldObj, xCoord + 0.5d,
 							yCoord + 1.1d, zCoord + 0.5d, stack);
-					worldObj.spawnEntityInWorld(ei);
-					if (player == null)
-						for (World w : MinecraftServer.getServer().worldServers)
-							for (Object o : w.playerEntities) {
-								EntityPlayer p = (EntityPlayer) o;
-								if (p.getDisplayName().equals(name))
-									player = p;
-							}
-					if (player != null) {
-						ei.setPosition(player.posX, player.posY, player.posZ);
-						player.addChatMessage(new ChatComponentText("Success"));
+					if (!tryInsert(stack)) {
+						worldObj.spawnEntityInWorld(ei);
+						if (player == null)
+							for (World w : MinecraftServer.getServer().worldServers)
+								for (Object o : w.playerEntities) {
+									EntityPlayer p = (EntityPlayer) o;
+									if (p.getDisplayName().equals(name))
+										player = p;
+								}
+						if (player != null) {
+							ei.setPosition(player.posX, player.posY,
+									player.posZ);
+							player.addChatMessage(new ChatComponentText(
+									"Success"));
+						}
 					}
 				}
 				worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
@@ -274,5 +288,64 @@ public class MazerTile extends TileEntity implements IInventory {
 			}
 			cooldown--;
 		}
+	}
+
+	private boolean tryInsert(ItemStack stack2) {
+		if (worldObj.getTileEntity(xCoord + 1, yCoord, zCoord) != null
+				&& worldObj.getTileEntity(xCoord + 1, yCoord, zCoord) instanceof IInventory) {
+			IInventory inv = (IInventory) worldObj.getTileEntity(xCoord + 1,
+					yCoord, zCoord);
+			if (RWLUtils.insert(stack2, inv))
+				return true;
+		}
+		if (worldObj.getTileEntity(xCoord - 1, yCoord, zCoord) != null
+				&& worldObj.getTileEntity(xCoord - 1, yCoord, zCoord) instanceof IInventory) {
+			IInventory inv = (IInventory) worldObj.getTileEntity(xCoord - 1,
+					yCoord, zCoord);
+			if (RWLUtils.insert(stack2, inv))
+				return true;
+		}
+		if (worldObj.getTileEntity(xCoord, yCoord, zCoord + 1) != null
+				&& worldObj.getTileEntity(xCoord, yCoord, zCoord + 1) instanceof IInventory) {
+			IInventory inv = (IInventory) worldObj.getTileEntity(xCoord,
+					yCoord, zCoord + 1);
+			if (RWLUtils.insert(stack2, inv))
+				return true;
+		}
+		if (worldObj.getTileEntity(xCoord, yCoord, zCoord - 1) != null
+				&& worldObj.getTileEntity(xCoord, yCoord, zCoord - 1) instanceof IInventory) {
+			IInventory inv = (IInventory) worldObj.getTileEntity(xCoord,
+					yCoord, zCoord - 1);
+			if (RWLUtils.insert(stack2, inv))
+				return true;
+		}
+		return false;
+	}
+
+	@Override
+	public int[] getAccessibleSlotsFromSide(int side) {
+		if (side > 1 && side < 6)
+			return new int[] { 0, 1, 2, 3 };
+		else
+			return new int[] {};
+	}
+
+	@Override
+	public boolean canInsertItem(int slot, ItemStack item, int side) {
+		if (!MazerB.isConstruct(worldObj, xCoord, yCoord, zCoord)
+				|| !isActive())
+			return false;
+		if (getStackInSlot(slot) != null)
+			return false;
+		for (ItemStack s : getInv()) {
+			if (s != null && s.isItemEqual(item))
+				return false;
+		}
+		return true;
+	}
+
+	@Override
+	public boolean canExtractItem(int slot, ItemStack item, int side) {
+		return false;
 	}
 }

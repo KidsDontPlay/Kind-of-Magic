@@ -69,18 +69,25 @@ public class Keep extends Block {
 	public boolean onBlockActivated(World world, int x, int y, int z,
 			EntityPlayer player, int p_149727_6_, float p_149727_7_,
 			float p_149727_8_, float p_149727_9_) {
+		
+		if(world.getTileEntity(x, y - 2, z)==null)
+			return false;
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y - 2, z);
-
+		System.out.println("sneak:" +player.isSneaking());
+		System.out.println("item:" +player.getHeldItem());
 		if (!player.isSneaking() && player.getHeldItem() != null
 				&& player.getHeldItem().getItem().equals(ModItems.catalyst)
 				&& tile != null && tile.isActive()
 				&& MazerB.isConstruct(world, x, y - 2, z)) {
-
+			
 			ItemStack stack = player.getHeldItem();
 			for (RitualRecipe r : RitualRecipes.lis) {
+				System.out.println("holly1");
 				if (!tile.isProcessing()) {
+					System.out.println("holly2");
 					if (r.matches(tile.getInv(), world, player,
 							stack.getItemDamage())) {
+						System.out.println("holly3");
 						tile.clear();
 						tile.setProcessing(true);
 						tile.setCooldown(75);
@@ -112,7 +119,7 @@ public class Keep extends Block {
 							} else if (((String) r.getOutput()).equals("Night")) {
 								long ku = world.getWorldTime() % 24000;
 								world.setWorldTime(world.getWorldTime() - ku);
-								world.setWorldTime(world.getWorldTime() + 12000);
+								world.setWorldTime(world.getWorldTime() + 36000);
 							}
 						} else if (r.getOutput() instanceof Class
 								&& !world.isRemote) {

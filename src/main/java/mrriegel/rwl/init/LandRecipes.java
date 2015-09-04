@@ -41,14 +41,14 @@ public class LandRecipes {
 
 	public static void init() {
 		lis = new ArrayList<LandRecipe>();
-		lis.add(new LandRecipe("Day", new ItemStack(Blocks.),
-				new ItemStack(Blocks.cobblestone), new ItemStack(
-						Blocks.gold_block), new ItemStack(Blocks.dirt), 0,
-				anywhere, anytime, 3, 0));
-		lis.add(new LandRecipe("Night", new ItemStack(Blocks.stone),
-				new ItemStack(Blocks.cobblestone), new ItemStack(
-						Blocks.coal_block), new ItemStack(Blocks.dirt), 0,
-				anywhere, anytime, 3, 0));
+		lis.add(new LandRecipe("Day", new ItemStack(Items.gold_ingot),
+				new ItemStack(Items.ender_pearl), new ItemStack(
+						Items.flint_and_steel), new ItemStack(
+						Items.glowstone_dust), 0, anywhere, night, 3, 0));
+		lis.add(new LandRecipe("Night", new ItemStack(Items.gold_ingot),
+				new ItemStack(Items.ender_pearl), new ItemStack(
+						Items.flint_and_steel), new ItemStack(Items.redstone),
+				0, anywhere, day, 3, 0));
 		lis.add(new LandRecipe(EntityPig.class,
 				new ItemStack(ModItems.bloodie), new ItemStack(
 						Items.speckled_melon), new ItemStack(

@@ -99,7 +99,7 @@ public class RitualRecipes {
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 14),
 				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
-				new ItemStack(ModItems.drop, 1, 1), "blockRedstone", 1, nether,
+				new ItemStack(ModItems.drop, 1, 2), "blockRedstone", 1, nether,
 				anytime, 16));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 15),

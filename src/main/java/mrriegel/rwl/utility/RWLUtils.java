@@ -10,6 +10,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
@@ -206,4 +207,27 @@ public class RWLUtils {
 		return v;
 	}
 
+	public static boolean insert(ItemStack stack, IInventory inv) {
+		for (int i = 0; i < inv.getSizeInventory(); i++) {
+			if (inv.getStackInSlot(i) != null
+					&& inv.getStackInSlot(i).isItemEqual(stack)
+					&& inv.getStackInSlot(i).stackSize < inv
+							.getInventoryStackLimit()
+					&& inv.getStackInSlot(i).stackSize < stack.getItem()
+							.getItemStackLimit()) {
+				inv.setInventorySlotContents(i, new ItemStack(inv
+						.getStackInSlot(i).getItem(),
+						inv.getStackInSlot(i).stackSize + 1, inv
+								.getStackInSlot(i).getItemDamage()));
+				return true;
+			}
+		}
+		for (int i = 0; i < inv.getSizeInventory(); i++) {
+			if (inv.getStackInSlot(i) == null) {
+				inv.setInventorySlotContents(i, stack);
+				return true;
+			}
+		}
+		return false;
+	}
 }
