@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import mrriegel.rwl.tile.MazerTile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
@@ -68,7 +70,7 @@ public class RitualRecipe {
 	}
 
 	public boolean matches(ItemStack[] ar, World world, EntityPlayer player,
-			int catmeta) {
+			int catmeta, MazerTile tile) {
 
 		List<ItemStack> ist = Arrays.asList(ar);
 		ArrayList<ItemStack> inputI;
@@ -114,7 +116,8 @@ public class RitualRecipe {
 				&& tmpdim == dimensionID
 				&& tmptim == time
 				&& catmeta >= cat
-				&& ((player.experienceLevel >= xp || player.capabilities.isCreativeMode) || player instanceof FakePlayer))
+				&& ((player.experienceLevel >= xp || player.capabilities.isCreativeMode) || (player instanceof FakePlayer && tile
+						.isXPContainer(xp))))
 			return true;
 		if (eq(ist, soll) && !world.isRemote) {
 			if (!(catmeta >= cat))

@@ -176,7 +176,8 @@ public class MazerB extends BlockContainer {
 				&& player.getCurrentEquippedItem().getItem()
 						.equals(Items.glass_bottle)
 				&& player.getActivePotionEffect(Potion.confusion) == null) {
-			player.addPotionEffect(new PotionEffect(Potion.confusion.id, 150, 40));
+			player.addPotionEffect(new PotionEffect(Potion.confusion.id, 150,
+					40));
 			player.inventory.setInventorySlotContents(
 					player.inventory.currentItem,
 					new ItemStack(player.getHeldItem().getItem(), player
@@ -227,31 +228,27 @@ public class MazerB extends BlockContainer {
 		if (!world.getBlock(x, y - 1, z).equals(ModBlocks.mazer)) {
 			return false;
 		}
-		for (BlockLocation bl : RWLUtils.getAroundBlocks(world, x, y - 1, z)) {
+		for (BlockLocation bl : RWLUtils.getAroundBlocks(x, y - 1, z)) {
 			if (!world.getBlock(bl.x, bl.y, bl.z).equals(ModBlocks.mazer)) {
 				return false;
 			}
 		}
-		for (BlockLocation bl : RWLUtils.getAroundBlocks(world, x + 1, y - 1,
-				z + 1)) {
+		for (BlockLocation bl : RWLUtils.getAroundBlocks(x + 1, y - 1, z + 1)) {
 			if (!world.getBlock(bl.x, bl.y, bl.z).equals(ModBlocks.mazer)) {
 				return false;
 			}
 		}
-		for (BlockLocation bl : RWLUtils.getAroundBlocks(world, x + 1, y - 1,
-				z - 1)) {
+		for (BlockLocation bl : RWLUtils.getAroundBlocks(x + 1, y - 1, z - 1)) {
 			if (!world.getBlock(bl.x, bl.y, bl.z).equals(ModBlocks.mazer)) {
 				return false;
 			}
 		}
-		for (BlockLocation bl : RWLUtils.getAroundBlocks(world, x - 1, y - 1,
-				z + 1)) {
+		for (BlockLocation bl : RWLUtils.getAroundBlocks(x - 1, y - 1, z + 1)) {
 			if (!world.getBlock(bl.x, bl.y, bl.z).equals(ModBlocks.mazer)) {
 				return false;
 			}
 		}
-		for (BlockLocation bl : RWLUtils.getAroundBlocks(world, x - 1, y - 1,
-				z - 1)) {
+		for (BlockLocation bl : RWLUtils.getAroundBlocks(x - 1, y - 1, z - 1)) {
 			if (!world.getBlock(bl.x, bl.y, bl.z).equals(ModBlocks.mazer)) {
 				return false;
 			}

@@ -44,7 +44,7 @@ public class PanTree extends WorldGenAbstractTree {
 
 	private boolean check(World world, int x, int y, int z) {
 		for (int i = y + 2; i < y + 7; i++) {
-			for (BlockLocation bl : RWLUtils.getAroundBlocks(world, x, i, z)) {
+			for (BlockLocation bl : RWLUtils.getAroundBlocks(x, i, z)) {
 				if (!world.getBlock(bl.x, bl.y, bl.z).canBeReplacedByLeaves(
 						world, x, y, z)
 						&& !(world.getBlock(bl.x, bl.y, bl.z) instanceof BlockLeaves)

@@ -14,16 +14,17 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.world.BlockEvent;
 
 public class RWLUtils {
-	public static ArrayList<BlockLocation> getAroundBlocks(World world, int x,
-			int y, int z) {
+	public static ArrayList<BlockLocation> getAroundBlocks(int x, int y, int z) {
 		ArrayList<BlockLocation> lis = new ArrayList<BlockLocation>();
 
 		lis.add(new BlockLocation(x - 1, y, z));
@@ -126,9 +127,7 @@ public class RWLUtils {
 		return world.func_147447_a(vec3, vec31, par3, !par3, par3);
 	}
 
-	public static BlockLocation getNeighbor(World world, int x, int y, int z,
-			int side) {
-		Block b = world.getBlock(x, y, z);
+	public static BlockLocation getNeighborBlock(int x, int y, int z, int side) {
 		switch (side) {
 		case 0:
 			return new BlockLocation(x, y - 1, z);
@@ -146,6 +145,14 @@ public class RWLUtils {
 			return null;
 		}
 
+	}
+
+	public static Vector<BlockLocation> getNeighborBlocks(int x, int y, int z) {
+		Vector<BlockLocation> vec = new Vector<BlockLocation>();
+		for (int i = 0; i < 6; i++) {
+			vec.add(getNeighborBlock(x, y, z, i));
+		}
+		return vec;
 	}
 
 	public static Vector<BlockLocation> getNeighbors12(World world, int x,
@@ -233,17 +240,48 @@ public class RWLUtils {
 			ItemStack in = inv.getStackInSlot(i);
 			if (in != null && in.isItemEqual(stack)
 					&& in.stackSize < inv.getInventoryStackLimit()
-					&& in.stackSize < stack.getItem().getItemStackLimit()) {
+					&& in.stackSize < stack.getItem().getItemStackLimit())
 				return true;
-			}
 		}
-		for (int i = 0; i < inv.getSizeInventory(); i++) {
-			if (inv.getStackInSlot(i) == null) {
+		for (int i = 0; i < inv.getSizeInventory(); i++)
+			if (inv.getStackInSlot(i) == null)
 				return true;
-			}
-
-		}
 		return false;
 	}
 
+	public static ForgeDirection getForgeDirectionOfBlock(BlockLocation block,
+			BlockLocation neighbor) {
+		boolean m = false;
+		for (BlockLocation bl : getNeighborBlocks(block.x, block.y, block.z)) {
+			if (bl.x == neighbor.x && bl.y == neighbor.y && bl.z == neighbor.z) {
+				m = true;
+			}
+		}
+		if (!m)
+			return null;
+		if (block.y == neighbor.y + 1)
+			return ForgeDirection.DOWN;
+		if (block.y == neighbor.y - 1)
+			return ForgeDirection.UP;
+		if (block.z == neighbor.z + 1)
+			return ForgeDirection.NORTH;
+		if (block.z == neighbor.z - 1)
+			return ForgeDirection.UP;
+		if (block.x == neighbor.x + 1)
+			return ForgeDirection.WEST;
+		if (block.x == neighbor.x - 1)
+			return ForgeDirection.EAST;
+		return null;
+	}
+
+	public static EntityPlayer name2player(String name) {
+		EntityPlayer player = null;
+		for (World w : MinecraftServer.getServer().worldServers)
+			for (Object o : w.playerEntities) {
+				EntityPlayer p = (EntityPlayer) o;
+				if (p.getDisplayName().equals(name))
+					player = p;
+			}
+return player;
+	}
 }

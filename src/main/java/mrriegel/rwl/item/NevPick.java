@@ -227,8 +227,7 @@ public class NevPick extends ItemPickaxe implements INev {
 	private boolean detect(ItemStack stack, int x, int y, int z,
 			EntityPlayer player, Block block) {
 		for (int y2 = y; y2 > 0; y2--) {
-			for (BlockLocation bl : RWLUtils.getAroundBlocks(player.worldObj,
-					x, y2, z)) {
+			for (BlockLocation bl : RWLUtils.getAroundBlocks(x, y2, z)) {
 				Block b = player.worldObj.getBlock(bl.x, bl.y, bl.z);
 				if (b.getUnlocalizedName().contains("ore")
 						|| b instanceof BlockOre

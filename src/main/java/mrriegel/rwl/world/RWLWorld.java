@@ -81,23 +81,23 @@ public class RWLWorld implements IWorldGenerator {
 			if (isSolid(x, i, z, world) && ran == 1) {
 				setB(x, i, z, ModBlocks.mazer, world);
 
-				for (BlockLocation l : RWLUtils.getAroundBlocks(world, x, i, z)) {
+				for (BlockLocation l : RWLUtils.getAroundBlocks(x, i, z)) {
 					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
 				}
-				for (BlockLocation l : RWLUtils.getAroundBlocks(world, x + 1,
-						i, z + 1)) {
+				for (BlockLocation l : RWLUtils
+						.getAroundBlocks(x + 1, i, z + 1)) {
 					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
 				}
-				for (BlockLocation l : RWLUtils.getAroundBlocks(world, x + 1,
-						i, z - 1)) {
+				for (BlockLocation l : RWLUtils
+						.getAroundBlocks(x + 1, i, z - 1)) {
 					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
 				}
-				for (BlockLocation l : RWLUtils.getAroundBlocks(world, x - 1,
-						i, z + 1)) {
+				for (BlockLocation l : RWLUtils
+						.getAroundBlocks(x - 1, i, z + 1)) {
 					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
 				}
-				for (BlockLocation l : RWLUtils.getAroundBlocks(world, x - 1,
-						i, z - 1)) {
+				for (BlockLocation l : RWLUtils
+						.getAroundBlocks(x - 1, i, z - 1)) {
 					setB(l.x, l.y, l.z, ModBlocks.mazer, world);
 				}
 
@@ -127,7 +127,7 @@ public class RWLWorld implements IWorldGenerator {
 	}
 
 	private boolean isSolid(int x, int i, int z, World world) {
-		ArrayList<BlockLocation> lis = RWLUtils.getAroundBlocks(world, x, i, z);
+		ArrayList<BlockLocation> lis = RWLUtils.getAroundBlocks(x, i, z);
 		boolean res = true;
 		for (BlockLocation l : lis) {
 			if (world.getBlock(l.x, l.y, l.z).getMaterial()

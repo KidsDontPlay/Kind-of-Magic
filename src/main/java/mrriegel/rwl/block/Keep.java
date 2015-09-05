@@ -18,21 +18,13 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidContainerItem;
 import net.minecraftforge.fluids.IFluidHandler;
-import net.minecraftforge.fluids.FluidEvent.FluidDrainingEvent;
-import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -94,63 +86,78 @@ public class Keep extends Block {
 			for (RitualRecipe r : RitualRecipes.lis) {
 				if (!tile.isProcessing()) {
 					if (r.matches(tile.getInv(), world, player,
-							stack.getItemDamage())) {
+							stack.getItemDamage(), tile)) {
+						System.out.println("match");
 						if (player instanceof FakePlayer) {
-							for (int i = 0; i < 6; i++) {
-								if (i == 0 || i == 1)
+							IFluidHandler fh = null;
+							ForgeDirection fd = null;
+							for (BlockLocation bl : RWLUtils.getAroundBlocks(
+									tile.xCoord, tile.yCoord, tile.zCoord)) {
+								if (bl.x != tile.xCoord && bl.z != tile.zCoord) {
 									continue;
-								BlockLocation bl = RWLUtils.getNeighbor(world,
-										x, y - 2, z, i);
-								if (world.getTileEntity(bl.x, bl.y, bl.z) != null) {
-									if (world.getTileEntity(bl.x, bl.y, bl.z) instanceof IFluidHandler) {
-										IFluidHandler fh = (IFluidHandler) world
+								}
+								if (world.getTileEntity(bl.x, bl.y, bl.z) != null
+										&& world.getTileEntity(bl.x, bl.y, bl.z) instanceof IFluidHandler) {
+									if (fh == null)
+										fh = (IFluidHandler) world
 												.getTileEntity(bl.x, bl.y, bl.z);
-										Fluid fl = FluidRegistry
-												.getFluid("xpjuice");
-										if (fh == null)
-											continue;
-										System.out.println("fh: " + fh);
-										System.out.println("übeltäter: " + i);
-										System.out.println("fhori: "
-												+ fh.getTankInfo(ForgeDirection
-														.getOrientation(i)));
-										if (fh.getTankInfo(ForgeDirection
-												.getOrientation(i)) == null) {
-											continue;
-										}
-										for (FluidTankInfo in : fh
-												.getTankInfo(ForgeDirection
-														.getOrientation(i))) {
-											if(in.fluid==null)
-												continue;
-											if (in.fluid
-													.isFluidEqual(new FluidStack(
-															fl, 0))
-													&& fh.canDrain(
-															ForgeDirection
-																	.getOrientation(i),
-															fl)) {
-												System.out.println("menge: "
-														+ in.fluid.amount);
-												return true;
-											}
-										}
 
+									if (fh.getTankInfo(RWLUtils
+											.getForgeDirectionOfBlock(
+													new BlockLocation(
+															tile.xCoord,
+															tile.yCoord,
+															tile.zCoord),
+													new BlockLocation(bl.x,
+															bl.y, bl.z))) == null) {
+										continue;
+									}
+									if (fd == null)
+										fd = RWLUtils.getForgeDirectionOfBlock(
+												new BlockLocation(tile.xCoord,
+														tile.yCoord,
+														tile.zCoord),
+												new BlockLocation(bl.x, bl.y,
+														bl.z));
+								}
+							}
+							for (BlockLocation bl : RWLUtils.getAroundBlocks(
+									tile.xCoord, tile.yCoord, tile.zCoord)) {
+								if (bl.x != tile.xCoord && bl.z != tile.zCoord) {
+									continue;
+								}
+								if (world.getTileEntity(bl.x, bl.y, bl.z) != null
+										&& world.getTileEntity(bl.x, bl.y, bl.z) instanceof IInventory) {
+									IInventory inv = (IInventory) world
+											.getTileEntity(bl.x, bl.y, bl.z);
+									if (RWLUtils.canInsert(r.getOutput(), inv)) {
+										tile.clear();
+										tile.setProcessing(true);
+										tile.setCooldown(75);
+										tile.setStack(r.getOutput());
+										tile.setPlayer(player);
+										if (fd == null)
+											continue;
+										fh.drain(fd, r.getXp() * 340, true);
+
+										return true;
 									}
 								}
 							}
 						}
-						tile.clear();
-						tile.setProcessing(true);
-						tile.setCooldown(75);
-						tile.setStack(r.getOutput());
-						tile.setPlayer(player);
-						tile.setName(player.getDisplayName());
+						if (!(player instanceof FakePlayer)) {
+							tile.clear();
+							tile.setProcessing(true);
+							tile.setCooldown(75);
+							tile.setStack(r.getOutput());
+							tile.setPlayer(player);
+							tile.setName(player.getDisplayName());
 
-						player.experienceLevel = player.experienceLevel
-								- r.getXp();
+							player.experienceLevel = player.experienceLevel
+									- r.getXp();
 
-						return true;
+							return true;
+						}
 
 					}
 

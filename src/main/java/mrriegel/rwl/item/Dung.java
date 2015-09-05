@@ -28,7 +28,7 @@ public class Dung extends ItemEdelstein {
 		if (block == null)
 			return false;
 		if (block instanceof BlockCrops) {
-			for (BlockLocation loc : RWLUtils.getAroundBlocks(world, x, y, z)) {
+			for (BlockLocation loc : RWLUtils.getAroundBlocks(x, y, z)) {
 				if (!world.getBlock(loc.x, loc.y, loc.z).equals(Blocks.air)
 						&& !world.getBlock(loc.x, loc.y, loc.z).equals(
 								Blocks.tallgrass))

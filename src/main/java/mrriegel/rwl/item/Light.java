@@ -35,7 +35,7 @@ public class Light extends ItemEdelstein {
 				.rayTrace(30, 1.0F);
 		if (mop == null)
 			return stack;
-		BlockLocation bl = RWLUtils.getNeighbor(world, mop.blockX, mop.blockY,
+		BlockLocation bl = RWLUtils.getNeighborBlock(mop.blockX, mop.blockY,
 				mop.blockZ, mop.sideHit);
 		int meta = -1;
 		switch (mop.sideHit) {

@@ -2,8 +2,11 @@ package mrriegel.rwl.tile;
 
 import java.util.Random;
 
+import com.sun.xml.internal.txw2.IllegalAnnotationException;
+
 import mrriegel.rwl.block.Mazer;
 import mrriegel.rwl.block.MazerB;
+import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.EntityItem;
@@ -23,6 +26,11 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.FakePlayer;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
 public class MazerTile extends TileEntity implements ISidedInventory {
@@ -264,15 +272,17 @@ public class MazerTile extends TileEntity implements ISidedInventory {
 				if (!worldObj.isRemote) {
 					EntityItem ei = new EntityItem(worldObj, xCoord + 0.5d,
 							yCoord + 1.1d, zCoord + 0.5d, stack);
-					if (!tryInsert(stack)) {
+					boolean insert = false;
+					if (player instanceof FakePlayer) {
+						if (!tryInsert(stack)) {
+							throw new NullPointerException("weird");
+						}
+						insert = true;
+					}
+					if (!tryInsert(stack) && !insert) {
 						worldObj.spawnEntityInWorld(ei);
 						if (player == null)
-							for (World w : MinecraftServer.getServer().worldServers)
-								for (Object o : w.playerEntities) {
-									EntityPlayer p = (EntityPlayer) o;
-									if (p.getDisplayName().equals(name))
-										player = p;
-								}
+							player = RWLUtils.name2player(name);
 						if (player != null && !(player instanceof FakePlayer)) {
 							ei.setPosition(player.posX, player.posY,
 									player.posZ);
@@ -347,6 +357,44 @@ public class MazerTile extends TileEntity implements ISidedInventory {
 
 	@Override
 	public boolean canExtractItem(int slot, ItemStack item, int side) {
+		return false;
+	}
+
+	public boolean isXPContainer(int xp) {
+		Fluid fl = FluidRegistry.getFluid("xpjuice");
+		if (fl == null)
+			return false;
+		for (BlockLocation bl : RWLUtils
+				.getAroundBlocks(xCoord, yCoord, zCoord)) {
+			if (bl.x != xCoord && bl.z != zCoord) {
+				continue;
+			}
+			if (worldObj.getTileEntity(bl.x, bl.y, bl.z) != null
+					&& worldObj.getTileEntity(bl.x, bl.y, bl.z) instanceof IFluidHandler) {
+				IFluidHandler fh = (IFluidHandler) worldObj.getTileEntity(bl.x,
+						bl.y, bl.z);
+
+				if (fh.getTankInfo(RWLUtils.getForgeDirectionOfBlock(
+						new BlockLocation(xCoord, yCoord, zCoord),
+						new BlockLocation(bl.x, bl.y, bl.z))) == null) {
+					continue;
+				}
+				ForgeDirection fd = RWLUtils.getForgeDirectionOfBlock(
+						new BlockLocation(xCoord, yCoord, zCoord),
+						new BlockLocation(bl.x, bl.y, bl.z));
+				for (FluidTankInfo fti : fh.getTankInfo(fd)) {
+					if (fti != null) {
+						if (fti.fluid != null) {
+							if (fti.fluid.getFluid().equals(fl)
+									&& fti.fluid.amount > xp * 340
+									&& fh.canDrain(fd, fl)) {
+								return true;
+							}
+						}
+					}
+				}
+			}
+		}
 		return false;
 	}
 }
