@@ -192,7 +192,8 @@ public class Keep extends Block {
 						}
 
 						if (r.getOutput() instanceof String) {
-							if (((String) r.getOutput()).equals("Day")) {
+							if (((String) r.getOutput()).equals("Day")
+									&& !world.isRemote) {
 								long ku = world.getWorldTime() % 24000;
 								world.setWorldTime(world.getWorldTime() - ku);
 								world.setWorldTime(world.getWorldTime() + 24000);

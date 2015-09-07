@@ -87,11 +87,11 @@ public class RWL {
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		Iterator<Item> f = GameData.getItemRegistry().iterator();
-		while (f.hasNext()) {
-			Item i = f.next();
-			if (i instanceof ItemFood)
-				System.out.println("futter: " + i);
-		}
+//		Iterator<Item> f = GameData.getItemRegistry().iterator();
+//		while (f.hasNext()) {
+//			Item i = f.next();
+//			if (i instanceof ItemFood)
+//				System.out.println("futter: " + i);
+//		}
 	}
 }
