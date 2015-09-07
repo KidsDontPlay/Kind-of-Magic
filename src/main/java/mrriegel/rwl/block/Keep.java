@@ -73,7 +73,9 @@ public class Keep extends Block {
 	public boolean onBlockActivated(World world, int x, int y, int z,
 			EntityPlayer player, int p_149727_6_, float p_149727_7_,
 			float p_149727_8_, float p_149727_9_) {
-
+		if (world.isRemote) {
+			return false;
+		}
 		if (world.getTileEntity(x, y - 2, z) == null)
 			return false;
 		MazerTile tile = (MazerTile) world.getTileEntity(x, y - 2, z);
@@ -87,40 +89,25 @@ public class Keep extends Block {
 				if (!tile.isProcessing()) {
 					if (r.matches(tile.getInv(), world, player,
 							stack.getItemDamage(), tile)) {
-						System.out.println("match");
 						if (player instanceof FakePlayer) {
-							IFluidHandler fh = null;
 							ForgeDirection fd = null;
-							for (BlockLocation bl : RWLUtils.getAroundBlocks(
-									tile.xCoord, tile.yCoord, tile.zCoord)) {
-								if (bl.x != tile.xCoord && bl.z != tile.zCoord) {
-									continue;
-								}
-								if (world.getTileEntity(bl.x, bl.y, bl.z) != null
-										&& world.getTileEntity(bl.x, bl.y, bl.z) instanceof IFluidHandler) {
-									if (fh == null)
-										fh = (IFluidHandler) world
-												.getTileEntity(bl.x, bl.y, bl.z);
+							BlockLocation flui = tile.getXPContainer(r.getXp());
+							if (flui == null)
+								return false;
 
-									if (fh.getTankInfo(RWLUtils
-											.getForgeDirectionOfBlock(
-													new BlockLocation(
-															tile.xCoord,
-															tile.yCoord,
-															tile.zCoord),
-													new BlockLocation(bl.x,
-															bl.y, bl.z))) == null) {
-										continue;
-									}
-									if (fd == null)
-										fd = RWLUtils.getForgeDirectionOfBlock(
-												new BlockLocation(tile.xCoord,
-														tile.yCoord,
-														tile.zCoord),
-												new BlockLocation(bl.x, bl.y,
-														bl.z));
-								}
-							}
+							IFluidHandler fh = null;
+							if (world.getTileEntity(flui.x, flui.y, flui.z) != null
+									&& world.getTileEntity(flui.x, flui.y,
+											flui.z) instanceof IFluidHandler)
+								fh = (IFluidHandler) world.getTileEntity(
+										flui.x, flui.y, flui.z);
+							if (fh == null)
+								return false;
+							fd = RWLUtils.getForgeDirectionOfBlock(
+									new BlockLocation(x, y - 2, z),
+									new BlockLocation(flui.x, flui.y, flui.z));
+							if (fd == null)
+								return false;
 							for (BlockLocation bl : RWLUtils.getAroundBlocks(
 									tile.xCoord, tile.yCoord, tile.zCoord)) {
 								if (bl.x != tile.xCoord && bl.z != tile.zCoord) {
@@ -130,12 +117,19 @@ public class Keep extends Block {
 										&& world.getTileEntity(bl.x, bl.y, bl.z) instanceof IInventory) {
 									IInventory inv = (IInventory) world
 											.getTileEntity(bl.x, bl.y, bl.z);
+									fd = RWLUtils
+											.getForgeDirectionOfBlock(
+													new BlockLocation(x, y - 2,
+															z),
+													new BlockLocation(bl.x,
+															bl.y, bl.z));
 									if (RWLUtils.canInsert(r.getOutput(), inv)) {
 										tile.clear();
 										tile.setProcessing(true);
 										tile.setCooldown(75);
 										tile.setStack(r.getOutput());
 										tile.setPlayer(player);
+										world.markBlockForUpdate(x, y - 2, z);
 										if (fd == null)
 											continue;
 										fh.drain(fd, r.getXp() * 340, true);
@@ -152,9 +146,10 @@ public class Keep extends Block {
 							tile.setStack(r.getOutput());
 							tile.setPlayer(player);
 							tile.setName(player.getDisplayName());
-
-							player.experienceLevel = player.experienceLevel
-									- r.getXp();
+							world.markBlockForUpdate(x, y - 2, z);
+							if (!player.capabilities.isCreativeMode)
+								player.experienceLevel = player.experienceLevel
+										- r.getXp();
 
 							return true;
 						}
@@ -166,10 +161,36 @@ public class Keep extends Block {
 			for (LandRecipe r : LandRecipes.lis) {
 				if (!tile.isProcessing()) {
 					if (r.matches(tile.getInv(), world, player,
-							stack.getItemDamage())) {
-						tile.clear();
-						player.experienceLevel = player.experienceLevel
-								- r.getXp();
+							stack.getItemDamage(), tile)) {
+						if (player instanceof FakePlayer) {
+							ForgeDirection fd = null;
+							BlockLocation flui = tile.getXPContainer(r.getXp());
+							if (flui == null)
+								return false;
+
+							IFluidHandler fh = null;
+							if (world.getTileEntity(flui.x, flui.y, flui.z) != null
+									&& world.getTileEntity(flui.x, flui.y,
+											flui.z) instanceof IFluidHandler)
+								fh = (IFluidHandler) world.getTileEntity(
+										flui.x, flui.y, flui.z);
+							if (fh == null)
+								return false;
+							fd = RWLUtils.getForgeDirectionOfBlock(
+									new BlockLocation(x, y - 2, z),
+									new BlockLocation(flui.x, flui.y, flui.z));
+							tile.clear();
+							world.markBlockForUpdate(x, y - 2, z);
+							fh.drain(fd, r.getXp() * 340, true);
+						}
+
+						if (!(player instanceof FakePlayer)) {
+							tile.clear();
+							world.markBlockForUpdate(x, y - 2, z);
+							player.experienceLevel = player.experienceLevel
+									- r.getXp();
+						}
+
 						if (r.getOutput() instanceof String) {
 							if (((String) r.getOutput()).equals("Day")) {
 								long ku = world.getWorldTime() % 24000;
@@ -180,12 +201,10 @@ public class Keep extends Block {
 								world.setWorldTime(world.getWorldTime() - ku);
 								world.setWorldTime(world.getWorldTime() + 36000);
 							}
+							return true;
 						} else if (r.getOutput() instanceof Class
 								&& !world.isRemote) {
-							System.out.println("cls: " + r.getOutput());
-							System.out.println("num: " + r.getNumber());
 							for (int i = 0; i < r.getNumber(); i++) {
-								System.out.println("cls: jappp");
 								Class<?> cl = (Class) r.getOutput();
 								if (cl.getName().contains("boss"))
 									return false;
@@ -219,8 +238,6 @@ public class Keep extends Block {
 								e.posY = y + 0.5D;
 								e.posZ = z + world.rand.nextDouble() * 1.5D
 										* ztmp;
-								System.out.println(String.format("%f %f %f",
-										e.posX, e.posY, e.posZ));
 								if ((RWLUtils.double2int(e.posX) == x && RWLUtils
 										.double2int(e.posZ) == z)
 										|| (RWLUtils.double2int(e.posX) == x + 2 && RWLUtils
@@ -236,13 +253,14 @@ public class Keep extends Block {
 								}
 								world.spawnEntityInWorld(e);
 								e.setPositionAndUpdate(e.posX, e.posY, e.posZ);
-								System.out.println("gespawn: " + e);
 							}
+							return true;
 						}
 					}
 				}
 			}
 		}
+
 		return false;
 
 	}

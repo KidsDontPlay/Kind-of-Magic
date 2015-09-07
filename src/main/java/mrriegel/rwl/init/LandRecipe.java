@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import mrriegel.rwl.tile.MazerTile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class LandRecipe {
@@ -34,7 +36,7 @@ public class LandRecipe {
 		this.dimensionID = dimensionID;
 		this.time = time;
 		this.xp = xp;
-		this.number=number;
+		this.number = number;
 	}
 
 	private boolean contains(ItemStack stack, List<ArrayList> soll) {
@@ -64,7 +66,7 @@ public class LandRecipe {
 	}
 
 	public boolean matches(ItemStack[] ar, World world, EntityPlayer player,
-			int catmeta) {
+			int catmeta, MazerTile tile) {
 
 		List<ItemStack> ist = Arrays.asList(ar);
 		ArrayList<ItemStack> inputI;
@@ -107,7 +109,8 @@ public class LandRecipe {
 				&& tmpdim == dimensionID
 				&& tmptim == time
 				&& catmeta >= cat
-				&& (player.experienceLevel >= xp || player.capabilities.isCreativeMode))
+				&& ((player.experienceLevel >= xp || player.capabilities.isCreativeMode) || (player instanceof FakePlayer && tile
+						.getXPContainer(xp) != null)))
 			return true;
 		if (eq(ist, soll) && !world.isRemote) {
 			if (!(catmeta >= cat))

@@ -1,14 +1,8 @@
 package mrriegel.rwl.tile;
 
-import java.util.Random;
-
-import com.sun.xml.internal.txw2.IllegalAnnotationException;
-
-import mrriegel.rwl.block.Mazer;
 import mrriegel.rwl.block.MazerB;
 import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.RWLUtils;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -19,17 +13,14 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
@@ -193,12 +184,14 @@ public class MazerTile extends TileEntity implements ISidedInventory {
 		super.readFromNBT(tag);
 		NBTTagList invList = tag.getTagList("Inventory",
 				Constants.NBT.TAG_COMPOUND);
+		clear();
 		for (int i = 0; i < invList.tagCount(); i++) {
 			NBTTagCompound stackTag = invList.getCompoundTagAt(i);
 			int slot = stackTag.getByte("Slot");
 
-			if (slot >= 0 && slot < inv.length)
+			if (slot >= 0 && slot < inv.length) {
 				inv[slot] = ItemStack.loadItemStackFromNBT(stackTag);
+			}
 		}
 		active = tag.getBoolean("active");
 		processing = tag.getBoolean("processing");
@@ -247,6 +240,7 @@ public class MazerTile extends TileEntity implements ISidedInventory {
 	@Override
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
 		readFromNBT(pkt.func_148857_g());
+		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
 
 	@Override
@@ -279,7 +273,7 @@ public class MazerTile extends TileEntity implements ISidedInventory {
 						}
 						insert = true;
 					}
-					if (!tryInsert(stack) && !insert) {
+					if (!insert && !tryInsert(stack)) {
 						worldObj.spawnEntityInWorld(ei);
 						if (player == null)
 							player = RWLUtils.name2player(name);
@@ -360,10 +354,10 @@ public class MazerTile extends TileEntity implements ISidedInventory {
 		return false;
 	}
 
-	public boolean isXPContainer(int xp) {
+	public BlockLocation getXPContainer(int xp) {
 		Fluid fl = FluidRegistry.getFluid("xpjuice");
 		if (fl == null)
-			return false;
+			return null;
 		for (BlockLocation bl : RWLUtils
 				.getAroundBlocks(xCoord, yCoord, zCoord)) {
 			if (bl.x != xCoord && bl.z != zCoord) {
@@ -388,13 +382,13 @@ public class MazerTile extends TileEntity implements ISidedInventory {
 							if (fti.fluid.getFluid().equals(fl)
 									&& fti.fluid.amount > xp * 340
 									&& fh.canDrain(fd, fl)) {
-								return true;
+								return new BlockLocation(bl.x, bl.y, bl.z);
 							}
 						}
 					}
 				}
 			}
 		}
-		return false;
+		return null;
 	}
 }

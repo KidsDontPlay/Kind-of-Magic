@@ -1,7 +1,6 @@
 package mrriegel.rwl.handler;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.inventory.InventoryNevTool;

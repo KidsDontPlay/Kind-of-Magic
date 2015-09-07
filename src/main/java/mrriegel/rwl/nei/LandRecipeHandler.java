@@ -117,8 +117,8 @@ public class LandRecipeHandler extends TemplateRecipeHandler {
 			GuiDraw.drawString((String) r.output, 70, 5, 0x404040, false);
 		else if (r.output instanceof Class) {
 			GuiDraw.drawString(r.number + "x", 62, 5, 0x404040, false);
-			GuiDraw.drawString(((Class) r.output).getSimpleName().substring(6), 78, 5, 0x404040,
-					false);
+			GuiDraw.drawString(((Class) r.output).getSimpleName().substring(6),
+					78, 5, 0x404040, false);
 		}
 	}
 

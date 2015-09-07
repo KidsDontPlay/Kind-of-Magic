@@ -1,7 +1,5 @@
 package mrriegel.rwl.handler;
 
-import java.util.Random;
-
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.inventory.InventoryNevTool;
 import net.minecraft.block.Block;
@@ -28,7 +26,9 @@ public class DropEventHandler {
 					e.world.rand.nextInt(6 - e.fortuneLevel) == 0 ? 1 : 0);
 
 			e.drops.add(stack);
-			if (e.harvester.getHeldItem().getItem().equals(ModItems.nevpick)
+			if (e.harvester.getHeldItem() != null
+					&& e.harvester.getHeldItem().getItem()
+							.equals(ModItems.nevpick)
 					&& e.harvester.getHeldItem().getTagCompound()
 							.getCompoundTag(InventoryNevTool.tagName)
 							.getShort("Damage") == 4) {

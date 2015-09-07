@@ -1,8 +1,7 @@
 package mrriegel.rwl;
 
 import java.io.File;
-import java.util.Map;
-import java.util.Set;
+import java.util.Iterator;
 
 import mrriegel.rwl.handler.ConfigurationHandler;
 import mrriegel.rwl.handler.DropEventHandler;
@@ -21,10 +20,10 @@ import mrriegel.rwl.proxy.CommonProxy;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.render.NevToolOverlayRenderer;
 import mrriegel.rwl.world.RWLWorld;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -33,6 +32,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 
@@ -48,7 +48,6 @@ public class RWL {
 	public static SimpleNetworkWrapper net;
 
 	private static int modGuiIndex = 0;
-
 	public static final int ItemInventoryGuiIndex = modGuiIndex++;
 
 	@Mod.EventHandler
@@ -88,9 +87,11 @@ public class RWL {
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		// for (Map.Entry<String, Fluid> entry : FluidRegistry
-		// .getRegisteredFluids().entrySet()) {
-		// System.out.println(entry.getKey() + "/" + entry.getValue());
-		// }
+		Iterator<Item> f = GameData.getItemRegistry().iterator();
+		while (f.hasNext()) {
+			Item i = f.next();
+			if (i instanceof ItemFood)
+				System.out.println("futter: " + i);
+		}
 	}
 }

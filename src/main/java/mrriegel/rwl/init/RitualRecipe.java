@@ -7,7 +7,6 @@ import java.util.List;
 import mrriegel.rwl.tile.MazerTile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
@@ -117,7 +116,7 @@ public class RitualRecipe {
 				&& tmptim == time
 				&& catmeta >= cat
 				&& ((player.experienceLevel >= xp || player.capabilities.isCreativeMode) || (player instanceof FakePlayer && tile
-						.isXPContainer(xp))))
+						.getXPContainer(xp) != null)))
 			return true;
 		if (eq(ist, soll) && !world.isRemote) {
 			if (!(catmeta >= cat))

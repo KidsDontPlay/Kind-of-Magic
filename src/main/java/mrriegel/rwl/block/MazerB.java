@@ -112,7 +112,7 @@ public class MazerB extends BlockContainer {
 				world.spawnParticle("instantSpell", x + 0.5D, y + 0.75D,
 						z + 0.5D, 0, -0.4D, 0);
 			}
-
+			world.markBlockForUpdate(x, y, z);
 		}
 	}
 
