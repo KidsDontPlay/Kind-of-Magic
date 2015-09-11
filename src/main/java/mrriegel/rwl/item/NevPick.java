@@ -24,6 +24,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.world.BlockEvent;
 
 public class NevPick extends ItemPickaxe implements INev {
 
@@ -132,25 +134,23 @@ public class NevPick extends ItemPickaxe implements INev {
 		if (stack.getTagCompound() == null)
 			return super.getDigSpeed(stack, block, meta) + plus;
 		if (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
-				.getShort("Damage") == 5) {
-			return super.getDigSpeed(stack, block, meta) * 3.0f + plus;
-
-		} else if (stack.getTagCompound()
-				.getCompoundTag(InventoryNevTool.tagName).getShort("Damage") == 0) {
+				.toString().equals("{}"))
+			return super.getDigSpeed(stack, block, meta) + plus;
+		switch (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
+				.getShort("Damage")) {
+		case 0:
 			return super.getDigSpeed(stack, block, meta) / 2.5f + plus;
-
-		} else if (stack.getTagCompound()
-				.getCompoundTag(InventoryNevTool.tagName).getShort("Damage") == 1) {
+		case 1:
 			return super.getDigSpeed(stack, block, meta) / 6.5f + plus;
-
-		} else if (stack.getTagCompound()
-				.getCompoundTag(InventoryNevTool.tagName).getShort("Damage") == 2) {
+		case 2:
 			return super.getDigSpeed(stack, block, meta) / 10.5f + plus;
-		} else if (stack.getTagCompound()
-				.getCompoundTag(InventoryNevTool.tagName).getShort("Damage") == 15) {
+		case 5:
+			return super.getDigSpeed(stack, block, meta) * 3.0f + plus;
+		case 15:
 			return super.getDigSpeed(stack, block, meta) / 7.5f + plus;
+		default:
+			return super.getDigSpeed(stack, block, meta) + plus;
 		}
-		return super.getDigSpeed(stack, block, meta) + plus;
 	}
 
 	@Override
@@ -161,7 +161,6 @@ public class NevPick extends ItemPickaxe implements INev {
 		if (player.worldObj.isRemote) {
 			return false;
 		}
-
 		switch (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
 				.getShort("Damage")) {
 		case 0:
@@ -241,8 +240,8 @@ public class NevPick extends ItemPickaxe implements INev {
 						player.worldObj.spawnEntityInWorld(ei);
 					}
 					player.worldObj.setBlock(bl.x, bl.y, bl.z, Blocks.stone);
-					if (RWLUtils.damageItemINev(1, player))
-						break;
+
+					RWLUtils.damageItemINev(1, player);
 					return true;
 
 				}
@@ -257,8 +256,14 @@ public class NevPick extends ItemPickaxe implements INev {
 					player.worldObj.spawnEntityInWorld(ei);
 				}
 				player.worldObj.setBlock(x, y2, z, Blocks.stone);
-				if (RWLUtils.damageItemINev(1, player))
-					break;
+				MinecraftForge.EVENT_BUS.post(new BlockEvent.HarvestDropsEvent(
+						x, y2, z, player.worldObj, player.worldObj.getBlock(x,
+								y2, z), player.worldObj.getBlockMetadata(x, y2,
+								z), 0, 1.0F, block.getDrops(player.worldObj, x,
+								y2, z,
+								player.worldObj.getBlockMetadata(x, y2, z), 0),
+						player, false));
+				RWLUtils.damageItemINev(1, player);
 				return true;
 
 			}
@@ -282,6 +287,16 @@ public class NevPick extends ItemPickaxe implements INev {
 					world.spawnEntityInWorld(ei);
 				}
 				world.setBlock(bl.x, bl.y, bl.z, Blocks.air);
+				MinecraftForge.EVENT_BUS
+						.post(new BlockEvent.HarvestDropsEvent(bl.x, bl.y,
+								bl.z, player.worldObj, player.worldObj
+										.getBlock(bl.x, bl.y, bl.z),
+								player.worldObj.getBlockMetadata(bl.x, bl.y, bl.z), 0,
+								1.0F, block.getDrops(player.worldObj, bl.x,
+										bl.y, bl.z, player.worldObj
+												.getBlockMetadata(bl.x, bl.y,
+														bl.z), 0), player,
+								false));
 				int l = world.getBlockMetadata(x, y, z);
 				world.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(block)
 						+ (l << 12));
@@ -351,27 +366,13 @@ public class NevPick extends ItemPickaxe implements INev {
 		for (BlockLocation b : v) {
 			Block bl = world.getBlock(b.x, b.y, b.z);
 			int meta2 = world.getBlockMetadata(b.x, b.y, b.z);
-			System.out.println("rock: "
-					+ block.getMaterial().equals(Material.rock));
-			System.out.println("glass: "
-					+ block.getMaterial().equals(Material.glass));
-			System.out.println("iron: "
-					+ block.getMaterial().equals(Material.iron));
-			System.out.println("ice: "
-					+ block.getMaterial().equals(Material.ice));
-			if (/*
-				 * ForgeHooks.isToolEffective(stack, bl, meta2) ||
-				 * ForgeHooks.canToolHarvestBlock(bl, meta2, stack) ||
-				 * (bl.getHarvestTool(meta2) != null && bl.getHarvestTool(
-				 * meta2).equals("pickaxe")) || bl.equals(Blocks.brick_block) ||
-				 * block.equals(Blocks.quartz_block) ||
-				 */(block.getMaterial().equals(Material.rock)
-					|| block.getMaterial().equals(Material.glass)
-					|| block.getMaterial().equals(Material.iron)
-					|| block.getMaterial().equals(Material.ice) || block
+			if ((bl.getMaterial().equals(Material.rock)
+					|| bl.getMaterial().equals(Material.glass)
+					|| bl.getMaterial().equals(Material.iron)
+					|| bl.getMaterial().equals(Material.ice) || block
 					.getMaterial().equals(Material.packedIce))
-					&& block.getHarvestLevel(meta2) <= MATERIAL
-							.getHarvestLevel()) {
+					&& bl.getHarvestLevel(meta2) <= MATERIAL.getHarvestLevel()
+					&& bl.getBlockHardness(world, b.x, b.y, b.z) != -1.0F) {
 				RWLUtils.breakWithFortune(player, world, b.x, b.y, b.z, 0);
 				if (RWLUtils.damageItemINev(1, player))
 					break;

@@ -15,7 +15,6 @@ public class DropEventHandler {
 		if (e.harvester == null)
 			return;
 		Block b = e.block;
-
 		if (b.equals(Blocks.lapis_ore)
 				&& !e.harvester.capabilities.isCreativeMode
 				&& !e.world.isRemote
@@ -23,17 +22,14 @@ public class DropEventHandler {
 						.areItemStacksEqual(e.drops.get(0), new ItemStack(b))))
 				&& e.world.rand.nextInt(5 - e.fortuneLevel) == 0) {
 			ItemStack stack = new ItemStack(ModItems.drop, 1,
-					e.world.rand.nextInt(6 - e.fortuneLevel) == 0 ? 1 : 0);
-
+					e.world.rand.nextInt(7 - e.fortuneLevel) == 0 ? 1 : 0);
+			System.out.println("hier");
 			e.drops.add(stack);
 			if (e.harvester.getHeldItem() != null
 					&& e.harvester.getHeldItem().getItem()
-							.equals(ModItems.nevpick)
-					&& e.harvester.getHeldItem().getTagCompound()
-							.getCompoundTag(InventoryNevTool.tagName)
-							.getShort("Damage") == 4) {
-				EntityItem ei = new EntityItem(e.world, e.x + 0.5D, e.y,
-						e.z + 0.5D, stack);
+							.equals(ModItems.nevpick)) {
+				EntityItem ei = new EntityItem(e.world, e.harvester.posX,
+						e.harvester.posY, e.harvester.posZ, stack);
 				e.world.spawnEntityInWorld(ei);
 			}
 		}

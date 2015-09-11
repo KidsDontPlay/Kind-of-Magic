@@ -21,11 +21,13 @@ public class ItemFeeder extends ItemTalisman {
 				if (stackfood != null
 						&& stackfood.getItem() instanceof ItemFood) {
 					ItemFood iff = (ItemFood) stackfood.getItem();
-					if (stackfood.stackSize != 1)
+					if (stackfood.stackSize != 1) {
 						iff.onEaten(stackfood, player.worldObj, player);
-					else {
+						break;
+					} else {
 						iff.onEaten(stackfood, player.worldObj, player);
 						player.inventory.mainInventory[i] = null;
+						break;
 					}
 				}
 			}

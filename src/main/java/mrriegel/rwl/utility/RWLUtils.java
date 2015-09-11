@@ -300,11 +300,9 @@ public class RWLUtils {
 							&& !stack.getTagCompound()
 									.getCompoundTag(InventoryNevTool.tagName)
 									.toString().equals("{}")) {
-						player.inventory.setInventorySlotContents(
-								player.inventory.currentItem,
-								ItemStack.loadItemStackFromNBT(stack
-										.getTagCompound().getCompoundTag(
-												InventoryNevTool.tagName)));
+						MinecraftForge.EVENT_BUS
+								.post(new PlayerDestroyItemEvent(player, stack));
+						return true;
 					} else
 						player.inventory.setInventorySlotContents(
 								player.inventory.currentItem, (ItemStack) null);

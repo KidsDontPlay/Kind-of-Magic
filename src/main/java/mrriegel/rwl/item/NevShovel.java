@@ -131,19 +131,21 @@ public class NevShovel extends ItemSpade implements INev {
 		if (stack.getTagCompound() == null)
 			return super.getDigSpeed(stack, block, meta) + plus;
 		if (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
-				.getShort("Damage") == 5) {
-			return super.getDigSpeed(stack, block, meta) * 2.5f + plus;
-
-		} else if (stack.getTagCompound()
-				.getCompoundTag(InventoryNevTool.tagName).getShort("Damage") == 2) {
-			return super.getDigSpeed(stack, block, meta) / 7.5f + plus;
-
-		} else if (stack.getTagCompound()
-				.getCompoundTag(InventoryNevTool.tagName).getShort("Damage") == 1) {
-			return super.getDigSpeed(stack, block, meta) / 4.5f + plus;
-
+				.toString().equals("{}"))
+			return super.getDigSpeed(stack, block, meta) + plus;
+		switch (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
+				.getShort("Damage")) {
+		case 0:
+			return super.getDigSpeed(stack, block, meta) / 2.5f + plus;
+		case 1:
+			return super.getDigSpeed(stack, block, meta) / 6.5f + plus;
+		case 2:
+			return super.getDigSpeed(stack, block, meta) / 10.5f + plus;
+		case 5:
+			return super.getDigSpeed(stack, block, meta) * 3.0f + plus;
+		default:
+			return super.getDigSpeed(stack, block, meta) + plus;
 		}
-		return super.getDigSpeed(stack, block, meta) + plus;
 	}
 
 	@Override
