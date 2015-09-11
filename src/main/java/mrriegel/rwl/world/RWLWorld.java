@@ -158,28 +158,6 @@ public class RWLWorld implements IWorldGenerator {
 				break;
 			}
 		}
-		// if (world.getBlock(x, i, z).getMaterial().equals(Material.air)
-		// || world.getBlock(x, i, z).getMaterial().isLiquid()
-		// || !world.getBlock(x, i, z).getMaterial().isSolid()) {
-		// res = false;
-		// return res;
-		//
-		// }
-		// if (world.getBlock(x, i + 1, z).getMaterial().isSolid()) {
-		// res = false;
-		// return res;
-		//
-		// }
-		// if (world.getBlock(x, i + 2, z).getMaterial().isSolid()) {
-		// res = false;
-		// return res;
-		//
-		// }
-		// if (world.getBlock(x, i + 3, z).getMaterial().isSolid()) {
-		// res = false;
-		// return res;
-		//
-		// }
 		return res;
 
 	}

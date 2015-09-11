@@ -87,7 +87,9 @@ public class StoneItemRenderer extends TileEntitySpecialRenderer {
 						+ 0.5F, (float) d2 + 0.5F);
 			}
 			final double cool = 75.0D;
-			double height = (cool - (tile.getCooldown() / cool) - (cool - 1)) * 1.25D;
+			// double height = (cool - (tile.getCooldown() / cool) - (cool - 1))
+			// * 1.25D;
+			double height = (-(tile.getCooldown() / cool) + 1) * 1.25D;
 			GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
 			GL11.glRotatef(rotationAngle, 0.0F, 1.0F, 0.0F);
 			renderItem.doRender(ghostEntityItem, 0, height, 0, 0, 0);

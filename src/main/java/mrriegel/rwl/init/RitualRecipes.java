@@ -198,6 +198,11 @@ public class RitualRecipes {
 				ModItems.drop, 1, 1), new ItemStack(Items.fire_charge), 0,
 				nether, anytime, 4));
 
+		lis.add(new RitualRecipe(new ItemStack(ModItems.drop, 3, 0),
+				new ItemStack(ModItems.drop, 1, 0), new ItemStack(
+						Blocks.glowstone), "slimeball", new ItemStack(
+						ModItems.bloodie), 0, anywhere, anytime, 4));
+
 		lis.add(new RitualRecipe(new ItemStack(ModItems.drop, 1, 1),
 				new ItemStack(ModItems.drop, 1, 0), new ItemStack(
 						ModItems.mdust), "ingotGold", new ItemStack(

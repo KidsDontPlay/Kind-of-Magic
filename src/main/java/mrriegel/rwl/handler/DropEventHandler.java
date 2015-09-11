@@ -20,7 +20,7 @@ public class DropEventHandler {
 				&& !e.world.isRemote
 				&& !(e.isSilkTouching || (e.drops.get(0) != null && ItemStack
 						.areItemStacksEqual(e.drops.get(0), new ItemStack(b))))
-				&& e.world.rand.nextInt(5 - e.fortuneLevel) == 0) {
+				&& e.world.rand.nextInt(4 - e.fortuneLevel) == 0) {
 			ItemStack stack = new ItemStack(ModItems.drop, 1,
 					e.world.rand.nextInt(7 - e.fortuneLevel) == 0 ? 1 : 0);
 			e.drops.add(stack);

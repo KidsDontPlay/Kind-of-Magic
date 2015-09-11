@@ -3,6 +3,7 @@ package mrriegel.rwl.block;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
+import mrriegel.rwl.RWL;
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.init.LandRecipe;
 import mrriegel.rwl.init.LandRecipes;
@@ -15,6 +16,9 @@ import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.EntityHugeExplodeFX;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -47,9 +51,7 @@ public class Keep extends Block {
 	public void registerBlockIcons(IIconRegister reg) {
 		for (int i = 0; i < 6; i++) {
 			this.icons[i] = reg.registerIcon(Reference.MOD_ID + ":" + "keep");
-
 		}
-
 	}
 
 	@Override
@@ -147,9 +149,9 @@ public class Keep extends Block {
 							tile.setPlayer(player);
 							tile.setName(player.getDisplayName());
 							world.markBlockForUpdate(x, y - 2, z);
+
 							if (!player.capabilities.isCreativeMode)
-								player.experienceLevel = player.experienceLevel
-										- r.getXp();
+								player.addExperienceLevel(-r.getXp());
 
 							return true;
 						}
@@ -187,8 +189,8 @@ public class Keep extends Block {
 						if (!(player instanceof FakePlayer)) {
 							tile.clear();
 							world.markBlockForUpdate(x, y - 2, z);
-							player.experienceLevel = player.experienceLevel
-									- r.getXp();
+							if (!player.capabilities.isCreativeMode)
+								player.addExperienceLevel(-r.getXp());
 						}
 
 						if (r.getOutput() instanceof String) {

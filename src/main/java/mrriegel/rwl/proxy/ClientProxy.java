@@ -9,6 +9,8 @@ import mrriegel.rwl.render.StoneItemRenderer;
 import mrriegel.rwl.tile.MazerTile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.EntityHugeExplodeFX;
+import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
