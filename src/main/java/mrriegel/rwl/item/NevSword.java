@@ -10,6 +10,7 @@ import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.inventory.InventoryNevTool;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.utility.NBTHelper;
+import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -212,9 +213,8 @@ public class NevSword extends ItemSword implements INev {
 				e.attackEntityFrom(new EntityDamageSource("player", player),
 						(float) (d / 4));
 				if (rand.nextInt(4) == 0)
-					if (!player.capabilities.isCreativeMode)
-						player.getHeldItem().setItemDamage(
-								player.getHeldItem().getItemDamage() + 1);
+					if (RWLUtils.damageItemINev(1, player))
+						break;
 
 			}
 	}

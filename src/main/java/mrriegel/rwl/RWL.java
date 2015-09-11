@@ -3,6 +3,7 @@ package mrriegel.rwl;
 import java.io.File;
 import java.util.Iterator;
 
+import mrriegel.rwl.gui.GuiHandler;
 import mrriegel.rwl.handler.ConfigurationHandler;
 import mrriegel.rwl.handler.DropEventHandler;
 import mrriegel.rwl.handler.ToolEventHandler;
@@ -68,7 +69,7 @@ public class RWL {
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, new CommonProxy());
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 		MinecraftForge.EVENT_BUS.register(new ToolEventHandler());
 		MinecraftForge.EVENT_BUS.register(new DropEventHandler());
 		MinecraftForge.EVENT_BUS.register(new NevToolOverlayRenderer());
@@ -87,11 +88,5 @@ public class RWL {
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-//		Iterator<Item> f = GameData.getItemRegistry().iterator();
-//		while (f.hasNext()) {
-//			Item i = f.next();
-//			if (i instanceof ItemFood)
-//				System.out.println("futter: " + i);
-//		}
 	}
 }

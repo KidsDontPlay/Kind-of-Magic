@@ -241,8 +241,8 @@ public class NevPick extends ItemPickaxe implements INev {
 						player.worldObj.spawnEntityInWorld(ei);
 					}
 					player.worldObj.setBlock(bl.x, bl.y, bl.z, Blocks.stone);
-					if (!player.capabilities.isCreativeMode)
-						stack.setItemDamage(stack.getItemDamage() + 1);
+					if (RWLUtils.damageItemINev(1, player))
+						break;
 					return true;
 
 				}
@@ -257,8 +257,8 @@ public class NevPick extends ItemPickaxe implements INev {
 					player.worldObj.spawnEntityInWorld(ei);
 				}
 				player.worldObj.setBlock(x, y2, z, Blocks.stone);
-				if (!player.capabilities.isCreativeMode)
-					stack.setItemDamage(stack.getItemDamage() + 1);
+				if (RWLUtils.damageItemINev(1, player))
+					break;
 				return true;
 
 			}
@@ -270,7 +270,7 @@ public class NevPick extends ItemPickaxe implements INev {
 	private void vein(ItemStack stack, int x, int y, int z,
 			EntityPlayer player, Block block, int i) {
 		World world = player.worldObj;
-		for (BlockLocation bl : RWLUtils.getCube(world, x, y, z)) {
+		for (BlockLocation bl : RWLUtils.getCube(x, y, z)) {
 			if (world.getBlock(bl.x, bl.y, bl.z).getUnlocalizedName()
 					.equals(block.getUnlocalizedName())
 					&& world.getBlockMetadata(bl.x, bl.y, bl.z) == i) {
@@ -285,10 +285,8 @@ public class NevPick extends ItemPickaxe implements INev {
 				int l = world.getBlockMetadata(x, y, z);
 				world.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(block)
 						+ (l << 12));
-				if (!player.capabilities.isCreativeMode)
-					stack.setItemDamage(stack.getItemDamage() + 1);
-				if (stack.getItemDamage() > MATERIAL.getMaxUses())
-					break;
+				if (RWLUtils.damageItemINev(1, player))
+					return;
 				vein(stack, bl.x, bl.y, bl.z, player, block, i);
 			}
 
@@ -297,11 +295,13 @@ public class NevPick extends ItemPickaxe implements INev {
 
 	private void fortune(ItemStack stack, int x, int y, int z,
 			EntityPlayer player, int i) {
-		RWLUtils.breakWithFortune(player, player.worldObj, x, y, z, 3);
+		RWLUtils.breakWithFortune(player, player.worldObj, x, y, z, i);
+		RWLUtils.damageItemINev(1, player);
 	}
 
 	private void silk(ItemStack stack, int x, int y, int z, EntityPlayer player) {
 		RWLUtils.breakWithSilk(player, player.worldObj, x, y, z);
+		RWLUtils.damageItemINev(1, player);
 	}
 
 	protected void radius(ItemStack stack, int x, int y, int z,
@@ -351,20 +351,30 @@ public class NevPick extends ItemPickaxe implements INev {
 		for (BlockLocation b : v) {
 			Block bl = world.getBlock(b.x, b.y, b.z);
 			int meta2 = world.getBlockMetadata(b.x, b.y, b.z);
-			if (ForgeHooks.isToolEffective(stack, bl, meta2)
-					|| ForgeHooks.canToolHarvestBlock(bl, meta2, stack)
-					|| (bl.getHarvestTool(meta2) != null && bl.getHarvestTool(
-							meta2).equals("pickaxe"))
-					|| bl.equals(Blocks.brick_block)
-					|| block.equals(Blocks.quartz_block)
-					|| block.getMaterial().equals(Material.rock)
+			System.out.println("rock: "
+					+ block.getMaterial().equals(Material.rock));
+			System.out.println("glass: "
+					+ block.getMaterial().equals(Material.glass));
+			System.out.println("iron: "
+					+ block.getMaterial().equals(Material.iron));
+			System.out.println("ice: "
+					+ block.getMaterial().equals(Material.ice));
+			if (/*
+				 * ForgeHooks.isToolEffective(stack, bl, meta2) ||
+				 * ForgeHooks.canToolHarvestBlock(bl, meta2, stack) ||
+				 * (bl.getHarvestTool(meta2) != null && bl.getHarvestTool(
+				 * meta2).equals("pickaxe")) || bl.equals(Blocks.brick_block) ||
+				 * block.equals(Blocks.quartz_block) ||
+				 */(block.getMaterial().equals(Material.rock)
 					|| block.getMaterial().equals(Material.glass)
-					|| block.getMaterial().equals(Material.iron)) {
+					|| block.getMaterial().equals(Material.iron)
+					|| block.getMaterial().equals(Material.ice) || block
+					.getMaterial().equals(Material.packedIce))
+					&& block.getHarvestLevel(meta2) <= MATERIAL
+							.getHarvestLevel()) {
 				RWLUtils.breakWithFortune(player, world, b.x, b.y, b.z, 0);
-				if (!player.capabilities.isCreativeMode)
-					stack.setItemDamage(stack.getItemDamage() + 1);
-				if (stack.getItemDamage() > MATERIAL.getMaxUses())
-					return;
+				if (RWLUtils.damageItemINev(1, player))
+					break;
 			}
 		}
 

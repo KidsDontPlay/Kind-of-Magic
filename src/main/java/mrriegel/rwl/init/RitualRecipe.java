@@ -132,24 +132,11 @@ public class RitualRecipe {
 	}
 
 	public ItemStack getOutput() {
-		if (output != null) {
-			if (output.stackSize <= 0)
-				output.stackSize = 1;
-			return output;
-		} else
-			return null;
-	}
-
-	public void setOutput(ItemStack output) {
-		this.output = output;
+		return output.copy();
 	}
 
 	public int getCat() {
 		return cat;
-	}
-
-	public void setCat(int cat) {
-		this.cat = cat;
 	}
 
 	public Object getInput1() {

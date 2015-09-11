@@ -73,22 +73,18 @@ public class NevShovel extends ItemSpade implements INev {
 	}
 
 	@Override
-	public boolean onItemUse(ItemStack p_77648_1_, EntityPlayer p_77648_2_,
-			World p_77648_3_, int p_77648_4_, int p_77648_5_, int p_77648_6_,
-			int p_77648_7_, float p_77648_8_, float p_77648_9_,
-			float p_77648_10_) {
-		if (!p_77648_2_.isSneaking()) {
-			Block k = p_77648_3_.getBlock(p_77648_4_, p_77648_5_, p_77648_6_);
+	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world,
+			int x, int y, int z, int p_77648_7_, float p_77648_8_,
+			float p_77648_9_, float p_77648_10_) {
+		if (!player.isSneaking()) {
+			Block k = world.getBlock(x, y, z);
 			if (k != null && (k.equals(Blocks.dirt) || k.equals(Blocks.grass))) {
-				p_77648_3_.setBlock(p_77648_4_, p_77648_5_, p_77648_6_,
-						Blocks.farmland);
-				if (!p_77648_2_.capabilities.isCreativeMode)
-					p_77648_1_.setItemDamage(p_77648_1_.getItemDamage() + 1);
+				world.setBlock(x, y, z, Blocks.farmland);
+				RWLUtils.damageItemINev(1, player);
 			}
 		}
-		return super.onItemUse(p_77648_1_, p_77648_2_, p_77648_3_, p_77648_4_,
-				p_77648_5_, p_77648_6_, p_77648_7_, p_77648_8_, p_77648_9_,
-				p_77648_10_);
+		return super.onItemUse(stack, player, world, x, y, z, p_77648_7_,
+				p_77648_8_, p_77648_9_, p_77648_10_);
 	}
 
 	@Override
@@ -194,6 +190,7 @@ public class NevShovel extends ItemSpade implements INev {
 
 	private void silk(ItemStack stack, int x, int y, int z, EntityPlayer player) {
 		RWLUtils.breakWithSilk(player, player.worldObj, x, y, z);
+		RWLUtils.damageItemINev(1, player);
 	}
 
 	protected void radius(ItemStack stack, int x, int y, int z,
@@ -235,10 +232,8 @@ public class NevShovel extends ItemSpade implements INev {
 			Block bl = world.getBlock(b.x, b.y, b.z);
 			if (ForgeHooks.isToolEffective(stack, bl, meta)) {
 				RWLUtils.breakWithFortune(player, world, b.x, b.y, b.z, 0);
-				if (!player.capabilities.isCreativeMode)
-					stack.setItemDamage(stack.getItemDamage() + 1);
-				if (stack.getItemDamage() > MATERIAL.getMaxUses())
-					return;
+				if (RWLUtils.damageItemINev(1, player))
+					break;
 			}
 		}
 

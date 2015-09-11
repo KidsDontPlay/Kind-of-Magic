@@ -30,16 +30,16 @@ public class StoneItemRenderer extends TileEntitySpecialRenderer {
 			double d2, float f) {
 
 		if (tileEntity instanceof MazerTile) {
-			add(tileEntity, d0 + 1.0, d1, d2 + 1.0, f, 0);
-			add(tileEntity, d0 - 1.0, d1, d2 - 1.0, f, 1);
-			add(tileEntity, d0 + 1.0, d1, d2 - 1.0, f, 2);
-			add(tileEntity, d0 - 1.0, d1, d2 + 1.0, f, 3);
+			add(tileEntity, d0 + 1.0, d1, d2 + 1.0, 0);
+			add(tileEntity, d0 - 1.0, d1, d2 - 1.0, 1);
+			add(tileEntity, d0 + 1.0, d1, d2 - 1.0, 2);
+			add(tileEntity, d0 - 1.0, d1, d2 + 1.0, 3);
 			render(tileEntity, d0, d1 - 0.1D, d2);
 		}
 	}
 
 	private void add(TileEntity tileEntity, double d0, double d1, double d2,
-			float f, int slot) {
+			int slot) {
 		MazerTile tile = (MazerTile) tileEntity;
 		GL11.glPushMatrix();
 		if (tile.getStackInSlot(slot) != null) {

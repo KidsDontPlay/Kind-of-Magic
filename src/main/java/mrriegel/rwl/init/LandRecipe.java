@@ -132,16 +132,8 @@ public class LandRecipe {
 			return null;
 	}
 
-	public void setOutput(ItemStack output) {
-		this.output = output;
-	}
-
 	public int getCat() {
 		return cat;
-	}
-
-	public void setCat(int cat) {
-		this.cat = cat;
 	}
 
 	public Object getInput1() {

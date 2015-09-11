@@ -24,12 +24,7 @@ public class NevToolOverlayRenderer {
 	public void onScreenRenderEvent(RenderGameOverlayEvent event) {
 		if (event.type == RenderGameOverlayEvent.ElementType.TEXT) {
 			Minecraft mc = Minecraft.getMinecraft();
-			World world = mc.theWorld;
 			EntityPlayer player = mc.thePlayer;
-			Vec3 vec3 = player.getPosition(1.0F);
-			Vec3 vec3a = player.getLook(1.0F);
-			Vec3 vec3b = vec3.addVector(vec3a.xCoord * 3, vec3a.yCoord * 3,
-					vec3a.zCoord * 3);
 			if (player.getHeldItem() != null
 					&& player.getHeldItem().getItem() instanceof INev) {
 

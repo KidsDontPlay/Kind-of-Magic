@@ -224,7 +224,6 @@ public class MazerB extends BlockContainer {
 	}
 
 	public static boolean isConstruct(World world, int x, int y, int z) {
-		Block block = world.getBlock(x, y, z);
 		if (!world.getBlock(x, y - 1, z).equals(ModBlocks.mazer)) {
 			return false;
 		}

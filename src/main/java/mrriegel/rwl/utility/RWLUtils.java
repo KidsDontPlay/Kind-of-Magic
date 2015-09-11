@@ -3,6 +3,8 @@ package mrriegel.rwl.utility;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import mrriegel.rwl.inventory.InventoryNevTool;
+import mrriegel.rwl.item.INev;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -12,14 +14,17 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.stats.StatList;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
 import net.minecraftforge.event.world.BlockEvent;
 
 public class RWLUtils {
@@ -62,7 +67,6 @@ public class RWLUtils {
 							x, y, z, l, fortune), player, false));
 			MinecraftForge.EVENT_BUS.post(new BlockEvent.BreakEvent(x, y, z,
 					world, block, l, player));
-			// block.harvestBlock(world, player, x, y, z, l);
 			return world.setBlock(x, y, z, Blocks.air);
 		}
 	}
@@ -89,7 +93,6 @@ public class RWLUtils {
 					y, z, world, block, l, 0, 1.0F, lis, player, true));
 			MinecraftForge.EVENT_BUS.post(new BlockEvent.BreakEvent(x, y, z,
 					world, block, l, player));
-
 			return world.setBlock(x, y, z, Blocks.air, 0, 3);
 		}
 	}
@@ -154,8 +157,7 @@ public class RWLUtils {
 		return vec;
 	}
 
-	public static Vector<BlockLocation> getNeighbors12(World world, int x,
-			int y, int z) {
+	public static Vector<BlockLocation> getNeighbors12(int x, int y, int z) {
 		Vector<BlockLocation> v = new Vector<BlockLocation>();
 		v.add(new BlockLocation(x + 1, y, z + 1));
 		v.add(new BlockLocation(x + 1, y, z));
@@ -178,7 +180,7 @@ public class RWLUtils {
 		return v;
 	}
 
-	public static Vector<BlockLocation> getCube(World world, int x, int y, int z) {
+	public static Vector<BlockLocation> getCube(int x, int y, int z) {
 		Vector<BlockLocation> v = new Vector<BlockLocation>();
 
 		v.add(new BlockLocation(x, y, z));
@@ -282,5 +284,35 @@ public class RWLUtils {
 					player = p;
 			}
 		return player;
+	}
+
+	public static boolean damageItemINev(int i, EntityPlayer player) {
+		ItemStack stack = player.getHeldItem();
+		if (stack == null)
+			return true;
+		if (!(player instanceof EntityPlayer)
+				|| !((EntityPlayer) player).capabilities.isCreativeMode) {
+			if (stack.isItemStackDamageable()) {
+				if (stack.attemptDamageItem(i, player.getRNG())) {
+					player.renderBrokenItemStack(stack);
+					if (stack.getItem() instanceof INev
+							&& stack.getTagCompound() != null
+							&& !stack.getTagCompound()
+									.getCompoundTag(InventoryNevTool.tagName)
+									.toString().equals("{}")) {
+						player.inventory.setInventorySlotContents(
+								player.inventory.currentItem,
+								ItemStack.loadItemStackFromNBT(stack
+										.getTagCompound().getCompoundTag(
+												InventoryNevTool.tagName)));
+					} else
+						player.inventory.setInventorySlotContents(
+								player.inventory.currentItem, (ItemStack) null);
+					MinecraftForge.EVENT_BUS.post(new PlayerDestroyItemEvent(
+							player, stack));
+				}
+			}
+		}
+		return false;
 	}
 }
