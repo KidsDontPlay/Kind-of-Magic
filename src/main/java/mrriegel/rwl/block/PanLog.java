@@ -31,7 +31,6 @@ public class PanLog extends BlockLog {
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
 		list.add(new ItemStack(item, 1, 0));
-		// list.add(new ItemStack(item, 1, 1));
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -60,8 +59,6 @@ public class PanLog extends BlockLog {
 			int metadata, int fortune) {
 		ArrayList<ItemStack> ret = super.getDrops(world, x, y, z, metadata,
 				fortune);
-
-		int dropCount = world.rand.nextInt(2 + fortune) + 1;
 
 		return ret;
 	}

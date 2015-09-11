@@ -23,7 +23,6 @@ public class DropEventHandler {
 				&& e.world.rand.nextInt(5 - e.fortuneLevel) == 0) {
 			ItemStack stack = new ItemStack(ModItems.drop, 1,
 					e.world.rand.nextInt(7 - e.fortuneLevel) == 0 ? 1 : 0);
-			System.out.println("hier");
 			e.drops.add(stack);
 			if (e.harvester.getHeldItem() != null
 					&& e.harvester.getHeldItem().getItem()

@@ -127,7 +127,6 @@ public class EnergyBlastProjectile extends Entity implements IProjectile,
 			this.setLocationAndAngles(par2EntityLivingBase.posX + d4,
 					this.posY, par2EntityLivingBase.posZ + d5, f2, f3);
 			this.yOffset = 0.0F;
-			float f4 = (float) d3 * 0.2F;
 			this.setThrowableHeading(d0, d1, d2, par4, par5);
 		}
 
@@ -495,7 +494,6 @@ public class EnergyBlastProjectile extends Entity implements IProjectile,
 
 	@Override
 	public Entity getThrower() {
-		// TODO Auto-generated method stub
 		return this.shootingEntity;
 	}
 

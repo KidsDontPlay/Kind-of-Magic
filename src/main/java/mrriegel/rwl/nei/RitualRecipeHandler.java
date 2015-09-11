@@ -147,20 +147,8 @@ public class RitualRecipeHandler extends TemplateRecipeHandler {
 	@Override
 	public void loadUsageRecipes(ItemStack ingredient) {
 		for (RitualRecipe recipe : RitualRecipes.lis) {
-			ItemStack one;
-			ItemStack two;
-			ItemStack three;
-			ItemStack four;
-
 			CachedRitualRecipe crecipe = new CachedRitualRecipe(recipe);
-			if (/*
-				 * NEIServerUtils.areStacksSameTypeCrafting(recipe.getInput1(),
-				 * ingredient) || NEIServerUtils.areStacksSameTypeCrafting(
-				 * recipe.getInput2(), ingredient) ||
-				 * NEIServerUtils.areStacksSameTypeCrafting( recipe.getInput3(),
-				 * ingredient) || NEIServerUtils.areStacksSameTypeCrafting(
-				 * recipe.getInput4(), ingredient) ||
-				 */crecipe.contains(crecipe.input, ingredient)
+			if (crecipe.contains(crecipe.input, ingredient)
 					|| NEIServerUtils.areStacksSameTypeCrafting(new ItemStack(
 							ModItems.catalyst, 1, recipe.getCat()), ingredient))
 				arecipes.add(crecipe);

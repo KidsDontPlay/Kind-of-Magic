@@ -18,7 +18,6 @@ public class ItemCooler extends ItemTalisman {
 			ItemStack s = player.inventory.mainInventory[i];
 
 			if (s != null && s.getItem() instanceof ItemEdelstein) {
-				ItemEdelstein edel = (ItemEdelstein) s.getItem();
 				if (NBTHelper.getInt(s, "cooldown") != 0)
 					NBTHelper.setInteger(s, "cooldown",
 							NBTHelper.getInt(s, "cooldown") - 1);

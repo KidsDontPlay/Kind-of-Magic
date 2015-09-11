@@ -178,7 +178,7 @@ public class NevShovel extends ItemSpade implements INev {
 			if (player.worldObj.getBlock(x, y, z).canSilkHarvest(
 					player.worldObj, player, x, y, z,
 					player.worldObj.getBlockMetadata(x, y, z))) {
-				silk(stack, x, y, z, player);
+				silk(x, y, z, player);
 				return true;
 			} else
 				return false;
@@ -190,7 +190,7 @@ public class NevShovel extends ItemSpade implements INev {
 		return super.onBlockStartBreak(stack, x, y, z, player);
 	}
 
-	private void silk(ItemStack stack, int x, int y, int z, EntityPlayer player) {
+	private void silk(int x, int y, int z, EntityPlayer player) {
 		RWLUtils.breakWithSilk(player, player.worldObj, x, y, z);
 		RWLUtils.damageItemINev(1, player);
 	}

@@ -182,13 +182,13 @@ public class NevPick extends ItemPickaxe implements INev {
 			if (player.worldObj.getBlock(x, y, z).canSilkHarvest(
 					player.worldObj, player, x, y, z,
 					player.worldObj.getBlockMetadata(x, y, z))) {
-				silk(stack, x, y, z, player);
+				silk(x, y, z, player);
 				return true;
 			} else
 				return false;
 		case 4:
 			if (!player.capabilities.isCreativeMode) {
-				fortune(stack, x, y, z, player, 3);
+				fortune(x, y, z, player, 3);
 				return true;
 			} else
 				return false;
@@ -211,7 +211,7 @@ public class NevPick extends ItemPickaxe implements INev {
 					|| (block2.getHarvestTool(meta) != null && block2
 							.getHarvestTool(meta).equals("pickaxe"))
 					|| block2.equals(Blocks.quartz_block)) {
-				return detect(stack, x, y, z, player,
+				return detect(x, y, z, player,
 						player.worldObj.getBlock(x, y, z));
 			}
 			return false;
@@ -223,8 +223,7 @@ public class NevPick extends ItemPickaxe implements INev {
 		return super.onBlockStartBreak(stack, x, y, z, player);
 	}
 
-	private boolean detect(ItemStack stack, int x, int y, int z,
-			EntityPlayer player, Block block) {
+	private boolean detect(int x, int y, int z, EntityPlayer player, Block block) {
 		for (int y2 = y; y2 > 0; y2--) {
 			for (BlockLocation bl : RWLUtils.getAroundBlocks(x, y2, z)) {
 				Block b = player.worldObj.getBlock(bl.x, bl.y, bl.z);
@@ -239,6 +238,15 @@ public class NevPick extends ItemPickaxe implements INev {
 								player.posX, player.posY, player.posZ, s);
 						player.worldObj.spawnEntityInWorld(ei);
 					}
+					MinecraftForge.EVENT_BUS
+							.post(new BlockEvent.HarvestDropsEvent(x, y2, z,
+									player.worldObj, player.worldObj.getBlock(
+											x, y2, z), player.worldObj
+											.getBlockMetadata(x, y2, z), 0,
+									1.0F, block.getDrops(player.worldObj, x,
+											y2, z,
+											player.worldObj.getBlockMetadata(x,
+													y2, z), 0), player, false));
 					player.worldObj.setBlock(bl.x, bl.y, bl.z, Blocks.stone);
 
 					RWLUtils.damageItemINev(1, player);
@@ -255,7 +263,7 @@ public class NevPick extends ItemPickaxe implements INev {
 							player.posX, player.posY, player.posZ, s);
 					player.worldObj.spawnEntityInWorld(ei);
 				}
-				player.worldObj.setBlock(x, y2, z, Blocks.stone);
+
 				MinecraftForge.EVENT_BUS.post(new BlockEvent.HarvestDropsEvent(
 						x, y2, z, player.worldObj, player.worldObj.getBlock(x,
 								y2, z), player.worldObj.getBlockMetadata(x, y2,
@@ -263,6 +271,7 @@ public class NevPick extends ItemPickaxe implements INev {
 								y2, z,
 								player.worldObj.getBlockMetadata(x, y2, z), 0),
 						player, false));
+				player.worldObj.setBlock(x, y2, z, Blocks.stone);
 				RWLUtils.damageItemINev(1, player);
 				return true;
 
@@ -286,17 +295,15 @@ public class NevPick extends ItemPickaxe implements INev {
 							player.posY, player.posZ, s);
 					world.spawnEntityInWorld(ei);
 				}
+
+				MinecraftForge.EVENT_BUS.post(new BlockEvent.HarvestDropsEvent(
+						bl.x, bl.y, bl.z, player.worldObj, player.worldObj
+								.getBlock(bl.x, bl.y, bl.z), player.worldObj
+								.getBlockMetadata(bl.x, bl.y, bl.z), 0, 1.0F,
+						block.getDrops(player.worldObj, bl.x, bl.y, bl.z,
+								player.worldObj.getBlockMetadata(bl.x, bl.y,
+										bl.z), 0), player, false));
 				world.setBlock(bl.x, bl.y, bl.z, Blocks.air);
-				MinecraftForge.EVENT_BUS
-						.post(new BlockEvent.HarvestDropsEvent(bl.x, bl.y,
-								bl.z, player.worldObj, player.worldObj
-										.getBlock(bl.x, bl.y, bl.z),
-								player.worldObj.getBlockMetadata(bl.x, bl.y, bl.z), 0,
-								1.0F, block.getDrops(player.worldObj, bl.x,
-										bl.y, bl.z, player.worldObj
-												.getBlockMetadata(bl.x, bl.y,
-														bl.z), 0), player,
-								false));
 				int l = world.getBlockMetadata(x, y, z);
 				world.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(block)
 						+ (l << 12));
@@ -308,13 +315,12 @@ public class NevPick extends ItemPickaxe implements INev {
 		}
 	}
 
-	private void fortune(ItemStack stack, int x, int y, int z,
-			EntityPlayer player, int i) {
+	private void fortune(int x, int y, int z, EntityPlayer player, int i) {
 		RWLUtils.breakWithFortune(player, player.worldObj, x, y, z, i);
 		RWLUtils.damageItemINev(1, player);
 	}
 
-	private void silk(ItemStack stack, int x, int y, int z, EntityPlayer player) {
+	private void silk(int x, int y, int z, EntityPlayer player) {
 		RWLUtils.breakWithSilk(player, player.worldObj, x, y, z);
 		RWLUtils.damageItemINev(1, player);
 	}

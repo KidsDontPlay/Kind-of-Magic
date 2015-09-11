@@ -27,7 +27,6 @@ public class ItemRepair extends ItemTalisman {
 		for (int i = 0; i < player.inventory.mainInventory.length; i++) {
 			ItemStack iNev = player.inventory.mainInventory[i];
 			if (iNev != null && iNev.getItem() instanceof INev) {
-				INev st = (INev) iNev.getItem();
 				if (iNev.getItemDamage() > iNev.getMaxDamage() / 2) {
 					if (repair == -1)
 						return;
