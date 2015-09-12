@@ -24,6 +24,7 @@ import mrriegel.rwl.item.ItemSprinter;
 import mrriegel.rwl.item.ItemStepper;
 import mrriegel.rwl.item.ItemVision;
 import mrriegel.rwl.item.Light;
+import mrriegel.rwl.item.Lseeds;
 import mrriegel.rwl.item.MazeDust;
 import mrriegel.rwl.item.Nev;
 import mrriegel.rwl.item.NevAxe;
@@ -38,6 +39,7 @@ import mrriegel.rwl.item.Shoot;
 import mrriegel.rwl.item.TaliBag;
 import mrriegel.rwl.item.Up;
 import mrriegel.rwl.reference.Reference;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -57,6 +59,8 @@ public class ModItems {
 	public static final Item ostick = new OreStick();
 	public static final Item panstick = new PanStick();
 	public static final Item resin = new Resin();
+	public static final Item lseeds = new Lseeds(ModBlocks.lplant,
+			Blocks.farmland);
 	public static final Item amber = new Amber();
 	public static final Item drop = new Drop();
 	// public static final Item wnugget = new WNugget();
@@ -105,6 +109,7 @@ public class ModItems {
 		GameRegistry.registerItem(ostick, "ostick");
 		GameRegistry.registerItem(panstick, "panstick");
 		GameRegistry.registerItem(resin, "resin");
+		GameRegistry.registerItem(lseeds, "lseeds");
 		GameRegistry.registerItem(amber, "amber");
 		GameRegistry.registerItem(drop, "drop");
 		// GameRegistry.registerItem(wnugget, "wnugget");

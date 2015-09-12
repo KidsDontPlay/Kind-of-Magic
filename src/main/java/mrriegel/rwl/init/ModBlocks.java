@@ -7,6 +7,7 @@ import mrriegel.rwl.block.AOBlock;
 import mrriegel.rwl.block.AirOrus;
 import mrriegel.rwl.block.Grower;
 import mrriegel.rwl.block.Keep;
+import mrriegel.rwl.block.LapisPlant;
 import mrriegel.rwl.block.Mazer;
 import mrriegel.rwl.block.MazerB;
 import mrriegel.rwl.block.OBlock;
@@ -33,6 +34,7 @@ public class ModBlocks {
 	public static final Block panlog = new PanLog();
 	public static final Block panleaves = new PanLeaves();
 	public static final Block pansapling = new PanSapling();
+	public static final Block lplant = new LapisPlant();
 	public static final Block grower = new Grower();
 
 	static Item[] f = { Item.getItemFromBlock(orus),
@@ -55,6 +57,7 @@ public class ModBlocks {
 		GameRegistry.registerBlock(panlog, "panlog");
 		GameRegistry.registerBlock(panleaves, "panleaves");
 		GameRegistry.registerBlock(pansapling, "pansapling");
+		GameRegistry.registerBlock(lplant, "lplant");
 		GameRegistry.registerBlock(grower, "grower");
 
 		GameRegistry.registerTileEntity(MazerTile.class, "mazertile");

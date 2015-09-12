@@ -64,6 +64,11 @@ public class CraftingRecipes {
 		GameRegistry.addShapedRecipe(new ItemStack(ModItems.amber), "sis",
 				"iri", "sis", 's', new ItemStack(ModItems.panstick), 'i',
 				new ItemStack(Blocks.ice), 'r', new ItemStack(ModItems.resin));
+		GameRegistry.addShapedRecipe(new ItemStack(ModItems.lseeds), "lsl",
+				"bhb", 'l', new ItemStack(Items.dye, 1, 4), 's', new ItemStack(
+						Items.wheat_seeds), 'b',
+				new ItemStack(Items.dye, 1, 15), 'h', new ItemStack(
+						ModItems.drop));
 
 	}
 }
