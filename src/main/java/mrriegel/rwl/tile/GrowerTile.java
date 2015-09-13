@@ -1,5 +1,6 @@
 package mrriegel.rwl.tile;
 
+import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import mrriegel.rwl.RWL;
 import mrriegel.rwl.handler.ConfigurationHandler;
 import mrriegel.rwl.packet.ParticlePacket;
@@ -14,6 +15,11 @@ public class GrowerTile extends TileEntity {
 
 	@Override
 	public void updateEntity() {
+		if (advanced() && worldObj.isRemote)
+			if (worldObj.rand.nextInt(10) == 0)
+				worldObj.spawnParticle("bubble",
+						xCoord + worldObj.rand.nextDouble(), yCoord + 1.3D,
+						zCoord + worldObj.rand.nextDouble(), 0, 0.2D, 0);
 		if (worldObj.isRemote)
 			return;
 		if (advanced()) {
@@ -34,8 +40,10 @@ public class GrowerTile extends TileEntity {
 							}
 							if (worldObj.getBlockMetadata(x, y, z) != meta1
 									&& block instanceof IGrowable)
-								RWL.net.sendToAll(new ParticlePacket(x, y, z,
-										worldObj.provider.dimensionId));
+								RWL.net.sendToAllAround(new ParticlePacket(x,
+										y, z), new TargetPoint(
+										worldObj.provider.dimensionId, x, y, z,
+										16));
 						}
 					}
 				}

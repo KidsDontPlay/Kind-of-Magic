@@ -4,17 +4,16 @@ import io.netty.buffer.ByteBuf;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
 public class ParticlePacket implements IMessage {
-	int x, y, z, id;
+	int x, y, z;
 
 	public ParticlePacket() {
 	}
 
-	public ParticlePacket(int x, int y, int z, int id) {
+	public ParticlePacket(int x, int y, int z) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.z = z;
-		this.id = id;
 	}
 
 	@Override
@@ -22,7 +21,6 @@ public class ParticlePacket implements IMessage {
 		this.x = buf.readInt();
 		this.y = buf.readInt();
 		this.z = buf.readInt();
-		this.id = buf.readInt();
 	}
 
 	@Override
@@ -30,7 +28,6 @@ public class ParticlePacket implements IMessage {
 		buf.writeInt(x);
 		buf.writeInt(y);
 		buf.writeInt(z);
-		buf.writeInt(id);
 	}
 
 }

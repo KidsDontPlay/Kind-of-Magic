@@ -12,8 +12,6 @@ public class ParticlePacketHandler implements
 	@Override
 	public IMessage onMessage(ParticlePacket message, MessageContext ctx) {
 		World w = Minecraft.getMinecraft().theWorld;
-		if (w.provider.dimensionId != message.id)
-			return null;
 		for (int i = 0; i < 7; i++)
 			w.spawnParticle("happyVillager", message.x + w.rand.nextDouble(),
 					message.y + 0.7D, message.z + w.rand.nextDouble(), 0, 0, 0);
