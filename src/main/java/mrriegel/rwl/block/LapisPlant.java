@@ -8,9 +8,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.reference.Reference;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -23,7 +25,6 @@ public class LapisPlant extends BlockCrops {
 
 	public LapisPlant() {
 		super();
-		this.setCreativeTab(CreativeTab.tab1);
 		this.setBlockName(Reference.MOD_ID + ":" + "lplant");
 	}
 
@@ -39,7 +40,7 @@ public class LapisPlant extends BlockCrops {
 
 	@Override
 	public int quantityDropped(Random p_149745_1_) {
-		return p_149745_1_.nextInt(2) + 2;
+		return p_149745_1_.nextInt(2) + 3;
 	}
 
 	@Override
@@ -59,7 +60,7 @@ public class LapisPlant extends BlockCrops {
 		if (p_149691_2_ < 0 || p_149691_2_ > 7) {
 			p_149691_2_ = 7;
 		}
-		int icon=0;
+		int icon = 0;
 		if (p_149691_2_ >= 0 && p_149691_2_ <= 2)
 			icon = 0;
 		else if (p_149691_2_ >= 3 && p_149691_2_ <= 6)

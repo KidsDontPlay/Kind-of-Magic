@@ -43,7 +43,7 @@ public class RWLWorld implements IWorldGenerator {
 			int posX = blockXPos + random.nextInt(maxX);
 			int posY = minY + random.nextInt(diffBtwnMinMaxY);
 			int posZ = blockZPos + random.nextInt(maxZ);
-			(new WorldGenMinable(block, 6 + random.nextInt(3))).generate(world,
+			(new WorldGenMinable(block, 5 + random.nextInt(3))).generate(world,
 					random, posX, posY, posZ);
 		}
 	}

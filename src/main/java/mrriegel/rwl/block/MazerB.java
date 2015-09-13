@@ -30,6 +30,7 @@ public class MazerB extends BlockContainer {
 
 	public MazerB() {
 		super(Material.rock);
+		this.setResistance(6000000.0F);
 		this.setHardness(3.5f);
 		this.setCreativeTab(CreativeTab.tab1);
 		this.setBlockName(Reference.MOD_ID + ":" + "mazerB");

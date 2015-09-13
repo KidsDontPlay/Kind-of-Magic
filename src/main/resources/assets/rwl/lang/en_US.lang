@@ -9,6 +9,7 @@ tile.rwl:grower.name=Floralizer
 tile.rwl:panlog.name=Pan Wood
 tile.rwl:panleaves.name=Pan Leaves
 tile.rwl:pansapling.name=Pan Sapling
+tile.rwl:lplant.name=Lazuli Crop
 
 item.rwl:cry_0.name=Area Crystal I
 item.rwl:cry_1.name=Area Crystal II
@@ -66,6 +67,7 @@ item.rwl:cbag.name=Crystal Bag
 item.rwl:tbag.name=Talisman Bag
 item.rwl:resin.name=Pan Resin
 item.rwl:amber.name=Cold Amber
+item.rwl:lseeds.name=Lazuli Seeds
 
 item.rwl:nevsword.name=Nev Sword
 item.rwl:nevpick.name=Nev Pickaxe

@@ -54,8 +54,8 @@ public class ConfigurationHandler {
 		/* common */
 		structureRarity = config.get(COMMON, "structureRarity", 90,
 				"rarity of generated shrines").getInt(90);
-		nevOreRarity = config.get(COMMON, "nevOreRarity", 40,
-				"rarity of nev ore").getInt(40);
+		nevOreRarity = config.get(COMMON, "nevOreRarity", 50,
+				"rarity of nev ore").getInt(50);
 		lightNevOreRarity = config.get(COMMON, "lightNevOreRarity", 100,
 				"rarity of light nev ore").getInt(100);
 
