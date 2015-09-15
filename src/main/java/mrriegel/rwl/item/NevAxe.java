@@ -191,7 +191,6 @@ public class NevAxe extends ItemAxe implements INev {
 	protected void radius(ItemStack stack, int x, int y, int z,
 			EntityPlayer player, int radius) {
 		World world = player.worldObj;
-		Block block = world.getBlock(x, y, z);
 		int meta = world.getBlockMetadata(x, y, z);
 		int direction = -1;
 		Vector<BlockLocation> v = new Vector<BlockLocation>();
@@ -201,7 +200,8 @@ public class NevAxe extends ItemAxe implements INev {
 		if (mop == null) {
 			return;
 		}
-		if (!ForgeHooks.isToolEffective(stack, block, meta)) {
+		if (!RWLUtils.isHarvestable(world, stack, new BlockLocation(x, y, z),
+				meta)) {
 			return;
 		}
 		if (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
@@ -224,8 +224,7 @@ public class NevAxe extends ItemAxe implements INev {
 			}
 		}
 		for (BlockLocation b : v) {
-			Block bl = world.getBlock(b.x, b.y, b.z);
-			if (ForgeHooks.isToolEffective(stack, bl, meta)) {
+			if (RWLUtils.isHarvestable(world, stack, b, meta)) {
 				RWLUtils.breakWithFortune(player, world, b.x, b.y, b.z, 0);
 				if (RWLUtils.damageItemINev(1, player))
 					break;

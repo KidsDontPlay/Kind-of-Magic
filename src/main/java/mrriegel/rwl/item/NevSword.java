@@ -91,7 +91,7 @@ public class NevSword extends ItemSword implements INev {
 				player.openGui(RWL.instance, GuiIDs.NEVTOOL, world, 0, 0, 0);
 			else
 				player.openGui(RWL.instance, GuiIDs.COMBOBAG, world, 0, 0, 0);
-		return stack;
+		return super.onItemRightClick(stack, world, player);
 	}
 
 	@Override
@@ -151,28 +151,29 @@ public class NevSword extends ItemSword implements INev {
 	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase victim,
 			EntityLivingBase playe) {
-		if (stack.getTagCompound() == null)
-			return false;
+
 		EntityPlayer player = (EntityPlayer) playe;
+		if (stack.getTagCompound() == null)
+			return super.hitEntity(stack, player, victim);
 		if (player.worldObj.isRemote) {
-			return false;
+			return super.hitEntity(stack, player, victim);
 		}
 		if (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
 				.toString().equals("{}")) {
-			return false;
+			return super.hitEntity(stack, player, victim);
 		}
 		Random rand = player.worldObj.rand;
 		switch (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
 				.getShort("Damage")) {
 		case 0:
 			aoe(player, victim, 1.1f, rand);
-			return true;
+			break;
 		case 1:
 			aoe(player, victim, 2.1f, rand);
-			return true;
+			break;
 		case 2:
 			aoe(player, victim, 3.1f, rand);
-			return true;
+			break;
 		case 6:
 			victim.setFire(7);
 			break;

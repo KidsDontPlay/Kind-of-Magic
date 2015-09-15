@@ -14,8 +14,12 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemBow;
+import net.minecraft.item.ItemPickaxe;
+import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTool;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.MathHelper;
@@ -75,6 +79,9 @@ public class RWLUtils {
 			int x, int y, int z) {
 		Block block = world.getBlock(x, y, z);
 
+		if (!block.canSilkHarvest(world, player, x, y, z,
+				world.getBlockMetadata(x, y, z)))
+			return false;
 		if (block.getMaterial() == Material.air) {
 			return false;
 		} else {
@@ -310,6 +317,41 @@ public class RWLUtils {
 							player, stack));
 				}
 			}
+		}
+		return false;
+	}
+
+	public static boolean isHarvestable(World world, ItemStack stack,
+			BlockLocation bl, int meta) {
+		if (!(stack.getItem() instanceof ItemTool))
+			return false;
+		ItemTool tool = (ItemTool) stack.getItem();
+		Block block = world.getBlock(bl.x, bl.y, bl.z);
+		if (block == null)
+			return false;
+		if (block.getHarvestLevel(meta) > tool.func_150913_i()
+				.getHarvestLevel()
+				|| block.getBlockHardness(world, bl.x, bl.y, bl.z) < 0.0F)
+			return false;
+		if (tool instanceof ItemPickaxe) {
+			if (block.getMaterial().equals(Material.glass)
+					|| block.getMaterial().equals(Material.rock)
+					|| block.getMaterial().equals(Material.iron)
+					|| block.getMaterial().equals(Material.anvil)
+					|| block.getMaterial().equals(Material.ice)
+					|| block.getMaterial().equals(Material.packedIce))
+				return true;
+		} else if (tool instanceof ItemSpade) {
+			if (block.getMaterial().equals(Material.grass)
+					|| block.getMaterial().equals(Material.ground)
+					|| block.getMaterial().equals(Material.sand)
+					|| block.getMaterial().equals(Material.snow)
+					|| block.getMaterial().equals(Material.craftedSnow)
+					|| block.getMaterial().equals(Material.clay))
+				return true;
+		} else if (tool instanceof ItemAxe) {
+			if (block.getMaterial().equals(Material.wood))
+				return true;
 		}
 		return false;
 	}

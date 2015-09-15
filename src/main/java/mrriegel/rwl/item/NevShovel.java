@@ -175,10 +175,8 @@ public class NevShovel extends ItemSpade implements INev {
 						player.getFoodStats().getFoodLevel() - 1);
 			return false;
 		case 3:
-			if (player.worldObj.getBlock(x, y, z).canSilkHarvest(
-					player.worldObj, player, x, y, z,
-					player.worldObj.getBlockMetadata(x, y, z))) {
-				silk(x, y, z, player);
+			if (silk(x, y, z, player)) {
+				RWLUtils.damageItemINev(1, player);
 				return true;
 			} else
 				return false;
@@ -190,15 +188,14 @@ public class NevShovel extends ItemSpade implements INev {
 		return super.onBlockStartBreak(stack, x, y, z, player);
 	}
 
-	private void silk(int x, int y, int z, EntityPlayer player) {
-		RWLUtils.breakWithSilk(player, player.worldObj, x, y, z);
-		RWLUtils.damageItemINev(1, player);
+	private boolean silk(int x, int y, int z, EntityPlayer player) {
+		return RWLUtils.breakWithSilk(player, player.worldObj, x, y, z);
+
 	}
 
 	protected void radius(ItemStack stack, int x, int y, int z,
 			EntityPlayer player, int radius) {
 		World world = player.worldObj;
-		Block block = world.getBlock(x, y, z);
 		int meta = world.getBlockMetadata(x, y, z);
 		int direction = -1;
 		Vector<BlockLocation> v = new Vector<BlockLocation>();
@@ -208,7 +205,8 @@ public class NevShovel extends ItemSpade implements INev {
 		if (mop == null) {
 			return;
 		}
-		if (!ForgeHooks.isToolEffective(stack, block, meta)) {
+		if (!RWLUtils.isHarvestable(world, stack, new BlockLocation(x, y, z),
+				meta)) {
 			return;
 		}
 		if (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
@@ -231,8 +229,7 @@ public class NevShovel extends ItemSpade implements INev {
 			}
 		}
 		for (BlockLocation b : v) {
-			Block bl = world.getBlock(b.x, b.y, b.z);
-			if (ForgeHooks.isToolEffective(stack, bl, meta)) {
+			if (RWLUtils.isHarvestable(world, stack, b, meta)) {
 				RWLUtils.breakWithFortune(player, world, b.x, b.y, b.z, 0);
 				if (RWLUtils.damageItemINev(1, player))
 					break;

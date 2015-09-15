@@ -236,24 +236,9 @@ public class Keep extends Block {
 										: 1.0d;
 								double ztmp = world.rand.nextBoolean() ? -1.0d
 										: 1.0d;
-								e.posX = x + world.rand.nextDouble() * 1.5D
-										* xtmp;
-								e.posY = y + 0.5D;
-								e.posZ = z + world.rand.nextDouble() * 1.5D
-										* ztmp;
-								if ((RWLUtils.double2int(e.posX) == x && RWLUtils
-										.double2int(e.posZ) == z)
-										|| (RWLUtils.double2int(e.posX) == x + 2 && RWLUtils
-												.double2int(e.posZ) == z + 2)
-										|| (RWLUtils.double2int(e.posX) == x - 2 && RWLUtils
-												.double2int(e.posZ) == z + 2)
-										|| (RWLUtils.double2int(e.posX) == x + 2 && RWLUtils
-												.double2int(e.posZ) == z - 2)
-										|| (RWLUtils.double2int(e.posX) == x - 2 && RWLUtils
-												.double2int(e.posZ) == z - 2)) {
-									i--;
-									continue;
-								}
+								e.posX = x + 0.5D + xtmp;
+								e.posY = y + 0.2D;
+								e.posZ = z + 0.5D + ztmp;
 								world.spawnEntityInWorld(e);
 								e.setPositionAndUpdate(e.posX, e.posY, e.posZ);
 							}

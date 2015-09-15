@@ -17,6 +17,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class LapisPlant extends BlockCrops {
@@ -89,5 +91,11 @@ public class LapisPlant extends BlockCrops {
 		else
 			ret.add(new ItemStack(this.func_149866_i()));
 		return ret;
+	}
+
+	@Override
+	public int getExpDrop(IBlockAccess world, int metadata, int fortune) {
+		Random rand = new Random();
+		return MathHelper.getRandomIntegerInRange(rand, 1, 2);
 	}
 }

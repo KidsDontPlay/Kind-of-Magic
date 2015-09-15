@@ -161,6 +161,8 @@ public class NevPick extends ItemPickaxe implements INev {
 		if (player.worldObj.isRemote) {
 			return false;
 		}
+		Block block = player.worldObj.getBlock(x, y, z);
+		int meta = player.worldObj.getBlockMetadata(x, y, z);
 		switch (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
 				.getShort("Damage")) {
 		case 0:
@@ -179,10 +181,8 @@ public class NevPick extends ItemPickaxe implements INev {
 						player.getFoodStats().getFoodLevel() - 1);
 			return false;
 		case 3:
-			if (player.worldObj.getBlock(x, y, z).canSilkHarvest(
-					player.worldObj, player, x, y, z,
-					player.worldObj.getBlockMetadata(x, y, z))) {
-				silk(x, y, z, player);
+			if (silk(x, y, z, player)) {
+				RWLUtils.damageItemINev(1, player);
 				return true;
 			} else
 				return false;
@@ -193,24 +193,18 @@ public class NevPick extends ItemPickaxe implements INev {
 			} else
 				return false;
 		case 14:
-			Block block = player.worldObj.getBlock(x, y, z);
-			if (block.getUnlocalizedName().contains("ore")
-					|| block instanceof BlockOre
-					|| block instanceof BlockRedstoneOre) {
+			if ((block.getUnlocalizedName().contains("ore")
+					|| block instanceof BlockOre || block instanceof BlockRedstoneOre)
+					&& RWLUtils.isHarvestable(player.worldObj, stack,
+							new BlockLocation(x, y, z), meta)) {
 				vein(stack, x, y, z, player, player.worldObj.getBlock(x, y, z),
 						player.worldObj.getBlockMetadata(x, y, z));
 				return true;
 			}
 			return false;
 		case 15:
-			Block block2 = player.worldObj.getBlock(x, y, z);
-			int meta = player.worldObj.getBlockMetadata(x, y, z);
-			if (ForgeHooks.isToolEffective(stack, block2, meta)
-					|| block2.equals(Blocks.brick_block)
-					|| block2.getMaterial().equals(Material.rock)
-					|| (block2.getHarvestTool(meta) != null && block2
-							.getHarvestTool(meta).equals("pickaxe"))
-					|| block2.equals(Blocks.quartz_block)) {
+			if (RWLUtils.isHarvestable(player.worldObj, stack,
+					new BlockLocation(x, y, z), meta)) {
 				return detect(x, y, z, player,
 						player.worldObj.getBlock(x, y, z));
 			}
@@ -320,15 +314,14 @@ public class NevPick extends ItemPickaxe implements INev {
 		RWLUtils.damageItemINev(1, player);
 	}
 
-	private void silk(int x, int y, int z, EntityPlayer player) {
-		RWLUtils.breakWithSilk(player, player.worldObj, x, y, z);
-		RWLUtils.damageItemINev(1, player);
+	private boolean silk(int x, int y, int z, EntityPlayer player) {
+		return RWLUtils.breakWithSilk(player, player.worldObj, x, y, z);
+
 	}
 
 	protected void radius(ItemStack stack, int x, int y, int z,
 			EntityPlayer player, int radius) {
 		World world = player.worldObj;
-		Block block = world.getBlock(x, y, z);
 		int meta = world.getBlockMetadata(x, y, z);
 		int direction = -1;
 		Vector<BlockLocation> v = new Vector<BlockLocation>();
@@ -339,15 +332,8 @@ public class NevPick extends ItemPickaxe implements INev {
 			return;
 		}
 
-		if (!ForgeHooks.isToolEffective(stack, block, meta)
-				&& !ForgeHooks.canToolHarvestBlock(block, meta, stack)
-				&& !block.equals(Blocks.brick_block)
-				&& !(block.getHarvestTool(meta) != null && block
-						.getHarvestTool(meta).equals("pickaxe"))
-				&& !block.equals(Blocks.quartz_block)
-				&& !block.getMaterial().equals(Material.rock)
-				&& !block.getMaterial().equals(Material.glass)
-				&& !block.getMaterial().equals(Material.iron)) {
+		if (!RWLUtils.isHarvestable(world, stack, new BlockLocation(x, y, z),
+				meta)) {
 			return;
 		}
 		if (stack.getTagCompound().getCompoundTag(InventoryNevTool.tagName)
@@ -370,15 +356,8 @@ public class NevPick extends ItemPickaxe implements INev {
 			}
 		}
 		for (BlockLocation b : v) {
-			Block bl = world.getBlock(b.x, b.y, b.z);
 			int meta2 = world.getBlockMetadata(b.x, b.y, b.z);
-			if ((bl.getMaterial().equals(Material.rock)
-					|| bl.getMaterial().equals(Material.glass)
-					|| bl.getMaterial().equals(Material.iron)
-					|| bl.getMaterial().equals(Material.ice) || block
-					.getMaterial().equals(Material.packedIce))
-					&& bl.getHarvestLevel(meta2) <= MATERIAL.getHarvestLevel()
-					&& bl.getBlockHardness(world, b.x, b.y, b.z) != -1.0F) {
+			if (RWLUtils.isHarvestable(world, stack, b, meta2)) {
 				RWLUtils.breakWithFortune(player, world, b.x, b.y, b.z, 0);
 				if (RWLUtils.damageItemINev(1, player))
 					break;
