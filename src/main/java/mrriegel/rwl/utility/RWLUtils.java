@@ -68,7 +68,8 @@ public class RWLUtils {
 			block.dropBlockAsItem(world, x, y, z, l, fortune);
 			for (int i = 0; i < block.getExpDrop(world, meta, fortune); i++) {
 				world.spawnEntityInWorld(new EntityXPOrb(world, x + 0.5d, y,
-						z + 0.5d, EntityXPOrb.getXPSplit(1)));
+						z + 0.5d,
+						EntityXPOrb.getXPSplit(world.rand.nextInt(10) + 1)));
 			}
 			MinecraftForge.EVENT_BUS.post(new BlockEvent.HarvestDropsEvent(x,
 					y, z, world, block, l, fortune, 1.0F, block.getDrops(world,
