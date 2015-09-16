@@ -237,7 +237,7 @@ public class Keep extends Block {
 								double ztmp = world.rand.nextBoolean() ? -1.0d
 										: 1.0d;
 								e.posX = x + 0.5D + xtmp;
-								e.posY = y + 0.2D;
+								e.posY = y - 0.2D;
 								e.posZ = z + 0.5D + ztmp;
 								world.spawnEntityInWorld(e);
 								e.setPositionAndUpdate(e.posX, e.posY, e.posZ);

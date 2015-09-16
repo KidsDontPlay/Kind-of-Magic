@@ -16,7 +16,7 @@ public class GrowerTile extends TileEntity {
 	@Override
 	public void updateEntity() {
 		if (advanced() && worldObj.isRemote)
-			if (worldObj.rand.nextInt(10) == 0)
+			if (worldObj.rand.nextInt(7) == 0)
 				worldObj.spawnParticle("bubble",
 						xCoord + worldObj.rand.nextDouble(), yCoord + 1.3D,
 						zCoord + worldObj.rand.nextDouble(), 0, 0.2D, 0);

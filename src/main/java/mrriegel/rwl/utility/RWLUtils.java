@@ -9,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -57,6 +58,7 @@ public class RWLUtils {
 	public static boolean breakWithFortune(EntityPlayer player, World world,
 			int x, int y, int z, int fortune) {
 		Block block = world.getBlock(x, y, z);
+		int meta = world.getBlockMetadata(x, y, z);
 
 		if (block.getMaterial() == Material.air) {
 			return false;
@@ -66,6 +68,10 @@ public class RWLUtils {
 					+ (l << 12));
 
 			block.dropBlockAsItem(world, x, y, z, l, fortune);
+			for (int i = 0; i < block.getExpDrop(world, meta, fortune); i++) {
+				world.spawnEntityInWorld(new EntityXPOrb(world, x + 0.5d, y,
+						z + 0.5d, EntityXPOrb.getXPSplit(1)));
+			}
 			MinecraftForge.EVENT_BUS.post(new BlockEvent.HarvestDropsEvent(x,
 					y, z, world, block, l, fortune, 1.0F, block.getDrops(world,
 							x, y, z, l, fortune), player, false));

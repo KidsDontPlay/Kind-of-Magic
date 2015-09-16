@@ -23,7 +23,7 @@ public class RitualRecipes {
 		lis.add(new RitualRecipe(new ItemStack(ModItems.nev), "gemDiamond",
 				new ItemStack(ModItems.drop, 1, 0), new ItemStack(
 						ModItems.oredust), new ItemStack(ModItems.airoredust),
-				0, anywhere, anytime, 3));
+				0, anywhere, anytime, 2));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.cry, 1, 0),
 				new ItemStack(ModItems.nev), new ItemStack(ModItems.mdust),
@@ -211,12 +211,12 @@ public class RitualRecipes {
 		lis.add(new RitualRecipe(new ItemStack(ModItems.drop, 1, 2),
 				new ItemStack(ModItems.drop, 1, 1), new ItemStack(
 						ModItems.mdust), "gemDiamond", new ItemStack(
-						ModItems.amber), 1, anywhere, anytime, 11));
+						ModItems.amber), 1, anywhere, anytime, 9));
 
 		lis.add(new RitualRecipe(new ItemStack(ModItems.drop, 1, 3),
 				new ItemStack(ModItems.drop, 1, 2), new ItemStack(
 						ModItems.mdust), new ItemStack(Items.nether_star),
-				new ItemStack(ModItems.amber), 2, anywhere, anytime, 17));
+				new ItemStack(ModItems.amber), 2, anywhere, anytime, 13));
 
 	}
 }
