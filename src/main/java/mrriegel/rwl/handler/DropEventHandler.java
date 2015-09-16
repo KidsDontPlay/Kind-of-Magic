@@ -1,7 +1,6 @@
 package mrriegel.rwl.handler;
 
 import mrriegel.rwl.init.ModItems;
-import mrriegel.rwl.inventory.InventoryNevTool;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;

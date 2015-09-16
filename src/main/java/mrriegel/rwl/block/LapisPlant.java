@@ -3,16 +3,10 @@ package mrriegel.rwl.block;
 import java.util.ArrayList;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.init.ModItems;
 import mrriegel.rwl.reference.Reference;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -20,6 +14,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class LapisPlant extends BlockCrops {
 	@SideOnly(Side.CLIENT)
@@ -90,6 +86,8 @@ public class LapisPlant extends BlockCrops {
 					world.rand.nextInt(4) == 0 ? 2 : 1));
 		else
 			ret.add(new ItemStack(this.func_149866_i()));
+		if (world.rand.nextInt(8) == 0)
+			ret.add(new ItemStack(ModItems.drop));
 		return ret;
 	}
 

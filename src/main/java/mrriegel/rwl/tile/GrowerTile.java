@@ -1,6 +1,5 @@
 package mrriegel.rwl.tile;
 
-import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import mrriegel.rwl.RWL;
 import mrriegel.rwl.handler.ConfigurationHandler;
 import mrriegel.rwl.packet.ParticlePacket;
@@ -10,6 +9,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.IPlantable;
+import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 
 public class GrowerTile extends TileEntity {
 

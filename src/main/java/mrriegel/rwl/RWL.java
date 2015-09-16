@@ -1,7 +1,6 @@
 package mrriegel.rwl;
 
 import java.io.File;
-import java.util.Iterator;
 
 import mrriegel.rwl.gui.GuiHandler;
 import mrriegel.rwl.handler.ConfigurationHandler;
@@ -21,8 +20,6 @@ import mrriegel.rwl.proxy.CommonProxy;
 import mrriegel.rwl.reference.Reference;
 import mrriegel.rwl.render.NevToolOverlayRenderer;
 import mrriegel.rwl.world.RWLWorld;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import cpw.mods.fml.common.Mod;
@@ -33,7 +30,6 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import cpw.mods.fml.common.registry.GameData;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 

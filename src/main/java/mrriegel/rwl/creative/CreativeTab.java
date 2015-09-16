@@ -1,7 +1,5 @@
 package mrriegel.rwl.creative;
 
-import java.util.List;
-
 import mrriegel.rwl.init.ModBlocks;
 import mrriegel.rwl.reference.Reference;
 import net.minecraft.creativetab.CreativeTabs;

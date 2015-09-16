@@ -19,7 +19,6 @@ import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeHooks;
 
 public class NevAxe extends ItemAxe implements INev {
 	public NevAxe() {

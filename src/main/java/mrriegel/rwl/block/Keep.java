@@ -3,7 +3,6 @@ package mrriegel.rwl.block;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import mrriegel.rwl.RWL;
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.init.LandRecipe;
 import mrriegel.rwl.init.LandRecipes;
@@ -16,9 +15,6 @@ import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
-import net.minecraft.client.particle.EntityHugeExplodeFX;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
