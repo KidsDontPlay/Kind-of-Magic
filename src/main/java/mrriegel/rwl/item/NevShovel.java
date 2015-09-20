@@ -1,8 +1,10 @@
 package mrriegel.rwl.item;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
+import cofh.lib.util.position.BlockPosition;
 import mrriegel.rwl.RWL;
 import mrriegel.rwl.creative.CreativeTab;
 import mrriegel.rwl.gui.GuiIDs;
@@ -13,6 +15,10 @@ import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.NBTHelper;
 import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemSpade;
@@ -56,6 +62,7 @@ public class NevShovel extends ItemSpade implements INev {
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world,
 			EntityPlayer player) {
+
 		boolean res = false;
 		for (ItemStack s : player.inventory.mainInventory)
 			if (s != null && s.getItem().equals(ModItems.bag)) {
@@ -80,6 +87,7 @@ public class NevShovel extends ItemSpade implements INev {
 			if (k != null && (k.equals(Blocks.dirt) || k.equals(Blocks.grass))) {
 				world.setBlock(x, y, z, Blocks.farmland);
 				RWLUtils.damageItemINev(1, player);
+				return true;
 			}
 		}
 		return super.onItemUse(stack, player, world, x, y, z, p_77648_7_,

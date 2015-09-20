@@ -15,12 +15,14 @@ import mrriegel.rwl.utility.BlockLocation;
 import mrriegel.rwl.utility.RWLUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -100,11 +102,6 @@ public class Keep extends Block {
 								fh = (IFluidHandler) world.getTileEntity(
 										flui.x, flui.y, flui.z);
 							if (fh == null)
-								return false;
-							fd = RWLUtils.getForgeDirectionOfBlock(
-									new BlockLocation(x, y - 2, z),
-									new BlockLocation(flui.x, flui.y, flui.z));
-							if (fd == null)
 								return false;
 							for (BlockLocation bl : RWLUtils.getAroundBlocks(
 									tile.xCoord, tile.yCoord, tile.zCoord)) {
@@ -190,13 +187,12 @@ public class Keep extends Block {
 						}
 
 						if (r.getOutput() instanceof String) {
+							long ku = world.getWorldTime() % 24000;
 							if (((String) r.getOutput()).equals("Day")
 									&& !world.isRemote) {
-								long ku = world.getWorldTime() % 24000;
 								world.setWorldTime(world.getWorldTime() - ku);
 								world.setWorldTime(world.getWorldTime() + 24000);
 							} else if (((String) r.getOutput()).equals("Night")) {
-								long ku = world.getWorldTime() % 24000;
 								world.setWorldTime(world.getWorldTime() - ku);
 								world.setWorldTime(world.getWorldTime() + 36000);
 							}
@@ -228,15 +224,9 @@ public class Keep extends Block {
 								} catch (InvocationTargetException e1) {
 									e1.printStackTrace();
 								}
-								double xtmp = world.rand.nextBoolean() ? -1.0d
-										: 1.0d;
-								double ztmp = world.rand.nextBoolean() ? -1.0d
-										: 1.0d;
-								e.posX = x + 0.5D + xtmp;
-								e.posY = y - 0.2D;
-								e.posZ = z + 0.5D + ztmp;
-								world.spawnEntityInWorld(e);
+								RWLUtils.spawnInRange(e, x, y, z, 3);
 								e.setPositionAndUpdate(e.posX, e.posY, e.posZ);
+
 							}
 							return true;
 						}

@@ -1,13 +1,19 @@
 package mrriegel.rwl.tile;
 
+import java.util.List;
+
 import mrriegel.rwl.RWL;
 import mrriegel.rwl.handler.ConfigurationHandler;
 import mrriegel.rwl.packet.ParticlePacket;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.IPlantable;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 

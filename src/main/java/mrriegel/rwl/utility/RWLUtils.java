@@ -8,8 +8,10 @@ import mrriegel.rwl.item.INev;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -359,5 +361,45 @@ public class RWLUtils {
 				return true;
 		}
 		return false;
+	}
+
+	public static boolean spawnInRange(EntityLivingBase ent, int xC, int yC,
+			int zC, int range) {
+		int height = ((int) ent.height) + 1;
+
+		ArrayList<BlockLocation> lis = new ArrayList<BlockLocation>();
+		for (int x = xC - range; x < xC + range; x++) {
+			for (int y = yC - range; y < yC + range; y++) {
+				for (int z = zC - range; z < zC + range; z++) {
+					if (!ent.worldObj.getBlock(x, y, z).getMaterial().isSolid())
+						lis.add(new BlockLocation(x, y, z));
+				}
+			}
+		}
+		ArrayList<BlockLocation> end = new ArrayList<BlockLocation>();
+		for (BlockLocation b : lis) {
+			if (isHighEnough(ent.worldObj, b, height))
+				end.add(b);
+
+		}
+		if (end.isEmpty())
+			return false;
+		BlockLocation fin = end.get(ent.worldObj.rand.nextInt(end.size()));
+		ent.posX = fin.x + 0.5D;
+		ent.posY = fin.y;
+		ent.posZ = fin.z + 0.5D;
+		return ent.worldObj.spawnEntityInWorld(ent);
+	}
+
+	private static boolean isHighEnough(World world, BlockLocation bl,
+			int height) {
+		boolean d = true;
+		for (int i = bl.y + 1; i < bl.y + height; i++) {
+			if (world.getBlock(bl.x, i, bl.z).getMaterial().isSolid()) {
+				d = false;
+				break;
+			}
+		}
+		return d;
 	}
 }

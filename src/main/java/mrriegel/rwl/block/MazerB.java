@@ -199,7 +199,7 @@ public class MazerB extends BlockContainer {
 				if (tile.getStackInSlot(i) != null) {
 					if (!world.isRemote) {
 						EntityItem ei = new EntityItem(world, x + 0.5d,
-								y + 0.5d, z + 0.5d, tile.getStackInSlot(i));
+								y + 0.5d, z + 0.5d, tile.getStackInSlot(i).copy());
 						world.spawnEntityInWorld(ei);
 						ei.setPosition(player.posX, player.posY, player.posZ);
 					}
